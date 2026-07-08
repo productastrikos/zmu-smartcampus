@@ -417,7 +417,17 @@ app.get('/api/alerts', (req, res) => {
 
 app.get('/api/health', (req, res) => res.json({ ok: true, tables: TABLES.length }));
 
-const PORT = process.env.API_PORT || 5051;
+/* ── serve the built React client in production ─────────────
+   `npm start` runs `vite build` first, which outputs to /dist
+   (see vite.config.js). The dev workflow (`npm run dev`) doesn't
+   need this — Vite's own dev server handles the client on :5173. */
+const distPath = path.join(__dirname, '..', 'dist');
+if (fs.existsSync(distPath)) {
+  app.use(express.static(distPath));
+  app.get(/^(?!\/api).*/, (req, res) => res.sendFile(path.join(distPath, 'index.html')));
+}
+
+const PORT = process.env.PORT || process.env.API_PORT || 5051;
 const HOST = process.env.API_HOST || '0.0.0.0';
 const { networkInterfaces } = require('os');
 const getLocalIP = () => {
