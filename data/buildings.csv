@@ -1,0 +1,13 @@
+building_id,name,type,floors,area_m2,x,y,w,h
+Z01,Command HQ & Admin,admin,4,9800,60,60,180,110
+Z02,Academic Block A,academic,3,12400,300,60,170,100
+Z03,Academic Block B,academic,3,11200,300,200,170,90
+Z04,Applied Labs Centre,labs,2,8600,60,200,180,90
+Z05,Central Library,library,3,7400,530,60,140,100
+Z06,Cadet Accommodation North,accommodation,5,15800,60,380,200,100
+Z07,Cadet Accommodation South,accommodation,5,15800,60,510,200,90
+Z08,HPO & Sports Complex,sports,2,13600,320,380,200,140
+Z09,Armoury & WMS,armoury,1,2400,580,380,120,90
+Z10,Dining Facility,dining,2,5200,530,200,140,90
+Z11,Auditorium & Parade Hall,assembly,2,6800,710,60,120,100
+Z12,Central Plant & Data Centre,plant,2,4600,860,60,90,230

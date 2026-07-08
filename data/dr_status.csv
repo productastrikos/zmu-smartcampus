@@ -1,0 +1,9 @@
+metric,value,target,status
+Async replication lag (DR ≥ 50 km),38 s,< 60 s,ok
+RPO — enterprise systems,11 min,15 min,ok
+RTO — tier-1 apps,52 min,60 min,ok
+Last backup → Core42 (FedNet),02:00 today,Daily,ok
+Immutable copies retained,14,≥ 14,ok
+Last DR failover test,42 days ago,≤ 90 days,ok
+ERP availability (30d),99.97%,99.95%,ok
+LMS availability (30d),99.91%,99.90%,warning

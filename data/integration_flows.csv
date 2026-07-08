@@ -1,0 +1,9 @@
+flow_no,name,source,target,transport,msgs_24h,error_rate_pct,latency_ms,status
+1,"SIS ↔ LMS / Library / Labs — enrolment, grades, content",SIS,LMS / ILS / Labs,API / ESB,48200,0.2,180,healthy
+2,"ERP ↔ SIS / Scheduling — HR load, billing, budgets, DoF",ERP,SIS / Scheduler / DoF,API / ESB,12600,0.4,260,healthy
+3,"IAM → all systems — accounts, entitlements, physical access",IAM / IdP,All platforms,SCIM / API,5400,0.1,140,healthy
+4,Wearables / HPO ↔ analytics — readiness scores to SIS,Garmin Health API,HPO / Data Lake / SIS,REST / JSON,86400,1.1,420,healthy
+5,OT → IT one-way telemetry via data diode,BMS / IoT (Domain D),Data Platform,Data Diode,152000,2.8,90,warning
+6,"Partner & DoF exchange — validated, ICD-governed gateway",KU / Rabdan / SUAD / DoF,File-Exchange Gateway,MFT,340,0,1500,healthy
+7,All platforms → split-SIEM — auth / privileged / config events,All platforms,Split-SIEM,Syslog RFC 5424,96400,0.3,60,healthy
+8,Replication → DR ≥ 50 km; backup → Core42 via FedNet,Primary DC (Z12),DR Site / Core42,Async Repl / FedNet,288,0,8,healthy

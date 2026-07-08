@@ -1,0 +1,301 @@
+cadet_id,name,squadron,year,program,partner,gpa,military_score,fitness_score,conduct_score,composite_score,order_of_merit,attendance_pct,risk_level,garmin_device,device_synced_hrs_ago,accommodation
+ZMU-2100,Marwan Mohammed Al Falasi,Falcon,3,Defence & Security Studies,Rabdan Academy,3.52,68,72,90,79.2,119,89.4,low,Fenix 8 Tactical,4,Z06
+ZMU-2101,Faisal Butti Al Falasi,Oryx,2,Computer & Cyber Engineering,Khalifa University,3.13,98,82,95,85.8,32,83.7,low,Instinct 3 Solar,5,Z07
+ZMU-2102,Zayed Salem Al Shamsi,Ghaf,4,Aerospace & Mechanical Engineering,Khalifa University,3.33,58,98,78,80.1,104,82.4,high,Fenix 8 Tactical,7,Z06
+ZMU-2103,Yousef Faisal Al Falasi,Saluki,1,International Relations & Strategy,Sorbonne University AD,2.24,74,89,76,70.8,237,84.6,medium,Forerunner 965,4,Z07
+ZMU-2104,Faisal Saif Al Shehhi,Fursan,3,GIS & Geospatial Intelligence,Sorbonne University AD,3.60,97,57,89,83.4,58,90.1,low,Epix Pro Gen 2,3,Z06
+ZMU-2105,Khalid Yousef Al Blooshi,Wadeema,3,Military Leadership & Command,ZMU Core,3.08,94,62,76,77.4,156,99.3,low,Forerunner 965,6,Z07
+ZMU-2106,Yousef Nasser Al Hammadi,Falcon,2,Defence & Security Studies,Rabdan Academy,3.51,90,97,84,90.3,7,83.1,high,Forerunner 965,8,Z06
+ZMU-2107,Zayed Mohammed Al Falasi,Oryx,1,Computer & Cyber Engineering,Khalifa University,3.07,92,75,98,82.3,73,88.2,low,Instinct 3 Solar,8,Z07
+ZMU-2108,Tariq Nasser Al Mansoori,Ghaf,2,Aerospace & Mechanical Engineering,Khalifa University,3.34,93,56,91,79.8,113,89.8,low,Instinct 3 Solar,5,Z06
+ZMU-2109,Ali Saeed Al Falasi,Saluki,3,International Relations & Strategy,Sorbonne University AD,3.38,88,64,97,81.5,89,84.7,low,Fenix 8 Tactical,4,Z07
+ZMU-2110,Salem Saeed Al Muhairi,Fursan,2,GIS & Geospatial Intelligence,Sorbonne University AD,2.08,83,90,72,71.3,234,98.5,medium,Fenix 8 Tactical,3,Z06
+ZMU-2111,Juma Hamad Al Hammadi,Wadeema,4,Military Leadership & Command,ZMU Core,3.16,58,68,79,71,235,90.9,medium,Instinct 3 Solar,8,Z07
+ZMU-2112,Khalifa Theyab Al Falasi,Falcon,2,Defence & Security Studies,Rabdan Academy,3.70,62,85,91,82.8,66,95.2,low,Forerunner 965,2,Z06
+ZMU-2113,Mohammed Suhail Al Ameri,Oryx,1,Computer & Cyber Engineering,Khalifa University,2.62,66,99,82,75.7,180,96.2,low,Forerunner 965,8,Z07
+ZMU-2114,Marwan Obaid Al Dhaheri,Ghaf,1,Aerospace & Mechanical Engineering,Khalifa University,2.76,73,95,76,77.2,157,83.1,high,Forerunner 965,4,Z06
+ZMU-2115,Juma Omar Al Falasi,Saluki,4,International Relations & Strategy,Sorbonne University AD,3.72,69,58,94,78.4,137,99.3,low,Forerunner 965,2,Z07
+ZMU-2116,Majid Majid Al Romaithi,Fursan,4,GIS & Geospatial Intelligence,Sorbonne University AD,3.43,87,99,71,87.9,17,94.6,low,Epix Pro Gen 2,7,Z06
+ZMU-2117,Khalid Saeed Al Hammadi,Wadeema,2,Military Leadership & Command,ZMU Core,3.65,89,60,94,83.2,62,95.7,low,Epix Pro Gen 2,0,Z07
+ZMU-2118,Salem Saeed Al Shamsi,Falcon,1,Defence & Security Studies,Rabdan Academy,3.83,84,86,95,90.3,8,99.1,low,Instinct 3 Solar,8,Z06
+ZMU-2119,Ali Suhail Al Blooshi,Oryx,2,Computer & Cyber Engineering,Khalifa University,1.62,88,57,90,61.5,299,85.4,high,Epix Pro Gen 2,0,Z07
+ZMU-2120,Hamad Tariq Al Dhaheri,Ghaf,4,Aerospace & Mechanical Engineering,Khalifa University,2.72,87,83,73,77,160,98.4,low,Forerunner 965,2,Z06
+ZMU-2121,Obaid Saif Al Suwaidi,Saluki,1,International Relations & Strategy,Sorbonne University AD,3.27,93,85,80,85.2,37,82.2,high,Fenix 8 Tactical,8,Z07
+ZMU-2122,Saif Obaid Al Mansoori,Fursan,2,GIS & Geospatial Intelligence,Sorbonne University AD,2.93,91,88,93,83.4,59,90.5,low,Forerunner 965,0,Z06
+ZMU-2123,Ahmed Khalifa Al Falasi,Wadeema,4,Military Leadership & Command,ZMU Core,3.87,65,98,74,86.9,23,94.8,low,Epix Pro Gen 2,5,Z07
+ZMU-2124,Ahmed Hamdan Al Suwaidi,Falcon,1,Defence & Security Studies,Rabdan Academy,2.21,85,62,73,66.2,275,98.2,medium,Fenix 8 Tactical,0,Z06
+ZMU-2125,Zayed Mansoor Al Suwaidi,Oryx,1,Computer & Cyber Engineering,Khalifa University,3.55,65,96,79,83.7,53,90.5,low,Epix Pro Gen 2,7,Z07
+ZMU-2126,Mansoor Obaid Al Mansoori,Ghaf,1,Aerospace & Mechanical Engineering,Khalifa University,3.95,94,64,94,88.4,15,98.7,low,Epix Pro Gen 2,1,Z06
+ZMU-2127,Mansoor Salem Al Blooshi,Saluki,1,International Relations & Strategy,Sorbonne University AD,3.17,62,62,90,71.7,228,95.8,medium,Instinct 3 Solar,56,Z07
+ZMU-2128,Hamad Faisal Al Blooshi,Fursan,2,GIS & Geospatial Intelligence,Sorbonne University AD,2.36,81,89,99,76,171,87.9,low,Fenix 8 Tactical,2,Z06
+ZMU-2129,Nasser Saif Al Ketbi,Wadeema,3,Military Leadership & Command,ZMU Core,3.42,75,97,95,86.7,25,92.5,low,Forerunner 965,6,Z07
+ZMU-2130,Hamad Sultan Al Mazrouei,Falcon,4,Defence & Security Studies,Rabdan Academy,3.53,96,74,99,87.7,21,83.6,low,Epix Pro Gen 2,8,Z06
+ZMU-2131,Yousef Ali Al Falasi,Oryx,3,Computer & Cyber Engineering,Khalifa University,3.13,79,82,71,78.6,131,93.4,low,Instinct 3 Solar,2,Z07
+ZMU-2132,Salem Ibrahim Al Ameri,Ghaf,1,Aerospace & Mechanical Engineering,Khalifa University,3.38,94,67,80,82.1,79,89.5,low,Epix Pro Gen 2,0,Z06
+ZMU-2133,Abdulla Zayed Al Ameri,Saluki,2,International Relations & Strategy,Sorbonne University AD,2.55,76,95,94,77.7,148,91.4,low,Fenix 8 Tactical,0,Z07
+ZMU-2134,Salem Tariq Al Dhaheri,Fursan,1,GIS & Geospatial Intelligence,Sorbonne University AD,3.09,73,97,88,82.2,75,96.3,low,Forerunner 965,7,Z06
+ZMU-2135,Rashid Majid Al Ketbi,Wadeema,4,Military Leadership & Command,ZMU Core,2.23,77,88,80,71.5,232,93.9,medium,Fenix 8 Tactical,6,Z07
+ZMU-2136,Khalid Khalid Al Naqbi,Falcon,2,Defence & Security Studies,Rabdan Academy,2.78,85,99,97,83.5,54,87,low,Forerunner 965,6,Z06
+ZMU-2137,Suhail Saeed Al Qubaisi,Oryx,4,Computer & Cyber Engineering,Khalifa University,3.51,98,73,70,84.8,40,86.5,low,Instinct 3 Solar,1,Z07
+ZMU-2138,Ahmed Ibrahim Al Marri,Ghaf,2,Aerospace & Mechanical Engineering,Khalifa University,2.55,86,76,97,75.7,181,89.4,low,Epix Pro Gen 2,47,Z06
+ZMU-2139,Salem Mohammed Al Hammadi,Saluki,2,International Relations & Strategy,Sorbonne University AD,2.14,93,68,74,69.1,256,82.4,high,Epix Pro Gen 2,5,Z07
+ZMU-2140,Zayed Mohammed Al Blooshi,Fursan,3,GIS & Geospatial Intelligence,Sorbonne University AD,3.43,60,63,96,74.7,198,95.6,low,Epix Pro Gen 2,7,Z06
+ZMU-2141,Juma Nasser Al Kaabi,Wadeema,2,Military Leadership & Command,ZMU Core,2.68,59,97,95,75.3,188,98.4,low,Forerunner 965,6,Z07
+ZMU-2142,Marwan Yousef Al Zaabi,Falcon,3,Defence & Security Studies,Rabdan Academy,3.93,65,68,96,82.2,76,85.2,low,Forerunner 965,35,Z06
+ZMU-2143,Ahmed Khalid Al Muhairi,Oryx,3,Computer & Cyber Engineering,Khalifa University,2.05,91,94,81,74.8,196,90.4,low,Forerunner 965,1,Z07
+ZMU-2144,Mansoor Saeed Al Muhairi,Ghaf,2,Aerospace & Mechanical Engineering,Khalifa University,3.34,73,89,96,83.5,55,95.9,low,Forerunner 965,5,Z06
+ZMU-2145,Zayed Butti Al Shehhi,Saluki,1,International Relations & Strategy,Sorbonne University AD,3.67,87,57,94,82.1,80,97.8,low,Instinct 3 Solar,3,Z07
+ZMU-2146,Hamdan Yousef Al Qubaisi,Fursan,4,GIS & Geospatial Intelligence,Sorbonne University AD,2.26,62,60,81,61.2,300,91.2,high,Fenix 8 Tactical,3,Z06
+ZMU-2147,Abdulla Sultan Al Kaabi,Wadeema,2,Military Leadership & Command,ZMU Core,3.69,93,73,73,85.7,34,92.5,low,Fenix 8 Tactical,8,Z07
+ZMU-2148,Omar Mohammed Al Falasi,Falcon,3,Defence & Security Studies,Rabdan Academy,3.91,58,87,78,83.1,63,86.1,low,Forerunner 965,8,Z06
+ZMU-2149,Suhail Juma Al Marri,Oryx,1,Computer & Cyber Engineering,Khalifa University,2.13,96,81,81,73.6,209,93.6,medium,Epix Pro Gen 2,6,Z07
+ZMU-2150,Khalifa Khalid Al Shamsi,Ghaf,2,Aerospace & Mechanical Engineering,Khalifa University,3.12,59,62,77,69.2,255,97.2,medium,Epix Pro Gen 2,1,Z06
+ZMU-2151,Abdulla Saeed Al Muhairi,Saluki,2,International Relations & Strategy,Sorbonne University AD,2.90,63,93,85,76.5,165,97.3,low,Instinct 3 Solar,0,Z07
+ZMU-2152,Abdulla Saif Al Naqbi,Fursan,1,GIS & Geospatial Intelligence,Sorbonne University AD,3.87,62,60,76,76.8,163,98.5,low,Instinct 3 Solar,3,Z06
+ZMU-2153,Ahmed Obaid Al Ameri,Wadeema,3,Military Leadership & Command,ZMU Core,3.23,71,80,89,79,123,86.5,low,Forerunner 965,0,Z07
+ZMU-2154,Khalifa Hamad Al Shehhi,Falcon,1,Defence & Security Studies,Rabdan Academy,2.30,69,60,82,63.5,293,89.7,high,Epix Pro Gen 2,2,Z06
+ZMU-2155,Juma Saeed Al Zaabi,Oryx,1,Computer & Cyber Engineering,Khalifa University,3.58,70,78,99,82.7,67,95.8,low,Instinct 3 Solar,50,Z07
+ZMU-2156,Suhail Butti Al Blooshi,Ghaf,4,Aerospace & Mechanical Engineering,Khalifa University,2.26,60,85,88,67.7,266,85.2,medium,Instinct 3 Solar,8,Z06
+ZMU-2157,Rashid Ibrahim Al Shehhi,Saluki,1,International Relations & Strategy,Sorbonne University AD,2.58,64,97,90,75,194,91,low,Instinct 3 Solar,1,Z07
+ZMU-2158,Mohammed Ahmed Al Falasi,Fursan,4,GIS & Geospatial Intelligence,Sorbonne University AD,3.60,65,69,91,78.6,132,95.1,low,Epix Pro Gen 2,1,Z06
+ZMU-2159,Hamad Marwan Al Ameri,Wadeema,1,Military Leadership & Command,ZMU Core,3.58,81,88,98,87.9,18,83.3,high,Fenix 8 Tactical,45,Z07
+ZMU-2160,Khalifa Omar Al Mansoori,Falcon,3,Defence & Security Studies,Rabdan Academy,2.81,70,73,97,73.5,210,96.3,medium,Instinct 3 Solar,61,Z06
+ZMU-2161,Khalid Yousef Al Hammadi,Oryx,4,Computer & Cyber Engineering,Khalifa University,2.64,87,84,83,77.5,154,90.4,low,Forerunner 965,7,Z07
+ZMU-2162,Juma Ahmed Al Romaithi,Ghaf,3,Aerospace & Mechanical Engineering,Khalifa University,1.98,94,86,79,72.7,219,87.5,medium,Fenix 8 Tactical,2,Z06
+ZMU-2163,Ibrahim Saif Al Mansoori,Saluki,1,International Relations & Strategy,Sorbonne University AD,3.00,97,80,75,81.8,85,85.9,low,Instinct 3 Solar,85,Z07
+ZMU-2164,Tariq Omar Al Mansoori,Fursan,3,GIS & Geospatial Intelligence,Sorbonne University AD,3.08,82,85,75,80.1,105,88.2,low,Forerunner 965,8,Z06
+ZMU-2165,Obaid Rashid Al Naqbi,Wadeema,3,Military Leadership & Command,ZMU Core,2.65,91,80,90,78.3,140,95.3,low,Fenix 8 Tactical,4,Z07
+ZMU-2166,Mohammed Saif Al Falasi,Falcon,3,Defence & Security Studies,Rabdan Academy,2.54,68,58,70,63.9,290,85.3,high,Forerunner 965,7,Z06
+ZMU-2167,Omar Butti Al Marri,Oryx,2,Computer & Cyber Engineering,Khalifa University,2.19,95,88,85,76.2,169,88.9,low,Epix Pro Gen 2,8,Z07
+ZMU-2168,Majid Faisal Al Mazrouei,Ghaf,3,Aerospace & Mechanical Engineering,Khalifa University,1.81,85,95,89,72,226,83.5,medium,Forerunner 965,0,Z06
+ZMU-2169,Faisal Ahmed Al Ameri,Saluki,3,International Relations & Strategy,Sorbonne University AD,1.98,88,60,90,65.8,277,99.3,high,Fenix 8 Tactical,2,Z07
+ZMU-2170,Suhail Khalid Al Falasi,Fursan,4,GIS & Geospatial Intelligence,Sorbonne University AD,2.50,84,72,86,72.6,221,97.7,medium,Forerunner 965,8,Z06
+ZMU-2171,Hamdan Butti Al Suwaidi,Wadeema,3,Military Leadership & Command,ZMU Core,1.69,96,95,70,71.7,229,85.1,medium,Forerunner 965,2,Z07
+ZMU-2172,Butti Suhail Al Marri,Falcon,1,Defence & Security Studies,Rabdan Academy,2.02,77,89,92,70.9,236,90.3,medium,Fenix 8 Tactical,0,Z06
+ZMU-2173,Omar Saif Al Mazrouei,Oryx,2,Computer & Cyber Engineering,Khalifa University,3.40,66,78,84,78.4,138,98.2,low,Fenix 8 Tactical,4,Z07
+ZMU-2174,Hamdan Obaid Al Blooshi,Ghaf,4,Aerospace & Mechanical Engineering,Khalifa University,3.21,60,86,74,76,172,92.6,low,Forerunner 965,0,Z06
+ZMU-2175,Obaid Theyab Al Suwaidi,Saluki,4,International Relations & Strategy,Sorbonne University AD,3.53,68,60,89,76.2,170,94.5,low,Forerunner 965,4,Z07
+ZMU-2176,Ibrahim Sultan Al Kaabi,Fursan,3,GIS & Geospatial Intelligence,Sorbonne University AD,2.44,87,60,77,68.8,257,94.1,medium,Epix Pro Gen 2,6,Z06
+ZMU-2177,Theyab Nasser Al Ameri,Wadeema,4,Military Leadership & Command,ZMU Core,2.98,73,80,74,75.5,185,95,low,Epix Pro Gen 2,3,Z07
+ZMU-2178,Mohammed Saif Al Naqbi,Falcon,1,Defence & Security Studies,Rabdan Academy,3.09,58,55,71,66.3,272,94.8,medium,Epix Pro Gen 2,5,Z06
+ZMU-2179,Ahmed Hamdan Al Ameri,Oryx,3,Computer & Cyber Engineering,Khalifa University,2.42,82,68,85,70.2,249,89.7,medium,Instinct 3 Solar,4,Z07
+ZMU-2180,Khalid Butti Al Marri,Ghaf,2,Aerospace & Mechanical Engineering,Khalifa University,3.56,73,89,72,83.3,61,86.8,low,Forerunner 965,7,Z06
+ZMU-2181,Butti Theyab Al Shamsi,Saluki,2,International Relations & Strategy,Sorbonne University AD,3.46,82,64,74,78.5,135,92.4,low,Fenix 8 Tactical,0,Z07
+ZMU-2182,Mohammed Mansoor Al Marri,Fursan,4,GIS & Geospatial Intelligence,Sorbonne University AD,2.37,73,89,97,73.9,202,90,medium,Instinct 3 Solar,0,Z06
+ZMU-2183,Hamad Faisal Al Mansoori,Wadeema,1,Military Leadership & Command,ZMU Core,2.14,69,69,84,64.3,287,87.2,high,Forerunner 965,1,Z07
+ZMU-2184,Khalifa Salem Al Zaabi,Falcon,4,Defence & Security Studies,Rabdan Academy,3.72,78,61,87,80.7,100,85.6,low,Forerunner 965,3,Z06
+ZMU-2185,Suhail Hamdan Al Marri,Oryx,2,Computer & Cyber Engineering,Khalifa University,2.77,76,70,74,71.6,231,98.8,medium,Fenix 8 Tactical,7,Z07
+ZMU-2186,Yousef Juma Al Falasi,Ghaf,4,Aerospace & Mechanical Engineering,Khalifa University,3.50,68,87,79,81.7,86,85.4,low,Forerunner 965,4,Z06
+ZMU-2187,Khalid Theyab Al Shehhi,Saluki,2,International Relations & Strategy,Sorbonne University AD,2.04,73,87,96,70,250,94.7,medium,Fenix 8 Tactical,0,Z07
+ZMU-2188,Tariq Zayed Al Zaabi,Fursan,4,GIS & Geospatial Intelligence,Sorbonne University AD,2.92,68,78,77,73.4,211,90.2,medium,Forerunner 965,8,Z06
+ZMU-2189,Salem Sultan Al Blooshi,Wadeema,3,Military Leadership & Command,ZMU Core,2.76,90,84,100,81.1,95,85.3,low,Epix Pro Gen 2,8,Z07
+ZMU-2190,Zayed Suhail Al Shamsi,Falcon,4,Defence & Security Studies,Rabdan Academy,2.90,91,61,73,74.3,201,90.2,low,Instinct 3 Solar,5,Z06
+ZMU-2191,Mohammed Suhail Al Shehhi,Oryx,1,Computer & Cyber Engineering,Khalifa University,3.27,64,88,86,79.3,117,98.5,low,Instinct 3 Solar,3,Z07
+ZMU-2192,Saeed Salem Al Mansoori,Ghaf,1,Aerospace & Mechanical Engineering,Khalifa University,3.23,90,92,79,85.7,35,88.4,low,Forerunner 965,0,Z06
+ZMU-2193,Juma Mansoor Al Zaabi,Saluki,1,International Relations & Strategy,Sorbonne University AD,2.76,62,88,76,72.7,220,90.3,medium,Forerunner 965,44,Z07
+ZMU-2194,Salem Theyab Al Hammadi,Fursan,1,GIS & Geospatial Intelligence,Sorbonne University AD,3.06,86,79,95,81.4,92,96.5,low,Forerunner 965,7,Z06
+ZMU-2195,Hamad Saeed Al Dhaheri,Wadeema,1,Military Leadership & Command,ZMU Core,3.40,58,64,79,72.4,223,97.1,medium,Epix Pro Gen 2,5,Z07
+ZMU-2196,Majid Khalifa Al Falasi,Falcon,4,Defence & Security Studies,Rabdan Academy,2.11,67,70,92,64.5,285,87.7,high,Forerunner 965,0,Z06
+ZMU-2197,Faisal Ahmed Al Falasi,Oryx,2,Computer & Cyber Engineering,Khalifa University,3.08,60,80,73,73.1,215,95.9,medium,Instinct 3 Solar,2,Z07
+ZMU-2198,Rashid Theyab Al Zaabi,Ghaf,4,Aerospace & Mechanical Engineering,Khalifa University,3.46,78,95,71,84.9,38,96.4,low,Fenix 8 Tactical,1,Z06
+ZMU-2199,Khalid Mohammed Al Shamsi,Saluki,2,International Relations & Strategy,Sorbonne University AD,3.14,94,56,94,78.3,141,86.9,low,Forerunner 965,6,Z07
+ZMU-2200,Ahmed Marwan Al Mazrouei,Fursan,3,GIS & Geospatial Intelligence,Sorbonne University AD,3.03,58,56,71,65.9,276,90.5,high,Forerunner 965,5,Z06
+ZMU-2201,Marwan Faisal Al Suwaidi,Wadeema,1,Military Leadership & Command,ZMU Core,3.21,66,57,99,72.8,218,83.6,medium,Instinct 3 Solar,8,Z07
+ZMU-2202,Hamad Khalifa Al Mazrouei,Falcon,3,Defence & Security Studies,Rabdan Academy,2.99,98,68,77,79.1,121,88.9,low,Forerunner 965,1,Z06
+ZMU-2203,Butti Nasser Al Ketbi,Oryx,1,Computer & Cyber Engineering,Khalifa University,3.90,87,89,92,92.2,4,93.1,low,Fenix 8 Tactical,5,Z07
+ZMU-2204,Tariq Khalifa Al Naqbi,Ghaf,2,Aerospace & Mechanical Engineering,Khalifa University,3.68,80,68,78,81.6,87,91,low,Forerunner 965,6,Z06
+ZMU-2205,Suhail Mansoor Al Suwaidi,Saluki,4,International Relations & Strategy,Sorbonne University AD,2.71,89,56,97,73,216,92.9,medium,Forerunner 965,7,Z07
+ZMU-2206,Saeed Theyab Al Shehhi,Fursan,1,GIS & Geospatial Intelligence,Sorbonne University AD,2.65,95,88,78,80,107,82.6,high,Fenix 8 Tactical,7,Z06
+ZMU-2207,Hamad Mohammed Al Qubaisi,Wadeema,2,Military Leadership & Command,ZMU Core,3.63,84,79,75,84.5,42,89.2,low,Fenix 8 Tactical,5,Z07
+ZMU-2208,Faisal Marwan Al Hammadi,Falcon,3,Defence & Security Studies,Rabdan Academy,2.66,61,66,94,67.8,265,85.7,medium,Epix Pro Gen 2,7,Z06
+ZMU-2209,Juma Hamad Al Qubaisi,Oryx,1,Computer & Cyber Engineering,Khalifa University,3.58,67,61,79,75.7,182,84.1,low,Forerunner 965,2,Z07
+ZMU-2210,Ali Majid Al Muhairi,Ghaf,3,Aerospace & Mechanical Engineering,Khalifa University,3.42,82,84,87,84.4,44,84.5,low,Forerunner 965,2,Z06
+ZMU-2211,Faisal Rashid Al Dhaheri,Saluki,1,International Relations & Strategy,Sorbonne University AD,3.21,90,79,70,81.3,94,90.5,low,Instinct 3 Solar,2,Z07
+ZMU-2212,Hamad Juma Al Blooshi,Fursan,4,GIS & Geospatial Intelligence,Sorbonne University AD,2.73,72,95,70,76,173,83,high,Fenix 8 Tactical,8,Z06
+ZMU-2213,Khalifa Mansoor Al Ketbi,Wadeema,4,Military Leadership & Command,ZMU Core,2.88,95,59,84,75.7,183,89.6,low,Fenix 8 Tactical,8,Z07
+ZMU-2214,Marwan Nasser Al Mazrouei,Falcon,4,Defence & Security Studies,Rabdan Academy,2.89,62,94,86,76.5,166,97.1,low,Instinct 3 Solar,5,Z06
+ZMU-2215,Juma Juma Al Ketbi,Oryx,4,Computer & Cyber Engineering,Khalifa University,2.34,77,97,77,74.6,199,93.1,low,Forerunner 965,5,Z07
+ZMU-2216,Yousef Ali Al Hammadi,Ghaf,2,Aerospace & Mechanical Engineering,Khalifa University,2.90,79,80,97,78.5,136,84.9,low,Instinct 3 Solar,6,Z06
+ZMU-2217,Sultan Majid Al Zaabi,Saluki,1,International Relations & Strategy,Sorbonne University AD,2.36,75,95,97,75.8,179,88.6,low,Fenix 8 Tactical,8,Z07
+ZMU-2218,Theyab Mohammed Al Romaithi,Fursan,3,GIS & Geospatial Intelligence,Sorbonne University AD,2.28,68,62,94,64.7,283,85.7,high,Instinct 3 Solar,5,Z06
+ZMU-2219,Marwan Ibrahim Al Kaabi,Wadeema,4,Military Leadership & Command,ZMU Core,3.83,84,93,76,90.1,9,82.5,high,Instinct 3 Solar,0,Z07
+ZMU-2220,Rashid Ali Al Kaabi,Falcon,2,Defence & Security Studies,Rabdan Academy,3.18,82,90,81,82.9,65,90.5,low,Fenix 8 Tactical,8,Z06
+ZMU-2221,Hamad Saeed Al Ketbi,Oryx,1,Computer & Cyber Engineering,Khalifa University,3.32,73,83,93,81.5,90,94,low,Forerunner 965,0,Z07
+ZMU-2222,Saif Juma Al Naqbi,Ghaf,1,Aerospace & Mechanical Engineering,Khalifa University,2.64,86,83,93,78,143,89.1,low,Fenix 8 Tactical,6,Z06
+ZMU-2223,Khalid Saif Al Marri,Saluki,2,International Relations & Strategy,Sorbonne University AD,2.39,89,74,85,73.2,214,96.5,medium,Instinct 3 Solar,8,Z07
+ZMU-2224,Ali Nasser Al Zaabi,Fursan,1,GIS & Geospatial Intelligence,Sorbonne University AD,2.26,65,88,71,68,263,82.2,high,Instinct 3 Solar,8,Z06
+ZMU-2225,Ahmed Obaid Al Mazrouei,Wadeema,3,Military Leadership & Command,ZMU Core,1.62,78,76,96,64.3,288,98.2,high,Instinct 3 Solar,4,Z07
+ZMU-2226,Majid Salem Al Naqbi,Falcon,2,Defence & Security Studies,Rabdan Academy,2.85,67,87,79,74.9,195,87.7,low,Fenix 8 Tactical,3,Z06
+ZMU-2227,Faisal Butti Al Naqbi,Oryx,4,Computer & Cyber Engineering,Khalifa University,3.40,78,84,97,84.2,47,92.8,low,Instinct 3 Solar,3,Z07
+ZMU-2228,Hamad Mansoor Al Ameri,Ghaf,3,Aerospace & Mechanical Engineering,Khalifa University,3.31,66,95,74,80.8,98,97,low,Epix Pro Gen 2,5,Z06
+ZMU-2229,Saif Khalid Al Mansoori,Saluki,3,International Relations & Strategy,Sorbonne University AD,3.78,75,55,84,78.7,130,97.5,low,Instinct 3 Solar,1,Z07
+ZMU-2230,Marwan Hamad Al Ameri,Fursan,3,GIS & Geospatial Intelligence,Sorbonne University AD,3.34,58,56,88,70.7,241,89.8,medium,Epix Pro Gen 2,0,Z06
+ZMU-2231,Ahmed Hamad Al Blooshi,Wadeema,3,Military Leadership & Command,ZMU Core,3.76,62,76,71,79.2,120,84.8,low,Epix Pro Gen 2,7,Z07
+ZMU-2232,Saif Saif Al Ameri,Falcon,2,Defence & Security Studies,Rabdan Academy,3.40,94,71,89,84.2,48,84.1,low,Instinct 3 Solar,0,Z06
+ZMU-2233,Theyab Rashid Al Shehhi,Oryx,3,Computer & Cyber Engineering,Khalifa University,2.51,87,63,77,70.3,244,96.8,medium,Fenix 8 Tactical,3,Z07
+ZMU-2234,Theyab Khalifa Al Ameri,Ghaf,4,Aerospace & Mechanical Engineering,Khalifa University,3.78,95,64,95,87,22,82.6,high,Fenix 8 Tactical,1,Z06
+ZMU-2235,Salem Faisal Al Mansoori,Saluki,2,International Relations & Strategy,Sorbonne University AD,2.27,77,64,88,66.8,271,89.9,medium,Forerunner 965,1,Z07
+ZMU-2236,Saeed Majid Al Ameri,Fursan,3,GIS & Geospatial Intelligence,Sorbonne University AD,2.83,92,79,79,79,124,93,low,Forerunner 965,0,Z06
+ZMU-2237,Ibrahim Khalifa Al Naqbi,Wadeema,4,Military Leadership & Command,ZMU Core,2.35,88,76,72,71.7,230,91.6,medium,Instinct 3 Solar,3,Z07
+ZMU-2238,Saeed Majid Al Mansoori,Falcon,2,Defence & Security Studies,Rabdan Academy,3.08,94,55,72,75.3,189,91,low,Forerunner 965,6,Z06
+ZMU-2239,Abdulla Butti Al Marri,Oryx,3,Computer & Cyber Engineering,Khalifa University,3.01,79,91,98,82.4,72,83.1,high,Instinct 3 Solar,5,Z07
+ZMU-2240,Salem Hamdan Al Ketbi,Ghaf,2,Aerospace & Mechanical Engineering,Khalifa University,3.55,65,63,97,77.2,158,90,low,Epix Pro Gen 2,1,Z06
+ZMU-2241,Majid Hamad Al Mazrouei,Saluki,1,International Relations & Strategy,Sorbonne University AD,2.27,73,85,75,69.7,253,90,medium,Epix Pro Gen 2,4,Z07
+ZMU-2242,Theyab Ahmed Al Qubaisi,Fursan,4,GIS & Geospatial Intelligence,Sorbonne University AD,2.52,96,91,91,81,96,90.7,low,Epix Pro Gen 2,4,Z06
+ZMU-2243,Suhail Rashid Al Marri,Wadeema,3,Military Leadership & Command,ZMU Core,3.12,58,83,90,75.5,186,88.2,low,Forerunner 965,5,Z07
+ZMU-2244,Hamad Nasser Al Shehhi,Falcon,2,Defence & Security Studies,Rabdan Academy,1.67,74,73,84,61.9,297,84.9,high,Fenix 8 Tactical,8,Z06
+ZMU-2245,Omar Hamad Al Qubaisi,Oryx,4,Computer & Cyber Engineering,Khalifa University,3.18,72,73,96,77.7,149,94.7,low,Instinct 3 Solar,3,Z07
+ZMU-2246,Faisal Saeed Al Shamsi,Ghaf,1,Aerospace & Mechanical Engineering,Khalifa University,3.70,62,57,70,73.8,204,93.2,medium,Epix Pro Gen 2,8,Z06
+ZMU-2247,Butti Abdulla Al Shamsi,Saluki,2,International Relations & Strategy,Sorbonne University AD,2.66,91,89,72,78.8,127,86.5,low,Epix Pro Gen 2,5,Z07
+ZMU-2248,Saif Khalifa Al Suwaidi,Fursan,3,GIS & Geospatial Intelligence,Sorbonne University AD,2.82,72,76,85,73.7,207,82.5,high,Instinct 3 Solar,5,Z06
+ZMU-2249,Suhail Mansoor Al Muhairi,Wadeema,4,Military Leadership & Command,ZMU Core,3.77,73,65,79,80.1,106,92.3,low,Epix Pro Gen 2,1,Z07
+ZMU-2250,Abdulla Mansoor Al Blooshi,Falcon,2,Defence & Security Studies,Rabdan Academy,3.75,91,80,92,89.5,13,93,low,Fenix 8 Tactical,3,Z06
+ZMU-2251,Rashid Hamdan Al Romaithi,Oryx,2,Computer & Cyber Engineering,Khalifa University,3.52,85,61,71,78.8,128,88.9,low,Epix Pro Gen 2,3,Z07
+ZMU-2252,Yousef Juma Al Marri,Ghaf,3,Aerospace & Mechanical Engineering,Khalifa University,3.28,67,70,83,75.4,187,87.6,low,Forerunner 965,3,Z06
+ZMU-2253,Mohammed Marwan Al Shehhi,Saluki,3,International Relations & Strategy,Sorbonne University AD,2.80,65,73,83,70.8,238,88.6,medium,Fenix 8 Tactical,3,Z07
+ZMU-2254,Tariq Khalid Al Naqbi,Fursan,2,GIS & Geospatial Intelligence,Sorbonne University AD,2.97,71,90,89,78.9,126,99.3,low,Forerunner 965,0,Z06
+ZMU-2255,Sultan Abdulla Al Kaabi,Wadeema,2,Military Leadership & Command,ZMU Core,3.57,95,59,83,82.5,69,94.3,low,Epix Pro Gen 2,3,Z07
+ZMU-2256,Zayed Majid Al Blooshi,Falcon,4,Defence & Security Studies,Rabdan Academy,3.67,82,59,88,80.8,99,98,low,Epix Pro Gen 2,0,Z06
+ZMU-2257,Abdulla Ali Al Muhairi,Oryx,4,Computer & Cyber Engineering,Khalifa University,3.26,78,63,100,77.8,147,83.9,low,Epix Pro Gen 2,6,Z07
+ZMU-2258,Suhail Salem Al Falasi,Ghaf,1,Aerospace & Mechanical Engineering,Khalifa University,3.61,94,78,76,86.7,26,94.9,low,Instinct 3 Solar,5,Z06
+ZMU-2259,Tariq Juma Al Falasi,Saluki,3,International Relations & Strategy,Sorbonne University AD,3.34,73,78,91,80.3,103,90.4,low,Epix Pro Gen 2,5,Z07
+ZMU-2260,Ibrahim Salem Al Shamsi,Fursan,4,GIS & Geospatial Intelligence,Sorbonne University AD,2.52,80,86,86,75.3,190,88,low,Forerunner 965,3,Z06
+ZMU-2261,Ali Saif Al Hammadi,Wadeema,2,Military Leadership & Command,ZMU Core,3.05,79,77,91,78.6,133,89.2,low,Instinct 3 Solar,6,Z07
+ZMU-2262,Ali Juma Al Shehhi,Falcon,2,Defence & Security Studies,Rabdan Academy,3.47,76,76,95,82.2,77,93.4,low,Epix Pro Gen 2,7,Z06
+ZMU-2263,Juma Rashid Al Ameri,Oryx,3,Computer & Cyber Engineering,Khalifa University,3.23,68,97,85,82.1,81,92.3,low,Epix Pro Gen 2,2,Z07
+ZMU-2264,Obaid Yousef Al Muhairi,Ghaf,3,Aerospace & Mechanical Engineering,Khalifa University,3.61,60,72,95,78.6,134,86.1,low,Fenix 8 Tactical,4,Z06
+ZMU-2265,Majid Tariq Al Zaabi,Saluki,1,International Relations & Strategy,Sorbonne University AD,3.67,62,88,93,83.5,56,89.2,low,Forerunner 965,6,Z07
+ZMU-2266,Zayed Saif Al Hammadi,Fursan,4,GIS & Geospatial Intelligence,Sorbonne University AD,3.05,75,60,94,73.7,208,94.4,medium,Instinct 3 Solar,6,Z06
+ZMU-2267,Nasser Mohammed Al Zaabi,Wadeema,4,Military Leadership & Command,ZMU Core,2.90,93,86,89,82.7,68,84.1,low,Instinct 3 Solar,8,Z07
+ZMU-2268,Saif Khalifa Al Mazrouei,Falcon,4,Defence & Security Studies,Rabdan Academy,2.69,81,89,83,77.7,150,83.2,high,Fenix 8 Tactical,1,Z06
+ZMU-2269,Tariq Suhail Al Suwaidi,Oryx,4,Computer & Cyber Engineering,Khalifa University,3.39,72,67,83,77,161,88.2,low,Fenix 8 Tactical,4,Z07
+ZMU-2270,Marwan Majid Al Mansoori,Ghaf,4,Aerospace & Mechanical Engineering,Khalifa University,2.34,74,64,93,67.2,269,83.3,high,Epix Pro Gen 2,5,Z06
+ZMU-2271,Zayed Obaid Al Mazrouei,Saluki,3,International Relations & Strategy,Sorbonne University AD,2.34,66,57,77,61.9,298,88.4,high,Instinct 3 Solar,2,Z07
+ZMU-2272,Salem Butti Al Mazrouei,Fursan,4,GIS & Geospatial Intelligence,Sorbonne University AD,2.79,93,89,86,82,82,88.8,low,Forerunner 965,7,Z06
+ZMU-2273,Marwan Khalifa Al Suwaidi,Wadeema,1,Military Leadership & Command,ZMU Core,2.57,98,84,72,78.4,139,99.2,low,Fenix 8 Tactical,4,Z07
+ZMU-2274,Obaid Zayed Al Suwaidi,Falcon,2,Defence & Security Studies,Rabdan Academy,3.90,64,59,77,77.5,155,95.7,low,Fenix 8 Tactical,6,Z06
+ZMU-2275,Majid Obaid Al Hammadi,Oryx,3,Computer & Cyber Engineering,Khalifa University,3.54,70,95,75,84.2,49,95.7,low,Instinct 3 Solar,8,Z07
+ZMU-2276,Khalid Saif Al Hammadi,Ghaf,4,Aerospace & Mechanical Engineering,Khalifa University,1.72,87,97,98,73,217,91.7,medium,Epix Pro Gen 2,6,Z06
+ZMU-2277,Nasser Hamad Al Mansoori,Saluki,2,International Relations & Strategy,Sorbonne University AD,3.30,84,56,80,76,174,97.5,low,Fenix 8 Tactical,8,Z07
+ZMU-2278,Rashid Ibrahim Al Qubaisi,Fursan,1,GIS & Geospatial Intelligence,Sorbonne University AD,2.01,80,55,86,62.4,296,82,high,Instinct 3 Solar,6,Z06
+ZMU-2279,Abdulla Hamad Al Marri,Wadeema,4,Military Leadership & Command,ZMU Core,3.19,85,84,100,84.2,50,85.8,low,Forerunner 965,6,Z07
+ZMU-2280,Hamdan Hamdan Al Naqbi,Falcon,3,Defence & Security Studies,Rabdan Academy,1.70,84,65,96,63.9,291,96.5,high,Epix Pro Gen 2,7,Z06
+ZMU-2281,Saeed Butti Al Blooshi,Oryx,3,Computer & Cyber Engineering,Khalifa University,2.65,60,62,77,64.7,284,83.8,high,Epix Pro Gen 2,0,Z07
+ZMU-2282,Rashid Ibrahim Al Kaabi,Ghaf,2,Aerospace & Mechanical Engineering,Khalifa University,3.35,62,71,86,75.3,191,86.9,low,Fenix 8 Tactical,8,Z06
+ZMU-2283,Zayed Hamdan Al Suwaidi,Saluki,2,International Relations & Strategy,Sorbonne University AD,2.82,60,67,99,69.8,252,95,medium,Instinct 3 Solar,0,Z07
+ZMU-2284,Saif Ali Al Zaabi,Fursan,3,GIS & Geospatial Intelligence,Sorbonne University AD,3.19,86,61,93,78,144,91.3,low,Forerunner 965,1,Z06
+ZMU-2285,Ali Ahmed Al Mazrouei,Wadeema,2,Military Leadership & Command,ZMU Core,1.62,84,87,91,68,264,94.5,medium,Fenix 8 Tactical,4,Z07
+ZMU-2286,Ibrahim Hamad Al Naqbi,Falcon,3,Defence & Security Studies,Rabdan Academy,2.37,61,79,76,66.3,273,92.5,medium,Forerunner 965,2,Z06
+ZMU-2287,Theyab Ahmed Al Suwaidi,Oryx,3,Computer & Cyber Engineering,Khalifa University,3.33,86,62,96,79.9,111,96.4,low,Fenix 8 Tactical,8,Z07
+ZMU-2288,Nasser Marwan Al Naqbi,Ghaf,1,Aerospace & Mechanical Engineering,Khalifa University,3.22,80,66,83,77,162,91.1,low,Fenix 8 Tactical,4,Z06
+ZMU-2289,Sultan Theyab Al Mazrouei,Saluki,4,International Relations & Strategy,Sorbonne University AD,3.85,95,90,83,93,2,83.6,low,Epix Pro Gen 2,8,Z07
+ZMU-2290,Saif Salem Al Dhaheri,Fursan,1,GIS & Geospatial Intelligence,Sorbonne University AD,2.65,90,96,76,80.6,101,97.1,low,Forerunner 965,2,Z06
+ZMU-2291,Omar Marwan Al Romaithi,Wadeema,2,Military Leadership & Command,ZMU Core,3.56,72,79,98,83.1,64,92.9,low,Forerunner 965,8,Z07
+ZMU-2292,Khalifa Suhail Al Zaabi,Falcon,2,Defence & Security Studies,Rabdan Academy,2.29,88,89,93,76.5,167,92.2,low,Instinct 3 Solar,0,Z06
+ZMU-2293,Zayed Omar Al Romaithi,Oryx,4,Computer & Cyber Engineering,Khalifa University,3.13,90,87,70,82.5,70,96.1,low,Epix Pro Gen 2,8,Z07
+ZMU-2294,Khalifa Yousef Al Naqbi,Ghaf,3,Aerospace & Mechanical Engineering,Khalifa University,2.40,84,74,86,72.1,225,85.4,medium,Instinct 3 Solar,1,Z06
+ZMU-2295,Nasser Rashid Al Suwaidi,Saluki,4,International Relations & Strategy,Sorbonne University AD,2.40,60,64,92,64.2,289,96.7,high,Instinct 3 Solar,4,Z07
+ZMU-2296,Ahmed Ahmed Al Hammadi,Fursan,4,GIS & Geospatial Intelligence,Sorbonne University AD,3.78,58,60,98,77.1,159,91.2,low,Epix Pro Gen 2,62,Z06
+ZMU-2297,Theyab Marwan Al Mansoori,Wadeema,3,Military Leadership & Command,ZMU Core,3.99,79,90,76,89.8,12,89.8,low,Instinct 3 Solar,0,Z07
+ZMU-2298,Mohammed Juma Al Falasi,Falcon,1,Defence & Security Studies,Rabdan Academy,3.46,97,80,70,85.8,33,95.3,low,Epix Pro Gen 2,8,Z06
+ZMU-2299,Saif Hamdan Al Ketbi,Oryx,4,Computer & Cyber Engineering,Khalifa University,2.32,73,75,74,67.6,267,92.6,medium,Epix Pro Gen 2,4,Z07
+ZMU-2300,Tariq Obaid Al Mazrouei,Ghaf,1,Aerospace & Mechanical Engineering,Khalifa University,3.65,83,82,90,86.8,24,87.4,low,Forerunner 965,3,Z06
+ZMU-2301,Juma Butti Al Zaabi,Saluki,3,International Relations & Strategy,Sorbonne University AD,3.67,79,69,77,81.4,93,84.9,low,Instinct 3 Solar,0,Z07
+ZMU-2302,Theyab Mansoor Al Mansoori,Fursan,2,GIS & Geospatial Intelligence,Sorbonne University AD,2.67,93,94,71,80.5,102,85.8,low,Epix Pro Gen 2,0,Z06
+ZMU-2303,Suhail Sultan Al Shamsi,Wadeema,1,Military Leadership & Command,ZMU Core,2.33,65,62,76,62.6,295,95,high,Fenix 8 Tactical,4,Z07
+ZMU-2304,Ibrahim Mansoor Al Naqbi,Falcon,2,Defence & Security Studies,Rabdan Academy,3.22,85,67,86,78.8,129,83.7,low,Fenix 8 Tactical,0,Z06
+ZMU-2305,Saeed Mohammed Al Naqbi,Oryx,3,Computer & Cyber Engineering,Khalifa University,2.99,79,55,74,70.8,239,89.3,medium,Instinct 3 Solar,0,Z07
+ZMU-2306,Hamdan Khalid Al Dhaheri,Ghaf,4,Aerospace & Mechanical Engineering,Khalifa University,2.05,74,94,80,70.5,242,84.7,medium,Forerunner 965,85,Z06
+ZMU-2307,Sultan Mansoor Al Suwaidi,Saluki,2,International Relations & Strategy,Sorbonne University AD,3.54,92,98,96,92.5,3,89,low,Forerunner 965,3,Z07
+ZMU-2308,Ahmed Majid Al Falasi,Fursan,4,GIS & Geospatial Intelligence,Sorbonne University AD,3.24,81,72,86,79.3,118,86,low,Epix Pro Gen 2,6,Z06
+ZMU-2309,Marwan Sultan Al Ameri,Wadeema,2,Military Leadership & Command,ZMU Core,2.92,96,83,86,82.5,71,86.1,low,Forerunner 965,2,Z07
+ZMU-2310,Tariq Marwan Al Falasi,Falcon,3,Defence & Security Studies,Rabdan Academy,1.77,79,73,87,64.4,286,85.5,high,Forerunner 965,0,Z06
+ZMU-2311,Suhail Saif Al Zaabi,Oryx,2,Computer & Cyber Engineering,Khalifa University,2.08,92,69,97,70.8,240,92.7,medium,Forerunner 965,3,Z07
+ZMU-2312,Ahmed Hamdan Al Kaabi,Ghaf,3,Aerospace & Mechanical Engineering,Khalifa University,3.95,90,77,88,90,11,87.8,low,Fenix 8 Tactical,2,Z06
+ZMU-2313,Saif Rashid Al Qubaisi,Saluki,1,International Relations & Strategy,Sorbonne University AD,2.88,61,70,72,68.8,258,88.5,medium,Instinct 3 Solar,6,Z07
+ZMU-2314,Rashid Ahmed Al Dhaheri,Fursan,4,GIS & Geospatial Intelligence,Sorbonne University AD,2.59,58,59,97,64.9,281,92.6,high,Fenix 8 Tactical,0,Z06
+ZMU-2315,Obaid Marwan Al Shehhi,Wadeema,4,Military Leadership & Command,ZMU Core,1.67,80,86,74,65.6,279,99.4,high,Forerunner 965,0,Z07
+ZMU-2316,Suhail Khalid Al Shamsi,Falcon,4,Defence & Security Studies,Rabdan Academy,3.91,97,59,97,87.8,19,96.6,low,Fenix 8 Tactical,0,Z06
+ZMU-2317,Tariq Abdulla Al Hammadi,Oryx,1,Computer & Cyber Engineering,Khalifa University,3.20,75,73,76,76.6,164,86.7,low,Fenix 8 Tactical,2,Z07
+ZMU-2318,Majid Juma Al Naqbi,Ghaf,1,Aerospace & Mechanical Engineering,Khalifa University,3.52,98,84,94,90.1,10,91.3,low,Epix Pro Gen 2,0,Z06
+ZMU-2319,Mohammed Suhail Al Shehhi,Saluki,3,International Relations & Strategy,Sorbonne University AD,2.52,68,67,95,68.5,260,87.7,medium,Instinct 3 Solar,3,Z07
+ZMU-2320,Abdulla Abdulla Al Ameri,Fursan,3,GIS & Geospatial Intelligence,Sorbonne University AD,2.49,78,72,94,71.8,227,94.2,medium,Instinct 3 Solar,7,Z06
+ZMU-2321,Ahmed Theyab Al Qubaisi,Wadeema,2,Military Leadership & Command,ZMU Core,3.10,66,89,97,79.5,115,92.4,low,Epix Pro Gen 2,5,Z07
+ZMU-2322,Faisal Majid Al Mazrouei,Falcon,4,Defence & Security Studies,Rabdan Academy,3.26,73,77,99,80,108,82.2,high,Epix Pro Gen 2,53,Z06
+ZMU-2323,Salem Mohammed Al Marri,Oryx,3,Computer & Cyber Engineering,Khalifa University,2.11,86,91,73,72.6,222,96.5,medium,Instinct 3 Solar,2,Z07
+ZMU-2324,Theyab Hamdan Al Muhairi,Ghaf,1,Aerospace & Mechanical Engineering,Khalifa University,3.49,81,57,83,77.7,151,96.2,low,Forerunner 965,7,Z06
+ZMU-2325,Mansoor Mansoor Al Suwaidi,Saluki,4,International Relations & Strategy,Sorbonne University AD,3.65,87,79,76,85.6,36,89.9,low,Instinct 3 Solar,74,Z07
+ZMU-2326,Majid Marwan Al Shamsi,Fursan,3,GIS & Geospatial Intelligence,Sorbonne University AD,3.35,83,82,96,84.3,45,90,low,Epix Pro Gen 2,6,Z06
+ZMU-2327,Hamdan Ibrahim Al Shamsi,Wadeema,2,Military Leadership & Command,ZMU Core,3.67,80,96,83,89,14,87.9,low,Forerunner 965,4,Z07
+ZMU-2328,Hamad Yousef Al Naqbi,Falcon,4,Defence & Security Studies,Rabdan Academy,3.82,75,84,83,86.3,27,98,low,Forerunner 965,8,Z06
+ZMU-2329,Mansoor Salem Al Naqbi,Oryx,1,Computer & Cyber Engineering,Khalifa University,3.04,83,72,88,78,145,99,low,Fenix 8 Tactical,3,Z07
+ZMU-2330,Marwan Salem Al Marri,Ghaf,2,Aerospace & Mechanical Engineering,Khalifa University,2.66,62,77,89,70.3,245,89.5,medium,Instinct 3 Solar,5,Z06
+ZMU-2331,Marwan Hamdan Al Suwaidi,Saluki,2,International Relations & Strategy,Sorbonne University AD,2.86,65,85,92,75.3,192,88.7,low,Forerunner 965,6,Z07
+ZMU-2332,Mohammed Theyab Al Kaabi,Fursan,3,GIS & Geospatial Intelligence,Sorbonne University AD,3.32,98,57,100,82,83,93.6,low,Epix Pro Gen 2,27,Z06
+ZMU-2333,Marwan Hamdan Al Shamsi,Wadeema,1,Military Leadership & Command,ZMU Core,2.00,98,89,98,76.5,168,98.5,low,Epix Pro Gen 2,3,Z07
+ZMU-2334,Suhail Ali Al Hammadi,Falcon,3,Defence & Security Studies,Rabdan Academy,3.17,97,75,87,83.4,60,99.4,low,Epix Pro Gen 2,2,Z06
+ZMU-2335,Theyab Khalifa Al Naqbi,Oryx,2,Computer & Cyber Engineering,Khalifa University,2.77,65,86,98,75.3,193,89.6,low,Epix Pro Gen 2,2,Z07
+ZMU-2336,Mohammed Omar Al Falasi,Ghaf,1,Aerospace & Mechanical Engineering,Khalifa University,2.13,96,83,99,76,175,91.5,low,Forerunner 965,4,Z06
+ZMU-2337,Hamdan Marwan Al Mazrouei,Saluki,4,International Relations & Strategy,Sorbonne University AD,2.98,78,99,99,84,51,95.1,low,Fenix 8 Tactical,6,Z07
+ZMU-2338,Ahmed Saif Al Romaithi,Fursan,2,GIS & Geospatial Intelligence,Sorbonne University AD,3.81,82,65,74,82.3,74,82.1,high,Epix Pro Gen 2,7,Z06
+ZMU-2339,Ibrahim Hamdan Al Marri,Wadeema,2,Military Leadership & Command,ZMU Core,2.25,71,87,73,69.3,254,87.6,medium,Fenix 8 Tactical,6,Z07
+ZMU-2340,Majid Juma Al Zaabi,Falcon,4,Defence & Security Studies,Rabdan Academy,3.67,95,57,93,84,52,92.8,low,Instinct 3 Solar,0,Z06
+ZMU-2341,Butti Mohammed Al Ketbi,Oryx,2,Computer & Cyber Engineering,Khalifa University,3.30,69,72,94,77.7,152,94.6,low,Epix Pro Gen 2,5,Z07
+ZMU-2342,Abdulla Mansoor Al Kaabi,Ghaf,3,Aerospace & Mechanical Engineering,Khalifa University,2.83,89,77,97,79.5,116,85.6,low,Epix Pro Gen 2,5,Z06
+ZMU-2343,Saif Saeed Al Muhairi,Saluki,4,International Relations & Strategy,Sorbonne University AD,3.21,67,98,82,81.5,91,96.6,low,Instinct 3 Solar,5,Z07
+ZMU-2344,Obaid Saeed Al Dhaheri,Fursan,2,GIS & Geospatial Intelligence,Sorbonne University AD,3.98,63,68,84,81,97,86.9,low,Fenix 8 Tactical,7,Z06
+ZMU-2345,Tariq Marwan Al Suwaidi,Wadeema,2,Military Leadership & Command,ZMU Core,3.06,74,82,95,79.1,122,89.5,low,Fenix 8 Tactical,1,Z07
+ZMU-2346,Ibrahim Mohammed Al Suwaidi,Falcon,4,Defence & Security Studies,Rabdan Academy,2.09,63,75,94,64.8,282,87.8,high,Forerunner 965,5,Z06
+ZMU-2347,Omar Tariq Al Ameri,Oryx,4,Computer & Cyber Engineering,Khalifa University,2.78,72,81,77,73.8,205,98.8,medium,Forerunner 965,8,Z07
+ZMU-2348,Khalifa Omar Al Kaabi,Ghaf,4,Aerospace & Mechanical Engineering,Khalifa University,2.51,80,85,74,73.8,206,96.2,medium,Instinct 3 Solar,6,Z06
+ZMU-2349,Saif Hamdan Al Kaabi,Saluki,2,International Relations & Strategy,Sorbonne University AD,3.26,97,83,87,86.3,28,94.5,low,Epix Pro Gen 2,0,Z07
+ZMU-2350,Ahmed Hamdan Al Kaabi,Fursan,4,GIS & Geospatial Intelligence,Sorbonne University AD,2.32,81,89,82,73.9,203,94,medium,Forerunner 965,7,Z06
+ZMU-2351,Hamad Khalid Al Suwaidi,Wadeema,2,Military Leadership & Command,ZMU Core,2.57,60,88,76,70.3,246,88.2,medium,Epix Pro Gen 2,6,Z07
+ZMU-2352,Ahmed Saeed Al Suwaidi,Falcon,4,Defence & Security Studies,Rabdan Academy,2.08,95,69,86,70.4,243,97.6,medium,Fenix 8 Tactical,7,Z06
+ZMU-2353,Juma Faisal Al Zaabi,Oryx,2,Computer & Cyber Engineering,Khalifa University,2.54,98,81,97,79.9,112,90.3,low,Epix Pro Gen 2,7,Z07
+ZMU-2354,Saif Mohammed Al Qubaisi,Ghaf,4,Aerospace & Mechanical Engineering,Khalifa University,3.76,90,63,85,84.3,46,87,low,Fenix 8 Tactical,7,Z06
+ZMU-2355,Tariq Zayed Al Marri,Saluki,2,International Relations & Strategy,Sorbonne University AD,3.32,89,97,81,87.8,20,89.7,low,Instinct 3 Solar,3,Z07
+ZMU-2356,Ibrahim Hamad Al Dhaheri,Fursan,2,GIS & Geospatial Intelligence,Sorbonne University AD,2.63,62,56,96,65.4,280,91.4,high,Forerunner 965,6,Z06
+ZMU-2357,Obaid Mansoor Al Falasi,Wadeema,1,Military Leadership & Command,ZMU Core,2.44,85,68,96,72.3,224,96.5,medium,Forerunner 965,4,Z07
+ZMU-2358,Nasser Majid Al Marri,Falcon,2,Defence & Security Studies,Rabdan Academy,3.72,82,89,84,88.4,16,88.1,low,Forerunner 965,3,Z06
+ZMU-2359,Theyab Hamad Al Blooshi,Oryx,2,Computer & Cyber Engineering,Khalifa University,3.37,82,71,81,80,109,90.1,low,Epix Pro Gen 2,5,Z07
+ZMU-2360,Yousef Ali Al Hammadi,Ghaf,4,Aerospace & Mechanical Engineering,Khalifa University,3.50,84,92,72,86.2,29,88.2,low,Epix Pro Gen 2,3,Z06
+ZMU-2361,Zayed Obaid Al Mazrouei,Saluki,1,International Relations & Strategy,Sorbonne University AD,2.71,90,67,84,74.8,197,99.4,low,Fenix 8 Tactical,8,Z07
+ZMU-2362,Rashid Sultan Al Ketbi,Fursan,3,GIS & Geospatial Intelligence,Sorbonne University AD,2.53,90,74,97,76,176,91.5,low,Fenix 8 Tactical,1,Z06
+ZMU-2363,Hamdan Faisal Al Mansoori,Wadeema,2,Military Leadership & Command,ZMU Core,3.04,85,85,93,82.2,78,87.9,low,Instinct 3 Solar,0,Z07
+ZMU-2364,Saeed Mansoor Al Mazrouei,Falcon,4,Defence & Security Studies,Rabdan Academy,3.78,90,68,87,86,31,87,low,Instinct 3 Solar,5,Z06
+ZMU-2365,Mansoor Theyab Al Zaabi,Oryx,2,Computer & Cyber Engineering,Khalifa University,3.33,62,65,83,73.4,212,90.5,medium,Instinct 3 Solar,6,Z07
+ZMU-2366,Marwan Omar Al Zaabi,Ghaf,2,Aerospace & Mechanical Engineering,Khalifa University,2.99,84,99,88,84.5,43,82.7,high,Fenix 8 Tactical,77,Z06
+ZMU-2367,Hamad Butti Al Ketbi,Saluki,3,International Relations & Strategy,Sorbonne University AD,2.66,64,59,83,65.7,278,87.2,high,Instinct 3 Solar,7,Z07
+ZMU-2368,Theyab Abdulla Al Hammadi,Fursan,1,GIS & Geospatial Intelligence,Sorbonne University AD,2.99,72,60,86,71.5,233,92.5,medium,Instinct 3 Solar,8,Z06
+ZMU-2369,Sultan Butti Al Shehhi,Wadeema,1,Military Leadership & Command,ZMU Core,2.84,70,58,71,67.5,268,94,medium,Instinct 3 Solar,4,Z07
+ZMU-2370,Mohammed Khalid Al Falasi,Falcon,2,Defence & Security Studies,Rabdan Academy,3.23,76,77,84,79,125,89.2,low,Epix Pro Gen 2,2,Z06
+ZMU-2371,Ibrahim Sultan Al Naqbi,Oryx,3,Computer & Cyber Engineering,Khalifa University,3.64,94,85,94,90.6,6,90.4,low,Fenix 8 Tactical,8,Z07
+ZMU-2372,Sultan Yousef Al Kaabi,Ghaf,2,Aerospace & Mechanical Engineering,Khalifa University,2.81,60,87,86,73.4,213,94.3,medium,Fenix 8 Tactical,1,Z06
+ZMU-2373,Omar Abdulla Al Blooshi,Saluki,4,International Relations & Strategy,Sorbonne University AD,3.55,64,99,85,84.8,41,93.8,low,Forerunner 965,32,Z07
+ZMU-2374,Majid Butti Al Falasi,Fursan,3,GIS & Geospatial Intelligence,Sorbonne University AD,2.89,87,63,95,75.9,178,85.3,low,Epix Pro Gen 2,0,Z06
+ZMU-2375,Abdulla Marwan Al Suwaidi,Wadeema,4,Military Leadership & Command,ZMU Core,2.01,66,98,73,68.4,261,84,medium,Epix Pro Gen 2,64,Z07
+ZMU-2376,Juma Abdulla Al Mansoori,Falcon,2,Defence & Security Studies,Rabdan Academy,2.21,97,88,97,78,146,82.8,high,Forerunner 965,5,Z06
+ZMU-2377,Mohammed Tariq Al Romaithi,Oryx,3,Computer & Cyber Engineering,Khalifa University,3.78,62,69,71,77.6,153,82.3,high,Fenix 8 Tactical,4,Z07
+ZMU-2378,Zayed Khalifa Al Shehhi,Ghaf,1,Aerospace & Mechanical Engineering,Khalifa University,3.98,62,74,97,83.5,57,98.3,low,Epix Pro Gen 2,5,Z06
+ZMU-2379,Khalifa Zayed Al Qubaisi,Saluki,3,International Relations & Strategy,Sorbonne University AD,2.87,95,80,75,80,110,83.8,low,Fenix 8 Tactical,4,Z07
+ZMU-2380,Ali Ali Al Naqbi,Fursan,3,GIS & Geospatial Intelligence,Sorbonne University AD,2.00,66,69,100,63.8,292,96.2,high,Fenix 8 Tactical,0,Z06
+ZMU-2381,Omar Sultan Al Muhairi,Wadeema,4,Military Leadership & Command,ZMU Core,2.36,74,61,90,66.3,274,99.3,medium,Fenix 8 Tactical,59,Z07
+ZMU-2382,Salem Khalid Al Marri,Falcon,1,Defence & Security Studies,Rabdan Academy,3.11,63,87,74,76,177,94.4,low,Forerunner 965,0,Z06
+ZMU-2383,Ali Hamdan Al Kaabi,Oryx,2,Computer & Cyber Engineering,Khalifa University,2.04,70,67,80,62.7,294,96.2,high,Epix Pro Gen 2,1,Z07
+ZMU-2384,Saif Ahmed Al Ameri,Ghaf,2,Aerospace & Mechanical Engineering,Khalifa University,2.35,80,73,85,70.3,247,86.9,medium,Instinct 3 Solar,4,Z06
+ZMU-2385,Salem Mohammed Al Muhairi,Saluki,2,International Relations & Strategy,Sorbonne University AD,2.11,60,99,78,68.6,259,85.1,medium,Forerunner 965,5,Z07
+ZMU-2386,Zayed Faisal Al Zaabi,Fursan,2,GIS & Geospatial Intelligence,Sorbonne University AD,3.40,92,61,98,82,84,85.5,low,Epix Pro Gen 2,8,Z06
+ZMU-2387,Ahmed Khalid Al Hammadi,Wadeema,4,Military Leadership & Command,ZMU Core,3.41,85,60,95,79.8,114,93.3,low,Instinct 3 Solar,5,Z07
+ZMU-2388,Omar Salem Al Dhaheri,Falcon,2,Defence & Security Studies,Rabdan Academy,2.46,95,72,81,74.4,200,98.6,low,Instinct 3 Solar,5,Z06
+ZMU-2389,Majid Zayed Al Marri,Oryx,4,Computer & Cyber Engineering,Khalifa University,3.64,94,65,100,86.2,30,95.4,low,Instinct 3 Solar,6,Z07
+ZMU-2390,Faisal Ibrahim Al Romaithi,Ghaf,4,Aerospace & Mechanical Engineering,Khalifa University,3.98,77,67,91,84.9,39,88.6,low,Instinct 3 Solar,2,Z06
+ZMU-2391,Yousef Saeed Al Mansoori,Saluki,2,International Relations & Strategy,Sorbonne University AD,2.95,89,68,96,78.3,142,91.3,low,Forerunner 965,6,Z07
+ZMU-2392,Mohammed Theyab Al Shamsi,Fursan,4,GIS & Geospatial Intelligence,Sorbonne University AD,2.03,95,98,71,75.6,184,98.7,low,Epix Pro Gen 2,2,Z06
+ZMU-2393,Sultan Mohammed Al Shehhi,Wadeema,4,Military Leadership & Command,ZMU Core,2.24,58,85,99,68.1,262,82.9,high,Forerunner 965,7,Z07
+ZMU-2394,Theyab Rashid Al Hammadi,Falcon,4,Defence & Security Studies,Rabdan Academy,2.14,70,96,71,70,251,95,medium,Fenix 8 Tactical,5,Z06
+ZMU-2395,Marwan Faisal Al Qubaisi,Oryx,2,Computer & Cyber Engineering,Khalifa University,3.16,79,89,80,81.6,88,82.9,high,Fenix 8 Tactical,1,Z07
+ZMU-2396,Faisal Faisal Al Qubaisi,Ghaf,3,Aerospace & Mechanical Engineering,Khalifa University,2.06,89,59,96,67.2,270,84.5,medium,Forerunner 965,0,Z06
+ZMU-2397,Majid Tariq Al Suwaidi,Saluki,1,International Relations & Strategy,Sorbonne University AD,3.89,93,85,99,93.3,1,97.2,low,Epix Pro Gen 2,8,Z07
+ZMU-2398,Faisal Marwan Al Ketbi,Fursan,1,GIS & Geospatial Intelligence,Sorbonne University AD,2.60,67,82,70,70.3,248,85.1,medium,Fenix 8 Tactical,4,Z06
+ZMU-2399,Omar Ahmed Al Falasi,Wadeema,4,Military Leadership & Command,ZMU Core,3.87,80,99,76,91,5,90.7,low,Epix Pro Gen 2,4,Z07

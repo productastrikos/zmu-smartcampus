@@ -1,0 +1,7 @@
+space_type,total,booked_today,utilization_pct,no_show_pct
+Classrooms,96,81,84,6
+Lecture Halls,12,9,75,4
+Labs,27,19,70,8
+Meeting Rooms,44,30,68,12
+Training Grounds,8,7,88,2
+Auditoriums,3,2,66,0
