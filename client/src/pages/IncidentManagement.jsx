@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useApi } from '../services/api';
 import KPICard, { IcoCamera, IcoAlert, IcoClipboard, IcoDatabase } from '../components/KPICard';
 import { Panel, StatusChip, sevChip, Loading, PageHeader, KPIGrid, DataTable, timeAgo, ProgressBar } from '../components/ui';
@@ -17,7 +18,7 @@ function useClock() {
   return now;
 }
 
-function CameraTile({ cam, streamUrl, clock }) {
+function CameraTile({ cam, embedUrl, streamUrl, clock }) {
   const offline = cam?.status === 'offline';
   return (
     <div className="cctv-tile">
@@ -28,6 +29,9 @@ function CameraTile({ cam, streamUrl, clock }) {
           </svg>
           SIGNAL LOST
         </div>
+      ) : embedUrl ? (
+        <iframe title={cam?.camera_id || 'camera'} src={embedUrl} className="cctv-frame"
+          allow="autoplay; fullscreen" allowFullScreen scrolling="no" />
       ) : streamUrl ? (
         <video src={streamUrl} autoPlay muted loop playsInline />
       ) : (
@@ -40,7 +44,7 @@ function CameraTile({ cam, streamUrl, clock }) {
       <div className="cctv-ts">{clock.toLocaleTimeString('en-GB')} GST</div>
       {!offline && (
         <div className="cctv-meta">
-          {cam?.resolution} · {cam?.fps} fps · {cam?.analytics}
+          {cam?.building_name ? `${cam.building_name} · ` : ''}{cam?.resolution} · {cam?.fps} fps
         </div>
       )}
     </div>
@@ -75,23 +79,25 @@ export default function IncidentManagement() {
           subValues={[{ label: 'Storage used', value: `${k.storageUsedPct}%` }]} />
       </KPIGrid>
 
-      <Panel title="Live Camera Wall" sub="6-channel operator layout · click-to-swap feeds via config" style={{ marginBottom: 14 }}>
+      <Panel title="Live Camera Wall" sub="6-channel operator layout · feeds mapped in src/config/cameras.js" style={{ marginBottom: 14 }}>
         <div className="cctv-grid">
           {CAMERA_GRID.map((slot) => (
-            <CameraTile key={slot.slot} cam={camById[slot.cameraId]} streamUrl={slot.streamUrl} clock={clock} />
+            <CameraTile key={slot.slot} cam={camById[slot.cameraId]} embedUrl={slot.embedUrl} streamUrl={slot.streamUrl} clock={clock} />
           ))}
         </div>
       </Panel>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1.6fr) minmax(0, 1fr)', gap: 14, alignItems: 'start' }}>
-        <Panel title="Flagged Footage" sub="Video-analytics detections · clips retained for evidentiary review">
+        <Panel title="Flagged Footage" sub="Video-analytics detections · clips retained for evidentiary review · location links to the building's 3-D twin">
           <DataTable
             maxHeight={340}
             columns={[
               { key: 'ts', label: 'Time', render: (v) => timeAgo(v) },
               { key: 'incident_id', label: 'Incident' },
               { key: 'camera_id', label: 'Camera' },
-              { key: 'camera', label: 'Location' },
+              { key: 'building_name', label: 'Location', render: (v, r) => r.building_id
+                ? <Link to={`/digital-twin?building=${r.building_id}`} style={{ color: '#22d3ee', textDecoration: 'none' }}>{v} ↗</Link>
+                : v },
               { key: 'type', label: 'Type' },
               { key: 'severity', label: 'Severity', render: (v) => <StatusChip kind={sevChip(v)}>{v.toUpperCase()}</StatusChip> },
               { key: 'clip_s', label: 'Clip', render: (v) => `${v}s`, align: 'right' },

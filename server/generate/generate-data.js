@@ -749,78 +749,7 @@ function generate() {
   journeyRows.sort((a, b) => a.cadet_id.localeCompare(b.cadet_id) || a.ts.localeCompare(b.ts));
   writeCSV('cadet_journey.csv', ['cadet_id', 'ts', 'category', 'title', 'detail', 'result'], journeyRows);
 
-  /* ════════════ 24. Geofencing — zones, live GPS, breaches (Garmin) ═════
-     Zones share the 1010×660 campus map coordinate space. Garmin wearable
-     GPS streams are ingested via the HPO middleware (flow 4). */
-  const geoZones = [
-    { zone_id: 'GF-01', name: 'Armoury Exclusion Zone',        type: 'restricted', x: 565, y: 365, w: 150, h: 120 },
-    { zone_id: 'GF-02', name: 'Central Plant & DC Restricted', type: 'restricted', x: 845, y: 45,  w: 120, h: 260 },
-    { zone_id: 'GF-03', name: 'Live-Fire Training Range',      type: 'training',   x: 720, y: 500, w: 260, h: 140 },
-    { zone_id: 'GF-04', name: 'Academic & Admin Precinct',     type: 'permitted',  x: 40,  y: 40,  w: 650, h: 290 },
-    { zone_id: 'GF-05', name: 'Accommodation & Sports',        type: 'permitted',  x: 40,  y: 365, w: 500, h: 260 },
-    { zone_id: 'GF-06', name: 'North Perimeter Buffer',        type: 'restricted', x: 0,   y: 0,   w: 1010, h: 30 },
-  ];
-  writeCSV('geofence_zones.csv', ['zone_id', 'name', 'type', 'x', 'y', 'w', 'h'], geoZones);
-
-  const inZone = (px, py, z) => px >= z.x && px <= z.x + z.w && py >= z.y && py <= z.y + z.h;
-  const restricted = geoZones.filter((z) => z.type === 'restricted');
-  const pingRows = [];
-  const activeCadets = cadets.slice(0, 64); // cadets currently on ranges/grounds
-  activeCadets.forEach((c, i) => {
-    let px, py, zoneHit = null;
-    if (i < 3) {
-      // storyline: 3 cadets inside a restricted zone right now
-      const z = restricted[i % restricted.length];
-      px = Math.round(z.x + z.w * rf(0.2, 0.8, 2));
-      py = Math.round(z.y + z.h * rf(0.2, 0.8, 2));
-      zoneHit = z;
-    } else {
-      const z = pick(geoZones.filter((g) => g.type !== 'restricted'));
-      px = Math.round(z.x + z.w * rf(0.05, 0.95, 2));
-      py = Math.round(z.y + z.h * rf(0.05, 0.95, 2));
-      const hit = restricted.find((r) => inZone(px, py, r));
-      if (hit) zoneHit = hit;
-    }
-    pingRows.push({
-      cadet_id: c.cadet_id, ts: iso(new Date(NOW.getTime() - ri(0, 4) * 60000)),
-      x: px, y: py,
-      zone_status: zoneHit ? 'breach' : 'ok',
-      zone_id: zoneHit ? zoneHit.zone_id : (geoZones.find((z) => inZone(px, py, z)) || {}).zone_id || '',
-    });
-  });
-  writeCSV('gps_pings.csv', ['cadet_id', 'ts', 'x', 'y', 'zone_status', 'zone_id'], pingRows);
-
-  const breachRows = [];
-  let brSeq = 1;
-  // active breaches from live pings
-  for (const p of pingRows.filter((r) => r.zone_status === 'breach')) {
-    const z = geoZones.find((zz) => zz.zone_id === p.zone_id);
-    const c = cadets.find((cc) => cc.cadet_id === p.cadet_id);
-    breachRows.push({
-      breach_id: `GFB-${String(brSeq++).padStart(3, '0')}`,
-      ts: iso(new Date(NOW.getTime() - ri(2, 18) * 60000)),
-      cadet_id: p.cadet_id, zone_id: z.zone_id, zone: z.name,
-      device: c.garmin_device, duration_min: ri(2, 18), status: 'active',
-    });
-  }
-  // historical breaches over last 24h
-  for (let i = 0; i < 9; i++) {
-    const z = pick(restricted);
-    const c = pick(cadets);
-    breachRows.push({
-      breach_id: `GFB-${String(brSeq++).padStart(3, '0')}`,
-      ts: iso(new Date(NOW.getTime() - rf(1, 24) * HOUR)),
-      cadet_id: c.cadet_id, zone_id: z.zone_id, zone: z.name,
-      device: c.garmin_device, duration_min: ri(1, 25),
-      status: pick(['responded', 'cleared', 'cleared']),
-    });
-  }
-  breachRows.sort((a, b) => b.ts.localeCompare(a.ts));
-  writeCSV('geofence_breaches.csv',
-    ['breach_id', 'ts', 'cadet_id', 'zone_id', 'zone', 'device', 'duration_min', 'status'],
-    breachRows);
-
-  /* ════════════ 25. CCTV / VMS — camera registry & flagged footage ═════ */
+  /* ════════════ 24. CCTV / VMS — camera registry & flagged footage ═════ */
   const cctvCams = [
     { camera_id: 'CAM-01', name: 'Main Gate — ANPR Lane',      building_id: 'Z01', location: 'Perimeter · Main entrance' },
     { camera_id: 'CAM-02', name: 'Armoury Entrance',           building_id: 'Z09', location: 'WMS issue counter' },

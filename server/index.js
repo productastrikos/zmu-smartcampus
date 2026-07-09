@@ -22,8 +22,8 @@ const TABLES = [
   'room_utilization', 'physical_security', 'siem_events', 'wms_transactions', 'parking',
   'integration_flows', 'integration_hourly', 'master_data', 'icds', 'dr_status', 'alerts',
   'ai_recommendations', 'finance_aging',
-  'cadet_journey', 'geofence_zones', 'gps_pings', 'geofence_breaches',
-  'cctv_cameras', 'cctv_incidents', 'it_licenses', 'dcim_hourly', 'dcim_status', 'it_assets',
+  'cadet_journey', 'cctv_cameras', 'cctv_incidents',
+  'it_licenses', 'dcim_hourly', 'dcim_status', 'it_assets',
 ];
 const db = {};
 for (const t of TABLES) db[t] = loadTable(DATA_DIR, t);
@@ -436,6 +436,22 @@ app.get('/api/cadet-journey/:id', (req, res) => {
     .sort((a, b) => a.date.localeCompare(b.date));
   const lastW = wear14.at(-1) || {};
   const fitnessTier = cadet.fitness_score >= 90 ? 'Elite' : cadet.fitness_score >= 75 ? 'Advanced' : cadet.fitness_score >= 60 ? 'Proficient' : 'Developing';
+
+  // ── cross-module joins on the single Cadet ID ──
+  // WMS weapon issuance (Domain D / armoury)
+  const weapons = db.wms_transactions
+    .filter((w) => w.cadet_id === cadet.cadet_id)
+    .sort((a, b) => b.ts.localeCompare(a.ts))
+    .slice(0, 6);
+  const weaponsOut = weapons.filter((w) => w.status !== 'closed').length;
+  // squadron HPO readiness (Readiness domain)
+  const squadronDomains = db.hpo_domains.filter((d) => d.squadron === cadet.squadron);
+  const squadronPeers = db.cadets.filter((c) => c.squadron === cadet.squadron);
+  const squadronAvgComposite = round1(avg(squadronPeers, (c) => c.composite_score));
+  // LMS engagement proxy (Academic domain) — attendance percentile within cohort
+  const better = db.cadets.filter((c) => c.composite_score < cadet.composite_score).length;
+  const percentile = Math.round((better / db.cadets.length) * 100);
+
   res.json({
     cadet: { ...cadet, fitness_tier: fitnessTier },
     kpis: {
@@ -446,42 +462,32 @@ app.get('/api/cadet-journey/:id', (req, res) => {
       readinessToday: lastW.readiness_score ?? null,
       acwr: lastW.acwr ?? null,
       attendance: cadet.attendance_pct,
+      percentile,
+      weaponsOut,
+      squadronAvgComposite,
     },
     timeline,
     wearables: wear14.map((w) => ({ date: w.date.slice(5), readiness: w.readiness_score, sleep: +w.sleep_hours, load: w.training_load, acwr: +w.acwr })),
-  });
-});
-
-/* ── geofencing — Garmin GPS vs campus zones (flow 4) ─────── */
-app.get('/api/geofence', (req, res) => {
-  const cadetById = Object.fromEntries(db.cadets.map((c) => [c.cadet_id, c]));
-  const pings = db.gps_pings.map((p) => ({
-    ...p,
-    name: cadetById[p.cadet_id]?.name || p.cadet_id,
-    squadron: cadetById[p.cadet_id]?.squadron || '',
-    device: cadetById[p.cadet_id]?.garmin_device || 'Garmin',
-  }));
-  const breaches = [...db.geofence_breaches].sort((a, b) => b.ts.localeCompare(a.ts))
-    .map((b) => ({ ...b, name: cadetById[b.cadet_id]?.name || b.cadet_id, squadron: cadetById[b.cadet_id]?.squadron || '' }));
-  res.json({
-    kpis: {
-      tracked: pings.length,
-      activeBreaches: breaches.filter((b) => b.status === 'active').length,
-      breaches24h: breaches.length,
-      zonesRestricted: db.geofence_zones.filter((z) => z.type === 'restricted').length,
-      deviceSyncRate: Math.round((db.cadets.filter((c) => c.device_synced_hrs_ago <= 12).length / db.cadets.length) * 100),
+    // interdependency payloads
+    weapons,
+    squadron: {
+      name: cadet.squadron,
+      peers: squadronPeers.length,
+      avgComposite: squadronAvgComposite,
+      domains: squadronDomains,
     },
-    zones: db.geofence_zones,
-    buildings: db.buildings,
-    pings,
-    breaches,
   });
 });
 
 /* ── CCTV / VMS — incident management ─────────────────────── */
 app.get('/api/cctv', (req, res) => {
   const cams = db.cctv_cameras;
-  const incidents = [...db.cctv_incidents].sort((a, b) => b.ts.localeCompare(a.ts));
+  const bldgById = Object.fromEntries(db.buildings.map((b) => [b.building_id, b]));
+  // join each camera to its building (interdependency → Digital Twin)
+  const camerasJoined = cams.map((c) => ({ ...c, building_name: bldgById[c.building_id]?.name || c.building_id }));
+  const camById = Object.fromEntries(camerasJoined.map((c) => [c.camera_id, c]));
+  const incidents = [...db.cctv_incidents].sort((a, b) => b.ts.localeCompare(a.ts))
+    .map((i) => ({ ...i, building_id: camById[i.camera_id]?.building_id || '', building_name: camById[i.camera_id]?.building_name || '' }));
   const cutoff24 = new Date(Date.now() - 24 * 3600e3).toISOString();
   res.json({
     kpis: {
@@ -492,7 +498,7 @@ app.get('/api/cctv', (req, res) => {
       retentionDays: 90,
       storageUsedPct: 68,
     },
-    cameras: cams,
+    cameras: camerasJoined,
     incidents,
   });
 });
