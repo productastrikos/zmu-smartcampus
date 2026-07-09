@@ -427,7 +427,7 @@ if (fs.existsSync(distPath)) {
   app.get(/^(?!\/api).*/, (req, res) => res.sendFile(path.join(distPath, 'index.html')));
 }
 
-const PORT = process.env.PORT || process.env.API_PORT || 5051;
+const PORT = process.env.API_PORT || process.env.PORT || 5051;
 const HOST = process.env.API_HOST || '0.0.0.0';
 const { networkInterfaces } = require('os');
 const getLocalIP = () => {

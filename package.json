@@ -7,7 +7,7 @@
     "generate": "node server/generate/generate-data.js",
     "server": "node server/index.js",
     "client": "vite",
-    "dev": "concurrently -k -n api,web -c blue,green \"node server/index.js\" \"vite\"",
+    "dev": "concurrently -k -n api,web -c blue,green \"cross-env API_PORT=5051 node server/index.js\" \"vite\"",
     "build": "vite build",
     "start": "npm run build && node server/index.js",
     "preview": "vite preview"
@@ -24,9 +24,10 @@
     "sass": "^1.77.8",
     "tailwindcss": "^3.4.6",
     "three": "^0.184.0",
-    "vite": "^5.3.4"
+    "vite": "^6.4.3"
   },
   "devDependencies": {
-    "concurrently": "^8.2.2"
+    "concurrently": "^8.2.2",
+    "cross-env": "^10.1.0"
   }
 }
