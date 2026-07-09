@@ -1,0 +1,10 @@
+software,vendor,total,consumed,utilization_pct,renewal_days,compliance
+MATLAB & Simulink,MathWorks,120,96,80,92,compliant
+Microsoft 365 E5,Microsoft,2400,2231,93,210,warning
+AutoCAD / Fusion,Autodesk,80,74,93,152,warning
+ArcGIS Pro,Esri,70,61,87,61,compliant
+Ansys Workbench,Ansys,40,38,95,121,warning
+Adobe Creative Cloud,Adobe,60,41,68,240,compliant
+SolidWorks,Dassault,45,45,100,33,warning
+Cyber Range Platform,Cyberbit,50,32,64,300,compliant
+SPSS Statistics,IBM,35,22,63,180,compliant

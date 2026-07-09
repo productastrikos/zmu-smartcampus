@@ -10,6 +10,10 @@ import Enterprise from './pages/Enterprise';
 import CampusOps from './pages/CampusOps';
 import SecurityOps from './pages/SecurityOps';
 import Integration from './pages/Integration';
+import CadetJourney from './pages/CadetJourney';
+import Geofencing from './pages/Geofencing';
+import IncidentManagement from './pages/IncidentManagement';
+import ITManagement from './pages/ITManagement';
 
 const AUTH_KEY = 'zmu_auth';
 
@@ -46,7 +50,11 @@ export default function App() {
         <Route path="/readiness" element={<Readiness />} />
         <Route path="/enterprise" element={<Enterprise />} />
         <Route path="/campus-ops" element={<CampusOps />} />
+        <Route path="/cadet-journey" element={<CadetJourney />} />
+        <Route path="/it-ops" element={<ITManagement />} />
         <Route path="/security" element={<SecurityOps />} />
+        <Route path="/geofencing" element={<Geofencing />} />
+        <Route path="/incidents" element={<IncidentManagement />} />
         <Route path="/integration" element={<Integration />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

@@ -22,6 +22,8 @@ const TABLES = [
   'room_utilization', 'physical_security', 'siem_events', 'wms_transactions', 'parking',
   'integration_flows', 'integration_hourly', 'master_data', 'icds', 'dr_status', 'alerts',
   'ai_recommendations', 'finance_aging',
+  'cadet_journey', 'geofence_zones', 'gps_pings', 'geofence_breaches',
+  'cctv_cameras', 'cctv_incidents', 'it_licenses', 'dcim_hourly', 'dcim_status', 'it_assets',
 ];
 const db = {};
 for (const t of TABLES) db[t] = loadTable(DATA_DIR, t);
@@ -407,6 +409,115 @@ app.get('/api/integration', (req, res) => {
     masterData: db.master_data,
     icds: db.icds,
     dr: db.dr_status,
+  });
+});
+
+/* ── cadet journey — unified timeline on the single cadet ID ── */
+app.get('/api/cadet-journey', (req, res) => {
+  res.json({
+    cadets: [...db.cadets]
+      .sort((a, b) => a.order_of_merit - b.order_of_merit)
+      .map((c) => ({
+        cadet_id: c.cadet_id, name: c.name, squadron: c.squadron, year: c.year,
+        program: c.program, composite_score: c.composite_score,
+        order_of_merit: c.order_of_merit, risk_level: c.risk_level,
+      })),
+  });
+});
+
+app.get('/api/cadet-journey/:id', (req, res) => {
+  const cadet = db.cadets.find((c) => c.cadet_id === req.params.id);
+  if (!cadet) return res.status(404).json({ error: 'unknown cadet id' });
+  const timeline = db.cadet_journey
+    .filter((e) => e.cadet_id === cadet.cadet_id)
+    .sort((a, b) => b.ts.localeCompare(a.ts));
+  const wear14 = db.wearables_daily
+    .filter((w) => w.cadet_id === cadet.cadet_id)
+    .sort((a, b) => a.date.localeCompare(b.date));
+  const lastW = wear14.at(-1) || {};
+  const fitnessTier = cadet.fitness_score >= 90 ? 'Elite' : cadet.fitness_score >= 75 ? 'Advanced' : cadet.fitness_score >= 60 ? 'Proficient' : 'Developing';
+  res.json({
+    cadet: { ...cadet, fitness_tier: fitnessTier },
+    kpis: {
+      year: cadet.year,
+      gpa: cadet.gpa,
+      composite: cadet.composite_score,
+      orderOfMerit: cadet.order_of_merit,
+      readinessToday: lastW.readiness_score ?? null,
+      acwr: lastW.acwr ?? null,
+      attendance: cadet.attendance_pct,
+    },
+    timeline,
+    wearables: wear14.map((w) => ({ date: w.date.slice(5), readiness: w.readiness_score, sleep: +w.sleep_hours, load: w.training_load, acwr: +w.acwr })),
+  });
+});
+
+/* ── geofencing — Garmin GPS vs campus zones (flow 4) ─────── */
+app.get('/api/geofence', (req, res) => {
+  const cadetById = Object.fromEntries(db.cadets.map((c) => [c.cadet_id, c]));
+  const pings = db.gps_pings.map((p) => ({
+    ...p,
+    name: cadetById[p.cadet_id]?.name || p.cadet_id,
+    squadron: cadetById[p.cadet_id]?.squadron || '',
+    device: cadetById[p.cadet_id]?.garmin_device || 'Garmin',
+  }));
+  const breaches = [...db.geofence_breaches].sort((a, b) => b.ts.localeCompare(a.ts))
+    .map((b) => ({ ...b, name: cadetById[b.cadet_id]?.name || b.cadet_id, squadron: cadetById[b.cadet_id]?.squadron || '' }));
+  res.json({
+    kpis: {
+      tracked: pings.length,
+      activeBreaches: breaches.filter((b) => b.status === 'active').length,
+      breaches24h: breaches.length,
+      zonesRestricted: db.geofence_zones.filter((z) => z.type === 'restricted').length,
+      deviceSyncRate: Math.round((db.cadets.filter((c) => c.device_synced_hrs_ago <= 12).length / db.cadets.length) * 100),
+    },
+    zones: db.geofence_zones,
+    buildings: db.buildings,
+    pings,
+    breaches,
+  });
+});
+
+/* ── CCTV / VMS — incident management ─────────────────────── */
+app.get('/api/cctv', (req, res) => {
+  const cams = db.cctv_cameras;
+  const incidents = [...db.cctv_incidents].sort((a, b) => b.ts.localeCompare(a.ts));
+  const cutoff24 = new Date(Date.now() - 24 * 3600e3).toISOString();
+  res.json({
+    kpis: {
+      camerasOnline: cams.filter((c) => c.status === 'online').length,
+      camerasTotal: cams.length,
+      incidents24h: incidents.filter((i) => i.ts >= cutoff24).length,
+      openIncidents: incidents.filter((i) => i.status !== 'closed').length,
+      retentionDays: 90,
+      storageUsedPct: 68,
+    },
+    cameras: cams,
+    incidents,
+  });
+});
+
+/* ── enterprise IT — DCIM, licences, asset lifecycle ──────── */
+app.get('/api/itops', (req, res) => {
+  const lic = db.it_licenses;
+  const assets = db.it_assets;
+  const dcimNow = db.dcim_hourly.at(-1) || {};
+  res.json({
+    kpis: {
+      pue: dcimNow.pue,
+      upsHealth: 97,
+      coolingUsedPct: 71,
+      licenseCompliancePct: Math.round((lic.filter((l) => l.compliance === 'compliant').length / lic.length) * 100),
+      seatsConsumed: sum(lic, (l) => l.consumed),
+      seatsTotal: sum(lic, (l) => l.total),
+      assetsInService: assets.filter((a) => a.status === 'in service').length,
+      assetsTotal: assets.length,
+      warrantyExpiring: assets.filter((a) => a.warranty_status !== 'active').length,
+    },
+    licenses: lic,
+    dcim: db.dcim_status,
+    dcimHourly: db.dcim_hourly.map((h) => ({ ...h, hour: h.ts.slice(11, 16) })),
+    assets: [...assets].sort((a, b) => a.warranty_end.localeCompare(b.warranty_end)),
   });
 });
 

@@ -1,0 +1,13 @@
+breach_id,ts,cadet_id,zone_id,zone,device,duration_min,status
+GFB-003,2026-07-09T09:26:00.000Z,ZMU-2102,GF-06,North Perimeter Buffer,Fenix 8 Tactical,9,active
+GFB-001,2026-07-09T09:13:00.000Z,ZMU-2100,GF-01,Armoury Exclusion Zone,Fenix 8 Tactical,6,active
+GFB-002,2026-07-09T09:13:00.000Z,ZMU-2101,GF-02,Central Plant & DC Restricted,Instinct 3 Solar,10,active
+GFB-010,2026-07-09T08:06:00.000Z,ZMU-2183,GF-01,Armoury Exclusion Zone,Forerunner 965,17,cleared
+GFB-008,2026-07-09T02:36:00.000Z,ZMU-2370,GF-02,Central Plant & DC Restricted,Epix Pro Gen 2,24,cleared
+GFB-005,2026-07-08T21:54:00.000Z,ZMU-2266,GF-02,Central Plant & DC Restricted,Instinct 3 Solar,6,cleared
+GFB-004,2026-07-08T20:12:00.000Z,ZMU-2365,GF-06,North Perimeter Buffer,Instinct 3 Solar,11,cleared
+GFB-006,2026-07-08T19:06:00.000Z,ZMU-2192,GF-01,Armoury Exclusion Zone,Forerunner 965,8,responded
+GFB-012,2026-07-08T16:36:00.000Z,ZMU-2257,GF-01,Armoury Exclusion Zone,Epix Pro Gen 2,9,cleared
+GFB-011,2026-07-08T14:00:00.000Z,ZMU-2148,GF-06,North Perimeter Buffer,Forerunner 965,17,cleared
+GFB-009,2026-07-08T10:48:00.000Z,ZMU-2338,GF-06,North Perimeter Buffer,Epix Pro Gen 2,17,cleared
+GFB-007,2026-07-08T09:36:00.000Z,ZMU-2360,GF-01,Armoury Exclusion Zone,Epix Pro Gen 2,14,responded

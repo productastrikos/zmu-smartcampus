@@ -655,6 +655,306 @@ function generate() {
     { rec_id: 'AI-105', domain: 'Security', trigger: 'Repeated tailgating alerts at Labs Centre east door', recommendation: 'Increase door close-delay enforcement; dispatch patrol check 17:00–19:00', impact: 'Closes ORANGE-network physical gap', confidence_pct: 81, status: 'action taken' },
   ]);
 
+  /* ════════════ 23. Cadet journey — unified timeline per cadet ID ══════
+     Fuses SIS/LMS academic milestones with HPO/military readiness events
+     on the single immutable Cadet ID (REQ-EAD-082). */
+  const journeyRows = [];
+  const termsByYear = [
+    ['Fall 22', 'Spring 23'], ['Fall 23', 'Spring 24'],
+    ['Fall 24', 'Spring 25'], ['Fall 25', 'Spring 26'],
+  ];
+  const simLabs = ['Simulation & Wargaming Lab — Scenario Bravo', 'Cyber Range — Defensive Ops Exercise', 'GIS Lab — Terrain Analysis Capstone', 'AI & Data Lab — Intelligence Fusion Module'];
+  const fieldEx = ['Exercise Desert Shield (field phase)', 'Exercise Falcon Dawn (night navigation)', 'Live-fire qualification — Range 2', 'Joint exercise with Rabdan Academy'];
+  for (const c of cadets) {
+    const yearsIn = c.year; // years since enrolment
+    const enrol = daysAgo(Math.round(yearsIn * 365 + ri(20, 60)));
+    journeyRows.push({
+      cadet_id: c.cadet_id, ts: iso(enrol), category: 'admin',
+      title: 'Enrolment — immutable Cadet ID issued',
+      detail: `Registered in SIS · ${c.program} (${c.partner}) · Squadron ${c.squadron}`,
+      result: c.cadet_id,
+    });
+    journeyRows.push({
+      cadet_id: c.cadet_id, ts: iso(new Date(enrol.getTime() + 12 * DAY)), category: 'military',
+      title: 'Basic military induction completed',
+      detail: 'Drill, fieldcraft and weapons-handling foundation phase',
+      result: pick(['Pass', 'Pass', 'Pass with distinction']),
+    });
+    // one GPA event per completed term
+    const startIdx = 4 - yearsIn;
+    for (let t = startIdx; t < 4; t++) {
+      const [fall, spring] = termsByYear[t];
+      const termDaysAgo = (4 - t) * 330 - ri(0, 40);
+      if (termDaysAgo > 30) {
+        const g = clamp(+c.gpa + rf(-0.35, 0.3, 2), 1.5, 4.0).toFixed(2);
+        journeyRows.push({
+          cadet_id: c.cadet_id, ts: iso(daysAgo(termDaysAgo)), category: 'academic',
+          title: `Term result — ${fall}`,
+          detail: `SIS grade roll-up · attendance ${rf(80, 99, 1)}%`,
+          result: `GPA ${g}`,
+        });
+      }
+      const sprDaysAgo = (4 - t) * 330 - 165 - ri(0, 40);
+      if (sprDaysAgo > 30) {
+        const g = clamp(+c.gpa + rf(-0.3, 0.35, 2), 1.5, 4.0).toFixed(2);
+        journeyRows.push({
+          cadet_id: c.cadet_id, ts: iso(daysAgo(sprDaysAgo)), category: 'academic',
+          title: `Term result — ${spring}`,
+          detail: `SIS grade roll-up · attendance ${rf(80, 99, 1)}%`,
+          result: `GPA ${g}`,
+        });
+      }
+    }
+    // sim labs, field exercises, fitness tests spread over tenure
+    const nEvents = 2 + yearsIn;
+    for (let e = 0; e < nEvents; e++) {
+      const dAgo = ri(20, yearsIn * 330);
+      journeyRows.push({
+        cadet_id: c.cadet_id, ts: iso(daysAgo(dAgo)), category: 'academic',
+        title: `${pick(simLabs)} — completed`,
+        detail: 'LMS competency record synced to SIS via flow 1',
+        result: `${ri(68, 98)}%`,
+      });
+      journeyRows.push({
+        cadet_id: c.cadet_id, ts: iso(daysAgo(ri(15, yearsIn * 320))), category: 'military',
+        title: pick(fieldEx),
+        detail: 'Military Training Wing assessment record',
+        result: pick(['Pass', 'Pass', 'Pass', 'Retest scheduled']),
+      });
+    }
+    journeyRows.push({
+      cadet_id: c.cadet_id, ts: iso(daysAgo(ri(5, 90))), category: 'readiness',
+      title: 'HPO fitness assessment (quarterly)',
+      detail: `VO₂max ${rf(44, 58, 1)} · body composition within standard`,
+      result: `Fitness ${c.fitness_score}/100`,
+    });
+    if (c.risk_level === 'high') {
+      journeyRows.push({
+        cadet_id: c.cadet_id, ts: iso(daysAgo(ri(2, 21))), category: 'readiness',
+        title: 'Early-intervention flag raised',
+        detail: 'HPO predictive analytics — composite/attendance below threshold',
+        result: 'Support plan active',
+      });
+    }
+    const lastW = wearRows.filter((w) => w.cadet_id === c.cadet_id).at(-1);
+    if (lastW && lastW.acwr > 1.4) {
+      journeyRows.push({
+        cadet_id: c.cadet_id, ts: iso(hoursAgo(ri(2, 30))), category: 'readiness',
+        title: 'Injury-risk flag — ACWR above 1.4',
+        detail: `Garmin ${c.garmin_device} workload trend · training load modification proposed`,
+        result: `ACWR ${lastW.acwr}`,
+      });
+    }
+  }
+  journeyRows.sort((a, b) => a.cadet_id.localeCompare(b.cadet_id) || a.ts.localeCompare(b.ts));
+  writeCSV('cadet_journey.csv', ['cadet_id', 'ts', 'category', 'title', 'detail', 'result'], journeyRows);
+
+  /* ════════════ 24. Geofencing — zones, live GPS, breaches (Garmin) ═════
+     Zones share the 1010×660 campus map coordinate space. Garmin wearable
+     GPS streams are ingested via the HPO middleware (flow 4). */
+  const geoZones = [
+    { zone_id: 'GF-01', name: 'Armoury Exclusion Zone',        type: 'restricted', x: 565, y: 365, w: 150, h: 120 },
+    { zone_id: 'GF-02', name: 'Central Plant & DC Restricted', type: 'restricted', x: 845, y: 45,  w: 120, h: 260 },
+    { zone_id: 'GF-03', name: 'Live-Fire Training Range',      type: 'training',   x: 720, y: 500, w: 260, h: 140 },
+    { zone_id: 'GF-04', name: 'Academic & Admin Precinct',     type: 'permitted',  x: 40,  y: 40,  w: 650, h: 290 },
+    { zone_id: 'GF-05', name: 'Accommodation & Sports',        type: 'permitted',  x: 40,  y: 365, w: 500, h: 260 },
+    { zone_id: 'GF-06', name: 'North Perimeter Buffer',        type: 'restricted', x: 0,   y: 0,   w: 1010, h: 30 },
+  ];
+  writeCSV('geofence_zones.csv', ['zone_id', 'name', 'type', 'x', 'y', 'w', 'h'], geoZones);
+
+  const inZone = (px, py, z) => px >= z.x && px <= z.x + z.w && py >= z.y && py <= z.y + z.h;
+  const restricted = geoZones.filter((z) => z.type === 'restricted');
+  const pingRows = [];
+  const activeCadets = cadets.slice(0, 64); // cadets currently on ranges/grounds
+  activeCadets.forEach((c, i) => {
+    let px, py, zoneHit = null;
+    if (i < 3) {
+      // storyline: 3 cadets inside a restricted zone right now
+      const z = restricted[i % restricted.length];
+      px = Math.round(z.x + z.w * rf(0.2, 0.8, 2));
+      py = Math.round(z.y + z.h * rf(0.2, 0.8, 2));
+      zoneHit = z;
+    } else {
+      const z = pick(geoZones.filter((g) => g.type !== 'restricted'));
+      px = Math.round(z.x + z.w * rf(0.05, 0.95, 2));
+      py = Math.round(z.y + z.h * rf(0.05, 0.95, 2));
+      const hit = restricted.find((r) => inZone(px, py, r));
+      if (hit) zoneHit = hit;
+    }
+    pingRows.push({
+      cadet_id: c.cadet_id, ts: iso(new Date(NOW.getTime() - ri(0, 4) * 60000)),
+      x: px, y: py,
+      zone_status: zoneHit ? 'breach' : 'ok',
+      zone_id: zoneHit ? zoneHit.zone_id : (geoZones.find((z) => inZone(px, py, z)) || {}).zone_id || '',
+    });
+  });
+  writeCSV('gps_pings.csv', ['cadet_id', 'ts', 'x', 'y', 'zone_status', 'zone_id'], pingRows);
+
+  const breachRows = [];
+  let brSeq = 1;
+  // active breaches from live pings
+  for (const p of pingRows.filter((r) => r.zone_status === 'breach')) {
+    const z = geoZones.find((zz) => zz.zone_id === p.zone_id);
+    const c = cadets.find((cc) => cc.cadet_id === p.cadet_id);
+    breachRows.push({
+      breach_id: `GFB-${String(brSeq++).padStart(3, '0')}`,
+      ts: iso(new Date(NOW.getTime() - ri(2, 18) * 60000)),
+      cadet_id: p.cadet_id, zone_id: z.zone_id, zone: z.name,
+      device: c.garmin_device, duration_min: ri(2, 18), status: 'active',
+    });
+  }
+  // historical breaches over last 24h
+  for (let i = 0; i < 9; i++) {
+    const z = pick(restricted);
+    const c = pick(cadets);
+    breachRows.push({
+      breach_id: `GFB-${String(brSeq++).padStart(3, '0')}`,
+      ts: iso(new Date(NOW.getTime() - rf(1, 24) * HOUR)),
+      cadet_id: c.cadet_id, zone_id: z.zone_id, zone: z.name,
+      device: c.garmin_device, duration_min: ri(1, 25),
+      status: pick(['responded', 'cleared', 'cleared']),
+    });
+  }
+  breachRows.sort((a, b) => b.ts.localeCompare(a.ts));
+  writeCSV('geofence_breaches.csv',
+    ['breach_id', 'ts', 'cadet_id', 'zone_id', 'zone', 'device', 'duration_min', 'status'],
+    breachRows);
+
+  /* ════════════ 25. CCTV / VMS — camera registry & flagged footage ═════ */
+  const cctvCams = [
+    { camera_id: 'CAM-01', name: 'Main Gate — ANPR Lane',      building_id: 'Z01', location: 'Perimeter · Main entrance' },
+    { camera_id: 'CAM-02', name: 'Armoury Entrance',           building_id: 'Z09', location: 'WMS issue counter' },
+    { camera_id: 'CAM-03', name: 'Academic Block B — Corridor',building_id: 'Z03', location: 'Level 2 east wing' },
+    { camera_id: 'CAM-04', name: 'Parade Ground — North',      building_id: 'Z11', location: 'Assembly & parade hall apron' },
+    { camera_id: 'CAM-05', name: 'Accommodation North — Lobby',building_id: 'Z06', location: 'Cadet entrance turnstiles' },
+    { camera_id: 'CAM-06', name: 'Data Centre Cage',           building_id: 'Z12', location: 'DC hall A · rack rows 1-4' },
+    { camera_id: 'CAM-07', name: 'Dining Facility — Service',  building_id: 'Z10', location: 'Servery & seating' },
+    { camera_id: 'CAM-08', name: 'Sports Complex — Pool Deck', building_id: 'Z08', location: 'HPO aquatic centre' },
+    { camera_id: 'CAM-09', name: 'Library Reading Hall',       building_id: 'Z05', location: 'Level 1 open study' },
+    { camera_id: 'CAM-10', name: 'Labs Centre — East Door',    building_id: 'Z04', location: 'Tailgating watch zone' },
+    { camera_id: 'CAM-11', name: 'South Perimeter — Fence 7',  building_id: 'Z07', location: 'Thermal · perimeter run' },
+    { camera_id: 'CAM-12', name: 'Roundabout — Traffic',       building_id: 'Z01', location: 'Central spine junction' },
+  ];
+  writeCSV('cctv_cameras.csv',
+    ['camera_id', 'name', 'building_id', 'location', 'status', 'fps', 'resolution', 'analytics'],
+    cctvCams.map((c, i) => ({
+      ...c,
+      status: i === 10 ? 'offline' : 'online',
+      fps: pick([15, 25, 30]),
+      resolution: pick(['1080p', '4MP', '4K']),
+      analytics: pick(['motion+object', 'ANPR', 'facial-ready', 'thermal', 'motion+object']),
+    })));
+
+  const cctvIncidentTypes = [
+    { type: 'Tailgating', sev: 'high', desc: 'Two entries on single credential — access control cross-check' },
+    { type: 'Unattended object', sev: 'medium', desc: 'Static object > 10 min in circulation zone' },
+    { type: 'Perimeter motion', sev: 'high', desc: 'After-hours motion on thermal perimeter camera' },
+    { type: 'Crowd density', sev: 'low', desc: 'Occupancy above comfort threshold in zone' },
+    { type: 'Camera obstruction', sev: 'medium', desc: 'Lens blocked / scene change detected' },
+    { type: 'Vehicle in restricted lane', sev: 'medium', desc: 'ANPR mismatch against authorised list' },
+    { type: 'Loitering', sev: 'low', desc: 'Dwell time exceeded near controlled door' },
+  ];
+  const cctvIncidents = [];
+  for (let i = 0; i < 14; i++) {
+    const t = pick(cctvIncidentTypes);
+    const cam = pick(cctvCams);
+    cctvIncidents.push({
+      incident_id: `VMS-${String(3400 + i)}`,
+      ts: iso(new Date(NOW.getTime() - rf(0.2, 36) * HOUR)),
+      camera_id: cam.camera_id, camera: cam.name,
+      type: t.type, severity: t.sev, description: t.desc,
+      clip_s: ri(8, 90),
+      status: pick(['flagged', 'under review', 'escalated', 'closed', 'closed']),
+      operator: pick(['SecOps-1', 'SecOps-2', 'Auto-Analytics']),
+    });
+  }
+  cctvIncidents.sort((a, b) => b.ts.localeCompare(a.ts));
+  writeCSV('cctv_incidents.csv',
+    ['incident_id', 'ts', 'camera_id', 'camera', 'type', 'severity', 'description', 'clip_s', 'status', 'operator'],
+    cctvIncidents);
+
+  /* ════════════ 26. Enterprise IT — software licences (REQ-AL-020) ═════ */
+  const licenses = [
+    { software: 'MATLAB & Simulink',        vendor: 'MathWorks',    total: 120,  consumed: 96,  renewal: 92 },
+    { software: 'Microsoft 365 E5',         vendor: 'Microsoft',    total: 2400, consumed: 2231, renewal: 210 },
+    { software: 'AutoCAD / Fusion',         vendor: 'Autodesk',     total: 80,   consumed: 74,  renewal: 152 },
+    { software: 'ArcGIS Pro',               vendor: 'Esri',         total: 70,   consumed: 61,  renewal: 61 },
+    { software: 'Ansys Workbench',          vendor: 'Ansys',        total: 40,   consumed: 38,  renewal: 121 },
+    { software: 'Adobe Creative Cloud',     vendor: 'Adobe',        total: 60,   consumed: 41,  renewal: 240 },
+    { software: 'SolidWorks',               vendor: 'Dassault',     total: 45,   consumed: 45,  renewal: 33 },
+    { software: 'Cyber Range Platform',     vendor: 'Cyberbit',     total: 50,   consumed: 32,  renewal: 300 },
+    { software: 'SPSS Statistics',          vendor: 'IBM',          total: 35,   consumed: 22,  renewal: 180 },
+  ];
+  writeCSV('it_licenses.csv',
+    ['software', 'vendor', 'total', 'consumed', 'utilization_pct', 'renewal_days', 'compliance'],
+    licenses.map((l) => ({
+      software: l.software, vendor: l.vendor, total: l.total, consumed: l.consumed,
+      utilization_pct: Math.round((l.consumed / l.total) * 100),
+      renewal_days: l.renewal,
+      compliance: l.consumed > l.total ? 'over' : l.consumed / l.total > 0.92 || l.renewal < 45 ? 'warning' : 'compliant',
+    })));
+
+  /* ════════════ 27. DCIM — data centre infrastructure (Z12) ════════════ */
+  const dcimHourly = [];
+  for (let h = 23; h >= 0; h--) {
+    const ts = hoursAgo(h);
+    const hr = ts.getHours();
+    const itLoad = rf(182, 214, 1);
+    const pue = rf(hr >= 11 && hr <= 16 ? 1.52 : 1.38, hr >= 11 && hr <= 16 ? 1.62 : 1.5, 2);
+    dcimHourly.push({
+      ts: iso(ts),
+      pue,
+      it_load_kw: itLoad,
+      cooling_kw: +(itLoad * (pue - 1) * 0.82).toFixed(1),
+      ups_charge_pct: ri(96, 100),
+    });
+  }
+  writeCSV('dcim_hourly.csv', ['ts', 'pue', 'it_load_kw', 'cooling_kw', 'ups_charge_pct'], dcimHourly);
+
+  writeCSV('dcim_status.csv', ['metric', 'value', 'target', 'status'], [
+    { metric: 'PUE (current)', value: dcimHourly.at(-1).pue, target: '≤ 1.6', status: 'ok' },
+    { metric: 'Cooling capacity used', value: '71%', target: '≤ 85%', status: 'ok' },
+    { metric: 'UPS battery health', value: '97%', target: '≥ 90%', status: 'ok' },
+    { metric: 'UPS autonomy at load', value: '18 min', target: '≥ 12 min', status: 'ok' },
+    { metric: 'Generator fuel level', value: '88%', target: '≥ 75%', status: 'ok' },
+    { metric: 'Rack space utilised', value: '64%', target: '≤ 80%', status: 'ok' },
+    { metric: 'DC hall temperature', value: '22.4°C', target: '20–25°C', status: 'ok' },
+    { metric: 'Redundancy posture', value: 'N+1', target: 'N+1', status: 'ok' },
+  ]);
+
+  /* IT asset lifecycle — high-tier workstations, servers, network */
+  const itAssetTypes = [
+    { type: 'Workstation (High-Tier)', models: ['Dell Precision 7960', 'HP Z8 Fury G5'], locs: ['Z04', 'Z02', 'Z03'] },
+    { type: 'Server', models: ['Dell PowerEdge R760', 'HPE DL380 Gen11'], locs: ['Z12'] },
+    { type: 'Core Switch', models: ['Cisco C9500-48Y4C', 'Aruba CX 8360'], locs: ['Z12', 'Z01'] },
+    { type: 'Storage Array', models: ['Pure FlashArray X70', 'NetApp AFF A400'], locs: ['Z12'] },
+    { type: 'UPS Module', models: ['Vertiv EXM2', 'Schneider Galaxy VS'], locs: ['Z12'] },
+    { type: 'AV / Smart Classroom', models: ['Crestron UC-ENGINE', 'Poly X70'], locs: ['Z02', 'Z03', 'Z11'] },
+  ];
+  const itAssets = [];
+  let itSeq = 1;
+  for (const at of itAssetTypes) {
+    const n = at.type.includes('Workstation') ? 12 : at.type === 'AV / Smart Classroom' ? 8 : 5;
+    for (let k = 0; k < n; k++) {
+      const purchasedDaysAgo = ri(90, 1500);
+      const warrantyDays = 1095 - purchasedDaysAgo; // 3-year warranty
+      itAssets.push({
+        asset_id: `IT-${String(itSeq++).padStart(4, '0')}`,
+        type: at.type,
+        model: pick(at.models),
+        building_id: pick(at.locs),
+        purchase_date: isoDay(daysAgo(purchasedDaysAgo)),
+        warranty_end: isoDay(new Date(NOW.getTime() + warrantyDays * DAY)),
+        warranty_status: warrantyDays < 0 ? 'expired' : warrantyDays < 90 ? 'expiring' : 'active',
+        health_pct: warrantyDays < 0 ? ri(58, 85) : ri(80, 100),
+        status: rnd() < 0.05 ? 'maintenance' : 'in service',
+      });
+    }
+  }
+  writeCSV('it_assets.csv',
+    ['asset_id', 'type', 'model', 'building_id', 'purchase_date', 'warranty_end', 'warranty_status', 'health_pct', 'status'],
+    itAssets);
+
   console.log('Done. Generated at', iso(NOW));
 }
 

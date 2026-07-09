@@ -1,0 +1,13 @@
+camera_id,name,building_id,location,status,fps,resolution,analytics
+CAM-01,Main Gate — ANPR Lane,Z01,Perimeter · Main entrance,online,30,1080p,thermal
+CAM-02,Armoury Entrance,Z09,WMS issue counter,online,30,4MP,thermal
+CAM-03,Academic Block B — Corridor,Z03,Level 2 east wing,online,15,4MP,ANPR
+CAM-04,Parade Ground — North,Z11,Assembly & parade hall apron,online,25,4MP,thermal
+CAM-05,Accommodation North — Lobby,Z06,Cadet entrance turnstiles,online,25,4MP,facial-ready
+CAM-06,Data Centre Cage,Z12,DC hall A · rack rows 1-4,online,25,4MP,thermal
+CAM-07,Dining Facility — Service,Z10,Servery & seating,online,25,4K,motion+object
+CAM-08,Sports Complex — Pool Deck,Z08,HPO aquatic centre,online,25,4MP,motion+object
+CAM-09,Library Reading Hall,Z05,Level 1 open study,online,25,4K,motion+object
+CAM-10,Labs Centre — East Door,Z04,Tailgating watch zone,online,30,4K,thermal
+CAM-11,South Perimeter — Fence 7,Z07,Thermal · perimeter run,offline,15,4MP,ANPR
+CAM-12,Roundabout — Traffic,Z01,Central spine junction,online,25,1080p,ANPR

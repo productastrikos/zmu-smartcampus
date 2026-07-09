@@ -27,14 +27,18 @@ const NAV = [
     items: [
       { to: '/academic', label: 'Academics & Learning', icon: ['M22 10L12 5 2 10l10 5 10-5z', 'M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5'] },
       { to: '/readiness', label: 'Readiness & Performance', icon: ['M22 12h-4l-3 9L9 3l-3 9H2'] },
+      { to: '/cadet-journey', label: 'Cadet Journey', icon: ['M12 2a4 4 0 100 8 4 4 0 000-8z', 'M6 21v-2a6 6 0 0112 0v2', 'M17 3l4 4-4 4'] },
       { to: '/enterprise', label: 'Enterprise & Finance', icon: ['M20 7H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z', 'M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2'] },
       { to: '/campus-ops', label: 'Smart Campus Operations', icon: ['M4 2h16v20H4z', 'M9 22v-4h6v4', 'M9 6h.01M15 6h.01M9 10h.01M15 10h.01M9 14h.01M15 14h.01'] },
+      { to: '/it-ops', label: 'Enterprise IT & DCIM', icon: ['M4 4h16v12H4z', 'M8 20h8', 'M12 16v4', 'M8 8h4M8 11h8'] },
     ],
   },
   {
     section: 'Platform',
     items: [
       { to: '/security', label: 'Security Operations', icon: ['M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z'] },
+      { to: '/incidents', label: 'Incident Management', icon: ['M23 7l-7 5 7 5V7z', 'M1 5h15v14H1z'] },
+      { to: '/geofencing', label: 'Geofencing & Tracking', icon: ['M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z', 'M12 13a3 3 0 100-6 3 3 0 000 6z'] },
       { to: '/integration', label: 'Integration & Data', icon: ['M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71', 'M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71'] },
     ],
   },
@@ -47,7 +51,11 @@ const PAGE_TITLES = {
   '/readiness': 'Readiness & Performance',
   '/enterprise': 'Enterprise & Finance',
   '/campus-ops': 'Smart Campus Operations',
+  '/cadet-journey': 'Cadet Journey',
+  '/it-ops': 'Enterprise IT & DCIM',
   '/security': 'Security Operations',
+  '/incidents': 'Incident Management — CCTV',
+  '/geofencing': 'Geofencing & Cadet Tracking',
   '/integration': 'Integration & Data Platform',
 };
 
