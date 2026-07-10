@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { useApi } from '../services/api';
 import KPICard, { IcoTarget, IcoWatch, IcoMoon, IcoHeart, IcoAlert, IcoActivity } from '../components/KPICard';
 import { Panel, StatusChip, sevChip, Loading, PageHeader, KPIGrid, DataTable } from '../components/ui';
@@ -84,6 +85,14 @@ export default function Readiness() {
   const [cadetId, setCadetId] = useState(null);
   const [showAll, setShowAll] = useState(false);
   const [detail, setDetail] = useState(null);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  // deep-link: /readiness?cadet=ZMU-2100 opens that cadet's human twin
+  // (used by the Cadet Journey module — single Cadet ID interdependency)
+  useEffect(() => {
+    const c = searchParams.get('cadet');
+    if (c) setCadetId(c);
+  }, [searchParams]);
   if (error) return <Panel title="Error">{String(error)}</Panel>;
   if (!data) return <Loading text="Loading readiness domain…" />;
   const k = data.kpis;
@@ -240,7 +249,7 @@ export default function Readiness() {
           onRowClick={(r) => setCadetId(r.cadet_id)} />
       </Panel>
 
-      {cadetId && <CadetTwin id={cadetId} onClose={() => setCadetId(null)} />}
+      {cadetId && <CadetTwin id={cadetId} onClose={() => { setCadetId(null); if (searchParams.get('cadet')) setSearchParams({}, { replace: true }); }} />}
 
       <KPIDetailPanel open={!!detail} onClose={() => setDetail(null)} title={detail?.title} subtitle={detail?.subtitle} source={detail?.source} stats={detail?.stats}>
         {detail?.content}

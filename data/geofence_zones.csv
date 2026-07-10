@@ -1,7 +1,0 @@
-zone_id,name,type,x,y,w,h
-GF-01,Armoury Exclusion Zone,restricted,565,365,150,120
-GF-02,Central Plant & DC Restricted,restricted,845,45,120,260
-GF-03,Live-Fire Training Range,training,720,500,260,140
-GF-04,Academic & Admin Precinct,permitted,40,40,650,290
-GF-05,Accommodation & Sports,permitted,40,365,500,260
-GF-06,North Perimeter Buffer,restricted,0,0,1010,30

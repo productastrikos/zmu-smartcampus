@@ -1,15 +1,15 @@
 incident_id,ts,camera_id,camera,type,severity,description,clip_s,status,operator
-VMS-3408,2026-07-09T09:00:00.000Z,CAM-02,Armoury Entrance,Crowd density,low,Occupancy above comfort threshold in zone,25,flagged,SecOps-2
-VMS-3409,2026-07-09T08:00:00.000Z,CAM-08,Sports Complex — Pool Deck,Crowd density,low,Occupancy above comfort threshold in zone,10,under review,SecOps-2
-VMS-3411,2026-07-09T02:00:00.000Z,CAM-11,South Perimeter — Fence 7,Vehicle in restricted lane,medium,ANPR mismatch against authorised list,36,closed,SecOps-2
-VMS-3406,2026-07-08T22:12:00.000Z,CAM-09,Library Reading Hall,Loitering,low,Dwell time exceeded near controlled door,48,closed,SecOps-2
-VMS-3413,2026-07-08T19:30:00.000Z,CAM-12,Roundabout — Traffic,Perimeter motion,high,After-hours motion on thermal perimeter camera,54,under review,SecOps-1
-VMS-3400,2026-07-08T19:18:00.000Z,CAM-02,Armoury Entrance,Tailgating,high,Two entries on single credential — access control cross-check,38,under review,SecOps-2
-VMS-3407,2026-07-08T17:12:00.000Z,CAM-08,Sports Complex — Pool Deck,Camera obstruction,medium,Lens blocked / scene change detected,31,closed,SecOps-1
-VMS-3404,2026-07-08T16:48:00.000Z,CAM-12,Roundabout — Traffic,Vehicle in restricted lane,medium,ANPR mismatch against authorised list,56,closed,SecOps-2
-VMS-3401,2026-07-08T15:42:00.000Z,CAM-05,Accommodation North — Lobby,Perimeter motion,high,After-hours motion on thermal perimeter camera,16,under review,Auto-Analytics
-VMS-3402,2026-07-08T15:06:00.000Z,CAM-06,Data Centre Cage,Perimeter motion,high,After-hours motion on thermal perimeter camera,46,flagged,Auto-Analytics
-VMS-3403,2026-07-08T11:12:00.000Z,CAM-04,Parade Ground — North,Unattended object,medium,Static object > 10 min in circulation zone,10,flagged,Auto-Analytics
-VMS-3410,2026-07-08T09:30:00.000Z,CAM-10,Labs Centre — East Door,Tailgating,high,Two entries on single credential — access control cross-check,47,closed,SecOps-2
-VMS-3412,2026-07-08T07:54:00.000Z,CAM-02,Armoury Entrance,Camera obstruction,medium,Lens blocked / scene change detected,67,flagged,SecOps-2
-VMS-3405,2026-07-08T04:18:00.000Z,CAM-12,Roundabout — Traffic,Crowd density,low,Occupancy above comfort threshold in zone,58,under review,SecOps-1
+VMS-3403,2026-07-09T09:30:00.000Z,CAM-07,Dining Facility — Service,Crowd density,low,Occupancy above comfort threshold in zone,34,escalated,SecOps-1
+VMS-3411,2026-07-09T04:00:00.000Z,CAM-10,Labs Centre — East Door,Unattended object,medium,Static object > 10 min in circulation zone,70,flagged,SecOps-1
+VMS-3405,2026-07-09T02:06:00.000Z,CAM-04,Parade Ground — North,Perimeter motion,high,After-hours motion on thermal perimeter camera,20,under review,Auto-Analytics
+VMS-3412,2026-07-09T02:06:00.000Z,CAM-01,Main Gate — ANPR Lane,Crowd density,low,Occupancy above comfort threshold in zone,66,closed,SecOps-2
+VMS-3408,2026-07-08T23:48:00.000Z,CAM-05,Accommodation North — Lobby,Crowd density,low,Occupancy above comfort threshold in zone,19,closed,SecOps-1
+VMS-3407,2026-07-08T23:36:00.000Z,CAM-09,Library Reading Hall,Crowd density,low,Occupancy above comfort threshold in zone,35,under review,Auto-Analytics
+VMS-3404,2026-07-08T22:24:00.000Z,CAM-09,Library Reading Hall,Unattended object,medium,Static object > 10 min in circulation zone,50,under review,SecOps-2
+VMS-3406,2026-07-08T20:30:00.000Z,CAM-12,Roundabout — Traffic,Camera obstruction,medium,Lens blocked / scene change detected,76,flagged,SecOps-2
+VMS-3410,2026-07-08T19:06:00.000Z,CAM-11,South Perimeter — Fence 7,Camera obstruction,medium,Lens blocked / scene change detected,54,closed,Auto-Analytics
+VMS-3402,2026-07-08T15:36:00.000Z,CAM-01,Main Gate — ANPR Lane,Unattended object,medium,Static object > 10 min in circulation zone,8,closed,SecOps-2
+VMS-3401,2026-07-08T12:42:00.000Z,CAM-08,Sports Complex — Pool Deck,Tailgating,high,Two entries on single credential — access control cross-check,55,closed,SecOps-2
+VMS-3413,2026-07-08T10:36:00.000Z,CAM-01,Main Gate — ANPR Lane,Crowd density,low,Occupancy above comfort threshold in zone,58,closed,Auto-Analytics
+VMS-3409,2026-07-08T05:54:00.000Z,CAM-05,Accommodation North — Lobby,Perimeter motion,high,After-hours motion on thermal perimeter camera,59,under review,SecOps-1
+VMS-3400,2026-07-07T23:54:00.000Z,CAM-09,Library Reading Hall,Vehicle in restricted lane,medium,ANPR mismatch against authorised list,78,under review,SecOps-1

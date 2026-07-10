@@ -551,6 +551,17 @@ export default function DigitalTwin() {
   const { data, error } = useApi('/twin');
   const [metric, setMetric] = useState(METRICS[0]);
   const [twinBuilding, setTwinBuilding] = useState(null);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  // deep-link: /digital-twin?building=Z03 opens that building's 3-D twin
+  // (used by the CCTV Incident Management module — building interdependency)
+  useEffect(() => {
+    const bid = searchParams.get('building');
+    if (bid && data) {
+      const b = data.buildings.find((x) => x.building_id === bid);
+      if (b) setTwinBuilding(b);
+    }
+  }, [searchParams, data]);
 
   if (error) return <Panel title="Error">{String(error)}</Panel>;
   if (!data) return <Loading text="Loading campus digital twin…" />;
@@ -629,7 +640,7 @@ export default function DigitalTwin() {
       {twinBuilding && (
         <BuildingTwin3D
           building={twinBuilding}
-          onClose={() => setTwinBuilding(null)}
+          onClose={() => { setTwinBuilding(null); if (searchParams.get('building')) setSearchParams({}, { replace: true }); }}
         />
       )}
     </>

@@ -38,7 +38,6 @@ const NAV = [
     items: [
       { to: '/security', label: 'Security Operations', icon: ['M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z'] },
       { to: '/incidents', label: 'Incident Management', icon: ['M23 7l-7 5 7 5V7z', 'M1 5h15v14H1z'] },
-      { to: '/geofencing', label: 'Geofencing & Tracking', icon: ['M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z', 'M12 13a3 3 0 100-6 3 3 0 000 6z'] },
       { to: '/integration', label: 'Integration & Data', icon: ['M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71', 'M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71'] },
     ],
   },
@@ -55,7 +54,6 @@ const PAGE_TITLES = {
   '/it-ops': 'Enterprise IT & DCIM',
   '/security': 'Security Operations',
   '/incidents': 'Incident Management — CCTV',
-  '/geofencing': 'Geofencing & Cadet Tracking',
   '/integration': 'Integration & Data Platform',
 };
 
