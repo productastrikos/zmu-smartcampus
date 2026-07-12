@@ -92,9 +92,9 @@ export default function CadetJourney() {
             {/* Current status — clickable KPI cards */}
             <KPIGrid>
               <KPICard label="Academic Year" value={`Year ${k.year}`} icon={<IcoGrad />}
-                subValues={[{ label: 'Programme', value: c.program.split(' ').slice(0, 2).join(' ') }, { label: 'Partner', value: c.partner }]}
+                subValues={[{ label: 'Programme', value: c.program.split(' ').slice(0, 3).join(' ') }, { label: 'Company', value: `${c.squadron}` }]}
                 onClick={() => setDetail({
-                  title: 'Academic Standing', subtitle: `${c.program} · ${c.partner}`, source: 'SIS · flow 1',
+                  title: 'Academic Standing', subtitle: `${c.program} · ${c.squadron} Company`, source: 'SIS · flow 1',
                   stats: [{ label: 'Year', value: k.year }, { label: 'GPA', value: c.gpa }, { label: 'Attendance', value: `${c.attendance}%` }],
                   content: <TrendChart data={data.wearables} x="date" height={180} series={[{ key: 'readiness', name: 'Readiness', color: C.blue, area: true }]} />,
                 })} />
@@ -103,7 +103,7 @@ export default function CadetJourney() {
                 subValues={[{ label: 'Order of Merit', value: `#${k.orderOfMerit}` }, { label: 'Percentile', value: `${k.percentile}th` }]}
                 onClick={() => setDetail({
                   title: 'Composite Readiness Score', subtitle: `Rank #${k.orderOfMerit} of ${list.cadets.length} · ${k.percentile}th percentile`, source: 'SIS + HPO',
-                  stats: [{ label: 'Composite', value: k.composite, sub: '/ 100' }, { label: 'Squadron avg', value: k.squadronAvgComposite }, { label: 'Order of merit', value: `#${k.orderOfMerit}` }],
+                  stats: [{ label: 'Composite', value: k.composite, sub: '/ 100' }, { label: 'Company avg', value: k.squadronAvgComposite }, { label: 'Order of merit', value: `#${k.orderOfMerit}` }],
                 })} />
               <KPICard label="GPA (SIS)" value={k.gpa} unit="/ 4.0" icon={<IcoTrendUp />}
                 subValues={[{ label: 'Attendance', value: `${k.attendance}%` }]}
@@ -127,7 +127,7 @@ export default function CadetJourney() {
                 })} />
               <KPICard label="Weapons Issued (WMS)" value={k.weaponsOut} icon={<IcoLock />}
                 rag={k.weaponsOut > 0 ? 'warning' : 'normal'}
-                subValues={[{ label: 'Armoury', value: 'Z09' }, { label: 'Squadron', value: `${c.squadron} Sqn` }]}
+                subValues={[{ label: 'Armoury', value: 'Z09' }, { label: 'Company', value: `${c.squadron} Company` }]}
                 onClick={() => setDetail({
                   title: 'Armoury — Weapon Issuance', subtitle: 'WMS records on this Cadet ID · Domain D', source: 'WMS · Armoury Z09',
                   stats: [{ label: 'Currently out', value: k.weaponsOut, tone: k.weaponsOut ? 'warn' : 'up' }, { label: 'Recent txns', value: data.weapons.length }],
@@ -178,9 +178,9 @@ export default function CadetJourney() {
                   </div>
                 </Panel>
 
-                <Panel title={`${data.squadron.name} Squadron — HPO Domains`} sub={`Peer cohort of ${data.squadron.peers} · squadron avg composite ${data.squadron.avgComposite}`}>
+                <Panel title={`${data.squadron.name} Company — HPO Domains`} sub={`Peer cohort of ${data.squadron.peers} · company avg composite ${data.squadron.avgComposite}`}>
                   <RadarPanel data={radar} angleKey="domain" height={210}
-                    series={[{ key: 'score', name: `${data.squadron.name} Sqn`, color: C.amber }]} />
+                    series={[{ key: 'score', name: `${data.squadron.name} Company`, color: C.amber }]} />
                 </Panel>
 
                 <Panel title="Armoury — Weapon Issuance (WMS)" sub="Domain D join on the single Cadet ID">

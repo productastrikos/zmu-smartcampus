@@ -29,7 +29,7 @@ function CadetTwin({ id, onClose }) {
                 <div>
                   <div style={{ fontSize: 15, fontWeight: 700, color: 'var(--app-text)' }}>{data.cadet.name}</div>
                   <div style={{ fontSize: 11, color: 'var(--app-text-faint)' }}>
-                    {data.cadet.cadet_id} · {data.cadet.squadron} Sqn · Year {data.cadet.year} · {data.cadet.program}
+                    {data.cadet.cadet_id} · {data.cadet.squadron} Company · Year {data.cadet.year} · {data.cadet.program}
                   </div>
                   <div style={{ fontSize: 10.5, color: 'var(--app-text-faint)', marginTop: 2 }}>
                     Longitudinal cadet profile (human digital twin) · Garmin {data.cadet.garmin_device} · synced {data.cadet.device_synced_hrs_ago}h ago
@@ -87,7 +87,7 @@ export default function Readiness() {
   const [detail, setDetail] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
 
-  // deep-link: /readiness?cadet=ZMU-2100 opens that cadet's human twin
+  // deep-link: /readiness?cadet=1001 opens that cadet's human twin
   // (used by the Cadet Journey module — single Cadet ID interdependency)
   useEffect(() => {
     const c = searchParams.get('cadet');
@@ -170,7 +170,7 @@ export default function Readiness() {
               <DataTable maxHeight={280}
                 columns={[
                   { key: 'name', label: 'Cadet' },
-                  { key: 'squadron', label: 'Sqn' },
+                  { key: 'squadron', label: 'Company' },
                   { key: 'acwr', label: 'ACWR', align: 'right', render: (v) => <b style={{ color: 'var(--app-danger)' }}>{v}</b> },
                   { key: 'readiness_score', label: 'Readiness', align: 'right' },
                 ]}
@@ -203,7 +203,7 @@ export default function Readiness() {
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1.4fr)', gap: 14, marginBottom: 14 }}>
-        <Panel title="Squadron Comparison" sub="Instructor-tier dashboard view">
+        <Panel title="Company Comparison" sub="Instructor-tier dashboard view">
           <Bars data={data.squadrons} x="squadron" height={230}
             series={[
               { key: 'readiness', name: 'Readiness', color: C.blue },
@@ -216,7 +216,7 @@ export default function Readiness() {
             columns={[
               { key: 'cadet_id', label: 'Cadet ID' },
               { key: 'name', label: 'Name' },
-              { key: 'squadron', label: 'Sqn' },
+              { key: 'squadron', label: 'Company' },
               { key: 'acwr', label: 'ACWR', align: 'right', render: (v) => <b style={{ color: 'var(--app-danger)' }}>{v}</b> },
               { key: 'sleep_hours', label: 'Sleep', align: 'right' },
               { key: 'readiness_score', label: 'Readiness', align: 'right' },
@@ -237,7 +237,7 @@ export default function Readiness() {
             { key: 'merit', label: 'Merit #', render: (v) => <b style={{ color: '#3b7de8' }}>{v}</b> },
             { key: 'cadet_id', label: 'Cadet ID' },
             { key: 'name', label: 'Name' },
-            { key: 'squadron', label: 'Squadron' },
+            { key: 'squadron', label: 'Company' },
             { key: 'year', label: 'Yr' },
             { key: 'composite', label: 'Composite', align: 'right', render: (v) => <b style={{ color: 'var(--app-text)' }}>{v}</b> },
             { key: 'readiness', label: 'Readiness', align: 'right' },

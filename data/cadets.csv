@@ -1,49 +1,49 @@
 cadet_id,name,squadron,year,program,partner,gpa,military_score,fitness_score,conduct_score,composite_score,order_of_merit,attendance_pct,risk_level,garmin_device,device_synced_hrs_ago,accommodation
-1001,Ahmed Al Mansoori,Falcon,2,BSc Systems Engineering,Khalifa University,3.52,88,82,85,86.4,6,86.3,low,Instinct 3 Solar,3,Z07
-1002,Saeed Al Nuaimi,Oryx,2,BSc Defence & Security Studies,Rabdan Academy,3.24,75,81,90,80.9,17,95.2,low,Forerunner 965,2,Z06
-1003,Khalid Al Shamsi,Saqr,2,BSc Military Science & Tactics,ZMU Core,2.91,91,68,77,77,24,98.4,low,Epix Pro Gen 2,7,Z07
-1004,Omar Al Zaabi,Ghaf,2,BSc Military Science & Tactics,ZMU Core,2.20,62,85,70,65,44,98,high,Epix Pro Gen 2,3,Z06
-1005,Hamdan Al Suwaidi,Falcon,2,BSc Cyber Security Engineering,Khalifa University,2.17,84,59,93,68.5,38,93.6,medium,Epix Pro Gen 2,8,Z07
-1006,Rashid Al Ketbi,Oryx,2,BSc Military Science & Tactics,ZMU Core,2.16,70,76,64,63.9,46,98.9,high,Instinct 3 Solar,8,Z06
-1007,Hazza Al Zaabi,Saqr,1,BEng Electrical & Computer Engineering,Khalifa University,2.00,72,70,72,62.8,47,97.2,high,Fenix 8 Tactical,3,Z07
-1008,Hamdan Al Zaabi,Ghaf,3,BSc Defence & Security Studies,Rabdan Academy,3.55,89,60,95,84,11,84.6,low,Forerunner 965,6,Z06
-1009,Tariq Al Nuaimi,Falcon,1,BSc Homeland Security & Resilience,Rabdan Academy,2.06,60,68,72,60,48,97.1,high,Instinct 3 Solar,3,Z07
-1010,Saif Al Habsi,Oryx,1,BSc Cyber Security Engineering,Khalifa University,3.51,90,67,99,85.8,8,93,low,Instinct 3 Solar,1,Z06
-1011,Faisal Al Muhairi,Saqr,2,BSc Systems Engineering,Khalifa University,3.97,69,83,95,87.8,4,97.9,low,Forerunner 965,4,Z07
-1012,Zayed Al Mansoori,Ghaf,1,BSc Homeland Security & Resilience,Rabdan Academy,3.79,82,76,75,84.8,9,84.7,low,Fenix 8 Tactical,29,Z06
-1013,Hamdan Al Mazrouei,Falcon,2,BSc Systems Engineering,Khalifa University,3.02,61,60,82,69.8,35,91.5,medium,Forerunner 965,6,Z07
-1014,Omar Al Kaabi,Oryx,2,BA International Relations & Diplomacy,Sorbonne University Abu Dhabi,3.51,93,71,60,81.5,16,95.9,low,Epix Pro Gen 2,0,Z06
-1015,Suhail Al Ameri,Saqr,2,BSc Military Science & Tactics,ZMU Core,3.06,62,79,63,71.4,34,88.6,medium,Instinct 3 Solar,5,Z07
-1016,Juma Al Falasi,Ghaf,3,BSc Cyber Security Engineering,Khalifa University,3.92,94,78,94,92.4,1,92.5,low,Epix Pro Gen 2,8,Z06
-1017,Mohammed Al Shamsi,Falcon,1,BSc Homeland Security & Resilience,Rabdan Academy,2.70,97,69,76,76.5,26,82.7,high,Epix Pro Gen 2,2,Z07
-1018,Khalid Al Dhaheri,Oryx,1,BSc Defence & Security Studies,Rabdan Academy,2.23,79,72,87,69.5,36,97.2,medium,Fenix 8 Tactical,0,Z06
-1019,Hazza Al Kaabi,Saqr,1,BA Strategic Languages & Translation,Sorbonne University Abu Dhabi,3.36,78,77,71,79.2,20,90.1,low,Forerunner 965,2,Z07
-1020,Theyab Al Marri,Ghaf,3,BSc Military Leadership,ZMU Core,2.57,96,59,96,75.9,27,93.4,low,Forerunner 965,6,Z06
-1021,Hazza Al Ketbi,Falcon,2,BSc Defence & Security Studies,Rabdan Academy,2.42,70,65,87,67.8,39,84.7,medium,Forerunner 965,6,Z07
-1022,Salem Al Marri,Oryx,3,BA Strategic Languages & Translation,Sorbonne University Abu Dhabi,3.19,90,69,78,79.9,19,82.6,high,Instinct 3 Solar,5,Z06
-1023,Ibrahim Al Nuaimi,Saqr,1,BSc Defence & Security Studies,Rabdan Academy,3.23,57,75,83,74,32,83.5,low,Epix Pro Gen 2,5,Z07
-1024,Zayed Al Shamsi,Ghaf,1,BSc Homeland Security & Resilience,Rabdan Academy,3.78,91,75,71,86.2,7,83.8,low,Instinct 3 Solar,5,Z06
-1025,Hazza Al Blooshi,Falcon,2,BSc Military Science & Tactics,ZMU Core,3.56,96,84,67,86.5,5,87.4,low,Instinct 3 Solar,7,Z07
-1026,Zayed Al Suwaidi,Oryx,1,BSc Military Leadership,ZMU Core,2.78,90,89,74,79.2,21,96.8,low,Instinct 3 Solar,8,Z06
-1027,Suhail Al Tayer,Saqr,2,BSc Military Science & Tactics,ZMU Core,3.70,92,80,81,88.2,3,84.1,low,Forerunner 965,6,Z07
-1028,Sultan Al Suwaidi,Ghaf,2,BA International Relations & Diplomacy,Sorbonne University Abu Dhabi,3.28,86,60,61,75.5,29,94.8,low,Instinct 3 Solar,5,Z06
-1029,Matar Al Zaabi,Falcon,1,BA Strategic Languages & Translation,Sorbonne University Abu Dhabi,2.64,95,65,85,75.9,28,88,low,Fenix 8 Tactical,52,Z07
-1030,Khalifa Al Shamsi,Oryx,2,BSc Systems Engineering,Khalifa University,3.22,79,93,87,83.6,12,97.5,low,Fenix 8 Tactical,5,Z06
-1031,Saif Al Marri,Saqr,2,BSc Military Leadership,ZMU Core,2.36,55,98,65,66.7,41,88.7,medium,Epix Pro Gen 2,8,Z07
-1032,Theyab Al Muhairi,Ghaf,2,BSc Military Leadership,ZMU Core,2.03,96,76,65,69.3,37,96,medium,Epix Pro Gen 2,0,Z06
-1033,Hamad Al Romaithi,Falcon,1,BA International Relations & Diplomacy,Sorbonne University Abu Dhabi,3.19,84,55,74,75,30,90,low,Epix Pro Gen 2,2,Z07
-1034,Saif Al Ketbi,Oryx,2,BSc Cyber Security Engineering,Khalifa University,2.15,61,95,77,67.3,40,99.3,medium,Epix Pro Gen 2,6,Z06
-1035,Ibrahim Al Hosani,Saqr,2,BSc Homeland Security & Resilience,Rabdan Academy,3.84,67,64,81,80.1,18,90.3,low,Fenix 8 Tactical,4,Z07
-1036,Ali Al Ketbi,Ghaf,2,BA Strategic Languages & Translation,Sorbonne University Abu Dhabi,3.46,88,55,96,82,15,82.6,high,Forerunner 965,2,Z06
-1037,Abdulla Al Blooshi,Falcon,1,BSc Systems Engineering,Khalifa University,3.62,62,78,77,78.9,22,96.9,low,Instinct 3 Solar,7,Z07
-1038,Sultan Al Nuaimi,Oryx,1,BSc Defence & Security Studies,Rabdan Academy,3.99,91,60,63,84.1,10,84.1,low,Epix Pro Gen 2,0,Z06
-1039,Suhail Al Blooshi,Saqr,1,BEng Electrical & Computer Engineering,Khalifa University,3.35,89,63,66,78.3,23,89.5,low,Epix Pro Gen 2,0,Z07
-1040,Theyab Al Blooshi,Ghaf,2,BSc Homeland Security & Resilience,Rabdan Academy,3.83,65,71,91,82.4,14,93.4,low,Forerunner 965,8,Z06
-1041,Matar Al Habsi,Falcon,2,BEng Electrical & Computer Engineering,Khalifa University,2.69,68,89,70,72.2,33,83.8,medium,Fenix 8 Tactical,3,Z07
-1042,Faisal Al Falasi,Oryx,2,BEng Electrical & Computer Engineering,Khalifa University,3.52,97,96,81,90.8,2,83.4,high,Forerunner 965,6,Z06
-1043,Nasser Al Hosani,Saqr,2,BSc Military Leadership,ZMU Core,2.39,62,70,72,64.2,45,97.2,high,Forerunner 965,7,Z07
-1044,Khalid Al Hammadi,Ghaf,1,BSc Military Leadership,ZMU Core,2.30,92,90,72,74.8,31,88.3,low,Forerunner 965,5,Z06
-1045,Obaid Al Dhaheri,Falcon,1,BSc Military Leadership,ZMU Core,2.25,59,95,61,65.4,43,88.6,high,Instinct 3 Solar,6,Z07
-1046,Sultan Al Shamsi,Oryx,1,BSc Systems Engineering,Khalifa University,3.26,76,59,90,76.9,25,87.6,low,Epix Pro Gen 2,7,Z06
-1047,Sultan Al Marri,Saqr,3,BEng Electrical & Computer Engineering,Khalifa University,3.36,86,68,92,82.5,13,82.2,high,Epix Pro Gen 2,3,Z07
-1048,Hamdan Al Tayer,Ghaf,2,BA International Relations & Diplomacy,Sorbonne University Abu Dhabi,1.71,85,70,88,65.5,42,97.4,high,Epix Pro Gen 2,8,Z06
+1001,Ahmed Al Mansoori,Falcon,2,BSc Systems Engineering,Zayed Military University,3.52,88,82,85,86.4,6,86.3,low,Instinct 3 Solar,3,Z07
+1002,Saeed Al Nuaimi,Oryx,2,BSc Defence & Security Studies,Zayed Military University,3.24,75,81,90,80.9,17,95.2,low,Forerunner 965,2,Z06
+1003,Khalid Al Shamsi,Saqr,2,BSc Military Science & Tactics,Zayed Military University,2.91,91,68,77,77,24,98.4,low,Epix Pro Gen 2,7,Z07
+1004,Omar Al Zaabi,Ghaf,2,BSc Military Science & Tactics,Zayed Military University,2.20,62,85,70,65,44,98,high,Epix Pro Gen 2,3,Z06
+1005,Hamdan Al Suwaidi,Falcon,2,BSc Cyber Security Engineering,Zayed Military University,2.17,84,59,93,68.5,38,93.6,medium,Epix Pro Gen 2,8,Z07
+1006,Rashid Al Ketbi,Oryx,2,BSc Military Science & Tactics,Zayed Military University,2.16,70,76,64,63.9,46,98.9,high,Instinct 3 Solar,8,Z06
+1007,Hazza Al Zaabi,Saqr,1,BEng Electrical & Computer Engineering,Zayed Military University,2.00,72,70,72,62.8,47,97.2,high,Fenix 8 Tactical,3,Z07
+1008,Hamdan Al Zaabi,Ghaf,3,BSc Defence & Security Studies,Zayed Military University,3.55,89,60,95,84,11,84.6,low,Forerunner 965,6,Z06
+1009,Tariq Al Nuaimi,Falcon,1,BSc Homeland Security & Resilience,Zayed Military University,2.06,60,68,72,60,48,97.1,high,Instinct 3 Solar,3,Z07
+1010,Saif Al Habsi,Oryx,1,BSc Cyber Security Engineering,Zayed Military University,3.51,90,67,99,85.8,8,93,low,Instinct 3 Solar,1,Z06
+1011,Faisal Al Muhairi,Saqr,2,BSc Systems Engineering,Zayed Military University,3.97,69,83,95,87.8,4,97.9,low,Forerunner 965,4,Z07
+1012,Zayed Al Mansoori,Ghaf,1,BSc Homeland Security & Resilience,Zayed Military University,3.79,82,76,75,84.8,9,84.7,low,Fenix 8 Tactical,29,Z06
+1013,Hamdan Al Mazrouei,Falcon,2,BSc Systems Engineering,Zayed Military University,3.02,61,60,82,69.8,35,91.5,medium,Forerunner 965,6,Z07
+1014,Omar Al Kaabi,Oryx,2,BA International Relations & Diplomacy,Zayed Military University,3.51,93,71,60,81.5,16,95.9,low,Epix Pro Gen 2,0,Z06
+1015,Suhail Al Ameri,Saqr,2,BSc Military Science & Tactics,Zayed Military University,3.06,62,79,63,71.4,34,88.6,medium,Instinct 3 Solar,5,Z07
+1016,Juma Al Falasi,Ghaf,3,BSc Cyber Security Engineering,Zayed Military University,3.92,94,78,94,92.4,1,92.5,low,Epix Pro Gen 2,8,Z06
+1017,Mohammed Al Shamsi,Falcon,1,BSc Homeland Security & Resilience,Zayed Military University,2.70,97,69,76,76.5,26,82.7,high,Epix Pro Gen 2,2,Z07
+1018,Khalid Al Dhaheri,Oryx,1,BSc Defence & Security Studies,Zayed Military University,2.23,79,72,87,69.5,36,97.2,medium,Fenix 8 Tactical,0,Z06
+1019,Hazza Al Kaabi,Saqr,1,BA Strategic Languages & Translation,Zayed Military University,3.36,78,77,71,79.2,20,90.1,low,Forerunner 965,2,Z07
+1020,Theyab Al Marri,Ghaf,3,BSc Military Leadership,Zayed Military University,2.57,96,59,96,75.9,27,93.4,low,Forerunner 965,6,Z06
+1021,Hazza Al Ketbi,Falcon,2,BSc Defence & Security Studies,Zayed Military University,2.42,70,65,87,67.8,39,84.7,medium,Forerunner 965,6,Z07
+1022,Salem Al Marri,Oryx,3,BA Strategic Languages & Translation,Zayed Military University,3.19,90,69,78,79.9,19,82.6,high,Instinct 3 Solar,5,Z06
+1023,Ibrahim Al Nuaimi,Saqr,1,BSc Defence & Security Studies,Zayed Military University,3.23,57,75,83,74,32,83.5,low,Epix Pro Gen 2,5,Z07
+1024,Zayed Al Shamsi,Ghaf,1,BSc Homeland Security & Resilience,Zayed Military University,3.78,91,75,71,86.2,7,83.8,low,Instinct 3 Solar,5,Z06
+1025,Hazza Al Blooshi,Falcon,2,BSc Military Science & Tactics,Zayed Military University,3.56,96,84,67,86.5,5,87.4,low,Instinct 3 Solar,7,Z07
+1026,Zayed Al Suwaidi,Oryx,1,BSc Military Leadership,Zayed Military University,2.78,90,89,74,79.2,21,96.8,low,Instinct 3 Solar,8,Z06
+1027,Suhail Al Tayer,Saqr,2,BSc Military Science & Tactics,Zayed Military University,3.70,92,80,81,88.2,3,84.1,low,Forerunner 965,6,Z07
+1028,Sultan Al Suwaidi,Ghaf,2,BA International Relations & Diplomacy,Zayed Military University,3.28,86,60,61,75.5,29,94.8,low,Instinct 3 Solar,5,Z06
+1029,Matar Al Zaabi,Falcon,1,BA Strategic Languages & Translation,Zayed Military University,2.64,95,65,85,75.9,28,88,low,Fenix 8 Tactical,52,Z07
+1030,Khalifa Al Shamsi,Oryx,2,BSc Systems Engineering,Zayed Military University,3.22,79,93,87,83.6,12,97.5,low,Fenix 8 Tactical,5,Z06
+1031,Saif Al Marri,Saqr,2,BSc Military Leadership,Zayed Military University,2.36,55,98,65,66.7,41,88.7,medium,Epix Pro Gen 2,8,Z07
+1032,Theyab Al Muhairi,Ghaf,2,BSc Military Leadership,Zayed Military University,2.03,96,76,65,69.3,37,96,medium,Epix Pro Gen 2,0,Z06
+1033,Hamad Al Romaithi,Falcon,1,BA International Relations & Diplomacy,Zayed Military University,3.19,84,55,74,75,30,90,low,Epix Pro Gen 2,2,Z07
+1034,Saif Al Ketbi,Oryx,2,BSc Cyber Security Engineering,Zayed Military University,2.15,61,95,77,67.3,40,99.3,medium,Epix Pro Gen 2,6,Z06
+1035,Ibrahim Al Hosani,Saqr,2,BSc Homeland Security & Resilience,Zayed Military University,3.84,67,64,81,80.1,18,90.3,low,Fenix 8 Tactical,4,Z07
+1036,Ali Al Ketbi,Ghaf,2,BA Strategic Languages & Translation,Zayed Military University,3.46,88,55,96,82,15,82.6,high,Forerunner 965,2,Z06
+1037,Abdulla Al Blooshi,Falcon,1,BSc Systems Engineering,Zayed Military University,3.62,62,78,77,78.9,22,96.9,low,Instinct 3 Solar,7,Z07
+1038,Sultan Al Nuaimi,Oryx,1,BSc Defence & Security Studies,Zayed Military University,3.99,91,60,63,84.1,10,84.1,low,Epix Pro Gen 2,0,Z06
+1039,Suhail Al Blooshi,Saqr,1,BEng Electrical & Computer Engineering,Zayed Military University,3.35,89,63,66,78.3,23,89.5,low,Epix Pro Gen 2,0,Z07
+1040,Theyab Al Blooshi,Ghaf,2,BSc Homeland Security & Resilience,Zayed Military University,3.83,65,71,91,82.4,14,93.4,low,Forerunner 965,8,Z06
+1041,Matar Al Habsi,Falcon,2,BEng Electrical & Computer Engineering,Zayed Military University,2.69,68,89,70,72.2,33,83.8,medium,Fenix 8 Tactical,3,Z07
+1042,Faisal Al Falasi,Oryx,2,BEng Electrical & Computer Engineering,Zayed Military University,3.52,97,96,81,90.8,2,83.4,high,Forerunner 965,6,Z06
+1043,Nasser Al Hosani,Saqr,2,BSc Military Leadership,Zayed Military University,2.39,62,70,72,64.2,45,97.2,high,Forerunner 965,7,Z07
+1044,Khalid Al Hammadi,Ghaf,1,BSc Military Leadership,Zayed Military University,2.30,92,90,72,74.8,31,88.3,low,Forerunner 965,5,Z06
+1045,Obaid Al Dhaheri,Falcon,1,BSc Military Leadership,Zayed Military University,2.25,59,95,61,65.4,43,88.6,high,Instinct 3 Solar,6,Z07
+1046,Sultan Al Shamsi,Oryx,1,BSc Systems Engineering,Zayed Military University,3.26,76,59,90,76.9,25,87.6,low,Epix Pro Gen 2,7,Z06
+1047,Sultan Al Marri,Saqr,3,BEng Electrical & Computer Engineering,Zayed Military University,3.36,86,68,92,82.5,13,82.2,high,Epix Pro Gen 2,3,Z07
+1048,Hamdan Al Tayer,Ghaf,2,BA International Relations & Diplomacy,Zayed Military University,1.71,85,70,88,65.5,42,97.4,high,Epix Pro Gen 2,8,Z06

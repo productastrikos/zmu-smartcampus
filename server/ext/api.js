@@ -60,7 +60,7 @@ function registerExt(app, express) {
   const meritTable = (college) => scopeCadets(college)
     .map((c) => ({
       id: c.id, name: c.name, company: c.company, year: c.year,
-      college_code: c.college_code, tenant: c.tenant,
+      college_code: c.college_code, tenant: c.college_label,
       academic_pct: round1(gradePctOf(c.id) ?? 0), gpa: gpaOf(c.id),
       fitness: c.fitness?.score ?? null, military: c.military?.score ?? null, conduct: c.conduct?.score ?? null,
       hold: holds.has(c.id),
@@ -105,7 +105,7 @@ function registerExt(app, express) {
     res.json(users.filter((u) => u.role !== 'cadet').concat(users.filter((u) => u.role === 'cadet').slice(0, 3)));
   });
 
-  /* ── colleges / institution switcher ──────────────────────── */
+  /* ── ZMU colleges (college filter) ────────────────────────── */
   app.get('/api/ext/colleges', (req, res) => res.json(colleges));
 
   /* ── SIS ──────────────────────────────────────────────────── */
@@ -137,7 +137,7 @@ function registerExt(app, express) {
       recentRegistrations: [...regs].sort((a, b) => (b.registered_at || '').localeCompare(a.registered_at || '')).slice(0, 8)
         .map((r) => ({ ...r, name: byId.get(r.student_id)?.name, title: secByCode.get(r.course_code)?.title, crn: secByCode.get(r.course_code)?.crn })),
       holds: holdRows,
-      atRisk: cs.map((c) => ({ id: c.id, name: c.name, tenant: c.tenant, fit: c.fitness?.score ?? 0, conduct: c.conduct?.score ?? 0 }))
+      atRisk: cs.map((c) => ({ id: c.id, name: c.name, tenant: c.college_label, fit: c.fitness?.score ?? 0, conduct: c.conduct?.score ?? 0 }))
         .filter((c) => c.fit < 66 || c.conduct < 66)
         .sort((a, b) => (a.fit + a.conduct) - (b.fit + b.conduct)).slice(0, 8),
       syncHealth: { synced: regs.filter((r) => r.sync_status === 'synced').length, pending: regs.filter((r) => r.sync_status !== 'synced').length },
@@ -148,7 +148,7 @@ function registerExt(app, express) {
     const college = req.query.college || 'ALL';
     res.json(scopeCadets(college).map((c) => ({
       id: c.id, username: c.username, name: c.name, company: c.company, year: c.year,
-      college_code: c.college_code, tenant: c.tenant, programme: c.programme,
+      college_code: c.college_code, tenant: c.college_label, programme: c.programme,
       fitness: c.fitness?.score, military: c.military?.score, conduct: c.conduct?.score,
       gpa: gpaOf(c.id), hold: holds.has(c.id),
     })));
@@ -223,7 +223,7 @@ function registerExt(app, express) {
     res.json({
       course: course.course_code, assignment: 'Assignment 1',
       submissions: enrolled.map((c) => ({
-        student_id: c.id, name: c.name, college_code: c.college_code, tenant: c.tenant,
+        student_id: c.id, name: c.name, college_code: c.college_code, tenant: c.college_label,
         originality_pct: c.id === flagged?.id ? 50 : 4 + (c.id % 14),
         flagged: c.id === flagged?.id,
       })),
@@ -247,7 +247,7 @@ function registerExt(app, express) {
     if (!fn) return res.status(404).json({ error: 'unknown stream' });
     const college = req.query.college || 'ALL';
     res.json(scopeCadets(college).map((c) => ({
-      id: c.id, name: c.name, company: c.company, year: c.year, college_code: c.college_code, tenant: c.tenant,
+      id: c.id, name: c.name, company: c.company, year: c.year, college_code: c.college_code, tenant: c.college_label,
       ...fn(c),
     })));
   });

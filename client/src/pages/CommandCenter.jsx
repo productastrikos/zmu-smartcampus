@@ -25,13 +25,13 @@ export default function CommandCenter() {
 
       <KPIGrid>
         <KPICard label="Cadets Enrolled" value={fmt.int(k.cadetsEnrolled)} icon={<IcoPeople />} rag="normal"
-          subValues={[{ label: 'Attendance', value: `${k.attendanceAvg}%` }, { label: 'Named users', value: '2,380' }]}
+          subValues={[{ label: 'Attendance', value: `${k.attendanceAvg}%` }, { label: 'Companies', value: '4' }]}
           onClick={() => setDetail({
-            title: 'Cadets Enrolled', subtitle: '300 named cadets · sized for 2,100 at full capacity', source: 'SIS · Single Cadet ID',
+            title: 'Cadets Enrolled', subtitle: `${k.cadetsEnrolled} officer cadets across four companies`, source: 'SIS · Single Cadet ID',
             stats: [
               { label: 'Attendance', value: `${k.attendanceAvg}%`, sub: 'facial-recognition T&A', tone: 'up' },
               { label: 'Composite', value: `${k.compositeReadiness}`, sub: '/ 100 avg' },
-              { label: 'Named users', value: '2,380', sub: '2,100 cadets + 280 staff' },
+              { label: 'Companies', value: 'Falcon · Oryx · Saqr · Ghaf' },
             ],
             content: (
               <>
@@ -142,7 +142,7 @@ export default function CommandCenter() {
             rightAxisKeys={['kwh']} />
         </Panel>
 
-        <Panel title="Squadron Readiness" sub="Composite score (40% GPA · 25% military · 25% fitness · 10% conduct)">
+        <Panel title="Company Readiness" sub="Composite score (40% GPA · 25% military · 25% fitness · 10% conduct)">
           <Bars data={data.readinessBySquadron} x="squadron" height={240}
             series={[
               { key: 'composite', name: 'Composite', color: C.blue },

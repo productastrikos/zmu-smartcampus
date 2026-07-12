@@ -95,7 +95,7 @@ function generate() {
       squadron: r.company,
       year: r.year,
       program: r.programme || 'BSc Military Leadership',
-      partner: r.tenant === 'ZMU' ? 'ZMU Core' : r.partner,
+      partner: 'Zayed Military University',
       gpa: gpa.toFixed(2),
       military_score: military,
       fitness_score: fitness,
@@ -165,7 +165,7 @@ function generate() {
       domRows.push({
         squadron: sq,
         domain: dom,
-        score: dom === 'Sleep & Recovery' && sq === 'Saluki' ? ri(58, 64) : ri(68, 94),
+        score: dom === 'Sleep & Recovery' && sq === 'Saqr' ? ri(58, 64) : ri(68, 94),
       });
     }
   }
@@ -352,7 +352,7 @@ function generate() {
   ]);
 
   /* ════════════ 10. Procurement — PO pipeline ════════════ */
-  const suppliers = ['Gulf Dynamics LLC', 'Emirates Advanced Tech', 'Falcon Facilities Co', 'Injaz IT Solutions', 'Barakah Foods Group', 'Al Ain Uniforms', 'Etisalat e&', 'Core42', 'Khalifa Labs Supply', 'Desert Logistics'];
+  const suppliers = ['Gulf Dynamics LLC', 'Emirates Advanced Tech', 'Falcon Facilities Co', 'Injaz IT Solutions', 'Barakah Foods Group', 'Al Ain Uniforms', 'Etisalat e&', 'Core42', 'Sheikh Zayed Labs Supply', 'Desert Logistics'];
   const poCategories = ['IT Hardware', 'Lab Equipment', 'FM Services', 'Catering', 'Uniforms & Kit', 'Software Licences', 'Training Services', 'Medical Supplies'];
   const poStatuses = ['Draft', 'Pending Approval', 'Approved', 'Issued', 'Partially Delivered', 'Delivered', 'Invoiced', 'Paid'];
   const pos = [];
@@ -417,12 +417,12 @@ function generate() {
 
   /* ════════════ 12. Labs & Library ════════════ */
   const labs = [
-    { lab: 'Cyber Range Lab', partner: 'Khalifa University', workstations: 40 },
-    { lab: 'Aerospace CAD Lab', partner: 'Khalifa University', workstations: 36 },
-    { lab: 'GIS Lab 1', partner: 'Sorbonne University AD', workstations: 30 },
-    { lab: 'GIS Lab 2', partner: 'Sorbonne University AD', workstations: 30 },
-    { lab: 'Simulation & Wargaming Lab', partner: 'Rabdan Academy', workstations: 28 },
-    { lab: 'AI & Data Lab', partner: 'Khalifa University', workstations: 34 },
+    { lab: 'Cyber Range Lab', partner: 'Engineering & Technology', workstations: 40 },
+    { lab: 'Aerospace CAD Lab', partner: 'Engineering & Technology', workstations: 36 },
+    { lab: 'GIS Lab 1', partner: 'Humanities & Intl Studies', workstations: 30 },
+    { lab: 'GIS Lab 2', partner: 'Humanities & Intl Studies', workstations: 30 },
+    { lab: 'Simulation & Wargaming Lab', partner: 'Defence & Security', workstations: 28 },
+    { lab: 'AI & Data Lab', partner: 'Engineering & Technology', workstations: 34 },
     { lab: 'Languages Lab', partner: 'ZMU Core', workstations: 32 },
   ];
   writeCSV('labs.csv', ['lab', 'partner', 'workstations', 'utilization_pct', 'sessions_today', 'faults_open'],
@@ -563,7 +563,7 @@ function generate() {
       { flow_no: 3, name: 'IAM → all systems — accounts, entitlements, physical access', source: 'IAM / IdP', target: 'All platforms', transport: 'SCIM / API', msgs_24h: 5400, error_rate_pct: 0.1, latency_ms: 140, status: 'healthy' },
       { flow_no: 4, name: 'Wearables / HPO ↔ analytics — readiness scores to SIS', source: 'Garmin Health API', target: 'HPO / Data Lake / SIS', transport: 'REST / JSON', msgs_24h: 86400, error_rate_pct: 1.1, latency_ms: 420, status: 'healthy' },
       { flow_no: 5, name: 'OT → IT one-way telemetry via data diode', source: 'BMS / IoT (Domain D)', target: 'Data Platform', transport: 'Data Diode', msgs_24h: 152000, error_rate_pct: 2.8, latency_ms: 90, status: 'warning' },
-      { flow_no: 6, name: 'Partner & DoF exchange — validated, ICD-governed gateway', source: 'KU / Rabdan / SUAD / DoF', target: 'File-Exchange Gateway', transport: 'MFT', msgs_24h: 340, error_rate_pct: 0.0, latency_ms: 1500, status: 'healthy' },
+      { flow_no: 6, name: 'DoF statutory exchange — validated, ICD-governed gateway', source: 'Department of Finance', target: 'File-Exchange Gateway', transport: 'MFT', msgs_24h: 340, error_rate_pct: 0.0, latency_ms: 1500, status: 'healthy' },
       { flow_no: 7, name: 'All platforms → split-SIEM — auth / privileged / config events', source: 'All platforms', target: 'Split-SIEM', transport: 'Syslog RFC 5424', msgs_24h: 96400, error_rate_pct: 0.3, latency_ms: 60, status: 'healthy' },
       { flow_no: 8, name: 'Replication → DR ≥ 50 km; backup → Core42 via FedNet', source: 'Primary DC (Z12)', target: 'DR Site / Core42', transport: 'Async Repl / FedNet', msgs_24h: 288, error_rate_pct: 0.0, latency_ms: 8, status: 'healthy' },
     ]);
@@ -598,7 +598,7 @@ function generate() {
     { icd_id: 'ICD-003', interface: 'IAM SCIM provisioning', version: 'v1.1', status: 'Approved' },
     { icd_id: 'ICD-004', interface: 'Garmin Health API ↔ HPO middleware', version: 'v1.0', status: 'Approved' },
     { icd_id: 'ICD-005', interface: 'BMS/IoT diode telemetry schema', version: 'v1.2', status: 'Approved' },
-    { icd_id: 'ICD-006', interface: 'Partner MFT exchange (KU/Rabdan/SUAD)', version: 'v0.8', status: 'Draft' },
+    { icd_id: 'ICD-006', interface: 'DoF statutory MFT exchange', version: 'v0.8', status: 'Draft' },
     { icd_id: 'ICD-007', interface: 'Syslog RFC 5424 / CEF forwarding', version: 'v1.0', status: 'Approved' },
     { icd_id: 'ICD-008', interface: 'DR replication & Core42 backup', version: 'v1.0', status: 'Approved' },
   ]);
@@ -623,7 +623,7 @@ function generate() {
     { hrs: 3.0, domain: 'Campus Ops', severity: 'medium', title: 'Library reading hall CO₂ above 1100 ppm — ventilation boost recommended', source: 'IoT / IAQ Sensors' },
     { hrs: 4.5, domain: 'Integration', severity: 'medium', title: 'Data diode (flow 5) error rate 2.8% — schema drift on 2 BMS controllers', source: 'Integration Platform' },
     { hrs: 6.2, domain: 'Campus Ops', severity: 'medium', title: '2 weapons overdue for return > 10h — armoury reconciliation required', source: 'WMS' },
-    { hrs: 8.0, domain: 'Academic', severity: 'medium', title: 'Saluki squadron avg sleep 5.9h — academic performance correlation flagged', source: 'AI Learning Analytics' },
+    { hrs: 8.0, domain: 'Academic', severity: 'medium', title: 'Saqr Company avg sleep 5.9h — academic performance correlation flagged', source: 'AI Learning Analytics' },
     { hrs: 9.4, domain: 'Enterprise', severity: 'low', title: 'ICT budget utilization 61% vs 50% plan — review Q3 commitments (Muwazana)', source: 'ERP Finance' },
     { hrs: 12.6, domain: 'Campus Ops', severity: 'low', title: 'Dining facility energy spike +90% vs baseline yesterday evening', source: 'EMS Analytics' },
     { hrs: 15.1, domain: 'Academic', severity: 'low', title: 'Partner roster sync (SUAD) delayed 25 min — within SLA, monitoring', source: 'MFT Gateway' },
@@ -642,7 +642,7 @@ function generate() {
     { rec_id: 'AI-101', domain: 'Campus Ops', trigger: 'AHU-02 vibration + temp drift (Academic Block B)', recommendation: 'Auto-created CMMS work order WO-2214; shifted load to AHU-01/03; predicted bearing failure in 6 days', impact: 'Avoids unplanned outage of 14 classrooms', confidence_pct: 92, status: 'action taken' },
     { rec_id: 'AI-102', domain: 'Readiness', trigger: `${highRiskToday} cadets ACWR > 1.4 before Exercise Desert Shield`, recommendation: 'Propose modified training load for flagged cadets; notify squadron PT instructors via HPO', impact: 'Projected 40% reduction in soft-tissue injuries', confidence_pct: 87, status: 'pending approval' },
     { rec_id: 'AI-103', domain: 'Energy', trigger: 'Dining kWh spike +90% (kitchen exhaust runtime)', recommendation: 'Reschedule exhaust purge cycle to 22:00; recommission VFD setpoints', impact: 'Est. saving 210 MWh/yr (≈ AED 96k)', confidence_pct: 84, status: 'pending approval' },
-    { rec_id: 'AI-104', domain: 'Academic', trigger: 'Saluki squadron sleep < 6h correlating with quiz scores −8%', recommendation: 'Adjust night-training rotation; push study-plan changes to affected cadets in LMS', impact: 'Protects composite scores of 50 cadets', confidence_pct: 78, status: 'advisory' },
+    { rec_id: 'AI-104', domain: 'Academic', trigger: 'Saqr Company sleep < 6h correlating with quiz scores −8%', recommendation: 'Adjust night-training rotation; push study-plan changes to affected cadets in LMS', impact: 'Protects composite scores of affected cadets', confidence_pct: 78, status: 'advisory' },
     { rec_id: 'AI-105', domain: 'Security', trigger: 'Repeated tailgating alerts at Labs Centre east door', recommendation: 'Increase door close-delay enforcement; dispatch patrol check 17:00–19:00', impact: 'Closes ORANGE-network physical gap', confidence_pct: 81, status: 'action taken' },
   ]);
 
@@ -655,7 +655,7 @@ function generate() {
     ['Fall 24', 'Spring 25'], ['Fall 25', 'Spring 26'],
   ];
   const simLabs = ['Simulation & Wargaming Lab — Scenario Bravo', 'Cyber Range — Defensive Ops Exercise', 'GIS Lab — Terrain Analysis Capstone', 'AI & Data Lab — Intelligence Fusion Module'];
-  const fieldEx = ['Exercise Desert Shield (field phase)', 'Exercise Falcon Dawn (night navigation)', 'Live-fire qualification — Range 2', 'Joint exercise with Rabdan Academy'];
+  const fieldEx = ['Exercise Desert Shield (field phase)', 'Exercise Falcon Dawn (night navigation)', 'Live-fire qualification — Range 2', 'Combined-arms field exercise'];
   for (const c of cadets) {
     const yearsIn = c.year; // years since enrolment
     const enrol = daysAgo(Math.round(yearsIn * 365 + ri(20, 60)));

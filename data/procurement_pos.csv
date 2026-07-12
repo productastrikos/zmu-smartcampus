@@ -1,5 +1,5 @@
 po_id,supplier,category,value_kaed,status,days_open,department
-PO-26-1400,Khalifa Labs Supply,Lab Equipment,2547,Pending Approval,22,Medical & HPO
+PO-26-1400,Sheikh Zayed Labs Supply,Lab Equipment,2547,Pending Approval,22,Medical & HPO
 PO-26-1401,Emirates Advanced Tech,Uniforms & Kit,3402,Delivered,31,Military Training Wing
 PO-26-1402,Falcon Facilities Co,IT Hardware,602,Draft,35,ICT & Digital Services
 PO-26-1403,Falcon Facilities Co,Medical Supplies,3089,Partially Delivered,4,Finance & Procurement
@@ -24,16 +24,16 @@ PO-26-1421,Emirates Advanced Tech,Training Services,1627,Pending Approval,21,Fin
 PO-26-1422,Al Ain Uniforms,Uniforms & Kit,114,Approved,18,Military Training Wing
 PO-26-1423,Desert Logistics,Training Services,2575,Invoiced,41,Medical & HPO
 PO-26-1424,Falcon Facilities Co,Medical Supplies,1693,Invoiced,25,Military Training Wing
-PO-26-1425,Khalifa Labs Supply,IT Hardware,1995,Delivered,31,Academic Affairs
+PO-26-1425,Sheikh Zayed Labs Supply,IT Hardware,1995,Delivered,31,Academic Affairs
 PO-26-1426,Gulf Dynamics LLC,Lab Equipment,2270,Approved,3,Medical & HPO
 PO-26-1427,Emirates Advanced Tech,Medical Supplies,1350,Partially Delivered,12,Facilities & Campus Ops
-PO-26-1428,Khalifa Labs Supply,Software Licences,1148,Paid,40,Finance & Procurement
-PO-26-1429,Khalifa Labs Supply,FM Services,1749,Draft,13,Cadet Affairs
+PO-26-1428,Sheikh Zayed Labs Supply,Software Licences,1148,Paid,40,Finance & Procurement
+PO-26-1429,Sheikh Zayed Labs Supply,FM Services,1749,Draft,13,Cadet Affairs
 PO-26-1430,Falcon Facilities Co,FM Services,1286,Paid,22,Medical & HPO
 PO-26-1431,Falcon Facilities Co,Uniforms & Kit,510,Issued,5,Medical & HPO
 PO-26-1432,Core42,IT Hardware,1849,Draft,14,Security & Protocol
 PO-26-1433,Desert Logistics,Software Licences,866,Invoiced,28,Facilities & Campus Ops
-PO-26-1434,Khalifa Labs Supply,Uniforms & Kit,201,Paid,37,Academic Affairs
+PO-26-1434,Sheikh Zayed Labs Supply,Uniforms & Kit,201,Paid,37,Academic Affairs
 PO-26-1435,Emirates Advanced Tech,FM Services,1957,Partially Delivered,12,Cadet Affairs
 PO-26-1436,Falcon Facilities Co,Medical Supplies,425,Draft,40,Cadet Affairs
 PO-26-1437,Desert Logistics,Medical Supplies,3939,Partially Delivered,29,Medical & HPO
@@ -53,7 +53,7 @@ PO-26-1450,Al Ain Uniforms,Training Services,711,Partially Delivered,33,Academic
 PO-26-1451,Al Ain Uniforms,Software Licences,957,Issued,20,Finance & Procurement
 PO-26-1452,Emirates Advanced Tech,FM Services,2836,Paid,31,Facilities & Campus Ops
 PO-26-1453,Falcon Facilities Co,Uniforms & Kit,1607,Partially Delivered,22,Medical & HPO
-PO-26-1454,Khalifa Labs Supply,Software Licences,2404,Paid,54,Cadet Affairs
+PO-26-1454,Sheikh Zayed Labs Supply,Software Licences,2404,Paid,54,Cadet Affairs
 PO-26-1455,Falcon Facilities Co,FM Services,716,Paid,56,Academic Affairs
 PO-26-1456,Emirates Advanced Tech,Catering,1411,Approved,18,Academic Affairs
 PO-26-1457,Injaz IT Solutions,Software Licences,773,Issued,42,Security & Protocol

@@ -7,15 +7,12 @@ const FEATURES = [
   { icon: 'M12 2L2 7l10 5 10-5-10-5z M2 17l10 5 10-5 M2 12l10 5 10-5', title: 'Live campus digital twin', desc: 'A real-time twin of every zone, building and sensor across the campus.' },
 ];
 
-/* Demo accounts (RBAC) — mirrors the environment's role model */
+/* Demo accounts (RBAC) — Zayed Military University roles */
 const DEMO_ACCOUNTS = [
   { u: 'superadmin', label: 'Super admin' },
   { u: 'commandant.rashid', label: 'Commandant' },
   { u: 'staff.hassan', label: 'Command staff' },
-  { u: 'khalifa.registrar', label: 'Khalifa registrar' },
-  { u: 'sorbonne.registrar', label: 'Sorbonne registrar' },
-  { u: 'rabdan.registrar', label: 'Rabdan registrar' },
-  { u: 'cadet1001', label: 'Cadet 1001' },
+  { u: 'cadet1001', label: 'Officer Cadet' },
 ];
 
 export default function Login({ onLogin }) {

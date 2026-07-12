@@ -9,7 +9,7 @@ function advisoryFor(title = '') {
   const t = title.toLowerCase();
   const map = [
     { k: ['readiness', 'vo₂', 'vo2', 'hrv', 'sleep'], a: [
-      'Readiness dips correlate with sub-6h sleep in the Saluki squadron — adjust the night-training rotation.',
+      'Readiness dips correlate with sub-6h sleep in the Saqr Company — adjust the night-training rotation.',
       'Push tailored recovery plans to cadets below 70 readiness ahead of Exercise Desert Shield.',
     ] },
     { k: ['garmin', 'sync', 'wearable'], a: [
@@ -18,7 +18,7 @@ function advisoryFor(title = '') {
     ] },
     { k: ['injury', 'acwr'], a: [
       'The flagged cadets share high acute:chronic workload — a 15% load reduction is projected to cut soft-tissue injuries by ~40%.',
-      'Notify squadron PT instructors directly from the HPO queue to action before the next field exercise.',
+      'Notify company PT instructors directly from the HPO queue to action before the next field exercise.',
     ] },
     { k: ['budget', 'muwazana', 'po value', 'cash', 'dof'], a: [
       'ICT & Digital Services is consuming budget fastest — review Q3 commitments before further approvals.',

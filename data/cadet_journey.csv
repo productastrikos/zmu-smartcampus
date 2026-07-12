@@ -1,5 +1,5 @@
 cadet_id,ts,category,title,detail,result
-1001,2024-06-05T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Systems Engineering (Khalifa University) · Squadron Falcon,1001
+1001,2024-06-05T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Systems Engineering (Zayed Military University) · Squadron Falcon,1001
 1001,2024-06-17T12:30:00.000Z,military,Basic military induction completed,"Drill, fieldcraft and weapons-handling foundation phase",Pass with distinction
 1001,2024-10-09T12:30:00.000Z,academic,Term result — Fall 24,SIS grade roll-up · attendance 94.3%,GPA 3.42
 1001,2024-12-07T12:30:00.000Z,military,Exercise Desert Shield (field phase),Military Training Wing assessment record,Pass
@@ -7,32 +7,32 @@ cadet_id,ts,category,title,detail,result
 1001,2025-05-25T12:30:00.000Z,military,Live-fire qualification — Range 2,Military Training Wing assessment record,Retest scheduled
 1001,2025-06-20T12:30:00.000Z,academic,GIS Lab — Terrain Analysis Capstone — completed,LMS competency record synced to SIS via flow 1,79%
 1001,2025-08-14T12:30:00.000Z,academic,Simulation & Wargaming Lab — Scenario Bravo — completed,LMS competency record synced to SIS via flow 1,72%
-1001,2025-09-11T12:30:00.000Z,military,Joint exercise with Rabdan Academy,Military Training Wing assessment record,Pass
+1001,2025-09-11T12:30:00.000Z,military,Combined-arms field exercise,Military Training Wing assessment record,Pass
 1001,2025-09-15T12:30:00.000Z,academic,Term result — Fall 25,SIS grade roll-up · attendance 81.2%,GPA 3.70
 1001,2025-12-12T12:30:00.000Z,military,Live-fire qualification — Range 2,Military Training Wing assessment record,Pass
 1001,2026-02-09T12:30:00.000Z,academic,Term result — Spring 26,SIS grade roll-up · attendance 93.2%,GPA 3.30
 1001,2026-05-02T12:30:00.000Z,academic,Simulation & Wargaming Lab — Scenario Bravo — completed,LMS competency record synced to SIS via flow 1,98%
 1001,2026-06-20T12:30:00.000Z,academic,Cyber Range — Defensive Ops Exercise — completed,LMS competency record synced to SIS via flow 1,97%
 1001,2026-06-25T12:30:00.000Z,readiness,HPO fitness assessment (quarterly),VO₂max 52.3 · body composition within standard,Fitness 82/100
-1002,2024-06-05T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Defence & Security Studies (Rabdan Academy) · Squadron Oryx,1002
+1002,2024-06-05T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Defence & Security Studies (Zayed Military University) · Squadron Oryx,1002
 1002,2024-06-17T12:30:00.000Z,military,Basic military induction completed,"Drill, fieldcraft and weapons-handling foundation phase",Pass
 1002,2024-09-21T12:30:00.000Z,academic,GIS Lab — Terrain Analysis Capstone — completed,LMS competency record synced to SIS via flow 1,73%
 1002,2024-10-20T12:30:00.000Z,academic,Term result — Fall 24,SIS grade roll-up · attendance 97.9%,GPA 3.47
-1002,2024-11-15T12:30:00.000Z,military,Joint exercise with Rabdan Academy,Military Training Wing assessment record,Pass
+1002,2024-11-15T12:30:00.000Z,military,Combined-arms field exercise,Military Training Wing assessment record,Pass
 1002,2024-11-17T12:30:00.000Z,academic,Cyber Range — Defensive Ops Exercise — completed,LMS competency record synced to SIS via flow 1,93%
 1002,2025-01-06T12:30:00.000Z,military,Exercise Desert Shield (field phase),Military Training Wing assessment record,Pass
 1002,2025-04-10T12:30:00.000Z,academic,Term result — Spring 25,SIS grade roll-up · attendance 80.2%,GPA 3.16
-1002,2025-05-11T12:30:00.000Z,military,Joint exercise with Rabdan Academy,Military Training Wing assessment record,Pass
+1002,2025-05-11T12:30:00.000Z,military,Combined-arms field exercise,Military Training Wing assessment record,Pass
 1002,2025-09-17T12:30:00.000Z,academic,Term result — Fall 25,SIS grade roll-up · attendance 90.2%,GPA 3.11
 1002,2026-01-15T12:30:00.000Z,academic,GIS Lab — Terrain Analysis Capstone — completed,LMS competency record synced to SIS via flow 1,74%
 1002,2026-03-03T12:30:00.000Z,academic,Term result — Spring 26,SIS grade roll-up · attendance 93.2%,GPA 2.97
 1002,2026-03-19T12:30:00.000Z,military,Exercise Falcon Dawn (night navigation),Military Training Wing assessment record,Pass
 1002,2026-05-18T12:30:00.000Z,academic,Simulation & Wargaming Lab — Scenario Bravo — completed,LMS competency record synced to SIS via flow 1,71%
 1002,2026-05-31T12:30:00.000Z,readiness,HPO fitness assessment (quarterly),VO₂max 44.2 · body composition within standard,Fitness 81/100
-1003,2024-06-18T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Military Science & Tactics (ZMU Core) · Squadron Saqr,1003
+1003,2024-06-18T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Military Science & Tactics (Zayed Military University) · Squadron Saqr,1003
 1003,2024-06-30T12:30:00.000Z,military,Basic military induction completed,"Drill, fieldcraft and weapons-handling foundation phase",Pass with distinction
 1003,2024-10-22T12:30:00.000Z,academic,Term result — Fall 24,SIS grade roll-up · attendance 81.8%,GPA 3.08
-1003,2024-11-05T12:30:00.000Z,military,Joint exercise with Rabdan Academy,Military Training Wing assessment record,Retest scheduled
+1003,2024-11-05T12:30:00.000Z,military,Combined-arms field exercise,Military Training Wing assessment record,Retest scheduled
 1003,2024-12-26T12:30:00.000Z,academic,GIS Lab — Terrain Analysis Capstone — completed,LMS competency record synced to SIS via flow 1,85%
 1003,2024-12-31T12:30:00.000Z,military,Live-fire qualification — Range 2,Military Training Wing assessment record,Pass
 1003,2025-03-12T12:30:00.000Z,academic,Term result — Spring 25,SIS grade roll-up · attendance 81.5%,GPA 2.72
@@ -44,7 +44,7 @@ cadet_id,ts,category,title,detail,result
 1003,2026-01-23T12:30:00.000Z,military,Live-fire qualification — Range 2,Military Training Wing assessment record,Pass
 1003,2026-02-07T12:30:00.000Z,academic,Term result — Spring 26,SIS grade roll-up · attendance 93.2%,GPA 3.06
 1003,2026-06-04T12:30:00.000Z,readiness,HPO fitness assessment (quarterly),VO₂max 44.4 · body composition within standard,Fitness 68/100
-1004,2024-05-17T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Military Science & Tactics (ZMU Core) · Squadron Ghaf,1004
+1004,2024-05-17T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Military Science & Tactics (Zayed Military University) · Squadron Ghaf,1004
 1004,2024-05-29T12:30:00.000Z,military,Basic military induction completed,"Drill, fieldcraft and weapons-handling foundation phase",Pass
 1004,2024-10-21T12:30:00.000Z,academic,Term result — Fall 24,SIS grade roll-up · attendance 97.6%,GPA 2.43
 1004,2025-03-18T12:30:00.000Z,academic,Term result — Spring 25,SIS grade roll-up · attendance 94.1%,GPA 2.53
@@ -57,10 +57,10 @@ cadet_id,ts,category,title,detail,result
 1004,2026-02-22T12:30:00.000Z,military,Exercise Desert Shield (field phase),Military Training Wing assessment record,Pass
 1004,2026-04-14T12:30:00.000Z,readiness,HPO fitness assessment (quarterly),VO₂max 52.9 · body composition within standard,Fitness 85/100
 1004,2026-04-29T12:30:00.000Z,academic,Cyber Range — Defensive Ops Exercise — completed,LMS competency record synced to SIS via flow 1,87%
-1004,2026-06-10T12:30:00.000Z,military,Joint exercise with Rabdan Academy,Military Training Wing assessment record,Pass
+1004,2026-06-10T12:30:00.000Z,military,Combined-arms field exercise,Military Training Wing assessment record,Pass
 1004,2026-06-16T12:30:00.000Z,military,Exercise Falcon Dawn (night navigation),Military Training Wing assessment record,Retest scheduled
 1004,2026-06-30T12:30:00.000Z,readiness,Early-intervention flag raised,HPO predictive analytics — composite/attendance below threshold,Support plan active
-1005,2024-06-06T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Cyber Security Engineering (Khalifa University) · Squadron Falcon,1005
+1005,2024-06-06T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Cyber Security Engineering (Zayed Military University) · Squadron Falcon,1005
 1005,2024-06-18T12:30:00.000Z,military,Basic military induction completed,"Drill, fieldcraft and weapons-handling foundation phase",Pass
 1005,2024-10-03T12:30:00.000Z,academic,Term result — Fall 24,SIS grade roll-up · attendance 94.6%,GPA 2.36
 1005,2024-10-11T12:30:00.000Z,academic,Simulation & Wargaming Lab — Scenario Bravo — completed,LMS competency record synced to SIS via flow 1,68%
@@ -69,13 +69,13 @@ cadet_id,ts,category,title,detail,result
 1005,2025-01-26T12:30:00.000Z,military,Exercise Desert Shield (field phase),Military Training Wing assessment record,Pass
 1005,2025-03-16T12:30:00.000Z,academic,Term result — Spring 25,SIS grade roll-up · attendance 88.5%,GPA 2.18
 1005,2025-05-29T12:30:00.000Z,academic,AI & Data Lab — Intelligence Fusion Module — completed,LMS competency record synced to SIS via flow 1,96%
-1005,2025-06-11T12:30:00.000Z,military,Joint exercise with Rabdan Academy,Military Training Wing assessment record,Pass
+1005,2025-06-11T12:30:00.000Z,military,Combined-arms field exercise,Military Training Wing assessment record,Pass
 1005,2025-08-08T12:30:00.000Z,academic,GIS Lab — Terrain Analysis Capstone — completed,LMS competency record synced to SIS via flow 1,68%
 1005,2025-09-06T12:30:00.000Z,academic,Term result — Fall 25,SIS grade roll-up · attendance 95.6%,GPA 2.05
 1005,2026-02-04T12:30:00.000Z,academic,GIS Lab — Terrain Analysis Capstone — completed,LMS competency record synced to SIS via flow 1,70%
 1005,2026-02-09T12:30:00.000Z,academic,Term result — Spring 26,SIS grade roll-up · attendance 92.6%,GPA 2.38
 1005,2026-06-09T12:30:00.000Z,readiness,HPO fitness assessment (quarterly),VO₂max 45.1 · body composition within standard,Fitness 59/100
-1006,2024-06-12T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Military Science & Tactics (ZMU Core) · Squadron Oryx,1006
+1006,2024-06-12T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Military Science & Tactics (Zayed Military University) · Squadron Oryx,1006
 1006,2024-06-24T12:30:00.000Z,military,Basic military induction completed,"Drill, fieldcraft and weapons-handling foundation phase",Pass
 1006,2024-10-26T12:30:00.000Z,academic,Term result — Fall 24,SIS grade roll-up · attendance 82.7%,GPA 2.01
 1006,2024-11-10T12:30:00.000Z,military,Live-fire qualification — Range 2,Military Training Wing assessment record,Pass
@@ -85,25 +85,25 @@ cadet_id,ts,category,title,detail,result
 1006,2025-11-17T12:30:00.000Z,military,Live-fire qualification — Range 2,Military Training Wing assessment record,Retest scheduled
 1006,2025-12-21T12:30:00.000Z,academic,Simulation & Wargaming Lab — Scenario Bravo — completed,LMS competency record synced to SIS via flow 1,98%
 1006,2026-02-12T12:30:00.000Z,academic,Term result — Spring 26,SIS grade roll-up · attendance 97.3%,GPA 1.97
-1006,2026-04-30T12:30:00.000Z,military,Joint exercise with Rabdan Academy,Military Training Wing assessment record,Pass
-1006,2026-05-10T12:30:00.000Z,military,Joint exercise with Rabdan Academy,Military Training Wing assessment record,Pass
+1006,2026-04-30T12:30:00.000Z,military,Combined-arms field exercise,Military Training Wing assessment record,Pass
+1006,2026-05-10T12:30:00.000Z,military,Combined-arms field exercise,Military Training Wing assessment record,Pass
 1006,2026-05-28T12:30:00.000Z,academic,Simulation & Wargaming Lab — Scenario Bravo — completed,LMS competency record synced to SIS via flow 1,88%
 1006,2026-06-07T12:30:00.000Z,readiness,HPO fitness assessment (quarterly),VO₂max 57.2 · body composition within standard,Fitness 76/100
 1006,2026-06-22T12:30:00.000Z,academic,Simulation & Wargaming Lab — Scenario Bravo — completed,LMS competency record synced to SIS via flow 1,68%
 1006,2026-06-23T12:30:00.000Z,readiness,Early-intervention flag raised,HPO predictive analytics — composite/attendance below threshold,Support plan active
-1007,2025-06-01T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BEng Electrical & Computer Engineering (Khalifa University) · Squadron Saqr,1007
+1007,2025-06-01T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BEng Electrical & Computer Engineering (Zayed Military University) · Squadron Saqr,1007
 1007,2025-06-13T12:30:00.000Z,military,Basic military induction completed,"Drill, fieldcraft and weapons-handling foundation phase",Pass
 1007,2025-08-30T12:30:00.000Z,academic,AI & Data Lab — Intelligence Fusion Module — completed,LMS competency record synced to SIS via flow 1,75%
 1007,2025-09-15T12:30:00.000Z,academic,Term result — Fall 25,SIS grade roll-up · attendance 94.1%,GPA 1.78
 1007,2025-10-21T12:30:00.000Z,academic,AI & Data Lab — Intelligence Fusion Module — completed,LMS competency record synced to SIS via flow 1,74%
 1007,2025-11-21T12:30:00.000Z,military,Live-fire qualification — Range 2,Military Training Wing assessment record,Pass
-1007,2026-01-03T12:30:00.000Z,military,Joint exercise with Rabdan Academy,Military Training Wing assessment record,Retest scheduled
+1007,2026-01-03T12:30:00.000Z,military,Combined-arms field exercise,Military Training Wing assessment record,Retest scheduled
 1007,2026-02-02T12:30:00.000Z,academic,Cyber Range — Defensive Ops Exercise — completed,LMS competency record synced to SIS via flow 1,68%
-1007,2026-02-15T12:30:00.000Z,military,Joint exercise with Rabdan Academy,Military Training Wing assessment record,Pass
+1007,2026-02-15T12:30:00.000Z,military,Combined-arms field exercise,Military Training Wing assessment record,Pass
 1007,2026-03-03T12:30:00.000Z,academic,Term result — Spring 26,SIS grade roll-up · attendance 97.6%,GPA 1.78
 1007,2026-07-03T12:30:00.000Z,readiness,HPO fitness assessment (quarterly),VO₂max 45.6 · body composition within standard,Fitness 70/100
 1007,2026-07-10T12:30:00.000Z,readiness,Early-intervention flag raised,HPO predictive analytics — composite/attendance below threshold,Support plan active
-1008,2023-05-24T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Defence & Security Studies (Rabdan Academy) · Squadron Ghaf,1008
+1008,2023-05-24T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Defence & Security Studies (Zayed Military University) · Squadron Ghaf,1008
 1008,2023-06-05T12:30:00.000Z,military,Basic military induction completed,"Drill, fieldcraft and weapons-handling foundation phase",Pass
 1008,2023-11-14T12:30:00.000Z,academic,Term result — Fall 23,SIS grade roll-up · attendance 87.3%,GPA 3.74
 1008,2023-12-04T12:30:00.000Z,academic,Simulation & Wargaming Lab — Scenario Bravo — completed,LMS competency record synced to SIS via flow 1,95%
@@ -115,14 +115,14 @@ cadet_id,ts,category,title,detail,result
 1008,2024-09-25T12:30:00.000Z,academic,Term result — Fall 24,SIS grade roll-up · attendance 93.7%,GPA 3.39
 1008,2025-04-07T12:30:00.000Z,academic,Term result — Spring 25,SIS grade roll-up · attendance 80%,GPA 3.52
 1008,2025-07-24T12:30:00.000Z,military,Exercise Desert Shield (field phase),Military Training Wing assessment record,Pass
-1008,2025-08-05T12:30:00.000Z,military,Joint exercise with Rabdan Academy,Military Training Wing assessment record,Pass
+1008,2025-08-05T12:30:00.000Z,military,Combined-arms field exercise,Military Training Wing assessment record,Pass
 1008,2025-08-24T12:30:00.000Z,academic,Term result — Fall 25,SIS grade roll-up · attendance 81.8%,GPA 3.21
 1008,2025-11-04T12:30:00.000Z,academic,AI & Data Lab — Intelligence Fusion Module — completed,LMS competency record synced to SIS via flow 1,97%
 1008,2026-01-18T12:30:00.000Z,military,Exercise Falcon Dawn (night navigation),Military Training Wing assessment record,Pass
 1008,2026-01-28T12:30:00.000Z,academic,GIS Lab — Terrain Analysis Capstone — completed,LMS competency record synced to SIS via flow 1,78%
 1008,2026-02-04T12:30:00.000Z,academic,Term result — Spring 26,SIS grade roll-up · attendance 84.9%,GPA 3.50
 1008,2026-05-01T12:30:00.000Z,readiness,HPO fitness assessment (quarterly),VO₂max 45 · body composition within standard,Fitness 60/100
-1009,2025-06-18T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Homeland Security & Resilience (Rabdan Academy) · Squadron Falcon,1009
+1009,2025-06-18T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Homeland Security & Resilience (Zayed Military University) · Squadron Falcon,1009
 1009,2025-06-30T12:30:00.000Z,military,Basic military induction completed,"Drill, fieldcraft and weapons-handling foundation phase",Pass
 1009,2025-08-24T12:30:00.000Z,academic,Term result — Fall 25,SIS grade roll-up · attendance 80.5%,GPA 1.95
 1009,2025-10-13T12:30:00.000Z,academic,Simulation & Wargaming Lab — Scenario Bravo — completed,LMS competency record synced to SIS via flow 1,83%
@@ -134,7 +134,7 @@ cadet_id,ts,category,title,detail,result
 1009,2026-03-17T12:30:00.000Z,military,Exercise Desert Shield (field phase),Military Training Wing assessment record,Retest scheduled
 1009,2026-05-11T12:30:00.000Z,readiness,HPO fitness assessment (quarterly),VO₂max 49.2 · body composition within standard,Fitness 68/100
 1009,2026-06-24T12:30:00.000Z,readiness,Early-intervention flag raised,HPO predictive analytics — composite/attendance below threshold,Support plan active
-1010,2025-05-14T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Cyber Security Engineering (Khalifa University) · Squadron Oryx,1010
+1010,2025-05-14T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Cyber Security Engineering (Zayed Military University) · Squadron Oryx,1010
 1010,2025-05-26T12:30:00.000Z,military,Basic military induction completed,"Drill, fieldcraft and weapons-handling foundation phase",Pass
 1010,2025-08-26T12:30:00.000Z,academic,Term result — Fall 25,SIS grade roll-up · attendance 98.3%,GPA 3.65
 1010,2025-11-26T12:30:00.000Z,academic,Cyber Range — Defensive Ops Exercise — completed,LMS competency record synced to SIS via flow 1,92%
@@ -145,10 +145,10 @@ cadet_id,ts,category,title,detail,result
 1010,2026-03-16T12:30:00.000Z,military,Exercise Desert Shield (field phase),Military Training Wing assessment record,Retest scheduled
 1010,2026-03-29T12:30:00.000Z,academic,Cyber Range — Defensive Ops Exercise — completed,LMS competency record synced to SIS via flow 1,88%
 1010,2026-05-17T12:30:00.000Z,readiness,HPO fitness assessment (quarterly),VO₂max 53.1 · body composition within standard,Fitness 67/100
-1011,2024-05-19T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Systems Engineering (Khalifa University) · Squadron Saqr,1011
+1011,2024-05-19T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Systems Engineering (Zayed Military University) · Squadron Saqr,1011
 1011,2024-05-31T12:30:00.000Z,military,Basic military induction completed,"Drill, fieldcraft and weapons-handling foundation phase",Pass
 1011,2024-09-21T12:30:00.000Z,academic,Term result — Fall 24,SIS grade roll-up · attendance 88.9%,GPA 3.74
-1011,2024-10-24T12:30:00.000Z,military,Joint exercise with Rabdan Academy,Military Training Wing assessment record,Pass
+1011,2024-10-24T12:30:00.000Z,military,Combined-arms field exercise,Military Training Wing assessment record,Pass
 1011,2024-12-28T12:30:00.000Z,military,Exercise Falcon Dawn (night navigation),Military Training Wing assessment record,Pass
 1011,2025-01-22T12:30:00.000Z,military,Exercise Falcon Dawn (night navigation),Military Training Wing assessment record,Pass
 1011,2025-02-24T12:30:00.000Z,academic,GIS Lab — Terrain Analysis Capstone — completed,LMS competency record synced to SIS via flow 1,76%
@@ -160,7 +160,7 @@ cadet_id,ts,category,title,detail,result
 1011,2026-02-13T12:30:00.000Z,academic,Simulation & Wargaming Lab — Scenario Bravo — completed,LMS competency record synced to SIS via flow 1,84%
 1011,2026-02-15T12:30:00.000Z,military,Exercise Falcon Dawn (night navigation),Military Training Wing assessment record,Pass
 1011,2026-04-14T12:30:00.000Z,readiness,HPO fitness assessment (quarterly),VO₂max 45.9 · body composition within standard,Fitness 83/100
-1012,2025-06-13T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Homeland Security & Resilience (Rabdan Academy) · Squadron Ghaf,1012
+1012,2025-06-13T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Homeland Security & Resilience (Zayed Military University) · Squadron Ghaf,1012
 1012,2025-06-25T12:30:00.000Z,military,Basic military induction completed,"Drill, fieldcraft and weapons-handling foundation phase",Pass
 1012,2025-08-28T12:30:00.000Z,academic,Term result — Fall 25,SIS grade roll-up · attendance 91.5%,GPA 3.58
 1012,2025-09-09T12:30:00.000Z,academic,AI & Data Lab — Intelligence Fusion Module — completed,LMS competency record synced to SIS via flow 1,72%
@@ -169,12 +169,12 @@ cadet_id,ts,category,title,detail,result
 1012,2025-12-23T12:30:00.000Z,academic,AI & Data Lab — Intelligence Fusion Module — completed,LMS competency record synced to SIS via flow 1,82%
 1012,2025-12-29T12:30:00.000Z,military,Live-fire qualification — Range 2,Military Training Wing assessment record,Retest scheduled
 1012,2026-02-21T12:30:00.000Z,academic,Term result — Spring 26,SIS grade roll-up · attendance 87.5%,GPA 3.79
-1012,2026-06-20T12:30:00.000Z,military,Joint exercise with Rabdan Academy,Military Training Wing assessment record,Pass
+1012,2026-06-20T12:30:00.000Z,military,Combined-arms field exercise,Military Training Wing assessment record,Pass
 1012,2026-07-03T12:30:00.000Z,readiness,HPO fitness assessment (quarterly),VO₂max 55.4 · body composition within standard,Fitness 76/100
-1013,2024-05-18T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Systems Engineering (Khalifa University) · Squadron Falcon,1013
+1013,2024-05-18T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Systems Engineering (Zayed Military University) · Squadron Falcon,1013
 1013,2024-05-30T12:30:00.000Z,military,Basic military induction completed,"Drill, fieldcraft and weapons-handling foundation phase",Pass with distinction
 1013,2024-10-20T12:30:00.000Z,academic,Term result — Fall 24,SIS grade roll-up · attendance 84.4%,GPA 3.04
-1013,2024-11-29T12:30:00.000Z,military,Joint exercise with Rabdan Academy,Military Training Wing assessment record,Pass
+1013,2024-11-29T12:30:00.000Z,military,Combined-arms field exercise,Military Training Wing assessment record,Pass
 1013,2024-12-14T12:30:00.000Z,military,Exercise Falcon Dawn (night navigation),Military Training Wing assessment record,Pass
 1013,2025-01-06T12:30:00.000Z,academic,Simulation & Wargaming Lab — Scenario Bravo — completed,LMS competency record synced to SIS via flow 1,97%
 1013,2025-04-02T12:30:00.000Z,academic,Term result — Spring 25,SIS grade roll-up · attendance 89.2%,GPA 3.08
@@ -182,11 +182,11 @@ cadet_id,ts,category,title,detail,result
 1013,2025-09-23T12:30:00.000Z,academic,Term result — Fall 25,SIS grade roll-up · attendance 93.7%,GPA 2.80
 1013,2025-10-12T12:30:00.000Z,academic,Cyber Range — Defensive Ops Exercise — completed,LMS competency record synced to SIS via flow 1,69%
 1013,2025-11-14T12:30:00.000Z,academic,AI & Data Lab — Intelligence Fusion Module — completed,LMS competency record synced to SIS via flow 1,75%
-1013,2025-11-22T12:30:00.000Z,military,Joint exercise with Rabdan Academy,Military Training Wing assessment record,Pass
+1013,2025-11-22T12:30:00.000Z,military,Combined-arms field exercise,Military Training Wing assessment record,Pass
 1013,2026-02-03T12:30:00.000Z,academic,Term result — Spring 26,SIS grade roll-up · attendance 83.9%,GPA 3.01
 1013,2026-04-22T12:30:00.000Z,military,Exercise Desert Shield (field phase),Military Training Wing assessment record,Pass
 1013,2026-05-05T12:30:00.000Z,readiness,HPO fitness assessment (quarterly),VO₂max 51.2 · body composition within standard,Fitness 60/100
-1014,2024-06-20T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BA International Relations & Diplomacy (Sorbonne University Abu Dhabi) · Squadron Oryx,1014
+1014,2024-06-20T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BA International Relations & Diplomacy (Zayed Military University) · Squadron Oryx,1014
 1014,2024-07-02T12:30:00.000Z,military,Basic military induction completed,"Drill, fieldcraft and weapons-handling foundation phase",Pass
 1014,2024-09-30T12:30:00.000Z,academic,Term result — Fall 24,SIS grade roll-up · attendance 96.4%,GPA 3.29
 1014,2024-12-19T12:30:00.000Z,military,Live-fire qualification — Range 2,Military Training Wing assessment record,Pass
@@ -199,9 +199,9 @@ cadet_id,ts,category,title,detail,result
 1014,2026-03-02T12:30:00.000Z,academic,Term result — Spring 26,SIS grade roll-up · attendance 86.6%,GPA 3.70
 1014,2026-03-12T12:30:00.000Z,academic,Simulation & Wargaming Lab — Scenario Bravo — completed,LMS competency record synced to SIS via flow 1,76%
 1014,2026-04-18T12:30:00.000Z,academic,AI & Data Lab — Intelligence Fusion Module — completed,LMS competency record synced to SIS via flow 1,93%
-1014,2026-05-03T12:30:00.000Z,military,Joint exercise with Rabdan Academy,Military Training Wing assessment record,Retest scheduled
+1014,2026-05-03T12:30:00.000Z,military,Combined-arms field exercise,Military Training Wing assessment record,Retest scheduled
 1014,2026-06-05T12:30:00.000Z,readiness,HPO fitness assessment (quarterly),VO₂max 48.7 · body composition within standard,Fitness 71/100
-1015,2024-06-11T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Military Science & Tactics (ZMU Core) · Squadron Saqr,1015
+1015,2024-06-11T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Military Science & Tactics (Zayed Military University) · Squadron Saqr,1015
 1015,2024-06-23T12:30:00.000Z,military,Basic military induction completed,"Drill, fieldcraft and weapons-handling foundation phase",Pass
 1015,2024-09-26T12:30:00.000Z,academic,Term result — Fall 24,SIS grade roll-up · attendance 88.6%,GPA 2.83
 1015,2024-10-16T12:30:00.000Z,military,Live-fire qualification — Range 2,Military Training Wing assessment record,Pass
@@ -216,7 +216,7 @@ cadet_id,ts,category,title,detail,result
 1015,2026-04-29T12:30:00.000Z,academic,GIS Lab — Terrain Analysis Capstone — completed,LMS competency record synced to SIS via flow 1,87%
 1015,2026-04-30T12:30:00.000Z,readiness,HPO fitness assessment (quarterly),VO₂max 46.4 · body composition within standard,Fitness 79/100
 1015,2026-05-25T12:30:00.000Z,academic,Simulation & Wargaming Lab — Scenario Bravo — completed,LMS competency record synced to SIS via flow 1,76%
-1016,2023-05-25T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Cyber Security Engineering (Khalifa University) · Squadron Ghaf,1016
+1016,2023-05-25T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Cyber Security Engineering (Zayed Military University) · Squadron Ghaf,1016
 1016,2023-06-06T12:30:00.000Z,military,Basic military induction completed,"Drill, fieldcraft and weapons-handling foundation phase",Pass with distinction
 1016,2023-11-02T12:30:00.000Z,academic,Term result — Fall 23,SIS grade roll-up · attendance 80.4%,GPA 3.83
 1016,2024-01-05T12:30:00.000Z,academic,Simulation & Wargaming Lab — Scenario Bravo — completed,LMS competency record synced to SIS via flow 1,89%
@@ -236,11 +236,11 @@ cadet_id,ts,category,title,detail,result
 1016,2026-04-27T12:30:00.000Z,readiness,HPO fitness assessment (quarterly),VO₂max 53 · body composition within standard,Fitness 78/100
 1016,2026-06-25T12:30:00.000Z,military,Exercise Desert Shield (field phase),Military Training Wing assessment record,Pass
 1016,2026-07-12T02:30:00.000Z,readiness,Injury-risk flag — ACWR above 1.4,Garmin Epix Pro Gen 2 workload trend · training load modification proposed,ACWR 1.46
-1017,2025-05-19T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Homeland Security & Resilience (Rabdan Academy) · Squadron Falcon,1017
+1017,2025-05-19T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Homeland Security & Resilience (Zayed Military University) · Squadron Falcon,1017
 1017,2025-05-31T12:30:00.000Z,military,Basic military induction completed,"Drill, fieldcraft and weapons-handling foundation phase",Pass
 1017,2025-09-19T12:30:00.000Z,military,Exercise Falcon Dawn (night navigation),Military Training Wing assessment record,Pass
 1017,2025-09-21T12:30:00.000Z,academic,Term result — Fall 25,SIS grade roll-up · attendance 89.5%,GPA 2.89
-1017,2025-10-13T12:30:00.000Z,military,Joint exercise with Rabdan Academy,Military Training Wing assessment record,Pass
+1017,2025-10-13T12:30:00.000Z,military,Combined-arms field exercise,Military Training Wing assessment record,Pass
 1017,2025-10-16T12:30:00.000Z,academic,Simulation & Wargaming Lab — Scenario Bravo — completed,LMS competency record synced to SIS via flow 1,70%
 1017,2026-01-01T12:30:00.000Z,military,Exercise Falcon Dawn (night navigation),Military Training Wing assessment record,Pass
 1017,2026-02-16T12:30:00.000Z,academic,AI & Data Lab — Intelligence Fusion Module — completed,LMS competency record synced to SIS via flow 1,92%
@@ -248,18 +248,18 @@ cadet_id,ts,category,title,detail,result
 1017,2026-05-24T12:30:00.000Z,readiness,HPO fitness assessment (quarterly),VO₂max 54.9 · body composition within standard,Fitness 69/100
 1017,2026-06-07T12:30:00.000Z,academic,Cyber Range — Defensive Ops Exercise — completed,LMS competency record synced to SIS via flow 1,71%
 1017,2026-07-06T12:30:00.000Z,readiness,Early-intervention flag raised,HPO predictive analytics — composite/attendance below threshold,Support plan active
-1018,2025-06-10T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Defence & Security Studies (Rabdan Academy) · Squadron Oryx,1018
+1018,2025-06-10T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Defence & Security Studies (Zayed Military University) · Squadron Oryx,1018
 1018,2025-06-22T12:30:00.000Z,military,Basic military induction completed,"Drill, fieldcraft and weapons-handling foundation phase",Pass with distinction
 1018,2025-09-21T12:30:00.000Z,academic,Term result — Fall 25,SIS grade roll-up · attendance 80.4%,GPA 2.00
 1018,2025-10-20T12:30:00.000Z,military,Exercise Desert Shield (field phase),Military Training Wing assessment record,Retest scheduled
 1018,2025-10-30T12:30:00.000Z,academic,AI & Data Lab — Intelligence Fusion Module — completed,LMS competency record synced to SIS via flow 1,70%
-1018,2025-11-08T12:30:00.000Z,military,Joint exercise with Rabdan Academy,Military Training Wing assessment record,Retest scheduled
+1018,2025-11-08T12:30:00.000Z,military,Combined-arms field exercise,Military Training Wing assessment record,Retest scheduled
 1018,2026-01-04T12:30:00.000Z,military,Live-fire qualification — Range 2,Military Training Wing assessment record,Pass
 1018,2026-02-16T12:30:00.000Z,academic,Term result — Spring 26,SIS grade roll-up · attendance 85.7%,GPA 2.03
 1018,2026-03-09T12:30:00.000Z,academic,Simulation & Wargaming Lab — Scenario Bravo — completed,LMS competency record synced to SIS via flow 1,79%
 1018,2026-04-06T12:30:00.000Z,academic,Simulation & Wargaming Lab — Scenario Bravo — completed,LMS competency record synced to SIS via flow 1,96%
 1018,2026-07-02T12:30:00.000Z,readiness,HPO fitness assessment (quarterly),VO₂max 47.6 · body composition within standard,Fitness 72/100
-1019,2025-06-21T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BA Strategic Languages & Translation (Sorbonne University Abu Dhabi) · Squadron Saqr,1019
+1019,2025-06-21T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BA Strategic Languages & Translation (Zayed Military University) · Squadron Saqr,1019
 1019,2025-07-03T12:30:00.000Z,military,Basic military induction completed,"Drill, fieldcraft and weapons-handling foundation phase",Pass
 1019,2025-08-28T12:30:00.000Z,academic,Term result — Fall 25,SIS grade roll-up · attendance 95.3%,GPA 3.52
 1019,2025-09-20T12:30:00.000Z,academic,Simulation & Wargaming Lab — Scenario Bravo — completed,LMS competency record synced to SIS via flow 1,91%
@@ -270,15 +270,15 @@ cadet_id,ts,category,title,detail,result
 1019,2026-05-02T12:30:00.000Z,academic,AI & Data Lab — Intelligence Fusion Module — completed,LMS competency record synced to SIS via flow 1,84%
 1019,2026-05-13T12:30:00.000Z,readiness,HPO fitness assessment (quarterly),VO₂max 46.6 · body composition within standard,Fitness 77/100
 1019,2026-05-16T12:30:00.000Z,military,Exercise Falcon Dawn (night navigation),Military Training Wing assessment record,Pass
-1020,2023-06-21T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Military Leadership (ZMU Core) · Squadron Ghaf,1020
+1020,2023-06-21T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Military Leadership (Zayed Military University) · Squadron Ghaf,1020
 1020,2023-07-03T12:30:00.000Z,military,Basic military induction completed,"Drill, fieldcraft and weapons-handling foundation phase",Pass
 1020,2023-11-18T12:30:00.000Z,academic,Term result — Fall 23,SIS grade roll-up · attendance 83.2%,GPA 2.81
-1020,2023-12-17T12:30:00.000Z,military,Joint exercise with Rabdan Academy,Military Training Wing assessment record,Pass
+1020,2023-12-17T12:30:00.000Z,military,Combined-arms field exercise,Military Training Wing assessment record,Pass
 1020,2024-04-27T12:30:00.000Z,academic,Term result — Spring 24,SIS grade roll-up · attendance 83.6%,GPA 2.38
 1020,2024-09-15T12:30:00.000Z,military,Live-fire qualification — Range 2,Military Training Wing assessment record,Pass
 1020,2024-09-24T12:30:00.000Z,academic,Term result — Fall 24,SIS grade roll-up · attendance 89.6%,GPA 2.49
 1020,2024-10-04T12:30:00.000Z,academic,Cyber Range — Defensive Ops Exercise — completed,LMS competency record synced to SIS via flow 1,69%
-1020,2025-01-04T12:30:00.000Z,military,Joint exercise with Rabdan Academy,Military Training Wing assessment record,Pass
+1020,2025-01-04T12:30:00.000Z,military,Combined-arms field exercise,Military Training Wing assessment record,Pass
 1020,2025-03-15T12:30:00.000Z,military,Live-fire qualification — Range 2,Military Training Wing assessment record,Retest scheduled
 1020,2025-04-03T12:30:00.000Z,academic,Term result — Spring 25,SIS grade roll-up · attendance 88.1%,GPA 2.28
 1020,2025-06-04T12:30:00.000Z,academic,GIS Lab — Terrain Analysis Capstone — completed,LMS competency record synced to SIS via flow 1,73%
@@ -289,22 +289,22 @@ cadet_id,ts,category,title,detail,result
 1020,2026-02-13T12:30:00.000Z,academic,Term result — Spring 26,SIS grade roll-up · attendance 82.3%,GPA 2.55
 1020,2026-05-05T12:30:00.000Z,military,Exercise Desert Shield (field phase),Military Training Wing assessment record,Pass
 1020,2026-06-11T12:30:00.000Z,readiness,HPO fitness assessment (quarterly),VO₂max 44.7 · body composition within standard,Fitness 59/100
-1021,2024-06-19T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Defence & Security Studies (Rabdan Academy) · Squadron Falcon,1021
+1021,2024-06-19T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Defence & Security Studies (Zayed Military University) · Squadron Falcon,1021
 1021,2024-07-01T12:30:00.000Z,military,Basic military induction completed,"Drill, fieldcraft and weapons-handling foundation phase",Pass
 1021,2024-10-02T12:30:00.000Z,academic,Term result — Fall 24,SIS grade roll-up · attendance 96.4%,GPA 2.55
 1021,2025-02-06T12:30:00.000Z,academic,Simulation & Wargaming Lab — Scenario Bravo — completed,LMS competency record synced to SIS via flow 1,90%
 1021,2025-04-06T12:30:00.000Z,academic,Term result — Spring 25,SIS grade roll-up · attendance 84%,GPA 2.34
 1021,2025-06-25T12:30:00.000Z,military,Exercise Falcon Dawn (night navigation),Military Training Wing assessment record,Pass
-1021,2025-07-06T12:30:00.000Z,military,Joint exercise with Rabdan Academy,Military Training Wing assessment record,Pass
+1021,2025-07-06T12:30:00.000Z,military,Combined-arms field exercise,Military Training Wing assessment record,Pass
 1021,2025-07-25T12:30:00.000Z,academic,Simulation & Wargaming Lab — Scenario Bravo — completed,LMS competency record synced to SIS via flow 1,85%
 1021,2025-07-29T12:30:00.000Z,academic,AI & Data Lab — Intelligence Fusion Module — completed,LMS competency record synced to SIS via flow 1,84%
 1021,2025-09-03T12:30:00.000Z,academic,Term result — Fall 25,SIS grade roll-up · attendance 98.2%,GPA 2.38
 1021,2026-02-05T12:30:00.000Z,academic,Term result — Spring 26,SIS grade roll-up · attendance 83.3%,GPA 2.33
 1021,2026-04-18T12:30:00.000Z,military,Exercise Falcon Dawn (night navigation),Military Training Wing assessment record,Retest scheduled
-1021,2026-05-17T12:30:00.000Z,military,Joint exercise with Rabdan Academy,Military Training Wing assessment record,Pass
+1021,2026-05-17T12:30:00.000Z,military,Combined-arms field exercise,Military Training Wing assessment record,Pass
 1021,2026-05-30T12:30:00.000Z,academic,Cyber Range — Defensive Ops Exercise — completed,LMS competency record synced to SIS via flow 1,77%
 1021,2026-06-24T12:30:00.000Z,readiness,HPO fitness assessment (quarterly),VO₂max 47.8 · body composition within standard,Fitness 65/100
-1022,2023-06-07T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BA Strategic Languages & Translation (Sorbonne University Abu Dhabi) · Squadron Oryx,1022
+1022,2023-06-07T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BA Strategic Languages & Translation (Zayed Military University) · Squadron Oryx,1022
 1022,2023-06-19T12:30:00.000Z,military,Basic military induction completed,"Drill, fieldcraft and weapons-handling foundation phase",Pass
 1022,2023-11-21T12:30:00.000Z,academic,Term result — Fall 23,SIS grade roll-up · attendance 98.6%,GPA 3.26
 1022,2023-11-25T12:30:00.000Z,military,Exercise Desert Shield (field phase),Military Training Wing assessment record,Pass
@@ -315,7 +315,7 @@ cadet_id,ts,category,title,detail,result
 1022,2024-10-08T12:30:00.000Z,academic,Simulation & Wargaming Lab — Scenario Bravo — completed,LMS competency record synced to SIS via flow 1,84%
 1022,2024-10-09T12:30:00.000Z,academic,AI & Data Lab — Intelligence Fusion Module — completed,LMS competency record synced to SIS via flow 1,82%
 1022,2024-10-30T12:30:00.000Z,academic,Term result — Fall 24,SIS grade roll-up · attendance 82.7%,GPA 3.24
-1022,2025-02-19T12:30:00.000Z,military,Joint exercise with Rabdan Academy,Military Training Wing assessment record,Pass
+1022,2025-02-19T12:30:00.000Z,military,Combined-arms field exercise,Military Training Wing assessment record,Pass
 1022,2025-03-05T12:30:00.000Z,military,Exercise Falcon Dawn (night navigation),Military Training Wing assessment record,Retest scheduled
 1022,2025-04-10T12:30:00.000Z,academic,Term result — Spring 25,SIS grade roll-up · attendance 84.4%,GPA 3.37
 1022,2025-04-15T12:30:00.000Z,military,Exercise Desert Shield (field phase),Military Training Wing assessment record,Pass
@@ -324,7 +324,7 @@ cadet_id,ts,category,title,detail,result
 1022,2026-04-01T12:30:00.000Z,academic,Simulation & Wargaming Lab — Scenario Bravo — completed,LMS competency record synced to SIS via flow 1,76%
 1022,2026-04-22T12:30:00.000Z,readiness,HPO fitness assessment (quarterly),VO₂max 52.3 · body composition within standard,Fitness 69/100
 1022,2026-06-27T12:30:00.000Z,readiness,Early-intervention flag raised,HPO predictive analytics — composite/attendance below threshold,Support plan active
-1023,2025-05-27T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Defence & Security Studies (Rabdan Academy) · Squadron Saqr,1023
+1023,2025-05-27T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Defence & Security Studies (Zayed Military University) · Squadron Saqr,1023
 1023,2025-06-08T12:30:00.000Z,military,Basic military induction completed,"Drill, fieldcraft and weapons-handling foundation phase",Pass with distinction
 1023,2025-08-18T12:30:00.000Z,academic,Term result — Fall 25,SIS grade roll-up · attendance 82.5%,GPA 2.97
 1023,2025-10-16T12:30:00.000Z,academic,Simulation & Wargaming Lab — Scenario Bravo — completed,LMS competency record synced to SIS via flow 1,98%
@@ -332,10 +332,10 @@ cadet_id,ts,category,title,detail,result
 1023,2026-02-11T12:30:00.000Z,military,Exercise Falcon Dawn (night navigation),Military Training Wing assessment record,Pass
 1023,2026-02-18T12:30:00.000Z,academic,Term result — Spring 26,SIS grade roll-up · attendance 89.5%,GPA 3.24
 1023,2026-03-11T12:30:00.000Z,academic,Cyber Range — Defensive Ops Exercise — completed,LMS competency record synced to SIS via flow 1,90%
-1023,2026-03-18T12:30:00.000Z,military,Joint exercise with Rabdan Academy,Military Training Wing assessment record,Retest scheduled
+1023,2026-03-18T12:30:00.000Z,military,Combined-arms field exercise,Military Training Wing assessment record,Retest scheduled
 1023,2026-05-11T12:30:00.000Z,academic,GIS Lab — Terrain Analysis Capstone — completed,LMS competency record synced to SIS via flow 1,78%
 1023,2026-06-06T12:30:00.000Z,readiness,HPO fitness assessment (quarterly),VO₂max 53.8 · body composition within standard,Fitness 75/100
-1024,2025-06-10T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Homeland Security & Resilience (Rabdan Academy) · Squadron Ghaf,1024
+1024,2025-06-10T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Homeland Security & Resilience (Zayed Military University) · Squadron Ghaf,1024
 1024,2025-06-22T12:30:00.000Z,military,Basic military induction completed,"Drill, fieldcraft and weapons-handling foundation phase",Pass
 1024,2025-09-24T12:30:00.000Z,academic,Term result — Fall 25,SIS grade roll-up · attendance 80.9%,GPA 3.86
 1024,2025-10-25T12:30:00.000Z,academic,AI & Data Lab — Intelligence Fusion Module — completed,LMS competency record synced to SIS via flow 1,75%
@@ -346,10 +346,10 @@ cadet_id,ts,category,title,detail,result
 1024,2026-03-28T12:30:00.000Z,academic,AI & Data Lab — Intelligence Fusion Module — completed,LMS competency record synced to SIS via flow 1,70%
 1024,2026-04-23T12:30:00.000Z,military,Exercise Desert Shield (field phase),Military Training Wing assessment record,Pass
 1024,2026-07-04T12:30:00.000Z,readiness,HPO fitness assessment (quarterly),VO₂max 54.7 · body composition within standard,Fitness 75/100
-1025,2024-06-18T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Military Science & Tactics (ZMU Core) · Squadron Falcon,1025
+1025,2024-06-18T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Military Science & Tactics (Zayed Military University) · Squadron Falcon,1025
 1025,2024-06-30T12:30:00.000Z,military,Basic military induction completed,"Drill, fieldcraft and weapons-handling foundation phase",Pass
 1025,2024-10-21T12:30:00.000Z,academic,Term result — Fall 24,SIS grade roll-up · attendance 84.4%,GPA 3.57
-1025,2024-12-04T12:30:00.000Z,military,Joint exercise with Rabdan Academy,Military Training Wing assessment record,Pass
+1025,2024-12-04T12:30:00.000Z,military,Combined-arms field exercise,Military Training Wing assessment record,Pass
 1025,2025-04-06T12:30:00.000Z,academic,Term result — Spring 25,SIS grade roll-up · attendance 97.4%,GPA 3.54
 1025,2025-06-06T12:30:00.000Z,military,Live-fire qualification — Range 2,Military Training Wing assessment record,Pass
 1025,2025-07-25T12:30:00.000Z,academic,Simulation & Wargaming Lab — Scenario Bravo — completed,LMS competency record synced to SIS via flow 1,74%
@@ -361,7 +361,7 @@ cadet_id,ts,category,title,detail,result
 1025,2026-03-19T12:30:00.000Z,academic,AI & Data Lab — Intelligence Fusion Module — completed,LMS competency record synced to SIS via flow 1,75%
 1025,2026-04-27T12:30:00.000Z,readiness,HPO fitness assessment (quarterly),VO₂max 49.9 · body composition within standard,Fitness 84/100
 1025,2026-06-21T12:30:00.000Z,military,Live-fire qualification — Range 2,Military Training Wing assessment record,Retest scheduled
-1026,2025-06-20T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Military Leadership (ZMU Core) · Squadron Oryx,1026
+1026,2025-06-20T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Military Leadership (Zayed Military University) · Squadron Oryx,1026
 1026,2025-07-02T12:30:00.000Z,military,Basic military induction completed,"Drill, fieldcraft and weapons-handling foundation phase",Pass
 1026,2025-08-21T12:30:00.000Z,academic,GIS Lab — Terrain Analysis Capstone — completed,LMS competency record synced to SIS via flow 1,69%
 1026,2025-08-31T12:30:00.000Z,academic,Term result — Fall 25,SIS grade roll-up · attendance 85.3%,GPA 2.66
@@ -372,7 +372,7 @@ cadet_id,ts,category,title,detail,result
 1026,2026-05-10T12:30:00.000Z,academic,GIS Lab — Terrain Analysis Capstone — completed,LMS competency record synced to SIS via flow 1,71%
 1026,2026-05-13T12:30:00.000Z,readiness,HPO fitness assessment (quarterly),VO₂max 47.1 · body composition within standard,Fitness 89/100
 1026,2026-05-26T12:30:00.000Z,military,Exercise Desert Shield (field phase),Military Training Wing assessment record,Pass
-1027,2024-05-16T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Military Science & Tactics (ZMU Core) · Squadron Saqr,1027
+1027,2024-05-16T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Military Science & Tactics (Zayed Military University) · Squadron Saqr,1027
 1027,2024-05-28T12:30:00.000Z,military,Basic military induction completed,"Drill, fieldcraft and weapons-handling foundation phase",Pass
 1027,2024-10-04T12:30:00.000Z,academic,Term result — Fall 24,SIS grade roll-up · attendance 89.8%,GPA 3.54
 1027,2024-12-03T12:30:00.000Z,military,Exercise Falcon Dawn (night navigation),Military Training Wing assessment record,Pass
@@ -387,7 +387,7 @@ cadet_id,ts,category,title,detail,result
 1027,2026-01-31T12:30:00.000Z,academic,Term result — Spring 26,SIS grade roll-up · attendance 82.6%,GPA 4.00
 1027,2026-03-26T12:30:00.000Z,academic,GIS Lab — Terrain Analysis Capstone — completed,LMS competency record synced to SIS via flow 1,91%
 1027,2026-05-04T12:30:00.000Z,readiness,HPO fitness assessment (quarterly),VO₂max 53 · body composition within standard,Fitness 80/100
-1028,2024-05-31T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BA International Relations & Diplomacy (Sorbonne University Abu Dhabi) · Squadron Ghaf,1028
+1028,2024-05-31T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BA International Relations & Diplomacy (Zayed Military University) · Squadron Ghaf,1028
 1028,2024-06-12T12:30:00.000Z,military,Basic military induction completed,"Drill, fieldcraft and weapons-handling foundation phase",Pass
 1028,2024-09-27T12:30:00.000Z,academic,Term result — Fall 24,SIS grade roll-up · attendance 91.3%,GPA 3.00
 1028,2024-12-03T12:30:00.000Z,academic,GIS Lab — Terrain Analysis Capstone — completed,LMS competency record synced to SIS via flow 1,95%
@@ -402,7 +402,7 @@ cadet_id,ts,category,title,detail,result
 1028,2026-05-07T12:30:00.000Z,military,Exercise Falcon Dawn (night navigation),Military Training Wing assessment record,Pass
 1028,2026-06-06T12:30:00.000Z,readiness,HPO fitness assessment (quarterly),VO₂max 44.7 · body composition within standard,Fitness 60/100
 1028,2026-06-11T12:30:00.000Z,academic,Simulation & Wargaming Lab — Scenario Bravo — completed,LMS competency record synced to SIS via flow 1,88%
-1029,2025-06-10T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BA Strategic Languages & Translation (Sorbonne University Abu Dhabi) · Squadron Falcon,1029
+1029,2025-06-10T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BA Strategic Languages & Translation (Zayed Military University) · Squadron Falcon,1029
 1029,2025-06-22T12:30:00.000Z,military,Basic military induction completed,"Drill, fieldcraft and weapons-handling foundation phase",Pass
 1029,2025-09-17T12:30:00.000Z,academic,Term result — Fall 25,SIS grade roll-up · attendance 91.2%,GPA 2.53
 1029,2025-09-26T12:30:00.000Z,academic,AI & Data Lab — Intelligence Fusion Module — completed,LMS competency record synced to SIS via flow 1,77%
@@ -413,7 +413,7 @@ cadet_id,ts,category,title,detail,result
 1029,2026-05-02T12:30:00.000Z,academic,Cyber Range — Defensive Ops Exercise — completed,LMS competency record synced to SIS via flow 1,82%
 1029,2026-05-29T12:30:00.000Z,readiness,HPO fitness assessment (quarterly),VO₂max 50.7 · body composition within standard,Fitness 65/100
 1029,2026-06-26T12:30:00.000Z,military,Exercise Desert Shield (field phase),Military Training Wing assessment record,Pass
-1030,2024-06-17T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Systems Engineering (Khalifa University) · Squadron Oryx,1030
+1030,2024-06-17T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Systems Engineering (Zayed Military University) · Squadron Oryx,1030
 1030,2024-06-29T12:30:00.000Z,military,Basic military induction completed,"Drill, fieldcraft and weapons-handling foundation phase",Pass
 1030,2024-10-29T12:30:00.000Z,academic,Term result — Fall 24,SIS grade roll-up · attendance 81.5%,GPA 3.09
 1030,2025-01-08T12:30:00.000Z,academic,Cyber Range — Defensive Ops Exercise — completed,LMS competency record synced to SIS via flow 1,92%
@@ -426,12 +426,12 @@ cadet_id,ts,category,title,detail,result
 1030,2025-11-08T12:30:00.000Z,military,Live-fire qualification — Range 2,Military Training Wing assessment record,Pass
 1030,2026-01-01T12:30:00.000Z,academic,Cyber Range — Defensive Ops Exercise — completed,LMS competency record synced to SIS via flow 1,73%
 1030,2026-02-08T12:30:00.000Z,academic,Term result — Spring 26,SIS grade roll-up · attendance 91.6%,GPA 2.96
-1030,2026-04-16T12:30:00.000Z,military,Joint exercise with Rabdan Academy,Military Training Wing assessment record,Pass
+1030,2026-04-16T12:30:00.000Z,military,Combined-arms field exercise,Military Training Wing assessment record,Pass
 1030,2026-05-03T12:30:00.000Z,readiness,HPO fitness assessment (quarterly),VO₂max 51 · body composition within standard,Fitness 93/100
-1031,2024-06-07T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Military Leadership (ZMU Core) · Squadron Saqr,1031
+1031,2024-06-07T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Military Leadership (Zayed Military University) · Squadron Saqr,1031
 1031,2024-06-19T12:30:00.000Z,military,Basic military induction completed,"Drill, fieldcraft and weapons-handling foundation phase",Pass with distinction
 1031,2024-10-12T12:30:00.000Z,academic,Term result — Fall 24,SIS grade roll-up · attendance 92.7%,GPA 2.42
-1031,2024-11-14T12:30:00.000Z,military,Joint exercise with Rabdan Academy,Military Training Wing assessment record,Pass
+1031,2024-11-14T12:30:00.000Z,military,Combined-arms field exercise,Military Training Wing assessment record,Pass
 1031,2024-12-05T12:30:00.000Z,military,Live-fire qualification — Range 2,Military Training Wing assessment record,Pass
 1031,2025-03-14T12:30:00.000Z,academic,Term result — Spring 25,SIS grade roll-up · attendance 97.9%,GPA 2.17
 1031,2025-03-28T12:30:00.000Z,academic,Cyber Range — Defensive Ops Exercise — completed,LMS competency record synced to SIS via flow 1,88%
@@ -443,7 +443,7 @@ cadet_id,ts,category,title,detail,result
 1031,2026-01-02T12:30:00.000Z,military,Exercise Desert Shield (field phase),Military Training Wing assessment record,Pass
 1031,2026-02-02T12:30:00.000Z,academic,Term result — Spring 26,SIS grade roll-up · attendance 85.6%,GPA 2.08
 1031,2026-06-29T12:30:00.000Z,readiness,HPO fitness assessment (quarterly),VO₂max 48.9 · body composition within standard,Fitness 98/100
-1032,2024-06-08T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Military Leadership (ZMU Core) · Squadron Ghaf,1032
+1032,2024-06-08T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Military Leadership (Zayed Military University) · Squadron Ghaf,1032
 1032,2024-06-20T12:30:00.000Z,military,Basic military induction completed,"Drill, fieldcraft and weapons-handling foundation phase",Pass with distinction
 1032,2024-09-29T12:30:00.000Z,academic,Term result — Fall 24,SIS grade roll-up · attendance 84.3%,GPA 1.71
 1032,2024-12-12T12:30:00.000Z,military,Exercise Falcon Dawn (night navigation),Military Training Wing assessment record,Pass
@@ -451,14 +451,14 @@ cadet_id,ts,category,title,detail,result
 1032,2025-02-17T12:30:00.000Z,academic,Simulation & Wargaming Lab — Scenario Bravo — completed,LMS competency record synced to SIS via flow 1,84%
 1032,2025-04-03T12:30:00.000Z,academic,Term result — Spring 25,SIS grade roll-up · attendance 80.3%,GPA 2.23
 1032,2025-05-22T12:30:00.000Z,military,Exercise Falcon Dawn (night navigation),Military Training Wing assessment record,Retest scheduled
-1032,2025-07-03T12:30:00.000Z,military,Joint exercise with Rabdan Academy,Military Training Wing assessment record,Pass
+1032,2025-07-03T12:30:00.000Z,military,Combined-arms field exercise,Military Training Wing assessment record,Pass
 1032,2025-08-30T12:30:00.000Z,academic,Term result — Fall 25,SIS grade roll-up · attendance 95.6%,GPA 1.87
 1032,2025-09-25T12:30:00.000Z,academic,Cyber Range — Defensive Ops Exercise — completed,LMS competency record synced to SIS via flow 1,84%
 1032,2026-02-02T12:30:00.000Z,academic,Simulation & Wargaming Lab — Scenario Bravo — completed,LMS competency record synced to SIS via flow 1,75%
 1032,2026-02-08T12:30:00.000Z,academic,Term result — Spring 26,SIS grade roll-up · attendance 94.7%,GPA 1.87
 1032,2026-03-31T12:30:00.000Z,military,Live-fire qualification — Range 2,Military Training Wing assessment record,Pass
 1032,2026-06-30T12:30:00.000Z,readiness,HPO fitness assessment (quarterly),VO₂max 51.9 · body composition within standard,Fitness 76/100
-1033,2025-05-27T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BA International Relations & Diplomacy (Sorbonne University Abu Dhabi) · Squadron Falcon,1033
+1033,2025-05-27T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BA International Relations & Diplomacy (Zayed Military University) · Squadron Falcon,1033
 1033,2025-06-08T12:30:00.000Z,military,Basic military induction completed,"Drill, fieldcraft and weapons-handling foundation phase",Pass with distinction
 1033,2025-08-22T12:30:00.000Z,academic,Term result — Fall 25,SIS grade roll-up · attendance 94.7%,GPA 3.33
 1033,2025-09-17T12:30:00.000Z,military,Exercise Desert Shield (field phase),Military Training Wing assessment record,Pass
@@ -469,14 +469,14 @@ cadet_id,ts,category,title,detail,result
 1033,2026-04-20T12:30:00.000Z,readiness,HPO fitness assessment (quarterly),VO₂max 54.1 · body composition within standard,Fitness 55/100
 1033,2026-05-29T12:30:00.000Z,academic,GIS Lab — Terrain Analysis Capstone — completed,LMS competency record synced to SIS via flow 1,90%
 1033,2026-06-09T12:30:00.000Z,military,Exercise Falcon Dawn (night navigation),Military Training Wing assessment record,Pass
-1034,2024-06-15T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Cyber Security Engineering (Khalifa University) · Squadron Oryx,1034
+1034,2024-06-15T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Cyber Security Engineering (Zayed Military University) · Squadron Oryx,1034
 1034,2024-06-27T12:30:00.000Z,military,Basic military induction completed,"Drill, fieldcraft and weapons-handling foundation phase",Pass with distinction
 1034,2024-10-29T12:30:00.000Z,academic,Term result — Fall 24,SIS grade roll-up · attendance 96.3%,GPA 2.15
 1034,2025-01-09T12:30:00.000Z,academic,AI & Data Lab — Intelligence Fusion Module — completed,LMS competency record synced to SIS via flow 1,74%
 1034,2025-02-19T12:30:00.000Z,academic,GIS Lab — Terrain Analysis Capstone — completed,LMS competency record synced to SIS via flow 1,90%
 1034,2025-03-07T12:30:00.000Z,academic,Term result — Spring 25,SIS grade roll-up · attendance 94.8%,GPA 1.85
-1034,2025-03-16T12:30:00.000Z,military,Joint exercise with Rabdan Academy,Military Training Wing assessment record,Retest scheduled
-1034,2025-03-18T12:30:00.000Z,military,Joint exercise with Rabdan Academy,Military Training Wing assessment record,Retest scheduled
+1034,2025-03-16T12:30:00.000Z,military,Combined-arms field exercise,Military Training Wing assessment record,Retest scheduled
+1034,2025-03-18T12:30:00.000Z,military,Combined-arms field exercise,Military Training Wing assessment record,Retest scheduled
 1034,2025-04-03T12:30:00.000Z,academic,GIS Lab — Terrain Analysis Capstone — completed,LMS competency record synced to SIS via flow 1,73%
 1034,2025-07-06T12:30:00.000Z,academic,GIS Lab — Terrain Analysis Capstone — completed,LMS competency record synced to SIS via flow 1,91%
 1034,2025-09-24T12:30:00.000Z,academic,Term result — Fall 25,SIS grade roll-up · attendance 91.7%,GPA 1.92
@@ -484,7 +484,7 @@ cadet_id,ts,category,title,detail,result
 1034,2026-04-30T12:30:00.000Z,military,Exercise Falcon Dawn (night navigation),Military Training Wing assessment record,Pass
 1034,2026-05-13T12:30:00.000Z,readiness,HPO fitness assessment (quarterly),VO₂max 57 · body composition within standard,Fitness 95/100
 1034,2026-06-20T12:30:00.000Z,military,Exercise Desert Shield (field phase),Military Training Wing assessment record,Pass
-1035,2024-06-01T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Homeland Security & Resilience (Rabdan Academy) · Squadron Saqr,1035
+1035,2024-06-01T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Homeland Security & Resilience (Zayed Military University) · Squadron Saqr,1035
 1035,2024-06-13T12:30:00.000Z,military,Basic military induction completed,"Drill, fieldcraft and weapons-handling foundation phase",Pass
 1035,2024-09-27T12:30:00.000Z,academic,Term result — Fall 24,SIS grade roll-up · attendance 90.1%,GPA 3.85
 1035,2024-10-11T12:30:00.000Z,academic,Simulation & Wargaming Lab — Scenario Bravo — completed,LMS competency record synced to SIS via flow 1,86%
@@ -499,10 +499,10 @@ cadet_id,ts,category,title,detail,result
 1035,2026-01-05T12:30:00.000Z,military,Live-fire qualification — Range 2,Military Training Wing assessment record,Pass
 1035,2026-02-04T12:30:00.000Z,academic,Term result — Spring 26,SIS grade roll-up · attendance 91.6%,GPA 4.00
 1035,2026-07-01T12:30:00.000Z,readiness,HPO fitness assessment (quarterly),VO₂max 48.8 · body composition within standard,Fitness 64/100
-1036,2024-06-12T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BA Strategic Languages & Translation (Sorbonne University Abu Dhabi) · Squadron Ghaf,1036
+1036,2024-06-12T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BA Strategic Languages & Translation (Zayed Military University) · Squadron Ghaf,1036
 1036,2024-06-24T12:30:00.000Z,military,Basic military induction completed,"Drill, fieldcraft and weapons-handling foundation phase",Pass
 1036,2024-10-27T12:30:00.000Z,academic,Term result — Fall 24,SIS grade roll-up · attendance 93.2%,GPA 3.21
-1036,2024-12-05T12:30:00.000Z,military,Joint exercise with Rabdan Academy,Military Training Wing assessment record,Pass
+1036,2024-12-05T12:30:00.000Z,military,Combined-arms field exercise,Military Training Wing assessment record,Pass
 1036,2025-03-27T12:30:00.000Z,academic,Term result — Spring 25,SIS grade roll-up · attendance 97.7%,GPA 3.60
 1036,2025-04-28T12:30:00.000Z,academic,AI & Data Lab — Intelligence Fusion Module — completed,LMS competency record synced to SIS via flow 1,93%
 1036,2025-04-28T12:30:00.000Z,military,Exercise Desert Shield (field phase),Military Training Wing assessment record,Pass
@@ -515,7 +515,7 @@ cadet_id,ts,category,title,detail,result
 1036,2026-06-20T12:30:00.000Z,readiness,HPO fitness assessment (quarterly),VO₂max 45.2 · body composition within standard,Fitness 55/100
 1036,2026-06-21T12:30:00.000Z,academic,Cyber Range — Defensive Ops Exercise — completed,LMS competency record synced to SIS via flow 1,82%
 1036,2026-06-27T12:30:00.000Z,readiness,Early-intervention flag raised,HPO predictive analytics — composite/attendance below threshold,Support plan active
-1037,2025-06-03T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Systems Engineering (Khalifa University) · Squadron Falcon,1037
+1037,2025-06-03T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Systems Engineering (Zayed Military University) · Squadron Falcon,1037
 1037,2025-06-15T12:30:00.000Z,military,Basic military induction completed,"Drill, fieldcraft and weapons-handling foundation phase",Pass with distinction
 1037,2025-09-23T12:30:00.000Z,academic,Term result — Fall 25,SIS grade roll-up · attendance 86.5%,GPA 3.53
 1037,2025-12-08T12:30:00.000Z,academic,Simulation & Wargaming Lab — Scenario Bravo — completed,LMS competency record synced to SIS via flow 1,79%
@@ -526,29 +526,29 @@ cadet_id,ts,category,title,detail,result
 1037,2026-04-07T12:30:00.000Z,academic,Cyber Range — Defensive Ops Exercise — completed,LMS competency record synced to SIS via flow 1,77%
 1037,2026-04-29T12:30:00.000Z,academic,Cyber Range — Defensive Ops Exercise — completed,LMS competency record synced to SIS via flow 1,68%
 1037,2026-07-06T12:30:00.000Z,readiness,HPO fitness assessment (quarterly),VO₂max 50.1 · body composition within standard,Fitness 78/100
-1038,2025-06-14T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Defence & Security Studies (Rabdan Academy) · Squadron Oryx,1038
+1038,2025-06-14T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Defence & Security Studies (Zayed Military University) · Squadron Oryx,1038
 1038,2025-06-26T12:30:00.000Z,military,Basic military induction completed,"Drill, fieldcraft and weapons-handling foundation phase",Pass with distinction
 1038,2025-09-05T12:30:00.000Z,academic,Term result — Fall 25,SIS grade roll-up · attendance 93.2%,GPA 4.00
 1038,2025-09-26T12:30:00.000Z,academic,Simulation & Wargaming Lab — Scenario Bravo — completed,LMS competency record synced to SIS via flow 1,95%
 1038,2025-10-25T12:30:00.000Z,military,Exercise Desert Shield (field phase),Military Training Wing assessment record,Pass
 1038,2025-10-30T12:30:00.000Z,military,Exercise Falcon Dawn (night navigation),Military Training Wing assessment record,Pass
-1038,2025-11-05T12:30:00.000Z,military,Joint exercise with Rabdan Academy,Military Training Wing assessment record,Pass
+1038,2025-11-05T12:30:00.000Z,military,Combined-arms field exercise,Military Training Wing assessment record,Pass
 1038,2025-12-24T12:30:00.000Z,academic,GIS Lab — Terrain Analysis Capstone — completed,LMS competency record synced to SIS via flow 1,94%
 1038,2026-02-06T12:30:00.000Z,academic,Term result — Spring 26,SIS grade roll-up · attendance 95.8%,GPA 3.99
 1038,2026-04-07T12:30:00.000Z,academic,GIS Lab — Terrain Analysis Capstone — completed,LMS competency record synced to SIS via flow 1,97%
 1038,2026-05-09T12:30:00.000Z,readiness,HPO fitness assessment (quarterly),VO₂max 51.7 · body composition within standard,Fitness 60/100
-1039,2025-06-16T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BEng Electrical & Computer Engineering (Khalifa University) · Squadron Saqr,1039
+1039,2025-06-16T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BEng Electrical & Computer Engineering (Zayed Military University) · Squadron Saqr,1039
 1039,2025-06-28T12:30:00.000Z,military,Basic military induction completed,"Drill, fieldcraft and weapons-handling foundation phase",Pass
 1039,2025-09-04T12:30:00.000Z,academic,Term result — Fall 25,SIS grade roll-up · attendance 94.9%,GPA 3.50
 1039,2025-09-09T12:30:00.000Z,academic,Simulation & Wargaming Lab — Scenario Bravo — completed,LMS competency record synced to SIS via flow 1,69%
 1039,2025-10-13T12:30:00.000Z,academic,AI & Data Lab — Intelligence Fusion Module — completed,LMS competency record synced to SIS via flow 1,93%
 1039,2025-10-21T12:30:00.000Z,military,Exercise Falcon Dawn (night navigation),Military Training Wing assessment record,Pass
 1039,2025-12-10T12:30:00.000Z,academic,GIS Lab — Terrain Analysis Capstone — completed,LMS competency record synced to SIS via flow 1,86%
-1039,2026-01-15T12:30:00.000Z,military,Joint exercise with Rabdan Academy,Military Training Wing assessment record,Retest scheduled
+1039,2026-01-15T12:30:00.000Z,military,Combined-arms field exercise,Military Training Wing assessment record,Retest scheduled
 1039,2026-02-10T12:30:00.000Z,military,Exercise Falcon Dawn (night navigation),Military Training Wing assessment record,Retest scheduled
 1039,2026-02-11T12:30:00.000Z,academic,Term result — Spring 26,SIS grade roll-up · attendance 98%,GPA 3.46
 1039,2026-06-06T12:30:00.000Z,readiness,HPO fitness assessment (quarterly),VO₂max 55.7 · body composition within standard,Fitness 63/100
-1040,2024-05-31T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Homeland Security & Resilience (Rabdan Academy) · Squadron Ghaf,1040
+1040,2024-05-31T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Homeland Security & Resilience (Zayed Military University) · Squadron Ghaf,1040
 1040,2024-06-12T12:30:00.000Z,military,Basic military induction completed,"Drill, fieldcraft and weapons-handling foundation phase",Pass with distinction
 1040,2024-10-12T12:30:00.000Z,academic,Cyber Range — Defensive Ops Exercise — completed,LMS competency record synced to SIS via flow 1,94%
 1040,2024-10-22T12:30:00.000Z,academic,Term result — Fall 24,SIS grade roll-up · attendance 90.1%,GPA 3.56
@@ -563,7 +563,7 @@ cadet_id,ts,category,title,detail,result
 1040,2026-02-23T12:30:00.000Z,military,Exercise Desert Shield (field phase),Military Training Wing assessment record,Pass
 1040,2026-02-28T12:30:00.000Z,academic,Cyber Range — Defensive Ops Exercise — completed,LMS competency record synced to SIS via flow 1,69%
 1040,2026-06-20T12:30:00.000Z,readiness,HPO fitness assessment (quarterly),VO₂max 47.7 · body composition within standard,Fitness 71/100
-1041,2024-06-06T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BEng Electrical & Computer Engineering (Khalifa University) · Squadron Falcon,1041
+1041,2024-06-06T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BEng Electrical & Computer Engineering (Zayed Military University) · Squadron Falcon,1041
 1041,2024-06-18T12:30:00.000Z,military,Basic military induction completed,"Drill, fieldcraft and weapons-handling foundation phase",Pass
 1041,2024-10-03T12:30:00.000Z,academic,Term result — Fall 24,SIS grade roll-up · attendance 91%,GPA 2.90
 1041,2025-03-25T12:30:00.000Z,academic,Simulation & Wargaming Lab — Scenario Bravo — completed,LMS competency record synced to SIS via flow 1,69%
@@ -578,7 +578,7 @@ cadet_id,ts,category,title,detail,result
 1041,2026-03-05T12:30:00.000Z,academic,Term result — Spring 26,SIS grade roll-up · attendance 98.6%,GPA 2.60
 1041,2026-06-03T12:30:00.000Z,military,Exercise Desert Shield (field phase),Military Training Wing assessment record,Pass
 1041,2026-07-05T12:30:00.000Z,readiness,HPO fitness assessment (quarterly),VO₂max 56.2 · body composition within standard,Fitness 89/100
-1042,2024-06-16T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BEng Electrical & Computer Engineering (Khalifa University) · Squadron Oryx,1042
+1042,2024-06-16T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BEng Electrical & Computer Engineering (Zayed Military University) · Squadron Oryx,1042
 1042,2024-06-28T12:30:00.000Z,military,Basic military induction completed,"Drill, fieldcraft and weapons-handling foundation phase",Pass
 1042,2024-10-11T12:30:00.000Z,academic,Term result — Fall 24,SIS grade roll-up · attendance 94.5%,GPA 3.24
 1042,2024-12-08T12:30:00.000Z,military,Live-fire qualification — Range 2,Military Training Wing assessment record,Pass
@@ -589,12 +589,12 @@ cadet_id,ts,category,title,detail,result
 1042,2025-09-24T12:30:00.000Z,academic,Cyber Range — Defensive Ops Exercise — completed,LMS competency record synced to SIS via flow 1,87%
 1042,2025-11-15T12:30:00.000Z,academic,GIS Lab — Terrain Analysis Capstone — completed,LMS competency record synced to SIS via flow 1,70%
 1042,2025-11-18T12:30:00.000Z,academic,Simulation & Wargaming Lab — Scenario Bravo — completed,LMS competency record synced to SIS via flow 1,71%
-1042,2025-12-20T12:30:00.000Z,military,Joint exercise with Rabdan Academy,Military Training Wing assessment record,Pass
+1042,2025-12-20T12:30:00.000Z,military,Combined-arms field exercise,Military Training Wing assessment record,Pass
 1042,2026-03-09T12:30:00.000Z,academic,Term result — Spring 26,SIS grade roll-up · attendance 92.8%,GPA 3.36
-1042,2026-04-30T12:30:00.000Z,military,Joint exercise with Rabdan Academy,Military Training Wing assessment record,Pass
+1042,2026-04-30T12:30:00.000Z,military,Combined-arms field exercise,Military Training Wing assessment record,Pass
 1042,2026-06-19T12:30:00.000Z,readiness,HPO fitness assessment (quarterly),VO₂max 50.3 · body composition within standard,Fitness 96/100
 1042,2026-06-27T12:30:00.000Z,readiness,Early-intervention flag raised,HPO predictive analytics — composite/attendance below threshold,Support plan active
-1043,2024-05-22T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Military Leadership (ZMU Core) · Squadron Saqr,1043
+1043,2024-05-22T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Military Leadership (Zayed Military University) · Squadron Saqr,1043
 1043,2024-06-03T12:30:00.000Z,military,Basic military induction completed,"Drill, fieldcraft and weapons-handling foundation phase",Pass with distinction
 1043,2024-09-26T12:30:00.000Z,academic,Term result — Fall 24,SIS grade roll-up · attendance 86.3%,GPA 2.16
 1043,2024-11-07T12:30:00.000Z,academic,Simulation & Wargaming Lab — Scenario Bravo — completed,LMS competency record synced to SIS via flow 1,82%
@@ -604,13 +604,13 @@ cadet_id,ts,category,title,detail,result
 1043,2025-08-22T12:30:00.000Z,academic,Term result — Fall 25,SIS grade roll-up · attendance 92.9%,GPA 2.31
 1043,2025-09-21T12:30:00.000Z,academic,GIS Lab — Terrain Analysis Capstone — completed,LMS competency record synced to SIS via flow 1,94%
 1043,2025-11-08T12:30:00.000Z,military,Live-fire qualification — Range 2,Military Training Wing assessment record,Pass
-1043,2025-11-16T12:30:00.000Z,military,Joint exercise with Rabdan Academy,Military Training Wing assessment record,Retest scheduled
+1043,2025-11-16T12:30:00.000Z,military,Combined-arms field exercise,Military Training Wing assessment record,Retest scheduled
 1043,2025-11-18T12:30:00.000Z,academic,AI & Data Lab — Intelligence Fusion Module — completed,LMS competency record synced to SIS via flow 1,87%
 1043,2026-01-29T12:30:00.000Z,academic,Term result — Spring 26,SIS grade roll-up · attendance 82.2%,GPA 2.18
 1043,2026-05-20T12:30:00.000Z,readiness,HPO fitness assessment (quarterly),VO₂max 49.5 · body composition within standard,Fitness 70/100
-1043,2026-05-23T12:30:00.000Z,military,Joint exercise with Rabdan Academy,Military Training Wing assessment record,Retest scheduled
+1043,2026-05-23T12:30:00.000Z,military,Combined-arms field exercise,Military Training Wing assessment record,Retest scheduled
 1043,2026-07-09T12:30:00.000Z,readiness,Early-intervention flag raised,HPO predictive analytics — composite/attendance below threshold,Support plan active
-1044,2025-06-02T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Military Leadership (ZMU Core) · Squadron Ghaf,1044
+1044,2025-06-02T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Military Leadership (Zayed Military University) · Squadron Ghaf,1044
 1044,2025-06-14T12:30:00.000Z,military,Basic military induction completed,"Drill, fieldcraft and weapons-handling foundation phase",Pass with distinction
 1044,2025-08-31T12:30:00.000Z,academic,Term result — Fall 25,SIS grade roll-up · attendance 80.5%,GPA 2.22
 1044,2025-09-18T12:30:00.000Z,academic,Simulation & Wargaming Lab — Scenario Bravo — completed,LMS competency record synced to SIS via flow 1,81%
@@ -621,19 +621,19 @@ cadet_id,ts,category,title,detail,result
 1044,2026-03-07T12:30:00.000Z,academic,Term result — Spring 26,SIS grade roll-up · attendance 80.6%,GPA 2.26
 1044,2026-05-12T12:30:00.000Z,readiness,HPO fitness assessment (quarterly),VO₂max 57 · body composition within standard,Fitness 90/100
 1044,2026-05-24T12:30:00.000Z,military,Exercise Desert Shield (field phase),Military Training Wing assessment record,Retest scheduled
-1045,2025-06-11T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Military Leadership (ZMU Core) · Squadron Falcon,1045
+1045,2025-06-11T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Military Leadership (Zayed Military University) · Squadron Falcon,1045
 1045,2025-06-23T12:30:00.000Z,military,Basic military induction completed,"Drill, fieldcraft and weapons-handling foundation phase",Pass with distinction
 1045,2025-08-16T12:30:00.000Z,academic,Term result — Fall 25,SIS grade roll-up · attendance 85.7%,GPA 2.23
 1045,2025-09-10T12:30:00.000Z,academic,AI & Data Lab — Intelligence Fusion Module — completed,LMS competency record synced to SIS via flow 1,77%
 1045,2025-10-24T12:30:00.000Z,military,Exercise Desert Shield (field phase),Military Training Wing assessment record,Pass
 1045,2026-02-20T12:30:00.000Z,academic,Term result — Spring 26,SIS grade roll-up · attendance 87.6%,GPA 2.15
-1045,2026-04-04T12:30:00.000Z,military,Joint exercise with Rabdan Academy,Military Training Wing assessment record,Retest scheduled
+1045,2026-04-04T12:30:00.000Z,military,Combined-arms field exercise,Military Training Wing assessment record,Retest scheduled
 1045,2026-04-07T12:30:00.000Z,military,Exercise Falcon Dawn (night navigation),Military Training Wing assessment record,Pass
 1045,2026-04-30T12:30:00.000Z,readiness,HPO fitness assessment (quarterly),VO₂max 52.4 · body composition within standard,Fitness 95/100
 1045,2026-05-01T12:30:00.000Z,academic,GIS Lab — Terrain Analysis Capstone — completed,LMS competency record synced to SIS via flow 1,97%
 1045,2026-06-13T12:30:00.000Z,academic,GIS Lab — Terrain Analysis Capstone — completed,LMS competency record synced to SIS via flow 1,80%
 1045,2026-07-07T12:30:00.000Z,readiness,Early-intervention flag raised,HPO predictive analytics — composite/attendance below threshold,Support plan active
-1046,2025-06-08T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Systems Engineering (Khalifa University) · Squadron Oryx,1046
+1046,2025-06-08T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BSc Systems Engineering (Zayed Military University) · Squadron Oryx,1046
 1046,2025-06-20T12:30:00.000Z,military,Basic military induction completed,"Drill, fieldcraft and weapons-handling foundation phase",Pass
 1046,2025-08-30T12:30:00.000Z,academic,Term result — Fall 25,SIS grade roll-up · attendance 93.3%,GPA 3.10
 1046,2025-10-28T12:30:00.000Z,military,Exercise Falcon Dawn (night navigation),Military Training Wing assessment record,Pass
@@ -644,12 +644,12 @@ cadet_id,ts,category,title,detail,result
 1046,2026-03-23T12:30:00.000Z,academic,Cyber Range — Defensive Ops Exercise — completed,LMS competency record synced to SIS via flow 1,75%
 1046,2026-03-29T12:30:00.000Z,military,Exercise Falcon Dawn (night navigation),Military Training Wing assessment record,Pass
 1046,2026-06-07T12:30:00.000Z,readiness,HPO fitness assessment (quarterly),VO₂max 44.5 · body composition within standard,Fitness 59/100
-1047,2023-06-12T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BEng Electrical & Computer Engineering (Khalifa University) · Squadron Saqr,1047
+1047,2023-06-12T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BEng Electrical & Computer Engineering (Zayed Military University) · Squadron Saqr,1047
 1047,2023-06-24T12:30:00.000Z,military,Basic military induction completed,"Drill, fieldcraft and weapons-handling foundation phase",Pass with distinction
 1047,2023-10-29T12:30:00.000Z,academic,Term result — Fall 23,SIS grade roll-up · attendance 80.5%,GPA 3.03
 1047,2023-11-30T12:30:00.000Z,academic,GIS Lab — Terrain Analysis Capstone — completed,LMS competency record synced to SIS via flow 1,94%
 1047,2023-12-14T12:30:00.000Z,academic,Cyber Range — Defensive Ops Exercise — completed,LMS competency record synced to SIS via flow 1,85%
-1047,2024-02-12T12:30:00.000Z,military,Joint exercise with Rabdan Academy,Military Training Wing assessment record,Pass
+1047,2024-02-12T12:30:00.000Z,military,Combined-arms field exercise,Military Training Wing assessment record,Pass
 1047,2024-04-22T12:30:00.000Z,academic,Simulation & Wargaming Lab — Scenario Bravo — completed,LMS competency record synced to SIS via flow 1,85%
 1047,2024-05-10T12:30:00.000Z,academic,Term result — Spring 24,SIS grade roll-up · attendance 93%,GPA 3.51
 1047,2024-08-14T12:30:00.000Z,military,Exercise Desert Shield (field phase),Military Training Wing assessment record,Pass
@@ -657,14 +657,14 @@ cadet_id,ts,category,title,detail,result
 1047,2025-01-07T12:30:00.000Z,military,Live-fire qualification — Range 2,Military Training Wing assessment record,Retest scheduled
 1047,2025-03-15T12:30:00.000Z,academic,Term result — Spring 25,SIS grade roll-up · attendance 81.7%,GPA 3.51
 1047,2025-06-16T12:30:00.000Z,academic,Simulation & Wargaming Lab — Scenario Bravo — completed,LMS competency record synced to SIS via flow 1,78%
-1047,2025-06-17T12:30:00.000Z,military,Joint exercise with Rabdan Academy,Military Training Wing assessment record,Pass
+1047,2025-06-17T12:30:00.000Z,military,Combined-arms field exercise,Military Training Wing assessment record,Pass
 1047,2025-09-13T12:30:00.000Z,academic,Term result — Fall 25,SIS grade roll-up · attendance 86.2%,GPA 3.57
 1047,2026-02-01T12:30:00.000Z,academic,Term result — Spring 26,SIS grade roll-up · attendance 97.4%,GPA 3.30
 1047,2026-02-28T12:30:00.000Z,military,Exercise Desert Shield (field phase),Military Training Wing assessment record,Pass
 1047,2026-03-17T12:30:00.000Z,academic,Cyber Range — Defensive Ops Exercise — completed,LMS competency record synced to SIS via flow 1,83%
 1047,2026-05-30T12:30:00.000Z,readiness,HPO fitness assessment (quarterly),VO₂max 54.1 · body composition within standard,Fitness 68/100
 1047,2026-07-04T12:30:00.000Z,readiness,Early-intervention flag raised,HPO predictive analytics — composite/attendance below threshold,Support plan active
-1048,2024-06-07T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BA International Relations & Diplomacy (Sorbonne University Abu Dhabi) · Squadron Ghaf,1048
+1048,2024-06-07T12:30:00.000Z,admin,Enrolment — immutable Cadet ID issued,Registered in SIS · BA International Relations & Diplomacy (Zayed Military University) · Squadron Ghaf,1048
 1048,2024-06-19T12:30:00.000Z,military,Basic military induction completed,"Drill, fieldcraft and weapons-handling foundation phase",Pass
 1048,2024-10-19T12:30:00.000Z,academic,Term result — Fall 24,SIS grade roll-up · attendance 88%,GPA 1.81
 1048,2024-11-08T12:30:00.000Z,academic,Simulation & Wargaming Lab — Scenario Bravo — completed,LMS competency record synced to SIS via flow 1,91%
@@ -675,7 +675,7 @@ cadet_id,ts,category,title,detail,result
 1048,2025-09-16T12:30:00.000Z,academic,Term result — Fall 25,SIS grade roll-up · attendance 89.2%,GPA 1.94
 1048,2026-02-11T12:30:00.000Z,academic,Term result — Spring 26,SIS grade roll-up · attendance 96.4%,GPA 1.62
 1048,2026-03-25T12:30:00.000Z,military,Exercise Falcon Dawn (night navigation),Military Training Wing assessment record,Pass
-1048,2026-04-04T12:30:00.000Z,military,Joint exercise with Rabdan Academy,Military Training Wing assessment record,Retest scheduled
+1048,2026-04-04T12:30:00.000Z,military,Combined-arms field exercise,Military Training Wing assessment record,Retest scheduled
 1048,2026-04-28T12:30:00.000Z,academic,AI & Data Lab — Intelligence Fusion Module — completed,LMS competency record synced to SIS via flow 1,92%
 1048,2026-05-13T12:30:00.000Z,academic,GIS Lab — Terrain Analysis Capstone — completed,LMS competency record synced to SIS via flow 1,87%
 1048,2026-05-29T12:30:00.000Z,readiness,HPO fitness assessment (quarterly),VO₂max 50.1 · body composition within standard,Fitness 70/100

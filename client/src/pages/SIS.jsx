@@ -18,7 +18,7 @@ function StudentProfile({ studentId, onGrade }) {
     <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) minmax(0,1.6fr)', gap: 14, alignItems: 'start' }}>
       <Panel title={s.name} sub={`${s.username} · ${s.company} Company · Year ${s.year} · ${s.programme || '—'}`}>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
-          {[['College', s.tenant], ['GPA', s.gpa ?? '—'], ['Academic %', s.academic_pct], ['Composite', s.composite],
+          {[['College', s.college_label || s.college], ['GPA', s.gpa ?? '—'], ['Academic %', s.academic_pct], ['Composite', s.composite],
             ['Fitness', s.fitness?.score], ['Military', s.military?.score], ['Conduct', s.conduct?.score],
             ['Registration', s.hold ? 'HOLD' : 'Clear']].map(([l, v]) => (
             <div key={l} style={{ background: 'var(--app-surface-soft)', borderRadius: 8, padding: '8px 10px' }}>
@@ -85,7 +85,7 @@ export default function SIS({ user }) {
   return (
     <>
       <PageHeader title="Student Information System"
-        subtitle="Federated SIS/ERP — sovereign core + 3 delivery partners on one governed record · Term Fall 2026 (202610)"
+        subtitle="Unified SIS/ERP across the four academic colleges of Zayed Military University · one governed cadet record · Term Fall 2026 (202610)"
         right={<InstitutionSwitcher user={user} college={college} onChange={setCollege} />} />
 
       {!isCadet && (
@@ -100,7 +100,7 @@ export default function SIS({ user }) {
       {tab === 'Institution Dashboard' && (
         <>
           <KPIGrid>
-            <KPICard label="Total Students" value={k.students} icon={<IcoPeople />} subValues={[{ label: 'Institutions', value: 4 }]} />
+            <KPICard label="Total Cadets" value={k.students} icon={<IcoPeople />} subValues={[{ label: 'Colleges', value: 4 }]} />
             <KPICard label="Active Sections" value={k.sections} icon={<IcoBook />} subValues={[{ label: 'Term', value: 'Fall 2026' }]} />
             <KPICard label="Registrations" value={k.registrations} icon={<IcoClipboard />} subValues={[{ label: 'Credit hours', value: k.creditHours }, { label: 'Avg load', value: k.avgLoad }]} />
             <KPICard label="Avg GPA" value={k.avgGpa} icon={<IcoTrendUp />} subValues={[{ label: 'Graded', value: k.gradedCourses }]} />
@@ -109,12 +109,12 @@ export default function SIS({ user }) {
           </KPIGrid>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) minmax(0,1fr)', gap: 14, marginBottom: 14 }}>
-            <Panel title="Enrolment by College" sub="Federated MSI — partner-entity integration via governed gateway">
+            <Panel title="Enrolment by College" sub="Four academic colleges of Zayed Military University">
               {data.enrolByCollege.map((c) => (
                 <div key={c.code} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '7px 4px', borderBottom: '1px solid var(--app-surface-raised)' }}>
                   <div style={{ flex: 1 }}>
-                    <div style={{ fontSize: 12.5, fontWeight: 650, color: 'var(--app-text)' }}>{c.tenant} · {c.code}</div>
-                    <div style={{ fontSize: 10.5, color: 'var(--app-text-faint)' }}>{c.name}</div>
+                    <div style={{ fontSize: 12.5, fontWeight: 650, color: 'var(--app-text)' }}>{c.name}</div>
+                    <div style={{ fontSize: 10.5, color: 'var(--app-text-faint)' }}>College code {c.code}</div>
                   </div>
                   <span style={{ fontSize: 12, color: 'var(--app-text-muted)' }}>{c.sections} sections</span>
                   <b style={{ fontSize: 16, color: 'var(--app-text)' }}>{c.students}</b>

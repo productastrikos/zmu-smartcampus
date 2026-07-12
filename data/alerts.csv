@@ -5,7 +5,7 @@ ts,domain,severity,title,source,status
 2026-07-12T09:30:00.000Z,Campus Ops,medium,Library reading hall CO₂ above 1100 ppm — ventilation boost recommended,IoT / IAQ Sensors,open
 2026-07-12T08:00:00.000Z,Integration,medium,Data diode (flow 5) error rate 2.8% — schema drift on 2 BMS controllers,Integration Platform,open
 2026-07-12T06:18:00.000Z,Campus Ops,medium,2 weapons overdue for return > 10h — armoury reconciliation required,WMS,acknowledged
-2026-07-12T04:30:00.000Z,Academic,medium,Saluki squadron avg sleep 5.9h — academic performance correlation flagged,AI Learning Analytics,acknowledged
+2026-07-12T04:30:00.000Z,Academic,medium,Saqr Company avg sleep 5.9h — academic performance correlation flagged,AI Learning Analytics,acknowledged
 2026-07-12T03:06:00.000Z,Enterprise,low,ICT budget utilization 61% vs 50% plan — review Q3 commitments (Muwazana),ERP Finance,acknowledged
 2026-07-11T23:54:00.000Z,Campus Ops,low,Dining facility energy spike +90% vs baseline yesterday evening,EMS Analytics,resolved
 2026-07-11T21:24:00.000Z,Academic,low,"Partner roster sync (SUAD) delayed 25 min — within SLA, monitoring",MFT Gateway,resolved

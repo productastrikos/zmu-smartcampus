@@ -1,10 +1,10 @@
 program,partner,enrolled,avg_gpa,avg_attendance,at_risk
-BSc Systems Engineering,Khalifa University,6,3.44,93.0,0
-BSc Defence & Security Studies,Rabdan Academy,6,3.11,88.2,0
-BSc Military Science & Tactics,ZMU Core,6,2.93,92.6,2
-BSc Cyber Security Engineering,Khalifa University,4,2.94,94.6,0
-BEng Electrical & Computer Engineering,Khalifa University,5,2.98,87.2,3
-BSc Homeland Security & Resilience,Rabdan Academy,6,3.33,88.7,2
-BA International Relations & Diplomacy,Sorbonne University Abu Dhabi,4,2.92,94.5,1
-BA Strategic Languages & Translation,Sorbonne University Abu Dhabi,4,3.16,85.8,2
-BSc Military Leadership,ZMU Core,7,2.38,92.7,2
+BSc Systems Engineering,Zayed Military University,6,3.44,93.0,0
+BSc Defence & Security Studies,Zayed Military University,6,3.11,88.2,0
+BSc Military Science & Tactics,Zayed Military University,6,2.93,92.6,2
+BSc Cyber Security Engineering,Zayed Military University,4,2.94,94.6,0
+BEng Electrical & Computer Engineering,Zayed Military University,5,2.98,87.2,3
+BSc Homeland Security & Resilience,Zayed Military University,6,3.33,88.7,2
+BA International Relations & Diplomacy,Zayed Military University,4,2.92,94.5,1
+BA Strategic Languages & Translation,Zayed Military University,4,3.16,85.8,2
+BSc Military Leadership,Zayed Military University,7,2.38,92.7,2

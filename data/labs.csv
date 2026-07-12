@@ -1,8 +1,8 @@
 lab,partner,workstations,utilization_pct,sessions_today,faults_open
-Cyber Range Lab,Khalifa University,40,89,2,0
-Aerospace CAD Lab,Khalifa University,36,65,8,0
-GIS Lab 1,Sorbonne University AD,30,54,3,0
-GIS Lab 2,Sorbonne University AD,30,73,2,0
-Simulation & Wargaming Lab,Rabdan Academy,28,81,3,0
-AI & Data Lab,Khalifa University,34,59,8,1
+Cyber Range Lab,Engineering & Technology,40,89,2,0
+Aerospace CAD Lab,Engineering & Technology,36,65,8,0
+GIS Lab 1,Humanities & Intl Studies,30,54,3,0
+GIS Lab 2,Humanities & Intl Studies,30,73,2,0
+Simulation & Wargaming Lab,Defence & Security,28,81,3,0
+AI & Data Lab,Engineering & Technology,34,59,8,1
 Languages Lab,ZMU Core,32,41,4,0

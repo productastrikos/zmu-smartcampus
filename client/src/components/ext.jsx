@@ -13,21 +13,18 @@ export function useExt(path) {
   return { data, refresh: () => setTick((t) => t + 1) };
 }
 
-/* Institution switcher — partners are locked to their own college */
+/* College filter — scopes every widget to one of ZMU's academic colleges */
 export function InstitutionSwitcher({ user, college, onChange }) {
   const { data: colleges } = useExt('/ext/colleges');
-  const locked = user?.role === 'partner';
-  useEffect(() => { if (locked && user.college_code && college !== user.college_code) onChange(user.college_code); }, [locked]);
   if (!colleges) return null;
-  const opts = [{ code: 'ALL', tenant: 'All Institutions' }, ...colleges];
+  const opts = [{ code: 'ALL', label: 'All Colleges' }, ...colleges.map((c) => ({ code: c.code, label: c.label || c.name }))];
   return (
-    <div className="app-timeframe-control" title={locked ? 'Scoped to your institution' : 'Institution switcher — scopes every widget'}>
+    <div className="app-timeframe-control" title="College filter — scopes every widget to a ZMU college">
       {opts.map((c) => (
-        <button key={c.code} disabled={locked && c.code !== user.college_code}
+        <button key={c.code}
           className={`app-timeframe-btn${college === c.code ? ' is-active' : ''}`}
-          style={locked && c.code !== user.college_code ? { opacity: 0.35, cursor: 'not-allowed' } : undefined}
           onClick={() => onChange(c.code)}>
-          {c.tenant}
+          {c.label}
         </button>
       ))}
     </div>

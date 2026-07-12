@@ -38,7 +38,7 @@ export default function MeritBoard({ user }) {
   return (
     <>
       <PageHeader title="Composite Score & Order of Merit"
-        subtitle="Four-stream fusion — Academic (SIS/LMS) · Military · Fitness · Conduct — on the single immutable Cadet ID · weights are versioned ZMU policy"
+        subtitle="Four-stream fusion — Academic (SIS/LMS) · Military · Fitness · Conduct — on the single immutable Cadet ID · weights are versioned ZMU policy · scoped by college"
         right={<InstitutionSwitcher user={user} college={college} onChange={setCollege} />} />
 
       <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) minmax(0,2fr)', gap: 14, alignItems: 'start' }}>
@@ -83,7 +83,7 @@ export default function MeritBoard({ user }) {
           <Advisory items={[
             `${data.table.filter((r) => r.composite < 65).length} cadets sit below a 65 composite under current weights — intervention briefs (study plan + training-load adjustments) are recommended for each.`,
             'Raising the fitness weight by 5 points would move physically strong cadets up the order — model the change with the sliders before applying; every version is audited.',
-            meRank ? `Your standing: rank #${meRank.rank} of ${data.table.length}, composite ${meRank.composite}.` : 'Scoped reporting: partner registrars see only their own College; the Commandant sees all four.',
+            meRank ? `Your standing: rank #${meRank.rank} of ${data.table.length}, composite ${meRank.composite}.` : 'Use the college filter to scope the board to any one of ZMU’s four colleges; the Commandant sets the policy weights for all.',
           ]} />
         </div>
 

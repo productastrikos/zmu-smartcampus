@@ -58,13 +58,13 @@ export default function LMS({ user }) {
   return (
     <>
       <PageHeader title="Learning Management"
-        subtitle="20 live courses across four College tenants · originality screening on submission · Safe Exam Browser high-stakes quizzes"
+        subtitle="20 live courses across ZMU's four academic colleges · originality screening on submission · Safe Exam Browser high-stakes quizzes"
         right={<InstitutionSwitcher user={user} college={college} onChange={setCollege} />} />
 
       {report ? <Originality code={report} user={user} onClose={() => setReport(null)} /> : (
         <>
           {Object.entries(byCollege).map(([collegeName, courses]) => (
-            <Panel key={collegeName} title={collegeName} sub={`${courses[0].tenant} tenant · ${courses.length} courses`} style={{ marginBottom: 14 }}>
+            <Panel key={collegeName} title={collegeName} sub={`Zayed Military University · ${courses.length} courses`} style={{ marginBottom: 14 }}>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: 12 }}>
                 {courses.map((c) => (
                   <div key={c.course_code} style={{ background: 'var(--app-surface-soft)', borderRadius: 10, padding: '12px 14px', border: '1px solid var(--app-panel-border)' }}>

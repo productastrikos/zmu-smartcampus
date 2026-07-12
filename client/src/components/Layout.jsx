@@ -62,9 +62,8 @@ const NAV = [
 /* RBAC — which routes each restricted role may see (staff-level roles see all) */
 export const ROLE_ROUTES = {
   cadet: ['/cadet-journey', '/sis', '/lms', '/merit', '/hpo'],
-  partner: ['/sis', '/lms', '/merit', '/academic'],
 };
-export const homeFor = (role) => (role === 'cadet' ? '/cadet-journey' : role === 'partner' ? '/sis' : '/');
+export const homeFor = (role) => (role === 'cadet' ? '/cadet-journey' : '/');
 
 const PAGE_TITLES = {
   '/': 'Command Center',
@@ -109,7 +108,7 @@ export default function Layout({ children, user, onLogout }) {
     ...sec,
     items: allowed ? sec.items.filter((it) => allowed.includes(it.to)) : sec.items,
   })).filter((sec) => sec.items.length);
-  const roleLabel = { superadmin: 'Super Admin', commandant: 'Commandant', staff: 'Command Staff', partner: 'Partner Registrar', cadet: 'Officer Cadet' }[user?.role] || 'Duty Officer';
+  const roleLabel = { superadmin: 'Super Admin', commandant: 'Commandant', staff: 'Command Staff', cadet: 'Officer Cadet' }[user?.role] || 'Duty Officer';
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>

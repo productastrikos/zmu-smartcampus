@@ -168,7 +168,7 @@ export default function StreamPage({ user, which }) {
                   which === 'hpo' ? [
                     c.score < 65 ? `${c.name.split(' ')[0]} is below the 65 readiness floor — propose a supervised 4-week conditioning block before the next field exercise.`
                       : `Readiness ${c.score} (${c.band}) — training load is sustainable; next DEXA due within 60 days.`,
-                    'Cohort insight: sub-6h sleepers average 9 points lower readiness — flag habitual short sleepers to squadron PT instructors.',
+                    'Cohort insight: sub-6h sleepers average 9 points lower readiness — flag habitual short sleepers to company PT instructors.',
                   ] : which === 'military' ? [
                     c.marksmanship_pct >= 90 ? `Marksmanship ${c.marksmanship_pct}% (${c.marksmanship}) — nominate for the inter-college shooting team.`
                       : `Marksmanship ${c.marksmanship_pct}% — schedule range remediation; Expert threshold is 90%.`,
