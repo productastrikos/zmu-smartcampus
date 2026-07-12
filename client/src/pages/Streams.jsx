@@ -168,15 +168,26 @@ export default function StreamPage({ user, which }) {
                   which === 'hpo' ? [
                     c.score < 65 ? `${c.name.split(' ')[0]} is below the 65 readiness floor — propose a supervised 4-week conditioning block before the next field exercise.`
                       : `Readiness ${c.score} (${c.band}) — training load is sustainable; next DEXA due within 60 days.`,
-                    'Cohort insight: sub-6h sleepers average 9 points lower readiness — flag habitual short sleepers to company PT instructors.',
+                    `2.4 km run ${c.run_mmss} with ${c.pushups} push-ups / ${c.situps} sit-ups — ${(c.pushups >= 60 ? 'upper-body strength is a standout' : 'add tempo push-up sets to lift the score')}.`,
+                    `VO₂max ${c.vo2max} ml/kg/min and resting HR ${c.resting_hr} bpm indicate ${(c.vo2max >= 50 ? 'strong aerobic capacity' : 'aerobic base worth building with steady-state work')}.`,
+                    `Sleep score ${c.sleep_score}/100 — cohort data shows sub-6h sleepers average 9 points lower readiness; flag habitual short sleepers to company PT instructors.`,
+                    `DEXA body fat ${c.dexa_bodyfat_pct}% against ${c.lean_mass_kg} kg lean mass — recomposition, not weight loss, is the right target here.`,
+                    `Fitness feeds 20% of the composite — a 5-point gain here would move ${c.name.split(' ')[0]} up the Order of Merit; model it on that page.`,
                   ] : which === 'military' ? [
                     c.marksmanship_pct >= 90 ? `Marksmanship ${c.marksmanship_pct}% (${c.marksmanship}) — nominate for the inter-college shooting team.`
-                      : `Marksmanship ${c.marksmanship_pct}% — schedule range remediation; Expert threshold is 90%.`,
-                    `Leadership eval ${c.leadership_eval}/5 across ${c.field_exercises} field exercises — trend feeds the commissioning board pack.`,
+                      : `Marksmanship ${c.marksmanship_pct}% — schedule range remediation; the Expert threshold is 90%.`,
+                    `Leadership eval ${c.leadership_eval}/5 across ${c.field_exercises} field exercises — the trend feeds the commissioning board pack.`,
+                    `Tactical assessment ${c.tactical_assessment}/100 with ${c.drills_completed} drills logged — ${(c.tactical_assessment >= 85 ? 'ready for a section-command appointment' : 'pair with a senior cadet on the next exercise')}.`,
+                    `Parade discipline graded ${c.discipline_on_parade}; last exercise: ${c.last_exercise} — consistency here weighs on the honour board.`,
+                    `Military stream is 25% of the composite — the single largest lever; strong marksmanship + leadership compounds fast.`,
                   ] : [
                     c.hold ? `Active registration hold — ${c.name.split(' ')[0]} cannot register for classes until conduct returns above 65 (merits release it automatically).`
                       : `Honour standing "${c.standing}" — ${c.merits} merits vs ${c.demerits} demerits this term.`,
+                    `Merit-to-demerit ratio ${c.merits}:${c.demerits} — ${(c.merits > c.demerits * 2 ? 'a strong positive record for the commissioning pack' : 'worth a mentoring conversation before it trends further')}.`,
                     'Pattern watch: demerits clustered on barracks standards respond best to peer-mentor pairing, not sanctions.',
+                    `Conduct is 15% of the composite and the only stream with a hard gate — below 65 it blocks registration outright, so it is the first thing to stabilise.`,
+                    c.hold ? 'One well-earned merit will lift conduct back above the 65 line and auto-release the SIS hold — no manual override needed.'
+                      : `Sanctions on record: ${c.sanctions ?? 0}. Honour standing is stable; keep reinforcing turnout and punctuality.`,
                   ]
                 } />
               </div>

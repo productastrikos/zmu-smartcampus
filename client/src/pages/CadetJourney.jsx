@@ -4,6 +4,7 @@ import { useApi } from '../services/api';
 import KPICard, { IcoGrad, IcoTarget, IcoTrendUp, IcoHeart, IcoAttendance, IcoActivity, IcoLock } from '../components/KPICard';
 import { Panel, StatusChip, sevChip, Loading, PageHeader, KPIGrid, DataTable, timeAgo } from '../components/ui';
 import { TrendChart, RadarPanel, C } from '../components/charts';
+import { Advisory, CadetPicker } from '../components/ext';
 import KPIDetailPanel from '../components/KPIDetailPanel';
 
 /* Cadet Journey — unified longitudinal timeline on the single immutable
@@ -55,25 +56,20 @@ export default function CadetJourney() {
     return filter === 'all' ? data.timeline : data.timeline.filter((e) => e.category === filter);
   }, [data, filter]);
 
-  // Selector must stay mounted even while the per-cadet payload reloads,
-  // otherwise changing the dropdown flashes the whole page to a spinner.
+  // Clean cadet picker (prev/next + searchable popover). Stays mounted while
+  // the per-cadet payload reloads so switching never blanks the page.
   const selector = list && (
-    <select
-      value={cadetId || ''}
-      onChange={(e) => { setSelected(e.target.value); setFilter('all'); }}
-      style={{
-        background: 'var(--app-surface)', color: 'var(--app-text)', border: '1px solid var(--app-panel-border)',
-        borderRadius: 8, padding: '8px 12px', fontSize: 12, fontFamily: 'inherit', maxWidth: 340,
-      }}>
-      {list.cadets.map((cd) => (
-        <option key={cd.cadet_id} value={cd.cadet_id}>
-          #{cd.order_of_merit} · {cd.cadet_id} — {cd.name} ({cd.squadron}, Yr {cd.year})
-        </option>
-      ))}
-    </select>
+    <CadetPicker
+      cadets={list.cadets}
+      value={cadetId}
+      onChange={(id) => { setSelected(id); setFilter('all'); }}
+      labelFor={(cd) => `#${cd.order_of_merit} · ${cd.squadron} · Year ${cd.year}`}
+    />
   );
 
-  const ready = data?.cadet && data.cadet.cadet_id === cadetId;
+  // cadet_id from the API is numeric but the picker value is a string — compare
+  // as strings so switching cadets doesn't get stuck on the loading state.
+  const ready = data?.cadet && String(data.cadet.cadet_id) === String(cadetId);
 
   return (
     <>
@@ -177,6 +173,21 @@ export default function CadetJourney() {
                     <StatusChip kind={k.acwr > 1.4 ? 'danger' : 'success'}>{k.acwr > 1.4 ? 'HIGH INJURY RISK' : 'WITHIN LIMITS'}</StatusChip>
                   </div>
                 </Panel>
+
+                <Advisory items={[
+                  k.acwr > 1.4
+                    ? `${c.name.split(' ')[0]}'s acute:chronic workload is ${k.acwr} — above the 1.4 injury-risk line; propose a 15% load reduction before the next field exercise.`
+                    : `Workload ratio ${k.acwr ?? '—'} sits in the safe band — current training volume is sustainable.`,
+                  c.risk_level === 'high'
+                    ? `Composite ${k.composite} and ${c.attendance}% attendance place ${c.name.split(' ')[0]} in the early-intervention queue — pair a study plan with a mentor this week.`
+                    : `Composite ${k.composite} (rank #${k.orderOfMerit}, ${k.percentile}th percentile) is trending healthy across all four streams.`,
+                  `Academic ${c.gpa} GPA vs company average composite ${k.squadronAvgComposite} — ${(+c.gpa >= 3 ? 'a strength to build the commissioning pack around' : 'the lever with the most headroom to lift the composite')}.`,
+                  k.weaponsOut > 0
+                    ? `${k.weaponsOut} weapon(s) currently issued from the armoury — confirm return against the WMS ledger at end of exercise.`
+                    : `Armoury ledger clear — no weapons outstanding against this Cadet ID.`,
+                  `Fitness tier "${c.fitness_tier}" (${c.fitness_score}/100) with military ${c.military_score} and conduct ${c.conduct_score} — the balance the Order of Merit weights reward.`,
+                  `Readiness today ${k.readinessToday ?? '—'}/100 from the Garmin ${c.garmin_device}; sleep and HRV are the fastest levers to move it.`,
+                ]} />
 
                 <Panel title={`${data.squadron.name} Company — HPO Domains`} sub={`Peer cohort of ${data.squadron.peers} · company avg composite ${data.squadron.avgComposite}`}>
                   <RadarPanel data={radar} angleKey="domain" height={210}

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import KPICard, { IcoPeople, IcoBook, IcoClipboard, IcoTrendUp, IcoLock, IcoLink } from '../components/KPICard';
 import { Panel, StatusChip, Loading, PageHeader, KPIGrid, DataTable, timeAgo, ProgressBar } from '../components/ui';
 import { Bars, Donut, C } from '../components/charts';
-import { useExt, InstitutionSwitcher, Advisory } from '../components/ext';
+import { useExt, InstitutionSwitcher, Advisory, CadetPicker } from '../components/ext';
 
 /* Student Information System — Ellucian-class SIS over the federated MSI:
    sovereign core (ZMU · CMSL) + three delivery partners, multi-tenant via
@@ -39,6 +39,9 @@ function StudentProfile({ studentId, onGrade }) {
                 ? `Stream scores flag ${s.name.split(' ')[0]} for early intervention — recommend a structured support plan before term end.`
                 : `Record is in good standing across all four streams; no intervention indicated.`,
             `Composite ${s.composite} under current weights — a 5-point fitness gain would move the Order of Merit rank; see Composite & Order of Merit.`,
+            `GPA ${s.gpa ?? '—'} on ${s.academic_pct}% average — academic performance is 40% of the composite, the heaviest single weight.`,
+            `${s.name.split(' ')[0]} reads on one immutable Cadet ID across SIS, LMS, HPO, military and conduct — every figure on this page is joined, not re-keyed.`,
+            s.fitness?.score != null ? `Streams — fitness ${s.fitness.score}, military ${s.military?.score}, conduct ${s.conduct?.score}; the weakest one is where an intervention returns the most composite.` : 'Stream scores sync nightly into the composite.',
           ]} />
         </div>
       </Panel>
@@ -227,10 +230,8 @@ export default function SIS({ user }) {
         <>
           {!isCadet && students && (
             <div style={{ marginBottom: 12 }}>
-              <select value={studentId} onChange={(e) => setStudentId(+e.target.value)}
-                style={{ background: 'var(--app-surface)', color: 'var(--app-text)', border: '1px solid var(--app-panel-border)', borderRadius: 8, padding: '8px 12px', fontSize: 12, fontFamily: 'inherit', maxWidth: 340 }}>
-                {students.map((s) => <option key={s.id} value={s.id}>{s.id} — {s.name} ({s.tenant}, {s.company})</option>)}
-              </select>
+              <CadetPicker cadets={students} value={studentId} onChange={(id) => setStudentId(+id)}
+                labelFor={(s) => `${s.company} · ${s.tenant}`} />
             </div>
           )}
           <StudentProfile studentId={isCadet ? user.student_id : studentId} />
@@ -241,10 +242,8 @@ export default function SIS({ user }) {
         <>
           {students && (
             <div style={{ marginBottom: 12 }}>
-              <select value={studentId} onChange={(e) => setStudentId(+e.target.value)}
-                style={{ background: 'var(--app-surface)', color: 'var(--app-text)', border: '1px solid var(--app-panel-border)', borderRadius: 8, padding: '8px 12px', fontSize: 12, fontFamily: 'inherit', maxWidth: 340 }}>
-                {students.map((s) => <option key={s.id} value={s.id}>{s.id} — {s.name} ({s.tenant}, {s.company})</option>)}
-              </select>
+              <CadetPicker cadets={students} value={studentId} onChange={(id) => setStudentId(+id)}
+                labelFor={(s) => `${s.company} · ${s.tenant}`} />
             </div>
           )}
           <StudentProfile studentId={studentId} onGrade={gradeEdit} />
