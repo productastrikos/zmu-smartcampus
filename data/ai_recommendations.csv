@@ -1,6 +1,6 @@
 rec_id,domain,trigger,recommendation,impact,confidence_pct,status
 AI-101,Campus Ops,AHU-02 vibration + temp drift (Academic Block B),Auto-created CMMS work order WO-2214; shifted load to AHU-01/03; predicted bearing failure in 6 days,Avoids unplanned outage of 14 classrooms,92,action taken
-AI-102,Readiness,8 cadets ACWR > 1.4 before Exercise Desert Shield,Propose modified training load for flagged cadets; notify squadron PT instructors via HPO,Projected 40% reduction in soft-tissue injuries,87,pending approval
+AI-102,Readiness,1 cadets ACWR > 1.4 before Exercise Desert Shield,Propose modified training load for flagged cadets; notify squadron PT instructors via HPO,Projected 40% reduction in soft-tissue injuries,87,pending approval
 AI-103,Energy,Dining kWh spike +90% (kitchen exhaust runtime),Reschedule exhaust purge cycle to 22:00; recommission VFD setpoints,Est. saving 210 MWh/yr (≈ AED 96k),84,pending approval
 AI-104,Academic,Saluki squadron sleep < 6h correlating with quiz scores −8%,Adjust night-training rotation; push study-plan changes to affected cadets in LMS,Protects composite scores of 50 cadets,78,advisory
 AI-105,Security,Repeated tailgating alerts at Labs Centre east door,Increase door close-delay enforcement; dispatch patrol check 17:00–19:00,Closes ORANGE-network physical gap,81,action taken

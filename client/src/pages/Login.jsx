@@ -7,18 +7,43 @@ const FEATURES = [
   { icon: 'M12 2L2 7l10 5 10-5-10-5z M2 17l10 5 10-5 M2 12l10 5 10-5', title: 'Live campus digital twin', desc: 'A real-time twin of every zone, building and sensor across the campus.' },
 ];
 
+/* Demo accounts (RBAC) — mirrors the environment's role model */
+const DEMO_ACCOUNTS = [
+  { u: 'superadmin', label: 'Super admin' },
+  { u: 'commandant.rashid', label: 'Commandant' },
+  { u: 'staff.hassan', label: 'Command staff' },
+  { u: 'khalifa.registrar', label: 'Khalifa registrar' },
+  { u: 'sorbonne.registrar', label: 'Sorbonne registrar' },
+  { u: 'rabdan.registrar', label: 'Rabdan registrar' },
+  { u: 'cadet1001', label: 'Cadet 1001' },
+];
+
 export default function Login({ onLogin }) {
   const [mode, setMode] = useState('login');
-  const [email, setEmail] = useState('duty.officer@zmu.ac.ae');
-  const [password, setPassword] = useState('demo1234');
+  const [email, setEmail] = useState('superadmin');
+  const [password, setPassword] = useState('Zayed@2027');
   const [name, setName] = useState('');
+  const [err, setErr] = useState(null);
   const navigate = useNavigate();
+
+  async function doLogin(username) {
+    setErr(null);
+    try {
+      const res = await fetch('/api/auth/login', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username }),
+      });
+      if (!res.ok) throw new Error((await res.json()).error || 'Login failed');
+      const user = await res.json();
+      onLogin({ ...user, email: `${user.username}@zmu.ac.ae` });
+      navigate('/');
+    } catch (e) { setErr(String(e.message || e)); }
+  }
 
   function submit(e) {
     e.preventDefault();
     if (!email.trim() || !password.trim()) return;
-    onLogin({ email, name: name || 'Duty Officer' });
-    navigate('/');
+    doLogin(email.trim().replace(/@.*$/, ''));
   }
 
   return (
@@ -129,8 +154,23 @@ export default function Login({ onLogin }) {
             {mode === 'signup' && (
               <Field label="Full name" value={name} onChange={setName} placeholder="e.g. Capt. A. Al Mazrouei" type="text" />
             )}
-            <Field label="Email" value={email} onChange={setEmail} placeholder="you@zmu.ac.ae" type="email" />
+            <Field label="Username" value={email} onChange={setEmail} placeholder="e.g. commandant.rashid" type="text" />
             <Field label="Password" value={password} onChange={setPassword} placeholder="••••••••" type="password" />
+            {err && <div style={{ fontSize: 12, color: 'var(--app-danger)', fontWeight: 600 }}>{err}</div>}
+
+            <div>
+              <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--app-text-faint)', marginBottom: 7 }}>
+                Demo roles — one-click sign in
+              </div>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+                {DEMO_ACCOUNTS.map((a) => (
+                  <button key={a.u} type="button" onClick={() => doLogin(a.u)} style={{
+                    padding: '5px 10px', fontSize: 11, fontWeight: 600, borderRadius: 14, cursor: 'pointer',
+                    border: '1px solid var(--app-accent-border)', background: 'var(--app-accent-bg)', color: 'var(--app-text-muted)',
+                  }}>{a.label}</button>
+                ))}
+              </div>
+            </div>
 
             {mode === 'login' && (
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: 12 }}>

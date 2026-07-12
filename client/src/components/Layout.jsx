@@ -23,6 +23,22 @@ const NAV = [
     ],
   },
   {
+    section: 'Academic Core',
+    items: [
+      { to: '/sis', label: 'Student Information System', icon: ['M4 19.5A2.5 2.5 0 016.5 17H20', 'M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z'] },
+      { to: '/lms', label: 'Learning Management', icon: ['M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z', 'M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z'] },
+      { to: '/merit', label: 'Composite & Order of Merit', icon: ['M8 21h8', 'M12 17v4', 'M17 4H7v5a5 5 0 0010 0z', 'M17 6h3a2 2 0 01-2 4', 'M7 6H4a2 2 0 002 4'] },
+    ],
+  },
+  {
+    section: 'Readiness Streams',
+    items: [
+      { to: '/hpo', label: 'HPO Fitness & Readiness', icon: ['M22 12h-4l-3 9L9 3l-3 9H2'] },
+      { to: '/military', label: 'Military Training Record', icon: ['M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z'] },
+      { to: '/conduct', label: 'Conduct & Discipline', icon: ['M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z', 'M9 12l2 2 4-4'] },
+    ],
+  },
+  {
     section: 'Modules',
     items: [
       { to: '/academic', label: 'Academics & Learning', icon: ['M22 10L12 5 2 10l10 5 10-5z', 'M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5'] },
@@ -43,9 +59,22 @@ const NAV = [
   },
 ];
 
+/* RBAC — which routes each restricted role may see (staff-level roles see all) */
+export const ROLE_ROUTES = {
+  cadet: ['/cadet-journey', '/sis', '/lms', '/merit', '/hpo'],
+  partner: ['/sis', '/lms', '/merit', '/academic'],
+};
+export const homeFor = (role) => (role === 'cadet' ? '/cadet-journey' : role === 'partner' ? '/sis' : '/');
+
 const PAGE_TITLES = {
   '/': 'Command Center',
   '/digital-twin': 'Campus Digital Twin',
+  '/sis': 'Student Information System',
+  '/lms': 'Learning Management — Colleges',
+  '/merit': 'Composite Score & Order of Merit',
+  '/hpo': 'HPO Fitness & Readiness',
+  '/military': 'Military Training Record',
+  '/conduct': 'Conduct & Discipline Register',
   '/academic': 'Academics & Learning',
   '/readiness': 'Readiness & Performance',
   '/enterprise': 'Enterprise & Finance',
@@ -73,6 +102,14 @@ export default function Layout({ children, user, onLogout }) {
 
   const sidebarW = collapsed ? 68 : 244;
   const initials = (user?.name || 'Duty Officer').split(' ').map((p) => p[0]).slice(0, 2).join('').toUpperCase();
+
+  // RBAC — restricted roles only see their allowed routes
+  const allowed = ROLE_ROUTES[user?.role];
+  const nav = NAV.map((sec) => ({
+    ...sec,
+    items: allowed ? sec.items.filter((it) => allowed.includes(it.to)) : sec.items,
+  })).filter((sec) => sec.items.length);
+  const roleLabel = { superadmin: 'Super Admin', commandant: 'Commandant', staff: 'Command Staff', partner: 'Partner Registrar', cadet: 'Officer Cadet' }[user?.role] || 'Duty Officer';
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
@@ -103,7 +140,7 @@ export default function Layout({ children, user, onLogout }) {
 
           {/* Nav */}
           <nav style={{ flex: 1, marginTop: 4 }}>
-            {NAV.map((sec) => (
+            {nav.map((sec) => (
               <div key={sec.section}>
                 {!collapsed && <div className="nav-section-label">{sec.section}</div>}
                 {collapsed && <div style={{ height: 12 }} />}
@@ -181,8 +218,11 @@ export default function Layout({ children, user, onLogout }) {
             {/* Theme toggle */}
             <ThemeToggle />
 
-            {/* Profile + logout */}
+            {/* Profile + role + logout */}
             <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+              <span className="status-chip status-chip-accent" title={user?.college_code ? `Scoped to ${user.college_code}` : 'Full scope'}>
+                {roleLabel}{user?.college_code ? ` · ${user.college_code}` : ''}
+              </span>
               <div style={{
                 width: 34, height: 34, borderRadius: 99, background: 'linear-gradient(135deg, #1e3a5f, #3b7de8)',
                 color: '#fff', fontWeight: 700, fontSize: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,

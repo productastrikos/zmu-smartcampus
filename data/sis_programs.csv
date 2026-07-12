@@ -1,7 +1,10 @@
 program,partner,enrolled,avg_gpa,avg_attendance,at_risk
-Defence & Security Studies,Rabdan Academy,50,3.00,90.7,11
-Computer & Cyber Engineering,Khalifa University,50,2.99,91.6,6
-Aerospace & Mechanical Engineering,Khalifa University,50,3.08,89.4,5
-International Relations & Strategy,Sorbonne University AD,50,2.97,91.1,6
-GIS & Geospatial Intelligence,Sorbonne University AD,50,2.87,90.8,12
-Military Leadership & Command,ZMU Core,50,2.93,91.1,7
+BSc Systems Engineering,Khalifa University,6,3.44,93.0,0
+BSc Defence & Security Studies,Rabdan Academy,6,3.11,88.2,0
+BSc Military Science & Tactics,ZMU Core,6,2.93,92.6,2
+BSc Cyber Security Engineering,Khalifa University,4,2.94,94.6,0
+BEng Electrical & Computer Engineering,Khalifa University,5,2.98,87.2,3
+BSc Homeland Security & Resilience,Rabdan Academy,6,3.33,88.7,2
+BA International Relations & Diplomacy,Sorbonne University Abu Dhabi,4,2.92,94.5,1
+BA Strategic Languages & Translation,Sorbonne University Abu Dhabi,4,3.16,85.8,2
+BSc Military Leadership,ZMU Core,7,2.38,92.7,2

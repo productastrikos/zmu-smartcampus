@@ -534,6 +534,10 @@ app.get('/api/alerts', (req, res) => {
 
 app.get('/api/health', (req, res) => res.json({ ok: true, tables: TABLES.length }));
 
+/* ── extended modules (SIS / LMS / streams / RBAC / merit) ── */
+const { registerExt } = require('./ext/api');
+registerExt(app, express);
+
 /* ── serve the built React client in production ─────────────
    `npm start` runs `vite build` first, which outputs to /dist
    (see vite.config.js). The dev workflow (`npm run dev`) doesn't

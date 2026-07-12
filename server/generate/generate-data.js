@@ -73,38 +73,29 @@ function generate() {
     ['building_id', 'name', 'type', 'floors', 'area_m2', 'x', 'y', 'w', 'h'],
     buildings);
 
-  /* ════════════ 2. CADETS (single immutable Cadet ID) ════════════ */
-  const firstNames = ['Ahmed', 'Mohammed', 'Khalid', 'Saif', 'Rashid', 'Hamdan', 'Omar', 'Sultan', 'Majid', 'Salem', 'Hamad', 'Abdulla', 'Mansoor', 'Tariq', 'Yousef', 'Ali', 'Ibrahim', 'Khalifa', 'Saeed', 'Nasser', 'Faisal', 'Obaid', 'Marwan', 'Juma', 'Suhail', 'Butti', 'Theyab', 'Zayed'];
-  const lastNames = ['Al Mazrouei', 'Al Shamsi', 'Al Dhaheri', 'Al Ameri', 'Al Kaabi', 'Al Mansoori', 'Al Hammadi', 'Al Suwaidi', 'Al Marri', 'Al Blooshi', 'Al Zaabi', 'Al Naqbi', 'Al Ketbi', 'Al Falasi', 'Al Romaithi', 'Al Muhairi', 'Al Qubaisi', 'Al Shehhi'];
-  const squadrons = ['Falcon', 'Oryx', 'Ghaf', 'Saluki', 'Fursan', 'Wadeema'];
-  const programs = [
-    { program: 'Defence & Security Studies',        partner: 'Rabdan Academy' },
-    { program: 'Computer & Cyber Engineering',       partner: 'Khalifa University' },
-    { program: 'Aerospace & Mechanical Engineering', partner: 'Khalifa University' },
-    { program: 'International Relations & Strategy', partner: 'Sorbonne University AD' },
-    { program: 'GIS & Geospatial Intelligence',      partner: 'Sorbonne University AD' },
-    { program: 'Military Leadership & Command',      partner: 'ZMU Core' },
-  ];
+  /* ════════════ 2. CADETS (single immutable Cadet ID) ════════════
+     The roster is the 48 officer cadets shared with the extended modules
+     (SIS / LMS / HPO / Military / Conduct) so every screen in the platform
+     uses the same names — loaded from server/ext/cadets.json. */
+  const roster = require('../ext/cadets.json');
+  const squadrons = ['Falcon', 'Oryx', 'Saqr', 'Ghaf'];
   const garminModels = ['Fenix 8 Tactical', 'Instinct 3 Solar', 'Forerunner 965', 'Epix Pro Gen 2'];
 
-  const N_CADETS = 300;
-  const cadets = [];
-  for (let i = 0; i < N_CADETS; i++) {
-    const prog = programs[i % programs.length];
+  const cadets = roster.map((r) => {
+    const military = r.military?.score ?? ri(58, 98);
+    const fitness = r.fitness?.score ?? ri(55, 99);
+    const conduct = r.conduct?.score ?? ri(70, 100);
     const gpa = clamp(rf(2.0, 4.0, 2) + (rnd() < 0.15 ? -0.4 : 0), 1.6, 4.0);
-    const military = ri(58, 98);
-    const fitness = ri(55, 99);
-    const conduct = ri(70, 100);
-    const composite = +(0.4 * (gpa / 4) * 100 + 0.25 * military + 0.25 * fitness + 0.10 * conduct).toFixed(1);
+    const composite = +(0.4 * (gpa / 4) * 100 + 0.25 * military + 0.20 * fitness + 0.15 * conduct).toFixed(1);
     const attendance = rf(82, 99.5, 1);
     const risk = composite < 66 || attendance < 83.5 ? 'high' : composite < 74 ? 'medium' : 'low';
-    cadets.push({
-      cadet_id: `ZMU-${2100 + i}`,
-      name: `${pick(firstNames)} ${pick(firstNames)} ${pick(lastNames)}`,
-      squadron: squadrons[i % squadrons.length],
-      year: ri(1, 4),
-      program: prog.program,
-      partner: prog.partner,
+    return {
+      cadet_id: String(r.id),
+      name: r.name,
+      squadron: r.company,
+      year: r.year,
+      program: r.programme || 'BSc Military Leadership',
+      partner: r.tenant === 'ZMU' ? 'ZMU Core' : r.partner,
       gpa: gpa.toFixed(2),
       military_score: military,
       fitness_score: fitness,
@@ -114,9 +105,9 @@ function generate() {
       risk_level: risk,
       garmin_device: pick(garminModels),
       device_synced_hrs_ago: rnd() < 0.93 ? ri(0, 8) : ri(24, 96),
-      accommodation: i % 2 === 0 ? 'Z06' : 'Z07',
-    });
-  }
+      accommodation: r.id % 2 === 0 ? 'Z06' : 'Z07',
+    };
+  });
   // order of merit from composite
   [...cadets].sort((a, b) => b.composite_score - a.composite_score)
     .forEach((c, idx) => { c.order_of_merit = idx + 1; });
