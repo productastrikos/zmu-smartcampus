@@ -1,61 +1,61 @@
 po_id,supplier,category,value_kaed,status,days_open,department
-PO-26-1400,Falcon Facilities Co,Medical Supplies,1266,Draft,19,Cadet Affairs
-PO-26-1401,Injaz IT Solutions,IT Hardware,684,Paid,53,Finance & Procurement
-PO-26-1402,Desert Logistics,FM Services,475,Partially Delivered,42,Academic Affairs
-PO-26-1403,Khalifa Labs Supply,FM Services,308,Invoiced,36,Facilities & Campus Ops
-PO-26-1404,Etisalat e&,FM Services,2262,Partially Delivered,24,Security & Protocol
-PO-26-1405,Injaz IT Solutions,Software Licences,1763,Delivered,24,Finance & Procurement
-PO-26-1406,Gulf Dynamics LLC,Uniforms & Kit,1155,Approved,8,Cadet Affairs
-PO-26-1407,Etisalat e&,Uniforms & Kit,184,Paid,55,Security & Protocol
-PO-26-1408,Falcon Facilities Co,FM Services,2489,Pending Approval,36,Academic Affairs
-PO-26-1409,Al Ain Uniforms,Training Services,2867,Paid,41,ICT & Digital Services
-PO-26-1410,Barakah Foods Group,Uniforms & Kit,793,Issued,37,Military Training Wing
-PO-26-1411,Injaz IT Solutions,Software Licences,3446,Partially Delivered,36,Academic Affairs
-PO-26-1412,Core42,Medical Supplies,3138,Draft,20,Cadet Affairs
-PO-26-1413,Emirates Advanced Tech,Medical Supplies,849,Draft,30,Facilities & Campus Ops
-PO-26-1414,Injaz IT Solutions,Lab Equipment,1726,Pending Approval,38,Security & Protocol
-PO-26-1415,Gulf Dynamics LLC,Software Licences,1551,Partially Delivered,18,Academic Affairs
-PO-26-1416,Barakah Foods Group,Catering,600,Paid,20,Finance & Procurement
-PO-26-1417,Gulf Dynamics LLC,IT Hardware,4088,Draft,29,Finance & Procurement
-PO-26-1418,Falcon Facilities Co,Training Services,273,Paid,19,ICT & Digital Services
-PO-26-1419,Core42,Medical Supplies,4083,Issued,21,Academic Affairs
-PO-26-1420,Etisalat e&,Training Services,3170,Approved,18,Military Training Wing
-PO-26-1421,Falcon Facilities Co,FM Services,457,Draft,45,Military Training Wing
-PO-26-1422,Desert Logistics,IT Hardware,1023,Partially Delivered,41,Cadet Affairs
-PO-26-1423,Emirates Advanced Tech,Lab Equipment,3315,Approved,21,Academic Affairs
-PO-26-1424,Gulf Dynamics LLC,FM Services,3916,Paid,26,Medical & HPO
-PO-26-1425,Khalifa Labs Supply,Medical Supplies,4090,Draft,15,Security & Protocol
-PO-26-1426,Al Ain Uniforms,Lab Equipment,3474,Invoiced,13,Facilities & Campus Ops
-PO-26-1427,Al Ain Uniforms,Training Services,3214,Partially Delivered,27,Finance & Procurement
-PO-26-1428,Injaz IT Solutions,Uniforms & Kit,2977,Draft,10,Military Training Wing
-PO-26-1429,Injaz IT Solutions,IT Hardware,2513,Partially Delivered,22,Academic Affairs
-PO-26-1430,Khalifa Labs Supply,Medical Supplies,2305,Partially Delivered,15,Security & Protocol
-PO-26-1431,Barakah Foods Group,IT Hardware,3156,Delivered,24,Academic Affairs
-PO-26-1432,Core42,Software Licences,2390,Issued,22,Facilities & Campus Ops
-PO-26-1433,Injaz IT Solutions,Software Licences,1676,Delivered,22,Cadet Affairs
-PO-26-1434,Falcon Facilities Co,Uniforms & Kit,1486,Delivered,4,Finance & Procurement
-PO-26-1435,Emirates Advanced Tech,Lab Equipment,3616,Partially Delivered,11,ICT & Digital Services
-PO-26-1436,Al Ain Uniforms,Uniforms & Kit,418,Issued,27,Academic Affairs
-PO-26-1437,Injaz IT Solutions,Lab Equipment,505,Partially Delivered,39,Facilities & Campus Ops
-PO-26-1438,Al Ain Uniforms,Catering,965,Paid,22,Security & Protocol
-PO-26-1439,Injaz IT Solutions,Lab Equipment,4176,Delivered,27,Medical & HPO
-PO-26-1440,Al Ain Uniforms,Software Licences,2193,Approved,16,Academic Affairs
-PO-26-1441,Al Ain Uniforms,Uniforms & Kit,883,Pending Approval,26,ICT & Digital Services
-PO-26-1442,Injaz IT Solutions,Software Licences,4087,Partially Delivered,3,ICT & Digital Services
-PO-26-1443,Desert Logistics,Medical Supplies,903,Partially Delivered,44,Medical & HPO
-PO-26-1444,Al Ain Uniforms,Software Licences,1873,Partially Delivered,3,Security & Protocol
-PO-26-1445,Core42,IT Hardware,3107,Draft,3,Cadet Affairs
-PO-26-1446,Al Ain Uniforms,Training Services,3001,Draft,1,Security & Protocol
-PO-26-1447,Desert Logistics,IT Hardware,1524,Pending Approval,37,Finance & Procurement
-PO-26-1448,Falcon Facilities Co,Software Licences,3062,Issued,25,ICT & Digital Services
-PO-26-1449,Etisalat e&,Training Services,2777,Paid,51,Academic Affairs
-PO-26-1450,Emirates Advanced Tech,Lab Equipment,775,Invoiced,19,Military Training Wing
-PO-26-1451,Al Ain Uniforms,Software Licences,2027,Partially Delivered,42,Finance & Procurement
-PO-26-1452,Gulf Dynamics LLC,Catering,3777,Partially Delivered,15,Military Training Wing
-PO-26-1453,Core42,Medical Supplies,2779,Paid,17,Cadet Affairs
-PO-26-1454,Gulf Dynamics LLC,Training Services,556,Issued,12,Cadet Affairs
-PO-26-1455,Injaz IT Solutions,IT Hardware,4136,Invoiced,41,Medical & HPO
-PO-26-1456,Emirates Advanced Tech,Software Licences,224,Approved,41,Facilities & Campus Ops
-PO-26-1457,Injaz IT Solutions,Training Services,562,Paid,30,Finance & Procurement
-PO-26-1458,Emirates Advanced Tech,Training Services,4104,Paid,15,Security & Protocol
-PO-26-1459,Core42,IT Hardware,2636,Issued,20,Finance & Procurement
+PO-26-1400,Sheikh Zayed Labs Supply,Lab Equipment,2547,Pending Approval,22,Medical & HPO
+PO-26-1401,Emirates Advanced Tech,Uniforms & Kit,3402,Delivered,31,Military Training Wing
+PO-26-1402,Falcon Facilities Co,IT Hardware,602,Draft,35,ICT & Digital Services
+PO-26-1403,Falcon Facilities Co,Medical Supplies,3089,Partially Delivered,4,Finance & Procurement
+PO-26-1404,Falcon Facilities Co,IT Hardware,2710,Paid,12,Facilities & Campus Ops
+PO-26-1405,Injaz IT Solutions,Lab Equipment,270,Paid,26,Finance & Procurement
+PO-26-1406,Gulf Dynamics LLC,Training Services,2551,Partially Delivered,26,ICT & Digital Services
+PO-26-1407,Injaz IT Solutions,IT Hardware,2104,Invoiced,1,Medical & HPO
+PO-26-1408,Al Ain Uniforms,Software Licences,397,Delivered,4,Security & Protocol
+PO-26-1409,Al Ain Uniforms,Software Licences,2590,Invoiced,7,Academic Affairs
+PO-26-1410,Emirates Advanced Tech,IT Hardware,333,Delivered,31,Academic Affairs
+PO-26-1411,Etisalat e&,Software Licences,2076,Issued,21,Cadet Affairs
+PO-26-1412,Core42,Software Licences,1144,Paid,55,ICT & Digital Services
+PO-26-1413,Gulf Dynamics LLC,IT Hardware,3947,Issued,44,Finance & Procurement
+PO-26-1414,Desert Logistics,Software Licences,753,Paid,16,Medical & HPO
+PO-26-1415,Etisalat e&,Catering,3356,Draft,22,Medical & HPO
+PO-26-1416,Etisalat e&,IT Hardware,177,Delivered,42,Security & Protocol
+PO-26-1417,Falcon Facilities Co,Lab Equipment,1849,Paid,24,ICT & Digital Services
+PO-26-1418,Barakah Foods Group,IT Hardware,3056,Approved,5,Cadet Affairs
+PO-26-1419,Injaz IT Solutions,IT Hardware,113,Issued,45,ICT & Digital Services
+PO-26-1420,Injaz IT Solutions,IT Hardware,2501,Paid,39,Facilities & Campus Ops
+PO-26-1421,Emirates Advanced Tech,Training Services,1627,Pending Approval,21,Finance & Procurement
+PO-26-1422,Al Ain Uniforms,Uniforms & Kit,114,Approved,18,Military Training Wing
+PO-26-1423,Desert Logistics,Training Services,2575,Invoiced,41,Medical & HPO
+PO-26-1424,Falcon Facilities Co,Medical Supplies,1693,Invoiced,25,Military Training Wing
+PO-26-1425,Sheikh Zayed Labs Supply,IT Hardware,1995,Delivered,31,Academic Affairs
+PO-26-1426,Gulf Dynamics LLC,Lab Equipment,2270,Approved,3,Medical & HPO
+PO-26-1427,Emirates Advanced Tech,Medical Supplies,1350,Partially Delivered,12,Facilities & Campus Ops
+PO-26-1428,Sheikh Zayed Labs Supply,Software Licences,1148,Paid,40,Finance & Procurement
+PO-26-1429,Sheikh Zayed Labs Supply,FM Services,1749,Draft,13,Cadet Affairs
+PO-26-1430,Falcon Facilities Co,FM Services,1286,Paid,22,Medical & HPO
+PO-26-1431,Falcon Facilities Co,Uniforms & Kit,510,Issued,5,Medical & HPO
+PO-26-1432,Core42,IT Hardware,1849,Draft,14,Security & Protocol
+PO-26-1433,Desert Logistics,Software Licences,866,Invoiced,28,Facilities & Campus Ops
+PO-26-1434,Sheikh Zayed Labs Supply,Uniforms & Kit,201,Paid,37,Academic Affairs
+PO-26-1435,Emirates Advanced Tech,FM Services,1957,Partially Delivered,12,Cadet Affairs
+PO-26-1436,Falcon Facilities Co,Medical Supplies,425,Draft,40,Cadet Affairs
+PO-26-1437,Desert Logistics,Medical Supplies,3939,Partially Delivered,29,Medical & HPO
+PO-26-1438,Gulf Dynamics LLC,Lab Equipment,841,Issued,4,Security & Protocol
+PO-26-1439,Gulf Dynamics LLC,Lab Equipment,845,Invoiced,42,Facilities & Campus Ops
+PO-26-1440,Desert Logistics,IT Hardware,2224,Delivered,25,Academic Affairs
+PO-26-1441,Desert Logistics,Uniforms & Kit,517,Issued,11,Cadet Affairs
+PO-26-1442,Etisalat e&,Catering,1114,Invoiced,38,Security & Protocol
+PO-26-1443,Falcon Facilities Co,Lab Equipment,3679,Partially Delivered,23,Academic Affairs
+PO-26-1444,Desert Logistics,Lab Equipment,3232,Draft,30,Military Training Wing
+PO-26-1445,Al Ain Uniforms,Catering,1422,Paid,21,Cadet Affairs
+PO-26-1446,Barakah Foods Group,Training Services,428,Draft,3,Academic Affairs
+PO-26-1447,Gulf Dynamics LLC,Medical Supplies,2094,Delivered,13,Military Training Wing
+PO-26-1448,Barakah Foods Group,IT Hardware,2508,Partially Delivered,15,Cadet Affairs
+PO-26-1449,Desert Logistics,IT Hardware,2648,Invoiced,20,Medical & HPO
+PO-26-1450,Al Ain Uniforms,Training Services,711,Partially Delivered,33,Academic Affairs
+PO-26-1451,Al Ain Uniforms,Software Licences,957,Issued,20,Finance & Procurement
+PO-26-1452,Emirates Advanced Tech,FM Services,2836,Paid,31,Facilities & Campus Ops
+PO-26-1453,Falcon Facilities Co,Uniforms & Kit,1607,Partially Delivered,22,Medical & HPO
+PO-26-1454,Sheikh Zayed Labs Supply,Software Licences,2404,Paid,54,Cadet Affairs
+PO-26-1455,Falcon Facilities Co,FM Services,716,Paid,56,Academic Affairs
+PO-26-1456,Emirates Advanced Tech,Catering,1411,Approved,18,Academic Affairs
+PO-26-1457,Injaz IT Solutions,Software Licences,773,Issued,42,Security & Protocol
+PO-26-1458,Falcon Facilities Co,Lab Equipment,869,Paid,52,Academic Affairs
+PO-26-1459,Gulf Dynamics LLC,Uniforms & Kit,736,Draft,22,ICT & Digital Services

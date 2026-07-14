@@ -1,31 +1,21 @@
 squadron,domain,score
 Falcon,Physical Fitness,91
-Falcon,Sleep & Recovery,84
-Falcon,Medical Status,90
-Falcon,Cognitive Readiness,68
-Falcon,Nutrition & Body Comp,70
-Oryx,Physical Fitness,78
-Oryx,Sleep & Recovery,84
-Oryx,Medical Status,85
-Oryx,Cognitive Readiness,94
-Oryx,Nutrition & Body Comp,68
-Ghaf,Physical Fitness,68
-Ghaf,Sleep & Recovery,77
-Ghaf,Medical Status,89
-Ghaf,Cognitive Readiness,84
-Ghaf,Nutrition & Body Comp,91
-Saluki,Physical Fitness,87
-Saluki,Sleep & Recovery,64
-Saluki,Medical Status,72
-Saluki,Cognitive Readiness,73
-Saluki,Nutrition & Body Comp,72
-Fursan,Physical Fitness,92
-Fursan,Sleep & Recovery,77
-Fursan,Medical Status,73
-Fursan,Cognitive Readiness,90
-Fursan,Nutrition & Body Comp,72
-Wadeema,Physical Fitness,73
-Wadeema,Sleep & Recovery,71
-Wadeema,Medical Status,88
-Wadeema,Cognitive Readiness,71
-Wadeema,Nutrition & Body Comp,88
+Falcon,Sleep & Recovery,90
+Falcon,Medical Status,91
+Falcon,Cognitive Readiness,85
+Falcon,Nutrition & Body Comp,68
+Oryx,Physical Fitness,86
+Oryx,Sleep & Recovery,83
+Oryx,Medical Status,71
+Oryx,Cognitive Readiness,88
+Oryx,Nutrition & Body Comp,75
+Saqr,Physical Fitness,74
+Saqr,Sleep & Recovery,61
+Saqr,Medical Status,81
+Saqr,Cognitive Readiness,86
+Saqr,Nutrition & Body Comp,87
+Ghaf,Physical Fitness,73
+Ghaf,Sleep & Recovery,68
+Ghaf,Medical Status,88
+Ghaf,Cognitive Readiness,77
+Ghaf,Nutrition & Body Comp,93

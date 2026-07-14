@@ -1,5 +1,5 @@
 metric,value,target,status
-PUE (current),1.49,≤ 1.6,ok
+PUE (current),1.42,≤ 1.6,ok
 Cooling capacity used,71%,≤ 85%,ok
 UPS battery health,97%,≥ 90%,ok
 UPS autonomy at load,18 min,≥ 12 min,ok

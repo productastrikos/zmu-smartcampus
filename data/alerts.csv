@@ -1,13 +1,13 @@
 ts,domain,severity,title,source,status
-2026-07-09T11:06:00.000Z,Campus Ops,critical,"AHU-02 Academic Block B — supply fan fault, zone temp 25.4°C and rising",BMS Supervisory Layer,open
-2026-07-09T10:18:00.000Z,Security,high,"Credential-stuffing burst on IAM — 40 failed logins, 3 accounts auto-locked",Split-SIEM,open
-2026-07-09T09:24:00.000Z,Readiness,high,8 cadets flagged high injury risk (ACWR > 1.4) ahead of field exercise,HPO Predictive Analytics,open
-2026-07-09T08:30:00.000Z,Campus Ops,medium,Library reading hall CO₂ above 1100 ppm — ventilation boost recommended,IoT / IAQ Sensors,open
-2026-07-09T07:00:00.000Z,Integration,medium,Data diode (flow 5) error rate 2.8% — schema drift on 2 BMS controllers,Integration Platform,open
-2026-07-09T05:18:00.000Z,Campus Ops,medium,2 weapons overdue for return > 10h — armoury reconciliation required,WMS,open
-2026-07-09T03:30:00.000Z,Academic,medium,Saluki squadron avg sleep 5.9h — academic performance correlation flagged,AI Learning Analytics,resolved
-2026-07-09T02:06:00.000Z,Enterprise,low,ICT budget utilization 61% vs 50% plan — review Q3 commitments (Muwazana),ERP Finance,open
-2026-07-08T22:54:00.000Z,Campus Ops,low,Dining facility energy spike +90% vs baseline yesterday evening,EMS Analytics,resolved
-2026-07-08T20:24:00.000Z,Academic,low,"Partner roster sync (SUAD) delayed 25 min — within SLA, monitoring",MFT Gateway,acknowledged
-2026-07-08T15:12:00.000Z,Security,low,3 CCTV cameras offline in Accommodation North — work order raised,VMS Health Monitor,open
-2026-07-08T09:30:00.000Z,Enterprise,low,14 purchase requisitions pending approval > 5 days,ERP Procurement,open
+2026-07-12T12:06:00.000Z,Campus Ops,critical,"AHU-02 Academic Block B — supply fan fault, zone temp 25.4°C and rising",BMS Supervisory Layer,open
+2026-07-12T11:18:00.000Z,Security,high,"Credential-stuffing burst on IAM — 40 failed logins, 3 accounts auto-locked",Split-SIEM,open
+2026-07-12T10:24:00.000Z,Readiness,high,1 cadets flagged high injury risk (ACWR > 1.4) ahead of field exercise,HPO Predictive Analytics,open
+2026-07-12T09:30:00.000Z,Campus Ops,medium,Library reading hall CO₂ above 1100 ppm — ventilation boost recommended,IoT / IAQ Sensors,open
+2026-07-12T08:00:00.000Z,Integration,medium,Data diode (flow 5) error rate 2.8% — schema drift on 2 BMS controllers,Integration Platform,open
+2026-07-12T06:18:00.000Z,Campus Ops,medium,2 weapons overdue for return > 10h — armoury reconciliation required,WMS,acknowledged
+2026-07-12T04:30:00.000Z,Academic,medium,Saqr Company avg sleep 5.9h — academic performance correlation flagged,AI Learning Analytics,acknowledged
+2026-07-12T03:06:00.000Z,Enterprise,low,ICT budget utilization 61% vs 50% plan — review Q3 commitments (Muwazana),ERP Finance,acknowledged
+2026-07-11T23:54:00.000Z,Campus Ops,low,Dining facility energy spike +90% vs baseline yesterday evening,EMS Analytics,resolved
+2026-07-11T21:24:00.000Z,Academic,low,"Partner roster sync (SUAD) delayed 25 min — within SLA, monitoring",MFT Gateway,resolved
+2026-07-11T16:12:00.000Z,Security,low,3 CCTV cameras offline in Accommodation North — work order raised,VMS Health Monitor,open
+2026-07-11T10:30:00.000Z,Enterprise,low,14 purchase requisitions pending approval > 5 days,ERP Procurement,resolved

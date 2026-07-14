@@ -174,7 +174,7 @@ export default function CampusOps() {
             columns={[
               { key: 'txn_id', label: 'Txn' },
               { key: 'cadet_id', label: 'Cadet' },
-              { key: 'squadron', label: 'Sqn' },
+              { key: 'squadron', label: 'Company' },
               { key: 'weapon_id', label: 'Weapon' },
               { key: 'weapon_type', label: 'Type' },
               { key: 'status', label: 'Status', render: (v) => <StatusChip kind={sevChip(v)}>{v.toUpperCase()}</StatusChip> },

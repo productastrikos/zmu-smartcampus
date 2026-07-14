@@ -33,7 +33,7 @@ export default function AdvisoryPanel({ open, onClose }) {
     {
       sev: 'watch',
       title: `Cohort readiness sits at ${k.compositeReadiness}/100 with ${k.wearableReadiness}/100 from wearables`,
-      body: 'Saluki squadron sleep is trending low; consider adjusting the night-training rotation before the next assessment.',
+      body: 'Saqr Company sleep is trending low; consider adjusting the night-training rotation before the next assessment.',
     },
     {
       sev: 'insight',

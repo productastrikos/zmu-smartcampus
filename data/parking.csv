@@ -1,5 +1,5 @@
 zone,capacity,occupied,anpr_events_24h,ev_chargers,ev_in_use
-P1 — Main Gate,420,360,1018,12,2
-P2 — Academic,260,205,521,8,7
-P3 — Accommodation,180,93,197,6,1
-P4 — Sports & Events,340,230,817,10,1
+P1 — Main Gate,420,324,902,12,5
+P2 — Academic,260,245,778,8,7
+P3 — Accommodation,180,134,162,6,0
+P4 — Sports & Events,340,132,145,10,8

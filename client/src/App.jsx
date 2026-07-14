@@ -13,6 +13,11 @@ import Integration from './pages/Integration';
 import CadetJourney from './pages/CadetJourney';
 import IncidentManagement from './pages/IncidentManagement';
 import ITManagement from './pages/ITManagement';
+import SIS from './pages/SIS';
+import LMS from './pages/LMS';
+import StreamPage from './pages/Streams';
+import MeritBoard from './pages/MeritBoard';
+import { ROLE_ROUTES, homeFor } from './components/Layout';
 
 const AUTH_KEY = 'zmu_auth';
 
@@ -38,7 +43,13 @@ export default function App() {
   }
 
   // Authenticated — redirect away from /login into the app shell.
-  if (location.pathname === '/login') return <Navigate to="/" replace />;
+  if (location.pathname === '/login') return <Navigate to={homeFor(user.role)} replace />;
+
+  // RBAC route guard — restricted roles bounced to their home view
+  const allowed = ROLE_ROUTES[user.role];
+  if (allowed && location.pathname !== '/login' && !allowed.some((p) => location.pathname.startsWith(p))) {
+    return <Navigate to={homeFor(user.role)} replace />;
+  }
 
   return (
     <Layout user={user} onLogout={logout}>
@@ -51,6 +62,12 @@ export default function App() {
         <Route path="/campus-ops" element={<CampusOps />} />
         <Route path="/cadet-journey" element={<CadetJourney />} />
         <Route path="/it-ops" element={<ITManagement />} />
+        <Route path="/sis" element={<SIS user={user} />} />
+        <Route path="/lms" element={<LMS user={user} />} />
+        <Route path="/merit" element={<MeritBoard user={user} />} />
+        <Route path="/hpo" element={<StreamPage user={user} which="hpo" />} />
+        <Route path="/military" element={<StreamPage user={user} which="military" />} />
+        <Route path="/conduct" element={<StreamPage user={user} which="conduct" />} />
         <Route path="/security" element={<SecurityOps />} />
         <Route path="/incidents" element={<IncidentManagement />} />
         <Route path="/integration" element={<Integration />} />

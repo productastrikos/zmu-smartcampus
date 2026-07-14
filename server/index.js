@@ -201,7 +201,7 @@ app.get('/api/readiness', (req, res) => {
 
 /* human digital twin — individual cadet drill-down */
 app.get('/api/readiness/cadet/:id', (req, res) => {
-  const c = db.cadets.find((x) => x.cadet_id === req.params.id);
+  const c = db.cadets.find((x) => String(x.cadet_id) === String(req.params.id));
   if (!c) return res.status(404).json({ error: 'cadet not found' });
   const series = db.wearables_daily.filter((w) => w.cadet_id === c.cadet_id)
     .sort((a, b) => a.date.localeCompare(b.date));
@@ -426,7 +426,7 @@ app.get('/api/cadet-journey', (req, res) => {
 });
 
 app.get('/api/cadet-journey/:id', (req, res) => {
-  const cadet = db.cadets.find((c) => c.cadet_id === req.params.id);
+  const cadet = db.cadets.find((c) => String(c.cadet_id) === String(req.params.id));
   if (!cadet) return res.status(404).json({ error: 'unknown cadet id' });
   const timeline = db.cadet_journey
     .filter((e) => e.cadet_id === cadet.cadet_id)
@@ -533,6 +533,10 @@ app.get('/api/alerts', (req, res) => {
 });
 
 app.get('/api/health', (req, res) => res.json({ ok: true, tables: TABLES.length }));
+
+/* ── extended modules (SIS / LMS / streams / RBAC / merit) ── */
+const { registerExt } = require('./ext/api');
+registerExt(app, express);
 
 /* ── serve the built React client in production ─────────────
    `npm start` runs `vite build` first, which outputs to /dist

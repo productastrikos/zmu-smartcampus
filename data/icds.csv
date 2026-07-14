@@ -4,6 +4,6 @@ ICD-002,ERP ↔ DoF statutory interface,v0.9,In Review
 ICD-003,IAM SCIM provisioning,v1.1,Approved
 ICD-004,Garmin Health API ↔ HPO middleware,v1.0,Approved
 ICD-005,BMS/IoT diode telemetry schema,v1.2,Approved
-ICD-006,Partner MFT exchange (KU/Rabdan/SUAD),v0.8,Draft
+ICD-006,DoF statutory MFT exchange,v0.8,Draft
 ICD-007,Syslog RFC 5424 / CEF forwarding,v1.0,Approved
 ICD-008,DR replication & Core42 backup,v1.0,Approved

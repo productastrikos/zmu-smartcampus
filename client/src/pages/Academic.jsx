@@ -117,11 +117,10 @@ export default function Academic() {
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1.4fr) minmax(0, 1fr)', gap: 14, marginBottom: 14 }}>
-        <Panel title="Programs & Partner Integration" sub="Khalifa University · Rabdan Academy · Sorbonne University AD — grade equivalence normalised">
+        <Panel title="Academic Programmes" sub="Delivered across Zayed Military University's four academic colleges · single cadet record">
           <DataTable
             columns={[
-              { key: 'program', label: 'Program' },
-              { key: 'partner', label: 'Partner' },
+              { key: 'program', label: 'Programme' },
               { key: 'enrolled', label: 'Enrolled', align: 'right' },
               { key: 'avg_gpa', label: 'Avg GPA', align: 'right' },
               { key: 'avg_attendance', label: 'Attend %', align: 'right' },
@@ -136,7 +135,7 @@ export default function Academic() {
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 14 }}>
-        <Panel title="Lab Systems" sub="27 labs across Khalifa / Rabdan / SUAD tiers">
+        <Panel title="Lab Systems" sub="Teaching labs across ZMU's academic colleges">
           {data.labs.map((l) => (
             <div key={l.lab} style={{ marginBottom: 10 }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 11.5, marginBottom: 3 }}>
