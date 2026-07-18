@@ -1,6 +1,10 @@
 import * as THREE from 'three';
 import { createProjection } from '../services/ProjectionService';
-import { makeGlassMaterial, makeEdgeMaterial, makeGlowEdgeMaterial, HOLO } from '../materials/BuildingMaterial';
+import { makeGlassMaterial, makeEdgeMaterial, makeGlowEdgeMaterial, HOLO, HOLO_ENTERABLE } from '../materials/BuildingMaterial';
+
+// Buildings with a real interior Digital Twin to enter on click — see
+// HOLO_ENTERABLE and Block3Viewer.jsx / BuildingDigitalTwin.tsx.
+const ENTERABLE_IDS = new Set(['REAL-BLOCK-3', 'REAL-ADMIN-1']);
 
 // Every building polygon becomes a real extruded mesh — the shape is built
 // directly from the PostGIS ring (zmu_buildings — real, hand-digitized
@@ -31,9 +35,12 @@ function buildingMesh(record, projection) {
   const pts = toLocal(rings[0]);
   const heightM = Math.max(3, (record.height || 6) * VISUAL_HEIGHT_SCALE);
 
-  const glass = makeGlassMaterial();
-  const glow = makeGlowEdgeMaterial();
-  const edge = makeEdgeMaterial();
+  const enterable = ENTERABLE_IDS.has(record.id);
+  const baseGlass = enterable ? HOLO_ENTERABLE.glass : HOLO.glass;
+  const baseEdge = enterable ? HOLO_ENTERABLE.edge : HOLO.edge;
+  const glass = makeGlassMaterial(HOLO.glassOpacity, baseGlass);
+  const glow = makeGlowEdgeMaterial(baseEdge);
+  const edge = makeEdgeMaterial(baseEdge);
   const group = new THREE.Group();
 
   const shape = new THREE.Shape(pts.map(([x, y]) => new THREE.Vector2(x, y)));
@@ -57,11 +64,14 @@ function buildingMesh(record, projection) {
   group.userData.glass = glass;
   group.userData.edge = edge;
   group.userData.glow = glow;
+  group.userData.baseGlass = baseGlass;
+  group.userData.baseEdge = baseEdge;
+  group.userData.enterable = enterable;
   return group;
 }
 
 function applyVisualState(group, state) {
-  const { glass, edge, glow } = group.userData;
+  const { glass, edge, glow, baseGlass, baseEdge } = group.userData;
   if (state === 'selected') {
     glass.opacity = HOLO.glassOpacityHover;
     glass.emissiveIntensity = HOLO.emissiveIntensitySelected;
@@ -75,13 +85,15 @@ function applyVisualState(group, state) {
   } else if (state === 'faded') {
     glass.opacity = HOLO.glassOpacityFaded;
     glass.emissiveIntensity = HOLO.emissiveIntensity;
-    edge.color.set(HOLO.edge);
-    glow.color.set(HOLO.edge);
+    edge.color.set(baseEdge);
+    glow.color.set(baseEdge);
   } else {
     glass.opacity = HOLO.glassOpacity;
     glass.emissiveIntensity = HOLO.emissiveIntensity;
-    edge.color.set(HOLO.edge);
-    glow.color.set(HOLO.edge);
+    glass.color.set(baseGlass);
+    glass.emissive.set(baseGlass);
+    edge.color.set(baseEdge);
+    glow.color.set(baseEdge);
   }
 }
 

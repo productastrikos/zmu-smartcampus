@@ -2,16 +2,15 @@ import * as THREE from 'three';
 import { createProjection } from '../services/ProjectionService';
 import { buildDemoBreachPath, lerpPath, distanceToFence, classifyProximity } from './GeofenceEngine';
 
-// Renders the real campus boundary ring (gis.boundary — the real OSM
-// landuse=military polygon) as a 3-D steel security fence: a textured
-// panel (vertical bars + horizontal rails baked into one repeating canvas
-// texture, rather than thousands of individual bar meshes), posts
-// resampled at real 2.5m intervals, and a concrete base strip — all
-// following the real boundary coordinates exactly, no straight-line
-// approximation. The boundary ring is real and already closed (first
-// point === last point), so the fence forms one complete perimeter loop
-// with no data-coverage gaps; gate infrastructure is placed separately by
-// SecurityLayer.jsx at the real Main Gate building location.
+// Renders the real hand-digitized fence lines (gis.fences — from
+// fence.txt, a set of LineString segments tracing the actual perimeter
+// fencing, not necessarily one closed ring) as a 3-D steel security
+// fence: a textured panel (vertical bars + horizontal rails baked into
+// one repeating canvas texture, rather than thousands of individual bar
+// meshes), posts resampled at real 2.5m intervals, and a concrete base
+// strip — all following the real digitized coordinates exactly, no
+// straight-line approximation. Gate infrastructure is placed separately
+// by SecurityLayer.jsx at the real Main Gate building location.
 //
 // A Three.js "custom" MapLibre layer, same shape as BuildingLayer/
 // TreeLayer: {id, type:'custom', renderingMode:'3d', onAdd, setFences,
@@ -204,21 +203,30 @@ export function createFenceLayer({ id, anchor }) {
       renderer.autoClear = false;
     },
 
-    // Takes the real campus boundary (gis.boundary — the actual OSM
-    // landuse=military polygon, a real, complete, closed ring) rather
-    // than the fragmentary hand-digitized fence.txt points: the boundary
-    // already traces the whole perimeter with no gaps, so the fence now
-    // wraps the campus exactly instead of only covering the few short
-    // stretches the damaged source file happened to include. Still 100%
-    // real GIS coordinates — just a different (and more complete) real
-    // source for the same real perimeter.
-    setFences(boundaryFc) {
+    // Accepts either shape:
+    //  - LineString/MultiLineString (gis.fences, the real hand-digitized
+    //    fence.txt segments — multiple runs expected, gaps at gates etc.)
+    //  - Polygon/MultiPolygon (e.g. gis.boundary, the real OSM
+    //    landuse=military ring) — each ring's outer boundary becomes one
+    //    closed fence run.
+    // Currently called with gis.boundary (now verified against live OSM
+    // data) so the fence traces the full, accurate perimeter; fence.txt's
+    // own digitized runs only cover a few short stretches, revisit later.
+    setFences(fc) {
       root.clear();
-      const feature = boundaryFc?.features?.[0];
-      if (!feature || feature.geometry?.type !== 'Polygon') return;
-      const ring = feature.geometry.coordinates[0]; // real, closed (first point === last point)
-
-      const segments = [ring.map(([lon, lat]) => projection.projectCoordinate(lon, lat))];
+      const features = fc?.features || [];
+      const segments = [];
+      for (const f of features) {
+        const g = f.geometry;
+        if (!g) continue;
+        const lines = g.type === 'MultiLineString' ? g.coordinates
+          : g.type === 'LineString' ? [g.coordinates]
+          : g.type === 'Polygon' ? g.coordinates.slice(0, 1) // outer ring only
+          : g.type === 'MultiPolygon' ? g.coordinates.map((poly) => poly[0])
+          : [];
+        for (const line of lines) segments.push(line.map(([lon, lat]) => projection.projectCoordinate(lon, lat)));
+      }
+      if (!segments.length) return;
       lastSegments = segments;
 
       // panel (vertical bars + rails, textured), top security wire, concrete base

@@ -1,6 +1,8 @@
 import React from 'react';
 
 // Layers with real rows in zmu_db today.
+// Trimmed down to just the layers currently enabled — the rest are
+// commented out (not deleted) below so they're easy to bring back later.
 const LIVE_LAYERS = [
   { key: 'buildings', label: 'Buildings (3-D)' },
   { key: 'roads', label: 'Roads' },
@@ -8,21 +10,21 @@ const LIVE_LAYERS = [
   { key: 'parking', label: 'Parking' },
   { key: 'sportsfields', label: 'Football ground' },
   { key: 'grounds', label: 'Parade ground' },
-  { key: 'gates', label: 'Gates' },
-  { key: 'points', label: 'Points of interest' },
+  // { key: 'gates', label: 'Gates' },
+  // { key: 'points', label: 'Points of interest' },
   { key: 'fences', label: 'Perimeter fence' },
   // Procedurally generated (not digitized) — see WalkwayGenerator.js —
   // always has content once buildings/roads have loaded, so it belongs
   // here rather than in EMPTY_LAYERS.
-  { key: 'walkways', label: 'Walkways & landscape' },
+  // { key: 'walkways', label: 'Walkways & landscape' },
   // Security overlay — also procedurally generated FROM real geometry
   // (boundary corners, gate/parking/junction/fence positions — see
   // SecurityLayer.jsx/CCTVLayer.jsx/LightingLayer.jsx/PatrolLayer.jsx),
   // not digitized data, but always present once the campus has loaded.
-  { key: 'security_lighting', label: 'Street lighting (generated)' },
+  // { key: 'security_lighting', label: 'Street lighting (generated)' },
   { key: 'security', label: 'Gates & watch towers' },
   { key: 'cctv', label: 'CCTV network' },
-  { key: 'patrol', label: 'Patrol routes' },
+  // { key: 'patrol', label: 'Patrol routes' },
   // Simulated Garmin-wearable personnel — procedurally generated/animated
   // like the security overlay above, not digitized data, but always
   // present once the campus + walkway network have loaded.
@@ -32,20 +34,22 @@ const LIVE_LAYERS = [
 // Wired to real, tag-filtered PostGIS queries that legitimately return zero
 // rows today (no fabricated geometry) — shown so the layer architecture is
 // visibly complete, flagged so it's clear there's nothing to see yet.
+// Commented out for now (none of these were enabled) — not deleted.
 const EMPTY_LAYERS = [
-  { key: 'footpaths', label: 'Footpaths (OSM)' },
-  { key: 'grass', label: 'Grass (OSM)' },
-  { key: 'water', label: 'Water' },
-  { key: 'trees', label: 'Trees' },
-  { key: 'lights', label: 'Lighting poles' },
+  // { key: 'footpaths', label: 'Footpaths (OSM)' },
+  // { key: 'grass', label: 'Grass (OSM)' },
+  // { key: 'water', label: 'Water' },
+  // { key: 'trees', label: 'Trees' },
+  // { key: 'lights', label: 'Lighting poles' },
 ];
 
 // Pure UI placeholders — no data source or rendering exists yet, per spec
 // ("no fake live values yet — only prepare the architecture").
+// Commented out for now (none of these were enabled) — not deleted.
 const FUTURE_TOGGLES = [
-  { key: 'utilities', label: 'Utilities' },
-  { key: 'sensors', label: 'Sensors' },
-  { key: 'bms', label: 'BMS' },
+  // { key: 'utilities', label: 'Utilities' },
+  // { key: 'sensors', label: 'Sensors' },
+  // { key: 'bms', label: 'BMS' },
 ];
 
 export const ALL_LAYER_KEYS = [...LIVE_LAYERS, ...EMPTY_LAYERS].map((l) => l.key);
@@ -86,20 +90,28 @@ export default function LayerControl({ visibility, onToggle, emptyKeys, futureVi
         <Row key={l.key} item={l} checked={!!visibility[l.key]} onToggle={onToggle} disabled={emptyKeys?.has(l.key)} />
       ))}
 
-      <div style={{ height: 1, background: 'rgba(77,226,255,0.15)', margin: '8px 0' }} />
-      {EMPTY_LAYERS.map((l) => (
-        <Row key={l.key} item={l} checked={!!visibility[l.key]} onToggle={onToggle} disabled={emptyKeys?.has(l.key)} />
-      ))}
+      {EMPTY_LAYERS.length > 0 && (
+        <>
+          <div style={{ height: 1, background: 'rgba(77,226,255,0.15)', margin: '8px 0' }} />
+          {EMPTY_LAYERS.map((l) => (
+            <Row key={l.key} item={l} checked={!!visibility[l.key]} onToggle={onToggle} disabled={emptyKeys?.has(l.key)} />
+          ))}
+        </>
+      )}
 
-      <div style={{
-        fontSize: 9.5, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase',
-        color: 'rgba(220,240,250,0.4)', margin: '10px 0 4px',
-      }}>
-        Future integration
-      </div>
-      {FUTURE_TOGGLES.map((l) => (
-        <Row key={l.key} item={l} checked={!!futureVisibility[l.key]} onToggle={onToggleFuture} disabled />
-      ))}
+      {FUTURE_TOGGLES.length > 0 && (
+        <>
+          <div style={{
+            fontSize: 9.5, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase',
+            color: 'rgba(220,240,250,0.4)', margin: '10px 0 4px',
+          }}>
+            Future integration
+          </div>
+          {FUTURE_TOGGLES.map((l) => (
+            <Row key={l.key} item={l} checked={!!futureVisibility[l.key]} onToggle={onToggleFuture} disabled />
+          ))}
+        </>
+      )}
 
       <button
         onClick={onZoomToFit}

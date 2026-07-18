@@ -1,8 +1,14 @@
 import React from 'react';
 import SketchfabModal from './SketchfabModal';
 
-// Exact embed src as supplied — no query params, no Viewer API options.
-const SKETCHFAB_URL = 'https://sketchfab.com/models/6c4a0e6d75624560bccad1578ee1eeac/embed';
+// Sketchfab embed UI flags — hide the in-viewer title/author overlay,
+// the buy button and the watermark logo/link (top-left "by Drone5" card,
+// top-right $ and share icons in the raw embed). These are Sketchfab's
+// own viewer UI painted inside their (cross-origin) iframe, so they can
+// only be turned off via these URL params — CSS on our side can't reach
+// into another origin's iframe content.
+const SKETCHFAB_URL = 'https://sketchfab.com/models/6c4a0e6d75624560bccad1578ee1eeac/embed'
+  + '?ui_infos=0&ui_watermark=0&ui_watermark_link=0&ui_stop=0';
 const SKETCHFAB_TITLE = 'High School 3 interior exterior';
 
 // Demo/mock BMS values exactly as specified by the user for this

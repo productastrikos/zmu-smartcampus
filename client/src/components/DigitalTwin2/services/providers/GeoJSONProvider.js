@@ -21,6 +21,41 @@ import water from '../../../../assets/geojson/water.geojson';
 
 const EMPTY_FC = { type: 'FeatureCollection', features: [] };
 
+// Area-weighted centroid of a polygon ring (shoelace formula) — some
+// buildings' baked-in properties.centroid was found to drift up to ~150m
+// from the actual footprint (e.g. the mosque dome), so labels/popups/
+// camera fly-to all derive the centroid from the real geometry instead
+// of trusting that stored value.
+//
+// The shoelace terms (x0*y1 - x1*y0) are computed on raw lon/lat (~54,
+// ~24) — two ~1300-magnitude products subtracted to get a ~1e-9-scale
+// result, which is exactly the shape of catastrophic cancellation and is
+// why the naive version of this reproduced the *same* wrong value already
+// baked into properties.centroid for small polygons (it's the same
+// unstable formula). Translating the ring to be relative to its own first
+// vertex before the shoelace sum keeps every intermediate term small and
+// avoids that cancellation.
+function ringCentroid(ring) {
+  const [ox, oy] = ring[0];
+  let a = 0, cx = 0, cy = 0;
+  for (let i = 0; i < ring.length - 1; i++) {
+    const x0 = ring[i][0] - ox, y0 = ring[i][1] - oy;
+    const x1 = ring[i + 1][0] - ox, y1 = ring[i + 1][1] - oy;
+    const cross = x0 * y1 - x1 * y0;
+    a += cross; cx += (x0 + x1) * cross; cy += (y0 + y1) * cross;
+  }
+  a *= 0.5;
+  if (Math.abs(a) < 1e-12) { // degenerate ring — fall back to a plain vertex average
+    const pts = ring.slice(0, -1);
+    return [pts.reduce((s, p) => s + p[0], 0) / pts.length, pts.reduce((s, p) => s + p[1], 0) / pts.length];
+  }
+  return [ox + cx / (6 * a), oy + cy / (6 * a)];
+}
+function geometryCentroid(geometry, fallback) {
+  if (geometry?.type === 'Polygon' && geometry.coordinates?.[0]?.length >= 4) return ringCentroid(geometry.coordinates[0]);
+  return fallback;
+}
+
 // footpaths/grass/points/lights have no digitized source anywhere (OSM
 // never had coverage for this site, same as before this migration) — no
 // physical asset file for them, just the same always-empty shape every
@@ -42,7 +77,7 @@ function shapeBuilding(feature) {
     display_name: p.display_name,
     category: p.category,
     geometry: feature.geometry,
-    centroid: p.centroid,
+    centroid: geometryCentroid(feature.geometry, p.centroid),
     height: p.height,
     levels: p.levels,
     levels_estimated: !!p.levels_estimated,

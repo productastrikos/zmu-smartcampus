@@ -15,15 +15,25 @@ export const HOLO = {
   emissiveIntensitySelected: 0.48,
 };
 
-export function makeGlassMaterial(opacity = HOLO.glassOpacity) {
+// Buildings with a real interior Digital Twin to enter on click (Block-3's
+// Sketchfab scan, the Admin block's HVAC/BMS drill-down) get a purple
+// holographic tint instead of the standard cyan, so they read as
+// "click me for the interior view" at a glance against the rest of the
+// campus — same glass/edge/glow material shape, different base hue.
+export const HOLO_ENTERABLE = {
+  glass: 0x9b4dff,
+  edge: 0xcf9bff,
+};
+
+export function makeGlassMaterial(opacity = HOLO.glassOpacity, color = HOLO.glass) {
   return new THREE.MeshPhysicalMaterial({
-    color: HOLO.glass,
+    color,
     metalness: 0.1,
     roughness: 0.25,
     transmission: 0.55,
     transparent: true,
     opacity,
-    emissive: new THREE.Color(HOLO.glass),
+    emissive: new THREE.Color(color),
     emissiveIntensity: HOLO.emissiveIntensity,
     side: THREE.DoubleSide,
     depthWrite: false,

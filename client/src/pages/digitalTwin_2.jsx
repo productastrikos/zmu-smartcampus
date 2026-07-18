@@ -57,13 +57,35 @@ function isImportantBuilding(b) { return b.category !== 'structure' || b.id === 
 // "important building" definition CCTV/SecurityLayer use (real,
 // non-generic category, plus Block-3 explicitly). minzoom keeps them
 // hidden until the user is zoomed in close enough to read them.
+//
+// Some real structures (currently just the mosque) are digitized as
+// several small sub-parts — "Mosque — Main Hall" / "— Dome" / "— Pillar"
+// — each with its own display_name and centroid. Labeling every sub-part
+// put 2-3 overlapping "Mosque —…" labels on top of each other, which
+// MapLibre's collision detection then resolves by randomly hiding all but
+// one, reading as "the mosque label is in the wrong place". Buildings that
+// share a " — " name prefix are grouped into one label at their combined
+// (area-weighted) centroid instead.
 function addBuildingLabelsLayer(map, buildings) {
+  const groups = new Map(); // prefix -> { name, points: [[lon,lat],...] }
+  for (const b of buildings.filter(isImportantBuilding)) {
+    const prefix = b.display_name.split(' — ')[0];
+    const g = groups.get(prefix) || { name: prefix, points: [] };
+    g.points.push(b.centroid);
+    groups.set(prefix, g);
+  }
   const fc = {
     type: 'FeatureCollection',
-    features: buildings.filter(isImportantBuilding).map((b) => ({
+    features: [...groups.values()].map((g) => ({
       type: 'Feature',
-      geometry: { type: 'Point', coordinates: b.centroid },
-      properties: { name: b.display_name },
+      geometry: {
+        type: 'Point',
+        coordinates: g.points.length === 1 ? g.points[0] : [
+          g.points.reduce((s, p) => s + p[0], 0) / g.points.length,
+          g.points.reduce((s, p) => s + p[1], 0) / g.points.length,
+        ],
+      },
+      properties: { name: g.name },
     })),
   };
   map.addSource('zt2-building-labels', { type: 'geojson', data: fc });
@@ -131,18 +153,21 @@ export default function DigitalTwin2() {
   const loading = gisLoading || buildingsLoading;
   const error = gisError || buildingsError;
 
-  // Street lighting and trees/landscape default OFF per explicit request —
-  // still toggleable back on from the Layers panel.
-  const DEFAULT_OFF_KEYS = new Set([
-    'sportsfields', 'gates', 'points', 'fences', 'walkways',
-    'security_lighting', 'security', 'cctv', 'patrol', 'personnel',
-    'footpaths', 'grass', 'water', 'trees', 'lights',
-  ]);
+  // All layers still in the (trimmed) Layers panel default ON — the ones
+  // that used to default off (walkways, street lighting, patrol, etc.)
+  // were pulled from the panel entirely for now, see LayerControl.jsx.
+  const DEFAULT_OFF_KEYS = new Set([]);
   const [visibility, setVisibility] = useState(
     Object.fromEntries(ALL_LAYER_KEYS.map((k) => [k, !DEFAULT_OFF_KEYS.has(k)]))
   );
   const [futureVisibility, setFutureVisibility] = useState(Object.fromEntries(ALL_FUTURE_KEYS.map((k) => [k, false])));
   const [mapReady, setMapReady] = useState(false);
+  // True once the map style has loaded AND every layer (buildings, roads,
+  // fence, personnel roster, labels, initial zoom-to-fit…) has actually
+  // been built — separate from `loading` below, which only covers the
+  // initial GIS/buildings JSON fetch and returns long before the map/
+  // scene is actually visible.
+  const [sceneReady, setSceneReady] = useState(false);
   const [hovered, setHovered] = useState(null); // { building, x, y }
   const [selected, setSelected] = useState(null); // building record
   const [block3Open, setBlock3Open] = useState(false);
@@ -229,7 +254,11 @@ export default function DigitalTwin2() {
     buildingsLayer.setBuildings(buildings);
     treeLayer.setTrees(gis.trees);
     footballLayer.setPitches(gis.sportsfields);
-    fenceLayer.setFences(gis.fences);
+    // Using the campus boundary (now verified against live OSM data) for
+    // the fence run, not gis.fences — fence.txt's own digitized segments
+    // only trace a few short stretches, not the full perimeter. Revisit
+    // once a fuller fence.txt digitization exists.
+    fenceLayer.setFences(gis.boundary);
     const layout = generateCampusLayout({
       anchor, boundary: gis.boundary, roads: gis.roads, buildings,
       parking: gis.parking, sportsfields: gis.sportsfields, grounds: gis.grounds, water: gis.water,
@@ -253,7 +282,11 @@ export default function DigitalTwin2() {
     patrolMarkerLayer.setRoutes(gis.boundary);
     addBuildingLabelsLayer(map, buildings);
 
-    map.easeTo({ center: anchor, zoom: 18.4, pitch: 15, bearing: 180, duration: 1200 });
+    // Open on the whole campus in view (same fit the "Zoom to fit" button
+    // does) rather than a hardcoded close-in zoom level. fitBounds keeps
+    // the map's current bearing (already 180 from the initial construction
+    // above) when no bearing option is passed.
+    zoomToFit(map, gis.boundary, buildingsToFeatureCollection(buildings));
 
     for (const key of ALL_LAYER_KEYS) {
       setNativeLayerVisible(map, key, visibility[key]);
@@ -268,6 +301,17 @@ export default function DigitalTwin2() {
       if (key === 'patrol') patrolMarkerLayer.setVisible(visibility[key]);
       if (key === 'personnel') personnelLayer.setVisible(visibility[key]);
     }
+
+    // Walkways, street lighting and patrol routes were pulled from the
+    // Layers panel for now (see LayerControl.jsx) — since they're no
+    // longer in ALL_LAYER_KEYS, the loop above never touches them, so
+    // force them off here instead of leaving them at their created-visible
+    // default. Not deleted, just hidden — flip these back on by restoring
+    // their LayerControl.jsx entries.
+    pedestrianLayer.setVisible(false);
+    lightingLayer.setVisible(false);
+    patrolMarkerLayer.setVisible(false);
+    setNativeLayerVisible(map, 'patrol', false);
 
     // pointer interaction: hover + click picking, personnel markers first
     // (smaller/easier-to-miss targets get priority), falling back to the
@@ -332,6 +376,7 @@ export default function DigitalTwin2() {
     map.on('click', onClick);
 
     map.triggerRepaint();
+    setSceneReady(true);
     return () => {
       map.off('mousemove', onMouseMove);
       map.off('click', onClick);
@@ -452,8 +497,10 @@ export default function DigitalTwin2() {
         onToggleFuture={toggleFuture}
         onZoomToFit={handleZoomToFit}
       />
-      <MapLegend />
-      <SecurityAlerts onSimulateBreach={handleSimulateBreach} breachState={breachState} simulating={simulating} />
+      {/* Map legend (colour key) panel — commented out for now, not deleted.
+          <MapLegend /> */}
+      {/* Security Alerts (Demo) panel — commented out for now, not deleted.
+          <SecurityAlerts onSimulateBreach={handleSimulateBreach} breachState={breachState} simulating={simulating} /> */}
 
       {selected && selected.id !== 'REAL-BLOCK-3' && selected.id !== 'REAL-ADMIN-1' && (
         <BuildingPopup
@@ -505,13 +552,38 @@ export default function DigitalTwin2() {
         );
       })()}
 
-      {(loading || error) && (
+      {/* Full-screen cover until the map style, GIS data AND every layer
+          (buildings, roads, fence, personnel roster, labels, initial
+          zoom-to-fit) have actually been built — `loading` above only
+          covers the initial JSON fetch, which resolves long before the
+          map/scene is actually visible, so gating on sceneReady instead
+          avoids a flash of an empty/half-built map underneath. */}
+      {!error && !sceneReady && (
         <div style={{
-          position: 'absolute', top: 16, left: 16, zIndex: 5,
+          position: 'absolute', inset: 0, zIndex: 8, background: '#0a0f16',
+          display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 16,
+        }}>
+          <div style={{
+            width: 52, height: 52, borderRadius: '50%',
+            border: '3px solid rgba(77,226,255,0.2)', borderTopColor: '#4de2ff',
+            animation: 'spin 0.8s linear infinite',
+          }} />
+          <div style={{ fontSize: 14, fontWeight: 700, color: '#bcefff', letterSpacing: '0.02em' }}>
+            Loading Campus Digital Twin…
+          </div>
+          <div style={{ fontSize: 11.5, color: 'rgba(188,239,255,0.55)' }}>
+            {loading ? 'Loading live campus geometry from zmu_db…' : 'Building 3-D scene…'}
+          </div>
+        </div>
+      )}
+
+      {error && (
+        <div style={{
+          position: 'absolute', top: 16, left: 16, zIndex: 8,
           background: 'rgba(8,14,22,0.72)', border: '1px solid rgba(77,226,255,0.25)',
           borderRadius: 10, padding: '8px 14px', fontSize: 12.5, color: '#bcefff',
         }}>
-          {error ? `Digital Twin 2 — GIS service error: ${error}` : 'Loading live campus geometry from zmu_db…'}
+          {`Digital Twin 2 — GIS service error: ${error}`}
         </div>
       )}
     </div>
