@@ -495,48 +495,59 @@ const LIGHT_PRESETS = {
   night: { sky: ['#03050a', '#070c16', '#0b1420'], fog: 0x05070d, ambient: [0x33507a, 0.26], hemi: [0x223250, 0x0b1712, 0.3], sun: [0x8fa4d0, 0.18], exposure: 1.02, lampBoost: 1.6 },
 };
 
-/* ── synthetic Garmin-style profile for a pedestrian (demo data only —
-   consistent with this app's existing "SYNTHETIC DATA" banner) ─────── */
-const FIRST_NAMES = ['Rashid', 'Omar', 'Khalid', 'Youssef', 'Hamdan', 'Sultan', 'Saeed', 'Marwan', 'Fatima', 'Aisha', 'Maryam', 'Noura', 'Salim', 'Zayed'];
-const LAST_NAMES = ['Al Nuaimi', 'Al Falasi', 'Al Mazrouei', 'Al Suwaidi', 'Al Kaabi', 'Al Shamsi', 'Al Dhaheri', 'Al Marri'];
-const ROLES = [
-  { role: 'Cadet', dept: 'Academics' }, { role: 'Officer', dept: 'Command' }, { role: 'Security Guard', dept: 'Security Operations' },
-  { role: 'Medical Staff', dept: 'Medical Centre' }, { role: 'Maintenance Engineer', dept: 'Facilities' }, { role: 'Administrative Staff', dept: 'Admin' },
-];
-function makePersonProfile(seed, id) {
+/* ── pedestrian identity: real cadet record (name/squadron/year/device/risk)
+   from the Readiness & Performance page's own /api/readiness endpoint — read
+   only, no other page or endpoint is touched. Falls back to a clearly-labelled
+   synthetic profile only if that data hasn't loaded yet. ─────────────────── */
+function makePersonProfile(seed, id, cadet) {
   const rand = mulberry32(seed);
-  const roleInfo = ROLES[Math.floor(rand() * ROLES.length)];
-  return {
+  const now = Date.now();
+  const base = {
     id,
-    name: `${FIRST_NAMES[Math.floor(rand() * FIRST_NAMES.length)]} ${LAST_NAMES[Math.floor(rand() * LAST_NAMES.length)]}`,
-    employeeId: `ZMU-${1000 + Math.floor(rand() * 8999)}`,
-    role: roleInfo.role,
-    dept: roleInfo.dept,
-    shift: rand() < 0.5 ? 'Day (06:00–18:00)' : 'Night (18:00–06:00)',
-    baseHr: 62 + Math.floor(rand() * 18),
+    baseHr: 58 + Math.floor(rand() * 20),
     baseSpo2: 96 + Math.floor(rand() * 4),
     baseTemp: 36.3 + rand() * 0.6,
-    battery: 40 + Math.floor(rand() * 60),
+    battery: 55 + Math.floor(rand() * 45),
+    baseSteps: 1800 + Math.floor(rand() * 2600), // steps already logged earlier today
+    stepRate: 1.1 + rand() * 0.6,                // steps/sec while this pedestrian is "Walking"
+    startTime: now,
   };
+  if (cadet) {
+    return {
+      ...base,
+      name: cadet.name,
+      employeeId: `ZMU-${cadet.cadet_id}`,
+      role: `Cadet · Year ${cadet.year}`,
+      dept: `${cadet.squadron} Squadron`,
+      device: cadet.device,
+      merit: cadet.merit,
+      shift: cadet.risk === 'high' ? 'Restricted duty' : rand() < 0.5 ? 'Day (06:00–18:00)' : 'Night (18:00–06:00)',
+      // baseline HR nudged by their real fitness score so it isn't arbitrary
+      baseHr: Math.round(base.baseHr + (70 - Math.min(90, cadet.fitness ?? 70)) * 0.2),
+    };
+  }
+  return { ...base, name: `Cadet ${id + 1}`, employeeId: `ZMU-PENDING-${id}`, role: 'Cadet', dept: 'Zayed Military University', shift: 'Day (06:00–18:00)' };
 }
 
-/* derives a "live" telemetry snapshot for the health dashboard — synthetic,
-   jittered off the person's stable base profile + their current 3-D position */
+/* derives a "live" telemetry snapshot for the health dashboard. HR/SpO2/temp
+   get a small realistic wobble (real vitals do fluctuate breath to breath),
+   but steps and battery are cumulative readings — they only ever count up (or
+   drain down), driven by elapsed time since the profile was created, never a
+   fresh random jump. */
 function derivePersonLive(profile, personObj) {
   const jitter = Math.random() - 0.5;
   const hr = Math.max(48, Math.round(profile.baseHr + jitter * 10 + Math.random() * 4));
   const spo2 = Math.max(93, Math.min(100, Math.round(profile.baseSpo2 + jitter * 2)));
   const temp = profile.baseTemp + jitter * 0.2;
   const stress = hr > profile.baseHr + 14 ? 'Elevated' : hr > profile.baseHr + 5 ? 'Moderate' : 'Low';
-  const steps = 3200 + Math.floor(Math.random() * 6400);
+  const elapsedSec = (Date.now() - profile.startTime) / 1000;
+  const steps = profile.baseSteps + Math.floor(elapsedSec * profile.stepRate);
+  const battery = Math.max(4, profile.battery - Math.floor(elapsedSec / 240)); // ~1% every 4 minutes
   // no real georeference exists for this demo site — offset a plausible base
   // coordinate by world position so it reads as live GPS, clearly synthetic
   const lat = 24.4539 + personObj.position.z / 90000;
   const lon = 54.3773 + personObj.position.x / 90000;
-  return {
-    ...profile, hr, spo2, temp, stress, steps, lat, lon,
-    battery: Math.max(4, profile.battery - Math.round(Math.random())),
-  };
+  return { ...profile, hr, spo2, temp, stress, steps, battery, lat, lon };
 }
 
 function Stat({ label, value }) {
@@ -550,6 +561,9 @@ function Stat({ label, value }) {
 
 export default function DigitalTwin() {
   const { data, error } = useApi('/twin');
+  // pedestrians are given real cadet identities pulled from the Readiness &
+  // Performance page's own endpoint (read-only — that page/route is untouched)
+  const { data: readinessData, error: readinessError } = useApi('/readiness');
   const [metric, setMetric] = useState(METRICS[0]);
   const [twinBuilding, setTwinBuilding] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -564,8 +578,8 @@ export default function DigitalTwin() {
     }
   }, [searchParams, data]);
 
-  if (error) return <Panel title="Error">{String(error)}</Panel>;
-  if (!data) return <Loading text="Loading campus digital twin…" />;
+  if (error || readinessError) return <Panel title="Error">{String(error || readinessError)}</Panel>;
+  if (!data || !readinessData) return <Loading text="Loading campus digital twin…" />;
 
   return (
     <>
@@ -584,7 +598,7 @@ export default function DigitalTwin() {
       />
 
       <Panel title={`3-D Site Model — ${metric.label}`} sub="Drag to orbit · scroll to zoom · click any building to open its 3-D digital twin" style={{ padding: 0, overflow: 'hidden' }}>
-        <CampusScene3D buildings={data.buildings} metric={metric} onSelectBuilding={setTwinBuilding} />
+        <CampusScene3D buildings={data.buildings} metric={metric} onSelectBuilding={setTwinBuilding} cadets={readinessData.cadets} />
 
         {/* legend */}
         <div style={{ display: 'flex', gap: 18, padding: '10px 16px 14px', alignItems: 'center', flexWrap: 'wrap', borderTop: '1px solid var(--app-surface-raised)' }}>
@@ -651,7 +665,7 @@ export default function DigitalTwin() {
 /* ══════════════════════════════════════════════════════════════════════════
    CampusScene3D — the actual real-time-rendered 3-D digital twin
    ══════════════════════════════════════════════════════════════════════════ */
-function CampusScene3D({ buildings, metric, onSelectBuilding }) {
+function CampusScene3D({ buildings, metric, onSelectBuilding, cadets }) {
   const mountRef = useRef(null);
   const stateRef = useRef(null);
   const metricRef = useRef(metric);
@@ -1527,22 +1541,29 @@ function CampusScene3D({ buildings, metric, onSelectBuilding }) {
     // teleporting in a straight line between two arbitrary points)
     const people = [];
     const personPickables = [];
+    // pedestrians walk the sidewalks / grass shoulders / building-entrance
+    // spurs — never down the centre of a vehicle road (that's what the
+    // dashed lane markings and moving cars use)
     const PATHS = [
-      [[toX(0) + 20, toZ(345)], [toX(1010) - 20, toZ(345)]],
-      [[toX(285), toZ(20)], [toX(285), toZ(345)], [toX(285), toZ(640)]],
-      [[toX(505), toZ(20)], [toX(505), toZ(345)], [toX(505), toZ(640)]],
-      [[toX(570), toZ(505)], [toX(765), toZ(505)], [toX(960), toZ(505)]],
-      [[toX(570), toZ(600)], [toX(765), toZ(600)], [toX(960), toZ(600)]],
-      [[toX(748), toZ(388)], [toX(850), toZ(388)], [toX(950), toZ(388)]],
-      [[toX(150), toZ(345)], [toX(150), toZ(175)]],
-      [[toX(505), toZ(345)], [toX(505), toZ(640)]],
+      [[toX(40), toZ(327)], [toX(970), toZ(327)]],                          // spine — north sidewalk
+      [[toX(40), toZ(363)], [toX(970), toZ(363)]],                          // spine — south sidewalk
+      [[toX(266), toZ(30)], [toX(266), toZ(630)]],                          // west shoulder, parallels road A
+      [[toX(524), toZ(30)], [toX(524), toZ(300)]],                          // east shoulder north of the roundabout
+      [[toX(524), toZ(400)], [toX(524), toZ(600)]],                        // east shoulder south of the roundabout
+      [[toX(150), toZ(327)], [toX(150), toZ(172)]],                        // into Z01 — Administration
+      [[toX(420), toZ(327)], [toX(420), toZ(162)]],                        // into Z02 — Academic Block A
+      [[toX(385), toZ(363)], [toX(385), toZ(292)]],                        // into Z03 — Academic Block B
+      [[toX(600), toZ(363)], [toX(600), toZ(292)]],                        // into Z10 — Candidates' Club dining
+      [[toX(575), toZ(497)], [toX(765), toZ(497)], [toX(955), toZ(497)]],  // parade ground, north edge
+      [[toX(575), toZ(613)], [toX(765), toZ(613)], [toX(955), toZ(613)]],  // parade ground, south edge
+      [[toX(748), toZ(388)], [toX(850), toZ(388)], [toX(950), toZ(388)]],  // parking lot walking lane
     ].map(pathMetrics);
     for (let i = 0; i < 16; i++) {
       const person = buildPerson(500 + i * 13);
       person.userData.path = PATHS[i % PATHS.length];
       person.userData.speed = 1.1 + mulberry32(900 + i)() * 0.6; // real walking pace, m/s
       person.userData.phase = mulberry32(700 + i)() * 10;
-      person.userData.profile = makePersonProfile(2000 + i * 71, i);
+      person.userData.profile = makePersonProfile(2000 + i * 71, i, cadets?.[(i * 3) % cadets.length]);
 
       // hit-test radius is intentionally much bigger than the visual model —
       // a person is ~1.8m tall on a 1000m-wide site, so a literally-sized
@@ -1854,7 +1875,8 @@ function CampusScene3D({ buildings, metric, onSelectBuilding }) {
             <Stat label="Steps today" value={personPanel.steps.toLocaleString()} />
           </div>
           <div style={{ marginTop: 8, paddingTop: 8, borderTop: '1px solid rgba(255,255,255,0.1)', fontSize: 9, color: '#6a8aaa' }}>
-            GPS {personPanel.lat.toFixed(5)}, {personPanel.lon.toFixed(5)} · synthetic demo telemetry
+            {personPanel.device ? `${personPanel.device} · ` : ''}GPS {personPanel.lat.toFixed(5)}, {personPanel.lon.toFixed(5)}
+            <br />live vitals simulated · identity from Readiness &amp; Performance
           </div>
         </div>
       )}

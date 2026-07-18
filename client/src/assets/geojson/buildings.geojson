@@ -1,0 +1,4332 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-BLOCK-1",
+        "display_name": "Block 1",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": false,
+        "gross_area": 1369,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.38726591369941,
+          24.25651242931025
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3870014,
+              24.2565057
+            ],
+            [
+              54.3869169,
+              24.2564661
+            ],
+            [
+              54.3870182,
+              24.2562849
+            ],
+            [
+              54.3871105,
+              24.2563212
+            ],
+            [
+              54.3870886,
+              24.2563655
+            ],
+            [
+              54.3871066,
+              24.256381
+            ],
+            [
+              54.3871474,
+              24.2563403
+            ],
+            [
+              54.3875635,
+              24.2565405
+            ],
+            [
+              54.3874785,
+              24.2566949
+            ],
+            [
+              54.3874455,
+              24.2566849
+            ],
+            [
+              54.3874271,
+              24.2567052
+            ],
+            [
+              54.3870359,
+              24.2565237
+            ],
+            [
+              54.3870759,
+              24.2564611
+            ],
+            [
+              54.3870447,
+              24.2564411
+            ],
+            [
+              54.3870014,
+              24.2565057
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-BLOCK-2",
+        "display_name": "Block 2",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": false,
+        "gross_area": 1136,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.38734010932854,
+          24.25626220865004
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3870373,
+              24.2562195
+            ],
+            [
+              54.38716,
+              24.2562785
+            ],
+            [
+              54.3871752,
+              24.2562632
+            ],
+            [
+              54.3872843,
+              24.2563144
+            ],
+            [
+              54.387277,
+              24.2563274
+            ],
+            [
+              54.387345,
+              24.2563608
+            ],
+            [
+              54.387363,
+              24.2563483
+            ],
+            [
+              54.3874797,
+              24.2564119
+            ],
+            [
+              54.3874727,
+              24.2564311
+            ],
+            [
+              54.3875853,
+              24.2564824
+            ],
+            [
+              54.3876785,
+              24.2563246
+            ],
+            [
+              54.3876422,
+              24.2563018
+            ],
+            [
+              54.3876445,
+              24.2562913
+            ],
+            [
+              54.3876034,
+              24.256272
+            ],
+            [
+              54.3875954,
+              24.2562813
+            ],
+            [
+              54.3875829,
+              24.2562696
+            ],
+            [
+              54.3875513,
+              24.2562823
+            ],
+            [
+              54.3874563,
+              24.2562261
+            ],
+            [
+              54.3874318,
+              24.2562364
+            ],
+            [
+              54.3873668,
+              24.2561943
+            ],
+            [
+              54.3872518,
+              24.2561404
+            ],
+            [
+              54.3872592,
+              24.2561164
+            ],
+            [
+              54.3871709,
+              24.2560664
+            ],
+            [
+              54.3871393,
+              24.256066
+            ],
+            [
+              54.3870373,
+              24.2562195
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-BLOCK-3",
+        "display_name": "Block 3",
+        "category": "structure",
+        "height": 12,
+        "levels": 3,
+        "levels_estimated": false,
+        "gross_area": 2662,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.38789162138066,
+          24.25591199791724
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.387542,
+              24.2558483
+            ],
+            [
+              54.3875204,
+              24.2558403
+            ],
+            [
+              54.3874566,
+              24.2559525
+            ],
+            [
+              54.3880997,
+              24.2562584
+            ],
+            [
+              54.3881638,
+              24.2561506
+            ],
+            [
+              54.3881347,
+              24.2561348
+            ],
+            [
+              54.3882097,
+              24.2559877
+            ],
+            [
+              54.3882411,
+              24.2559982
+            ],
+            [
+              54.3883154,
+              24.2558652
+            ],
+            [
+              54.3876703,
+              24.2555608
+            ],
+            [
+              54.387605,
+              24.2557042
+            ],
+            [
+              54.3876226,
+              24.2557146
+            ],
+            [
+              54.387542,
+              24.2558483
+            ]
+          ],
+          [
+            [
+              54.3876395,
+              24.2559028
+            ],
+            [
+              54.3880354,
+              24.2560884
+            ],
+            [
+              54.3881115,
+              24.2559417
+            ],
+            [
+              54.3877228,
+              24.2557574
+            ],
+            [
+              54.3876395,
+              24.2559028
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-BUILDING-1",
+        "display_name": "Building 1",
+        "category": "structure",
+        "height": 24,
+        "levels": 6,
+        "levels_estimated": false,
+        "gross_area": 428,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.38731713549274,
+          24.255557123436354
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3872382,
+              24.2556285
+            ],
+            [
+              54.3872613,
+              24.2556393
+            ],
+            [
+              54.3873336,
+              24.2555278
+            ],
+            [
+              54.3873147,
+              24.2555093
+            ],
+            [
+              54.3873878,
+              24.2553817
+            ],
+            [
+              54.3874868,
+              24.2554281
+            ],
+            [
+              54.3874054,
+              24.2555639
+            ],
+            [
+              54.3872965,
+              24.2557516
+            ],
+            [
+              54.3871921,
+              24.255715
+            ],
+            [
+              54.3872382,
+              24.2556285
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-BUILDING-2",
+        "display_name": "Building 2",
+        "category": "structure",
+        "height": 24,
+        "levels": 6,
+        "levels_estimated": false,
+        "gross_area": 431,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.38717369390478,
+          24.255469583770388
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3870557,
+              24.2555429
+            ],
+            [
+              54.3870096,
+              24.255622
+            ],
+            [
+              54.3871077,
+              24.2556655
+            ],
+            [
+              54.3873216,
+              24.2553177
+            ],
+            [
+              54.387232,
+              24.2552687
+            ],
+            [
+              54.3871463,
+              24.255416
+            ],
+            [
+              54.3871577,
+              24.2554429
+            ],
+            [
+              54.3870925,
+              24.2555528
+            ],
+            [
+              54.3870557,
+              24.2555429
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-BUILDING-3",
+        "display_name": "Building 3",
+        "category": "structure",
+        "height": 24,
+        "levels": 6,
+        "levels_estimated": false,
+        "gross_area": 383,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.386985938661894,
+          24.255397300737737
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3868827,
+              24.2554624
+            ],
+            [
+              54.3868473,
+              24.2555431
+            ],
+            [
+              54.38693,
+              24.2555841
+            ],
+            [
+              54.3871297,
+              24.2552491
+            ],
+            [
+              54.3870415,
+              24.2552169
+            ],
+            [
+              54.386969,
+              24.2553331
+            ],
+            [
+              54.3869813,
+              24.2553475
+            ],
+            [
+              54.3869101,
+              24.2554684
+            ],
+            [
+              54.3868827,
+              24.2554624
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-BUILDING-4",
+        "display_name": "Building 4",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": false,
+        "gross_area": 236,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.38679995730452,
+          24.255340658256966
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3867233,
+              24.2555054
+            ],
+            [
+              54.3867763,
+              24.2555274
+            ],
+            [
+              54.3869693,
+              24.2552149
+            ],
+            [
+              54.3869101,
+              24.2551993
+            ],
+            [
+              54.3867233,
+              24.2555054
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-BUILDING-5",
+        "display_name": "Building 5",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": false,
+        "gross_area": 209,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.38672940496266,
+          24.255302448702842
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3867044,
+              24.2551099
+            ],
+            [
+              54.3865385,
+              24.2554096
+            ],
+            [
+              54.3864923,
+              24.2553901
+            ],
+            [
+              54.3866552,
+              24.2550814
+            ],
+            [
+              54.3867044,
+              24.2551099
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-BUILDING-6",
+        "display_name": "Building 6",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": false,
+        "gross_area": 234,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.38649571238219,
+          24.255185411948716
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3863212,
+              24.255318
+            ],
+            [
+              54.3863726,
+              24.2553341
+            ],
+            [
+              54.3865663,
+              24.2550196
+            ],
+            [
+              54.3865148,
+              24.254992
+            ],
+            [
+              54.3863212,
+              24.255318
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-BUILDING-7",
+        "display_name": "Building 7",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": false,
+        "gross_area": 223,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.386158078406936,
+          24.255049826973877
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.386131,
+              24.2552242
+            ],
+            [
+              54.3861877,
+              24.2552491
+            ],
+            [
+              54.3863614,
+              24.2549404
+            ],
+            [
+              54.3863161,
+              24.2549199
+            ],
+            [
+              54.386131,
+              24.2552242
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-BUILDING-8",
+        "display_name": "Building 8",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": false,
+        "gross_area": 230,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.386426933549,
+          24.255699909460976
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3862397,
+              24.2558067
+            ],
+            [
+              54.386292,
+              24.2558322
+            ],
+            [
+              54.3864725,
+              24.2555293
+            ],
+            [
+              54.3864202,
+              24.2555044
+            ],
+            [
+              54.3862397,
+              24.2558067
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-BUILDING-9",
+        "display_name": "Building 9",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": false,
+        "gross_area": 221,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.38652941490895,
+          24.255762095413832
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3864843,
+              24.2559355
+            ],
+            [
+              54.3865397,
+              24.2559547
+            ],
+            [
+              54.3867153,
+              24.2556528
+            ],
+            [
+              54.3866716,
+              24.255624
+            ],
+            [
+              54.3864843,
+              24.2559355
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-BUILDING-10",
+        "display_name": "Building 10",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": false,
+        "gross_area": 231,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.38679660777399,
+          24.25587550182963
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.386647,
+              24.2560066
+            ],
+            [
+              54.3866959,
+              24.2560328
+            ],
+            [
+              54.3868878,
+              24.255716
+            ],
+            [
+              54.3868354,
+              24.2556944
+            ],
+            [
+              54.386647,
+              24.2560066
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-BUILDING-11",
+        "display_name": "Building 11",
+        "category": "structure",
+        "height": 4,
+        "levels": 1,
+        "levels_estimated": false,
+        "gross_area": 786,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.38608627628791,
+          24.25552200458942
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3859188,
+              24.2555949
+            ],
+            [
+              54.3861698,
+              24.2556967
+            ],
+            [
+              54.3863024,
+              24.2554697
+            ],
+            [
+              54.3860578,
+              24.2553705
+            ],
+            [
+              54.3859188,
+              24.2555949
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-ADMIN-1",
+        "display_name": "Administration Building",
+        "category": "administration",
+        "height": 12,
+        "levels": 3,
+        "levels_estimated": false,
+        "gross_area": 804,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.38631607131944,
+          24.25603590258922
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3861215,
+              24.2560981
+            ],
+            [
+              54.3862301,
+              24.2561327
+            ],
+            [
+              54.3862591,
+              24.2560804
+            ],
+            [
+              54.386374,
+              24.2561296
+            ],
+            [
+              54.3863415,
+              24.2561837
+            ],
+            [
+              54.3864304,
+              24.256227
+            ],
+            [
+              54.3865535,
+              24.2560378
+            ],
+            [
+              54.3862594,
+              24.2558781
+            ],
+            [
+              54.3861215,
+              24.2560981
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-MOSQUE-1",
+        "display_name": "Mosque — Main Hall",
+        "category": "mosque",
+        "height": 4,
+        "levels": 1,
+        "levels_estimated": false,
+        "gross_area": 405,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.386055737110624,
+          24.25596235853831
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3860521,
+              24.2558306
+            ],
+            [
+              54.3858691,
+              24.2558343
+            ],
+            [
+              54.385871,
+              24.2560082
+            ],
+            [
+              54.3860638,
+              24.2560221
+            ],
+            [
+              54.3860555,
+              24.2559604
+            ],
+            [
+              54.3860799,
+              24.2559565
+            ],
+            [
+              54.386084,
+              24.2558965
+            ],
+            [
+              54.3860604,
+              24.2558914
+            ],
+            [
+              54.3860521,
+              24.2558306
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-MOSQUE-2",
+        "display_name": "Mosque — Dome",
+        "category": "mosque",
+        "height": 4,
+        "levels": 1,
+        "levels_estimated": false,
+        "gross_area": 25,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.38461279744801,
+          24.255321172497073
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3859147,
+              24.2559118
+            ],
+            [
+              54.3859154,
+              24.2559239
+            ],
+            [
+              54.3859231,
+              24.2559345
+            ],
+            [
+              54.3859375,
+              24.2559395
+            ],
+            [
+              54.3859607,
+              24.2559366
+            ],
+            [
+              54.3859661,
+              24.2559247
+            ],
+            [
+              54.3859723,
+              24.2559062
+            ],
+            [
+              54.3859556,
+              24.2558906
+            ],
+            [
+              54.385934,
+              24.255888
+            ],
+            [
+              54.3859236,
+              24.2558971
+            ],
+            [
+              54.3859147,
+              24.2559118
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-MOSQUE-3",
+        "display_name": "Mosque — Pillar",
+        "category": "mosque",
+        "height": 12,
+        "levels": 1,
+        "levels_estimated": false,
+        "gross_area": 4,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.38618719694625,
+          24.25607433454867
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3860385,
+              24.2560035
+            ],
+            [
+              54.3860344,
+              24.2560132
+            ],
+            [
+              54.3860382,
+              24.2560165
+            ],
+            [
+              54.3860429,
+              24.2560202
+            ],
+            [
+              54.3860533,
+              24.2560227
+            ],
+            [
+              54.3860602,
+              24.2560161
+            ],
+            [
+              54.3860578,
+              24.2560072
+            ],
+            [
+              54.3860486,
+              24.256002
+            ],
+            [
+              54.3860385,
+              24.2560035
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-MAP-BUILDING-101",
+        "display_name": "Building 101",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": true,
+        "gross_area": 235,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.38500824237794,
+          24.256499600811342
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3848013,
+              24.2565054
+            ],
+            [
+              54.3849004,
+              24.2565591
+            ],
+            [
+              54.384987,
+              24.2563871
+            ],
+            [
+              54.384892,
+              24.2563406
+            ],
+            [
+              54.3848013,
+              24.2565054
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-MAP-BUILDING-102",
+        "display_name": "Building 102",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": true,
+        "gross_area": 43,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.38531888052124,
+          24.256578207350803
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3849597,
+              24.2564449
+            ],
+            [
+              54.3850235,
+              24.2564775
+            ],
+            [
+              54.38505,
+              24.2564315
+            ],
+            [
+              54.3849846,
+              24.2563984
+            ],
+            [
+              54.3849597,
+              24.2564449
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-MAP-BUILDING-103",
+        "display_name": "Building 103",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": true,
+        "gross_area": 48,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.384241875700845,
+          24.256099315490015
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3850488,
+              24.2564896
+            ],
+            [
+              54.3851161,
+              24.2565218
+            ],
+            [
+              54.3851431,
+              24.2564698
+            ],
+            [
+              54.3850782,
+              24.2564399
+            ],
+            [
+              54.3850488,
+              24.2564896
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-MAP-BUILDING-104",
+        "display_name": "Building 104",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": true,
+        "gross_area": 41,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.38502312199645,
+          24.256448093720028
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3851298,
+              24.2565225
+            ],
+            [
+              54.385193,
+              24.2565538
+            ],
+            [
+              54.3852182,
+              24.2565073
+            ],
+            [
+              54.3851561,
+              24.2564779
+            ],
+            [
+              54.3851298,
+              24.2565225
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-MAP-BUILDING-105",
+        "display_name": "Building 105",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": true,
+        "gross_area": 189,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.385431960443576,
+          24.25661594915912
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3853174,
+              24.256608
+            ],
+            [
+              54.3854933,
+              24.2566931
+            ],
+            [
+              54.3855124,
+              24.2566541
+            ],
+            [
+              54.3855367,
+              24.2566197
+            ],
+            [
+              54.3853608,
+              24.2565346
+            ],
+            [
+              54.385336,
+              24.2565658
+            ],
+            [
+              54.3853174,
+              24.256608
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-MAP-BUILDING-106",
+        "display_name": "Building 106",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": true,
+        "gross_area": 47,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.38489437227718,
+          24.25617331402084
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3849648,
+              24.2562662
+            ],
+            [
+              54.3849985,
+              24.2562809
+            ],
+            [
+              54.385055,
+              24.2561852
+            ],
+            [
+              54.3850203,
+              24.2561686
+            ],
+            [
+              54.3849648,
+              24.2562662
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-MAP-BUILDING-107",
+        "display_name": "Building 107",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": true,
+        "gross_area": 58,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.384947647259224,
+          24.2559812075895
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3850615,
+              24.2560814
+            ],
+            [
+              54.3851135,
+              24.2561048
+            ],
+            [
+              54.3851591,
+              24.2560261
+            ],
+            [
+              54.3851072,
+              24.2560027
+            ],
+            [
+              54.3850615,
+              24.2560814
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-MAP-BUILDING-108",
+        "display_name": "Building 108",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": true,
+        "gross_area": 317,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.3851707109187,
+          24.256171271873363
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3850315,
+              24.2563083
+            ],
+            [
+              54.3851023,
+              24.2563393
+            ],
+            [
+              54.3852848,
+              24.2560244
+            ],
+            [
+              54.3852146,
+              24.2559916
+            ],
+            [
+              54.3850315,
+              24.2563083
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-MAP-BUILDING-109",
+        "display_name": "Building 109",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": true,
+        "gross_area": 366,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.38536244514987,
+          24.25625108465859
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3851983,
+              24.2563779
+            ],
+            [
+              54.3852801,
+              24.2564142
+            ],
+            [
+              54.3854697,
+              24.2560975
+            ],
+            [
+              54.3853899,
+              24.2560618
+            ],
+            [
+              54.3851983,
+              24.2563779
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-MAP-BUILDING-110",
+        "display_name": "Building 110",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": true,
+        "gross_area": 427,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.38544885250028,
+          24.256460911048197
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3853407,
+              24.2564854
+            ],
+            [
+              54.3855816,
+              24.2566008
+            ],
+            [
+              54.3856548,
+              24.2564813
+            ],
+            [
+              54.3854088,
+              24.2563623
+            ],
+            [
+              54.3853407,
+              24.2564854
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-MAP-BUILDING-111",
+        "display_name": "Building 111",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": true,
+        "gross_area": 372,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.38564323884424,
+          24.25632691305311
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.38545,
+              24.2563137
+            ],
+            [
+              54.3856746,
+              24.2564145
+            ],
+            [
+              54.3857421,
+              24.256299
+            ],
+            [
+              54.3855201,
+              24.2561971
+            ],
+            [
+              54.38545,
+              24.2563137
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-MAP-BUILDING-112",
+        "display_name": "Building 112",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": true,
+        "gross_area": 110,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.385616976551134,
+          24.256709978899174
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3856096,
+              24.2567744
+            ],
+            [
+              54.3856693,
+              24.2566684
+            ],
+            [
+              54.3855953,
+              24.2566345
+            ],
+            [
+              54.3855369,
+              24.2567369
+            ],
+            [
+              54.3856096,
+              24.2567744
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-MAP-BUILDING-113",
+        "display_name": "Building 113",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": true,
+        "gross_area": 396,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.38577784215209,
+          24.256443707792297
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3856599,
+              24.2565929
+            ],
+            [
+              54.3857494,
+              24.2566304
+            ],
+            [
+              54.3859305,
+              24.2563072
+            ],
+            [
+              54.3858442,
+              24.2562715
+            ],
+            [
+              54.3856599,
+              24.2565929
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-MAP-BUILDING-114",
+        "display_name": "Building 114",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": true,
+        "gross_area": 615,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.38670890458169,
+          24.25713883040601
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3866127,
+              24.256981
+            ],
+            [
+              54.3865074,
+              24.2571629
+            ],
+            [
+              54.3866042,
+              24.2572136
+            ],
+            [
+              54.3866362,
+              24.2571581
+            ],
+            [
+              54.386715,
+              24.2571926
+            ],
+            [
+              54.3866795,
+              24.2572579
+            ],
+            [
+              54.3867572,
+              24.2572956
+            ],
+            [
+              54.3868648,
+              24.2571072
+            ],
+            [
+              54.3866127,
+              24.256981
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-MAP-BUILDING-115",
+        "display_name": "Building 115",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": true,
+        "gross_area": 650,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.38676639905402,
+          24.25689409741259
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3865736,
+              24.2569096
+            ],
+            [
+              54.3868469,
+              24.2570364
+            ],
+            [
+              54.3869441,
+              24.2568709
+            ],
+            [
+              54.3866658,
+              24.2567447
+            ],
+            [
+              54.3865736,
+              24.2569096
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-MAP-BUILDING-116",
+        "display_name": "Building 116",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": true,
+        "gross_area": 46,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.387016564114816,
+          24.256771221510533
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3867826,
+              24.2566942
+            ],
+            [
+              54.3868624,
+              24.2567266
+            ],
+            [
+              54.3868834,
+              24.256688
+            ],
+            [
+              54.3868056,
+              24.2566497
+            ],
+            [
+              54.3867826,
+              24.2566942
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-MAP-BUILDING-117",
+        "display_name": "Building 117",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": true,
+        "gross_area": 88,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.3873233700918,
+          24.256938747543764
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3870463,
+              24.2568609
+            ],
+            [
+              54.3871262,
+              24.2568997
+            ],
+            [
+              54.3871716,
+              24.2568256
+            ],
+            [
+              54.3870897,
+              24.2567861
+            ],
+            [
+              54.3870463,
+              24.2568609
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-MAP-BUILDING-118",
+        "display_name": "Building 118",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": true,
+        "gross_area": 956,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.3870541727391,
+          24.257094677652134
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3868923,
+              24.2572361
+            ],
+            [
+              54.3870838,
+              24.2573298
+            ],
+            [
+              54.387283,
+              24.2569788
+            ],
+            [
+              54.3870916,
+              24.2568915
+            ],
+            [
+              54.3868923,
+              24.2572361
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-MAP-BUILDING-119",
+        "display_name": "Building 119",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": true,
+        "gross_area": 848,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.38735241750102,
+          24.25723780591507
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3871823,
+              24.2572973
+            ],
+            [
+              54.3874458,
+              24.2574254
+            ],
+            [
+              54.3875744,
+              24.2571987
+            ],
+            [
+              54.3873138,
+              24.2570757
+            ],
+            [
+              54.3871823,
+              24.2572973
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-MAP-BUILDING-120",
+        "display_name": "Building 120",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": true,
+        "gross_area": 90,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.386923876814016,
+          24.257281491822102
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3871497,
+              24.2574345
+            ],
+            [
+              54.3872226,
+              24.2574704
+            ],
+            [
+              54.3872711,
+              24.2573785
+            ],
+            [
+              54.3871949,
+              24.2573517
+            ],
+            [
+              54.3871497,
+              24.2574345
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-MAP-BUILDING-121",
+        "display_name": "Building 121",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": true,
+        "gross_area": 180,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.38744537835366,
+          24.25767591803906
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3872197,
+              24.2576309
+            ],
+            [
+              54.3873758,
+              24.2576933
+            ],
+            [
+              54.3874165,
+              24.2576074
+            ],
+            [
+              54.3872604,
+              24.257545
+            ],
+            [
+              54.3872197,
+              24.2576309
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-MAP-BUILDING-122",
+        "display_name": "Building 122",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": true,
+        "gross_area": 62,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.387217973534554,
+          24.257581154936833
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3869604,
+              24.257502
+            ],
+            [
+              54.3870414,
+              24.2575352
+            ],
+            [
+              54.387072,
+              24.2574841
+            ],
+            [
+              54.386991,
+              24.2574442
+            ],
+            [
+              54.3869604,
+              24.257502
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-MAP-BUILDING-123",
+        "display_name": "Building 123",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": true,
+        "gross_area": 130,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.38709817028093,
+          24.25730416288042
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3867991,
+              24.2572883
+            ],
+            [
+              54.3868474,
+              24.2573125
+            ],
+            [
+              54.3869557,
+              24.2571208
+            ],
+            [
+              54.3869106,
+              24.2570976
+            ],
+            [
+              54.3867991,
+              24.2572883
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-MAP-BUILDING-124",
+        "display_name": "Building 124",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": true,
+        "gross_area": 64,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.38690995334703,
+          24.25689407442935
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.38697,
+              24.2569822
+            ],
+            [
+              54.3870183,
+              24.2570064
+            ],
+            [
+              54.3870767,
+              24.2568939
+            ],
+            [
+              54.387037,
+              24.2568853
+            ],
+            [
+              54.38697,
+              24.2569822
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-2FLOOR-1",
+        "display_name": "Structure 1",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": false,
+        "gross_area": 39,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.38713184854024,
+          24.256316679210737
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3866149,
+              24.2560638
+            ],
+            [
+              54.386601,
+              24.2560972
+            ],
+            [
+              54.3866852,
+              24.2561397
+            ],
+            [
+              54.3867045,
+              24.2561098
+            ],
+            [
+              54.3866149,
+              24.2560638
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-2FLOOR-2",
+        "display_name": "Structure 2",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": false,
+        "gross_area": 38,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.38702325443236,
+          24.256275261973578
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3867192,
+              24.2561182
+            ],
+            [
+              54.3867037,
+              24.2561478
+            ],
+            [
+              54.3867838,
+              24.2561923
+            ],
+            [
+              54.3868066,
+              24.2561617
+            ],
+            [
+              54.3867192,
+              24.2561182
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-2FLOOR-3",
+        "display_name": "Structure 3",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": false,
+        "gross_area": 32,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.387374595117976,
+          24.25648838064486
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3865884,
+              24.2561229
+            ],
+            [
+              54.3865758,
+              24.2561488
+            ],
+            [
+              54.3866591,
+              24.256186
+            ],
+            [
+              54.3866743,
+              24.2561577
+            ],
+            [
+              54.3865884,
+              24.2561229
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-2FLOOR-4",
+        "display_name": "Structure 4",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": false,
+        "gross_area": 35,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.387027192780145,
+          24.256342432107477
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3866984,
+              24.2561744
+            ],
+            [
+              54.3866741,
+              24.2562031
+            ],
+            [
+              54.3867539,
+              24.2562409
+            ],
+            [
+              54.3867757,
+              24.256213
+            ],
+            [
+              54.3866984,
+              24.2561744
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-2FLOOR-5",
+        "display_name": "Structure 5",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": false,
+        "gross_area": 313,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.38654695938807,
+          24.25623451437113
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3865559,
+              24.2561752
+            ],
+            [
+              54.3864863,
+              24.2562547
+            ],
+            [
+              54.3867255,
+              24.2563829
+            ],
+            [
+              54.3867685,
+              24.2562741
+            ],
+            [
+              54.3865559,
+              24.2561752
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-2FLOOR-6",
+        "display_name": "Structure 6",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": false,
+        "gross_area": 38,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.38670426508501,
+          24.254898209913758
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3869323,
+              24.2549536
+            ],
+            [
+              54.3868892,
+              24.2550286
+            ],
+            [
+              54.3869221,
+              24.2550451
+            ],
+            [
+              54.38697,
+              24.2549679
+            ],
+            [
+              54.3869323,
+              24.2549536
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-2FLOOR-7",
+        "display_name": "Structure 7",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": false,
+        "gross_area": 42,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.38729760393198,
+          24.255041953302214
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3869414,
+              24.2549328
+            ],
+            [
+              54.3869738,
+              24.2549515
+            ],
+            [
+              54.3870263,
+              24.2548729
+            ],
+            [
+              54.38699,
+              24.2548527
+            ],
+            [
+              54.3869414,
+              24.2549328
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-2FLOOR-8",
+        "display_name": "Structure 8",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": false,
+        "gross_area": 35,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.38646760918041,
+          24.254792428306104
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.386979,
+              24.2549767
+            ],
+            [
+              54.386935,
+              24.2550483
+            ],
+            [
+              54.3869656,
+              24.2550636
+            ],
+            [
+              54.3870166,
+              24.2549878
+            ],
+            [
+              54.386979,
+              24.2549767
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-2FLOOR-9",
+        "display_name": "Structure 9",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": false,
+        "gross_area": 39,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.38776050436144,
+          24.255249490330968
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.38699,
+              24.2549554
+            ],
+            [
+              54.387022,
+              24.2549718
+            ],
+            [
+              54.3870694,
+              24.254893
+            ],
+            [
+              54.3870351,
+              24.2548754
+            ],
+            [
+              54.38699,
+              24.2549554
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-2FLOOR-10",
+        "display_name": "Structure 10",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": false,
+        "gross_area": 43,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.38766222306264,
+          24.255326286464765
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.386981,
+              24.2550744
+            ],
+            [
+              54.3870127,
+              24.2550922
+            ],
+            [
+              54.3870669,
+              24.2550101
+            ],
+            [
+              54.3870293,
+              24.2549919
+            ],
+            [
+              54.386981,
+              24.2550744
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-2FLOOR-11",
+        "display_name": "Structure 11",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": false,
+        "gross_area": 38,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.38687279437596,
+          24.254856675466986
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3870344,
+              24.2549773
+            ],
+            [
+              54.3870707,
+              24.2549937
+            ],
+            [
+              54.3871129,
+              24.2549115
+            ],
+            [
+              54.3870826,
+              24.2548987
+            ],
+            [
+              54.3870344,
+              24.2549773
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-2FLOOR-12",
+        "display_name": "Structure 12",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": false,
+        "gross_area": 39,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.38805731006285,
+          24.255503984126648
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3870861,
+              24.2550231
+            ],
+            [
+              54.387041,
+              24.2550992
+            ],
+            [
+              54.3870735,
+              24.2551172
+            ],
+            [
+              54.3871232,
+              24.2550358
+            ],
+            [
+              54.3870861,
+              24.2550231
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-2FLOOR-13",
+        "display_name": "Structure 13",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": false,
+        "gross_area": 40,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.38668082318674,
+          24.254772541697903
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3870904,
+              24.2550045
+            ],
+            [
+              54.3871302,
+              24.2550208
+            ],
+            [
+              54.3871754,
+              24.2549439
+            ],
+            [
+              54.3871455,
+              24.2549256
+            ],
+            [
+              54.3870904,
+              24.2550045
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-2FLOOR-14",
+        "display_name": "Structure 14",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": false,
+        "gross_area": 43,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.38790468535251,
+          24.255436655900922
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3871282,
+              24.2550438
+            ],
+            [
+              54.3870831,
+              24.2551199
+            ],
+            [
+              54.3871165,
+              24.255138
+            ],
+            [
+              54.3871709,
+              24.2550583
+            ],
+            [
+              54.3871282,
+              24.2550438
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-2FLOOR-15",
+        "display_name": "Structure 15",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": false,
+        "gross_area": 37,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.38769401653681,
+          24.255224110400626
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3871411,
+              24.2550272
+            ],
+            [
+              54.3871716,
+              24.2550425
+            ],
+            [
+              54.3872176,
+              24.254967
+            ],
+            [
+              54.3871882,
+              24.2549447
+            ],
+            [
+              54.3871411,
+              24.2550272
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-2FLOOR-16",
+        "display_name": "Structure 16",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": false,
+        "gross_area": 38,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.385850318758486,
+          24.254521565589464
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3871311,
+              24.2551454
+            ],
+            [
+              54.3871609,
+              24.255159
+            ],
+            [
+              54.3872141,
+              24.2550818
+            ],
+            [
+              54.387181,
+              24.2550629
+            ],
+            [
+              54.3871311,
+              24.2551454
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-2FLOOR-17",
+        "display_name": "Structure 17",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": false,
+        "gross_area": 38,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.38791976718806,
+          24.255328182892736
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3871855,
+              24.2550488
+            ],
+            [
+              54.3872208,
+              24.2550655
+            ],
+            [
+              54.3872659,
+              24.2549867
+            ],
+            [
+              54.3872329,
+              24.254972
+            ],
+            [
+              54.3871855,
+              24.2550488
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-2FLOOR-18",
+        "display_name": "Structure 18",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": false,
+        "gross_area": 41,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.387811584399905,
+          24.255399639197286
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3871869,
+              24.2551692
+            ],
+            [
+              54.3872222,
+              24.2551885
+            ],
+            [
+              54.3872697,
+              24.2551091
+            ],
+            [
+              54.3872354,
+              24.2550906
+            ],
+            [
+              54.3871869,
+              24.2551692
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-2FLOOR-19",
+        "display_name": "Structure 19",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": false,
+        "gross_area": 39,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.387370851053994,
+          24.255083408560534
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3872461,
+              24.2550761
+            ],
+            [
+              54.3872783,
+              24.2550942
+            ],
+            [
+              54.3873251,
+              24.2550127
+            ],
+            [
+              54.3872887,
+              24.2549983
+            ],
+            [
+              54.3872461,
+              24.2550761
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-2FLOOR-20",
+        "display_name": "Structure 20",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": false,
+        "gross_area": 35,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.387956012074504,
+          24.25546749459646
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3872354,
+              24.2551952
+            ],
+            [
+              54.3872683,
+              24.2552099
+            ],
+            [
+              54.3873125,
+              24.2551324
+            ],
+            [
+              54.3872847,
+              24.2551151
+            ],
+            [
+              54.3872354,
+              24.2551952
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-2FLOOR-21",
+        "display_name": "Structure 21",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": false,
+        "gross_area": 36,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.38774282832196,
+          24.25525219677206
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3872885,
+              24.2550969
+            ],
+            [
+              54.3873204,
+              24.255114
+            ],
+            [
+              54.3873669,
+              24.255036
+            ],
+            [
+              54.3873365,
+              24.2550202
+            ],
+            [
+              54.3872885,
+              24.2550969
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-2FLOOR-22",
+        "display_name": "Structure 22",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": false,
+        "gross_area": 40,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.38682466925164,
+          24.25496171423061
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3872803,
+              24.2552175
+            ],
+            [
+              54.3873097,
+              24.2552326
+            ],
+            [
+              54.3873642,
+              24.2551525
+            ],
+            [
+              54.3873273,
+              24.2551355
+            ],
+            [
+              54.3872803,
+              24.2552175
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-2FLOOR-23",
+        "display_name": "Structure 23",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": false,
+        "gross_area": 36,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.38712240181421,
+          24.254976134338083
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3873355,
+              24.2551174
+            ],
+            [
+              54.3873687,
+              24.2551358
+            ],
+            [
+              54.3874148,
+              24.2550558
+            ],
+            [
+              54.3873837,
+              24.255043
+            ],
+            [
+              54.3873355,
+              24.2551174
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-2FLOOR-24",
+        "display_name": "Structure 24",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": false,
+        "gross_area": 42,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.38797910839442,
+          24.25547706384227
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3873389,
+              24.2552451
+            ],
+            [
+              54.3873716,
+              24.2552608
+            ],
+            [
+              54.3874248,
+              24.2551763
+            ],
+            [
+              54.3873885,
+              24.2551615
+            ],
+            [
+              54.3873389,
+              24.2552451
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-2FLOOR-25",
+        "display_name": "Structure 25",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": false,
+        "gross_area": 39,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.387155212954504,
+          24.254993229005265
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3873948,
+              24.2551513
+            ],
+            [
+              54.3874274,
+              24.2551675
+            ],
+            [
+              54.3874748,
+              24.2550835
+            ],
+            [
+              54.3874407,
+              24.2550691
+            ],
+            [
+              54.3873948,
+              24.2551513
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-2FLOOR-26",
+        "display_name": "Structure 26",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": false,
+        "gross_area": 40,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.387834789373066,
+          24.255418524607638
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3873852,
+              24.2552681
+            ],
+            [
+              54.3874303,
+              24.2551872
+            ],
+            [
+              54.3874648,
+              24.2552048
+            ],
+            [
+              54.3874206,
+              24.2552836
+            ],
+            [
+              54.3873852,
+              24.2552681
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-2FLOOR-27",
+        "display_name": "Structure 27",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": false,
+        "gross_area": 39,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.38721926964789,
+          24.255022805061998
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3874398,
+              24.2551706
+            ],
+            [
+              54.3874718,
+              24.2551873
+            ],
+            [
+              54.3875196,
+              24.2551072
+            ],
+            [
+              54.3874847,
+              24.2550913
+            ],
+            [
+              54.3874398,
+              24.2551706
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-2FLOOR-28",
+        "display_name": "Structure 28",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": false,
+        "gross_area": 38,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.38725353107868,
+          24.255158377138574
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3874686,
+              24.2553062
+            ],
+            [
+              54.3874982,
+              24.2553202
+            ],
+            [
+              54.3875524,
+              24.2552401
+            ],
+            [
+              54.3875137,
+              24.2552278
+            ],
+            [
+              54.3874686,
+              24.2553062
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-2FLOOR-29",
+        "display_name": "Structure 29",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": false,
+        "gross_area": 38,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.38653127318381,
+          24.254719210555415
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3875235,
+              24.2552121
+            ],
+            [
+              54.387557,
+              24.2552267
+            ],
+            [
+              54.3876032,
+              24.2551482
+            ],
+            [
+              54.3875722,
+              24.2551312
+            ],
+            [
+              54.3875235,
+              24.2552121
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-2FLOOR-30",
+        "display_name": "Structure 30",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": false,
+        "gross_area": 39,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.38753218314742,
+          24.255287120139247
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3875255,
+              24.2553364
+            ],
+            [
+              54.3875582,
+              24.2553506
+            ],
+            [
+              54.3876071,
+              24.2552699
+            ],
+            [
+              54.3875749,
+              24.2552534
+            ],
+            [
+              54.3875255,
+              24.2553364
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-2FLOOR-31",
+        "display_name": "Structure 31",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": false,
+        "gross_area": 36,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.387323460659104,
+          24.25507440549298
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.387582,
+              24.2552378
+            ],
+            [
+              54.387614,
+              24.2552541
+            ],
+            [
+              54.3876597,
+              24.2551748
+            ],
+            [
+              54.3876288,
+              24.2551602
+            ],
+            [
+              54.387582,
+              24.2552378
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-2FLOOR-32",
+        "display_name": "Structure 32",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": false,
+        "gross_area": 39,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.38748687103173,
+          24.25526812447731
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3875724,
+              24.255356
+            ],
+            [
+              54.3876044,
+              24.2553725
+            ],
+            [
+              54.3876531,
+              24.255293
+            ],
+            [
+              54.3876192,
+              24.2552763
+            ],
+            [
+              54.3875724,
+              24.255356
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-2FLOOR-33",
+        "display_name": "Structure 33",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": false,
+        "gross_area": 37,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.3877593892285,
+          24.25527022492302
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3876277,
+              24.2552632
+            ],
+            [
+              54.3876579,
+              24.2552772
+            ],
+            [
+              54.3877064,
+              24.2551963
+            ],
+            [
+              54.3876725,
+              24.2551814
+            ],
+            [
+              54.3876277,
+              24.2552632
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-2FLOOR-34",
+        "display_name": "Structure 34",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": false,
+        "gross_area": 38,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.387540562848386,
+          24.255296371696495
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.387618,
+              24.2553805
+            ],
+            [
+              54.3876515,
+              24.2553958
+            ],
+            [
+              54.3876976,
+              24.2553165
+            ],
+            [
+              54.3876638,
+              24.2553017
+            ],
+            [
+              54.387618,
+              24.2553805
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-2FLOOR-35",
+        "display_name": "Structure 35",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": false,
+        "gross_area": 37,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.388686667243036,
+          24.255686345210126
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3876734,
+              24.2552833
+            ],
+            [
+              54.387704,
+              24.2552985
+            ],
+            [
+              54.3877493,
+              24.2552223
+            ],
+            [
+              54.3877156,
+              24.2552039
+            ],
+            [
+              54.3876734,
+              24.2552833
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-2FLOOR-36",
+        "display_name": "Structure 36",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": false,
+        "gross_area": 42,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.38811067684239,
+          24.255550318950984
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3876614,
+              24.2553994
+            ],
+            [
+              54.3876967,
+              24.2554179
+            ],
+            [
+              54.3877433,
+              24.2553373
+            ],
+            [
+              54.3877096,
+              24.2553181
+            ],
+            [
+              54.3876614,
+              24.2553994
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-2FLOOR-37",
+        "display_name": "Structure 37",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": false,
+        "gross_area": 39,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.387812519182766,
+          24.255296723243028
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3877181,
+              24.2553034
+            ],
+            [
+              54.3877535,
+              24.2553205
+            ],
+            [
+              54.3877962,
+              24.2552392
+            ],
+            [
+              54.3877632,
+              24.2552236
+            ],
+            [
+              54.3877181,
+              24.2553034
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-2FLOOR-38",
+        "display_name": "Structure 38",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": false,
+        "gross_area": 39,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.38809529427374,
+          24.255545646308995
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3877079,
+              24.2554217
+            ],
+            [
+              54.3877417,
+              24.2554379
+            ],
+            [
+              54.3877862,
+              24.2553612
+            ],
+            [
+              54.3877512,
+              24.2553421
+            ],
+            [
+              54.3877079,
+              24.2554217
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-2FLOOR-39",
+        "display_name": "Structure 39",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": false,
+        "gross_area": 38,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.3877829820708,
+          24.255284958369433
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3877626,
+              24.2553238
+            ],
+            [
+              54.3877952,
+              24.2553418
+            ],
+            [
+              54.3878433,
+              24.2552631
+            ],
+            [
+              54.3878103,
+              24.2552463
+            ],
+            [
+              54.3877626,
+              24.2553238
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-2FLOOR-40",
+        "display_name": "Structure 40",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": false,
+        "gross_area": 69,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.38809000274072,
+          24.255555473376173
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3877625,
+              24.2554489
+            ],
+            [
+              54.3878328,
+              24.2554852
+            ],
+            [
+              54.3878781,
+              24.2554203
+            ],
+            [
+              54.3878059,
+              24.2553857
+            ],
+            [
+              54.3877625,
+              24.2554489
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-2FLOOR-41",
+        "display_name": "Structure 41",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": false,
+        "gross_area": 61,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.38766021549632,
+          24.255364216093387
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3878509,
+              24.2554828
+            ],
+            [
+              54.3879179,
+              24.255521
+            ],
+            [
+              54.3879573,
+              24.255462
+            ],
+            [
+              54.3878863,
+              24.2554251
+            ],
+            [
+              54.3878509,
+              24.2554828
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-2FLOOR-42",
+        "display_name": "Structure 42",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": false,
+        "gross_area": 57,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.38812003147039,
+          24.255430304546504
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.387831,
+              24.2553374
+            ],
+            [
+              54.3879043,
+              24.2553702
+            ],
+            [
+              54.3879342,
+              24.2553134
+            ],
+            [
+              54.3878731,
+              24.2552791
+            ],
+            [
+              54.387831,
+              24.2553374
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-2FLOOR-43",
+        "display_name": "Structure 43",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": false,
+        "gross_area": 66,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.38795227290359,
+          24.255355104725407
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3879145,
+              24.2553787
+            ],
+            [
+              54.3879837,
+              24.2554107
+            ],
+            [
+              54.3880246,
+              24.2553473
+            ],
+            [
+              54.387951,
+              24.2553141
+            ],
+            [
+              54.3879145,
+              24.2553787
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-2FLOOR-44",
+        "display_name": "Structure 44",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": false,
+        "gross_area": 65,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.388137623753295,
+          24.255440687953342
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.388008,
+              24.2554229
+            ],
+            [
+              54.3880759,
+              24.2554544
+            ],
+            [
+              54.3881175,
+              24.2553934
+            ],
+            [
+              54.3880428,
+              24.2553581
+            ],
+            [
+              54.388008,
+              24.2554229
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-2FLOOR-45",
+        "display_name": "Structure 45",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": false,
+        "gross_area": 38,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.386912009872916,
+          24.25505706833953
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.387943,
+              24.255534
+            ],
+            [
+              54.3880307,
+              24.2555767
+            ],
+            [
+              54.3880483,
+              24.2555487
+            ],
+            [
+              54.3879622,
+              24.2555029
+            ],
+            [
+              54.387943,
+              24.255534
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-2FLOOR-46",
+        "display_name": "Structure 46",
+        "category": "structure",
+        "height": 8,
+        "levels": 2,
+        "levels_estimated": false,
+        "gross_area": 38,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.387780388452676,
+          24.25538762068663
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3879709,
+              24.2554883
+            ],
+            [
+              54.3880553,
+              24.2555327
+            ],
+            [
+              54.3880758,
+              24.2555023
+            ],
+            [
+              54.3879879,
+              24.2554592
+            ],
+            [
+              54.3879709,
+              24.2554883
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-GATE-1",
+        "display_name": "Main Gate",
+        "category": "gate",
+        "height": 5,
+        "levels": null,
+        "levels_estimated": true,
+        "gross_area": 85,
+        "large_span": false,
+        "osm_id": null,
+        "centroid": [
+          54.38545662849906,
+          24.255939018085904
+        ]
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.385176,
+              24.2558446
+            ],
+            [
+              54.3853041,
+              24.2558991
+            ],
+            [
+              54.3853319,
+              24.2558523
+            ],
+            [
+              54.3852016,
+              24.2557978
+            ],
+            [
+              54.385176,
+              24.2558446
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

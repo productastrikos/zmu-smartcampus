@@ -1,0 +1,40 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-HELIPAD-1",
+        "name": "Helipad",
+        "kind": "helipad"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.385759,
+              24.2568254
+            ],
+            [
+              54.3864252,
+              24.2571517
+            ],
+            [
+              54.3866332,
+              24.2567722
+            ],
+            [
+              54.3859778,
+              24.2564557
+            ],
+            [
+              54.385759,
+              24.2568254
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

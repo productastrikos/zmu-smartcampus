@@ -3,7 +3,8 @@ import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Layout from './components/Layout';
 import Login from './pages/Login';
 import CommandCenter from './pages/CommandCenter';
-import DigitalTwin from './pages/DigitalTwin';
+// import DigitalTwin from './pages/DigitalTwin'; // old isometric-SVG twin — commented out in favour of the real GIS/map twin below
+import DigitalTwin2 from './pages/digitalTwin_2';
 import Academic from './pages/Academic';
 import Readiness from './pages/Readiness';
 import Enterprise from './pages/Enterprise';
@@ -55,7 +56,9 @@ export default function App() {
     <Layout user={user} onLogout={logout}>
       <Routes>
         <Route path="/" element={<CommandCenter />} />
-        <Route path="/digital-twin" element={<DigitalTwin />} />
+        {/* <Route path="/digital-twin" element={<DigitalTwin />} /> old isometric-SVG twin */}
+        <Route path="/digital-twin" element={<DigitalTwin2 />} />
+        <Route path="/digital-twin-2" element={<DigitalTwin2 />} />
         <Route path="/academic" element={<Academic />} />
         <Route path="/readiness" element={<Readiness />} />
         <Route path="/enterprise" element={<Enterprise />} />

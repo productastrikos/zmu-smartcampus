@@ -1,0 +1,77 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-FOOTBALL-1",
+        "name": "Football Ground 1",
+        "leisure": "pitch",
+        "kind": "pitch"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.3838597,
+              24.2550625
+            ],
+            [
+              54.3835465,
+              24.255637
+            ],
+            [
+              54.3839316,
+              24.25579505
+            ],
+            [
+              54.384231299999996,
+              24.2552393
+            ],
+            [
+              54.3838597,
+              24.2550625
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "REAL-FOOTBALL-2",
+        "name": "Football Ground 2",
+        "leisure": "pitch",
+        "kind": "pitch"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.384231299999996,
+              24.2552393
+            ],
+            [
+              54.3839316,
+              24.25579505
+            ],
+            [
+              54.3843167,
+              24.2559531
+            ],
+            [
+              54.3846029,
+              24.2554161
+            ],
+            [
+              54.384231299999996,
+              24.2552393
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}
