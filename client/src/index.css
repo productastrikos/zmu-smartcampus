@@ -6,80 +6,78 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* ─── Design Tokens (productastrikos/UserInterface standard) ─── */
+/* ─── ZMU brand tokens — brown & off-white (ref: zmu.ac.ae) ───
+   Accent gold-brown #92722A / #B68A35 · warm off-white grounds · ink #232528.
+   DARK is the default (:root); LIGHT is the brown & off-white brand hero. */
 :root,
 body[data-theme='dark'] {
-  /* ▼ MASTER PANEL COLOR — change only this value to retheme every card & panel */
-  --app-panel:         #0a0a0a;
+  /* warm charcoal-brown dark theme with gold accent */
+  --app-panel:         #201c16;
 
-  /* Background layers */
-  --app-bg:            #1c1c1c;
+  --app-bg:            #17140f;
   --app-bg-elevated:   var(--app-panel);
-  --app-surface:       #202020;
-  --app-surface-soft:  #141414;
-  --app-surface-raised: #2a2a2a;
+  --app-surface:       #26221b;
+  --app-surface-soft:  #1b1813;
+  --app-surface-raised: #322c22;
 
-  /* Borders */
   --app-border:        transparent;
   --app-border-soft:   transparent;
 
-  /* Typography */
-  --app-text:          #e8eef5;
-  --app-text-muted:    #afc3d8;
-  --app-text-faint:    #8ca0b6;
+  --app-text:          #efe9dc;
+  --app-text-muted:    #cabfa8;
+  --app-text-faint:    #9a8f79;
 
-  /* Brand */
-  --app-accent:        #c8c8c8;
-  --app-accent-strong: #a8a8a8;
-  --app-accent-bg:     rgba(200, 200, 200, 0.08);
-  --app-accent-border: rgba(200, 200, 200, 0.20);
-  --app-glow:          rgba(200, 200, 200, 0.08);
+  /* Brand — ZMU gold-brown (lightened for dark ground) */
+  --app-accent:        #cfa856;
+  --app-accent-strong: #b68a35;
+  --app-accent-bg:     rgba(198, 162, 78, 0.12);
+  --app-accent-border: rgba(198, 162, 78, 0.32);
+  --app-glow:          rgba(198, 162, 78, 0.10);
 
-  /* ▼ ACTION BUTTON COLOR */
-  --app-btn:           #3d3d3d;
-  --app-btn-hover:     #505050;
-  --app-btn-text:      #ffffff;
+  --app-btn:           #92722a;
+  --app-btn-hover:     #a5823a;
+  --app-btn-text:      #fff8e9;
 
-  --app-panel-border:  transparent;
+  --app-panel-border:  rgba(198, 162, 78, 0.14);
   --app-logo-filter:  brightness(2);
 
-  /* Advisory accent (purple) */
-  --app-advisory:        #8b5cf6;
-  --app-advisory-strong: #7c3aed;
+  /* Advisory accent (purple) — AI only */
+  --app-advisory:        #a78bfa;
+  --app-advisory-strong: #8b5cf6;
   --app-advisory-panel:  rgb(130, 90, 210);
-  --app-advisory-border: rgba(139, 92, 246, 0.45);
+  --app-advisory-border: rgba(167, 139, 250, 0.42);
 
   /* Status */
-  --app-success:       #16a34a;
-  --app-success-bg:    rgba(22, 163, 74, 0.14);
-  --app-success-border: rgba(22, 163, 74, 0.30);
-  --app-warning:       #d97706;
-  --app-warning-bg:    rgba(217, 119, 6, 0.14);
-  --app-warning-border: rgba(217, 119, 6, 0.30);
-  --app-danger:        #dc2626;
-  --app-danger-bg:     rgba(220, 38, 38, 0.14);
-  --app-danger-border: rgba(220, 38, 38, 0.30);
-  --app-info:          #0ea5e9;
-  --app-info-bg:       rgba(14, 165, 233, 0.14);
-  --app-info-border:   rgba(14, 165, 233, 0.30);
+  --app-success:       #3fae4b;
+  --app-success-bg:    rgba(63, 174, 75, 0.16);
+  --app-success-border: rgba(63, 174, 75, 0.32);
+  --app-warning:       #e0a53a;
+  --app-warning-bg:    rgba(224, 165, 58, 0.16);
+  --app-warning-border: rgba(224, 165, 58, 0.32);
+  --app-danger:        #e5615c;
+  --app-danger-bg:     rgba(229, 97, 92, 0.16);
+  --app-danger-border: rgba(229, 97, 92, 0.34);
+  --app-info:          #4b94c9;
+  --app-info-bg:       rgba(75, 148, 201, 0.16);
+  --app-info-border:   rgba(75, 148, 201, 0.32);
 
-  --app-violet:        #8b5cf6;
-  --app-violet-bg:     rgba(139, 92, 246, 0.10);
+  --app-violet:        #a78bfa;
+  --app-violet-bg:     rgba(167, 139, 250, 0.12);
 
   --app-chart-tooltip-bg:     var(--app-panel);
-  --app-chart-tooltip-border: #333333;
-  --app-chart-grid:           rgba(255, 255, 255, 0.04);
+  --app-chart-tooltip-border: #4a4234;
+  --app-chart-grid:           rgba(255, 248, 233, 0.06);
 
-  --app-success-bar:   rgba(22,  163,  74, 0.90);
-  --app-warning-bar:   rgba(245, 158,  11, 0.90);
-  --app-danger-bar:    rgba(220,  38,  38, 0.90);
+  --app-success-bar:   rgba(63, 174, 75, 0.90);
+  --app-warning-bar:   rgba(224, 165, 58, 0.90);
+  --app-danger-bar:    rgba(229, 97, 92, 0.90);
 
-  --app-on-color:      #ffffff;
+  --app-on-color:      #fff8e9;
 
-  --app-shadow-xs: 0 1px 3px rgba(0,0,0,0.35);
-  --app-shadow-sm: 0 2px 8px rgba(0,0,0,0.28);
-  --app-shadow-md: 0 4px 16px rgba(0,0,0,0.26);
-  --app-shadow-lg: 0 8px 30px rgba(0,0,0,0.24);
+  --app-shadow-xs: 0 1px 3px rgba(0,0,0,0.4);
+  --app-shadow-sm: 0 2px 8px rgba(0,0,0,0.32);
+  --app-shadow-md: 0 4px 16px rgba(0,0,0,0.3);
+  --app-shadow-lg: 0 8px 30px rgba(0,0,0,0.28);
 
   --app-sidebar-w: 244px;
   --app-header-h:  62px;
@@ -87,69 +85,71 @@ body[data-theme='dark'] {
 }
 
 body[data-theme='light'] {
+  /* ── Brown & off-white — the ZMU brand hero ── */
   --app-panel:         #ffffff;
 
-  --app-bg:            #f1f5fa;
+  --app-bg:            #f3eee3;   /* warm off-white / cream */
   --app-bg-elevated:   var(--app-panel);
-  --app-surface:       var(--app-panel);
-  --app-surface-soft:  #f7f9fc;
-  --app-surface-raised: #edf1f8;
+  --app-surface:       #fbf8f1;
+  --app-surface-soft:  #f6f1e7;
+  --app-surface-raised: #ece4d5;
 
-  --app-border:        rgba(0, 0, 0, 0.12);
-  --app-border-soft:   rgba(0, 0, 0, 0.07);
+  --app-border:        rgba(80, 62, 34, 0.14);
+  --app-border-soft:   rgba(80, 62, 34, 0.08);
 
-  --app-text:          #0d0d0d;
-  --app-text-muted:    #1f1f1f;
-  --app-text-faint:    #4a4a4a;
+  --app-text:          #232528;
+  --app-text-muted:    #4b4034;
+  --app-text-faint:    #8a7e6c;
 
-  --app-accent:        #3b6dbf;
-  --app-accent-strong: #2d5ca8;
-  --app-accent-bg:     rgba(59, 109, 191, 0.08);
-  --app-accent-border: rgba(59, 109, 191, 0.22);
-  --app-glow:          rgba(59, 109, 191, 0.10);
+  /* Brand — ZMU gold-brown */
+  --app-accent:        #8a6c2e;
+  --app-accent-strong: #6e5622;
+  --app-accent-bg:     rgba(138, 108, 46, 0.10);
+  --app-accent-border: rgba(138, 108, 46, 0.30);
+  --app-glow:          rgba(138, 108, 46, 0.12);
 
-  --app-btn:           #3b7de8;
-  --app-btn-hover:     #2d6ad4;
-  --app-btn-text:      #ffffff;
+  --app-btn:           #8a6c2e;
+  --app-btn-hover:     #6e5622;
+  --app-btn-text:      #fdfbf5;
 
-  --app-panel-border:  rgba(0, 0, 0, 0.10);
-  --app-logo-filter: brightness(0.1) saturate(0);
+  --app-panel-border:  rgba(80, 62, 34, 0.14);
+  --app-logo-filter: none;
 
   --app-advisory:        #7c3aed;
   --app-advisory-strong: #6d28d9;
   --app-advisory-panel:  rgb(130, 90, 210);
-  --app-advisory-border: rgba(139, 92, 246, 0.45);
+  --app-advisory-border: rgba(124, 58, 237, 0.40);
 
-  --app-success:       #15803d;
-  --app-success-bg:    rgba(21, 128, 61, 0.11);
-  --app-success-border: rgba(21, 128, 61, 0.28);
-  --app-warning:       #c2410c;
-  --app-warning-bg:    rgba(194, 65, 12, 0.11);
-  --app-warning-border: rgba(194, 65, 12, 0.28);
-  --app-danger:        #b91c1c;
-  --app-danger-bg:     rgba(185, 28, 28, 0.11);
-  --app-danger-border: rgba(185, 28, 28, 0.28);
-  --app-info:          #0369a1;
-  --app-info-bg:       rgba(3, 105, 161, 0.11);
-  --app-info-border:   rgba(3, 105, 161, 0.28);
+  --app-success:       #2f7d34;
+  --app-success-bg:    rgba(47, 125, 52, 0.11);
+  --app-success-border: rgba(47, 125, 52, 0.28);
+  --app-warning:       #a76a12;
+  --app-warning-bg:    rgba(167, 106, 18, 0.12);
+  --app-warning-border: rgba(167, 106, 18, 0.30);
+  --app-danger:        #b3352f;
+  --app-danger-bg:     rgba(179, 53, 47, 0.10);
+  --app-danger-border: rgba(179, 53, 47, 0.28);
+  --app-info:          #2f6d95;
+  --app-info-bg:       rgba(47, 109, 149, 0.11);
+  --app-info-border:   rgba(47, 109, 149, 0.28);
 
   --app-violet:        #7c3aed;
-  --app-violet-bg:     rgba(124, 58, 237, 0.10);
+  --app-violet-bg:     rgba(124, 58, 237, 0.09);
 
   --app-chart-tooltip-bg:     var(--app-panel);
-  --app-chart-tooltip-border: #c5d9f5;
-  --app-chart-grid:           rgba(15, 35, 75, 0.07);
+  --app-chart-tooltip-border: #e0d4bd;
+  --app-chart-grid:           rgba(80, 62, 34, 0.09);
 
-  --app-success-bar:   rgba(21,  128,  61, 0.88);
-  --app-warning-bar:   rgba(245, 158,  11, 0.88);
-  --app-danger-bar:    rgba(185,  28,  28, 0.88);
+  --app-success-bar:   rgba(47,  125,  52, 0.88);
+  --app-warning-bar:   rgba(167, 106,  18, 0.88);
+  --app-danger-bar:    rgba(179,  53,  47, 0.88);
 
-  --app-on-color:      #ffffff;
+  --app-on-color:      #fdfbf5;
 
-  --app-shadow-xs: 0 1px 3px rgba(0,0,0,0.06);
-  --app-shadow-sm: 0 2px 8px rgba(0,0,0,0.07);
-  --app-shadow-md: 0 4px 16px rgba(0,0,0,0.09);
-  --app-shadow-lg: 0 8px 30px rgba(0,0,0,0.11);
+  --app-shadow-xs: 0 1px 3px rgba(60,45,20,0.07);
+  --app-shadow-sm: 0 2px 8px rgba(60,45,20,0.08);
+  --app-shadow-md: 0 4px 16px rgba(60,45,20,0.10);
+  --app-shadow-lg: 0 8px 30px rgba(60,45,20,0.12);
 
   --app-sidebar-w: 244px;
   --app-header-h:  62px;
@@ -653,3 +653,15 @@ body[data-theme='light'] .data-table th { border-bottom: 1px solid var(--app-bor
 .cctv-ts { position: absolute; right: 8px; top: 8px; font-size: 9.5px; font-family: monospace; color: rgba(219,230,245,0.85); text-shadow: 0 1px 3px #000; z-index: 2; }
 .cctv-meta { position: absolute; left: 8px; bottom: 7px; font-size: 9px; color: rgba(148,163,184,0.85); text-shadow: 0 1px 3px #000; z-index: 2; }
 .cctv-offline { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; color: #64748b; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; background: repeating-linear-gradient(45deg, #0a0e16 0 12px, #0d1220 12px 24px); z-index: 1; }
+
+/* ═══ Arabic / RTL support ═══════════════════════════════════ */
+html[dir="rtl"] body, body.rtl {
+  font-family: 'Segoe UI', 'Tahoma', 'Geeza Pro', 'Arial', sans-serif;
+}
+/* flex rows reverse automatically under dir=rtl; nudge the few fixed bits */
+body.rtl .sia-fab, body.rtl .app-sia-fab { left: 24px; right: auto; }
+body.rtl .nav-item, body.rtl .kpi-card, body.rtl .glass-panel { text-align: right; }
+body.rtl .page-title, body.rtl .panel-title, body.rtl .panel-sub, body.rtl .page-subtitle { text-align: right; }
+body.rtl .data-table th, body.rtl .data-table td { text-align: right; }
+/* keep numeric/latin tokens LTR inside RTL text so IDs & metrics read correctly */
+.ltr-num { direction: ltr; unicode-bidi: embed; display: inline-block; }

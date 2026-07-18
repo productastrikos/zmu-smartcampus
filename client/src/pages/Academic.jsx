@@ -3,6 +3,8 @@ import { useApi, fmt } from '../services/api';
 import KPICard, { IcoGrad, IcoAttendance, IcoAlert, IcoActivity, IcoBook, IcoCpu } from '../components/KPICard';
 import { Panel, StatusChip, sevChip, Loading, PageHeader, KPIGrid, DataTable, ProgressBar } from '../components/ui';
 import { TrendChart, Bars, C } from '../components/charts';
+import PortalBar from '../components/PortalBar';
+import { PORTALS } from '../config/portals';
 import KPIDetailPanel from '../components/KPIDetailPanel';
 
 export default function Academic() {
@@ -14,6 +16,7 @@ export default function Academic() {
 
   return (
     <>
+      <PortalBar portals={PORTALS.academic} />
       <PageHeader
         title="Academics & Learning"
         subtitle="SIS · LMS · Library & Labs · AI-enabled learning — partner rosters via single push from ZMU SIS (flow 1)"

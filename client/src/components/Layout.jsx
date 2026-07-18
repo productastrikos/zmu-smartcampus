@@ -5,6 +5,7 @@ import AdvisoryPanel from './AdvisoryPanel';
 import SiaAgent from './SiaAgent';
 import { fetchApi } from '../services/api';
 import { ThemeToggle } from '../theme';
+import { useLang, LangToggle } from '../i18n';
 
 /* ── sidebar nav icons (line-art) ─────────────────────────── */
 const NIco = ({ d }) => (
@@ -14,75 +15,44 @@ const NIco = ({ d }) => (
   </svg>
 );
 
+/* Reduced navigation. `key` maps to an i18n string; `roles` limits visibility. */
 const NAV = [
   {
-    section: 'Overview',
+    section: 'nav.overview',
     items: [
-      { to: '/', label: 'Command Center', icon: ['M3 12h4l3-9 4 18 3-9h4'] },
-      { to: '/digital-twin', label: 'Campus Digital Twin', icon: ['M12 2L2 7l10 5 10-5-10-5z', 'M2 17l10 5 10-5', 'M2 12l10 5 10-5'] },
+      { to: '/executive', key: 'page.executive', roles: ['executive', 'superadmin'], icon: ['M3 3v18h18', 'M7 14l3-4 3 3 5-7'] },
+      { to: '/', key: 'page.command', icon: ['M3 12h4l3-9 4 18 3-9h4'] },
+      { to: '/digital-twin', key: 'page.twin', icon: ['M12 2L2 7l10 5 10-5-10-5z', 'M2 17l10 5 10-5', 'M2 12l10 5 10-5'] },
     ],
   },
   {
-    section: 'Academic Core',
+    section: 'nav.coreModules',
     items: [
-      { to: '/sis', label: 'Student Information System', icon: ['M4 19.5A2.5 2.5 0 016.5 17H20', 'M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z'] },
-      { to: '/lms', label: 'Learning Management', icon: ['M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z', 'M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z'] },
-      { to: '/merit', label: 'Composite & Order of Merit', icon: ['M8 21h8', 'M12 17v4', 'M17 4H7v5a5 5 0 0010 0z', 'M17 6h3a2 2 0 01-2 4', 'M7 6H4a2 2 0 002 4'] },
+      { to: '/academic', key: 'page.academic', icon: ['M22 10L12 5 2 10l10 5 10-5z', 'M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5'] },
+      { to: '/readiness', key: 'page.readiness', icon: ['M22 12h-4l-3 9L9 3l-3 9H2'] },
+      { to: '/enterprise', key: 'page.enterprise', icon: ['M20 7H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z', 'M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2'] },
+      { to: '/campus-ops', key: 'page.campus', icon: ['M4 2h16v20H4z', 'M9 22v-4h6v4', 'M9 6h.01M15 6h.01M9 10h.01M15 10h.01M9 14h.01M15 14h.01'] },
     ],
   },
   {
-    section: 'Readiness Streams',
+    section: 'nav.platform',
     items: [
-      { to: '/hpo', label: 'HPO Fitness & Readiness', icon: ['M22 12h-4l-3 9L9 3l-3 9H2'] },
-      { to: '/military', label: 'Military Training Record', icon: ['M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z'] },
-      { to: '/conduct', label: 'Conduct & Discipline', icon: ['M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z', 'M9 12l2 2 4-4'] },
-    ],
-  },
-  {
-    section: 'Modules',
-    items: [
-      { to: '/academic', label: 'Academics & Learning', icon: ['M22 10L12 5 2 10l10 5 10-5z', 'M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5'] },
-      { to: '/readiness', label: 'Readiness & Performance', icon: ['M22 12h-4l-3 9L9 3l-3 9H2'] },
-      { to: '/cadet-journey', label: 'Cadet Journey', icon: ['M12 2a4 4 0 100 8 4 4 0 000-8z', 'M6 21v-2a6 6 0 0112 0v2', 'M17 3l4 4-4 4'] },
-      { to: '/enterprise', label: 'Enterprise & Finance', icon: ['M20 7H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z', 'M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2'] },
-      { to: '/campus-ops', label: 'Smart Campus Operations', icon: ['M4 2h16v20H4z', 'M9 22v-4h6v4', 'M9 6h.01M15 6h.01M9 10h.01M15 10h.01M9 14h.01M15 14h.01'] },
-      { to: '/it-ops', label: 'Enterprise IT & DCIM', icon: ['M4 4h16v12H4z', 'M8 20h8', 'M12 16v4', 'M8 8h4M8 11h8'] },
-    ],
-  },
-  {
-    section: 'Platform',
-    items: [
-      { to: '/security', label: 'Security Operations', icon: ['M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z'] },
-      { to: '/incidents', label: 'Incident Management', icon: ['M23 7l-7 5 7 5V7z', 'M1 5h15v14H1z'] },
-      { to: '/integration', label: 'Integration & Data', icon: ['M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71', 'M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71'] },
+      { to: '/iot', key: 'page.iot', icon: ['M12 20v-6', 'M12 8V4', 'M5 12a7 7 0 0114 0', 'M8.5 12a3.5 3.5 0 017 0', 'M12 12h.01'] },
+      { to: '/incidents', key: 'page.incidents', icon: ['M23 7l-7 5 7 5V7z', 'M1 5h15v14H1z'] },
     ],
   },
 ];
 
-/* RBAC — which routes each restricted role may see (staff-level roles see all) */
+/* Roles — executive sees a curated subset; superadmin sees all. */
 export const ROLE_ROUTES = {
-  cadet: ['/cadet-journey', '/sis', '/lms', '/merit', '/hpo'],
+  executive: ['/executive', '/digital-twin'],
 };
-export const homeFor = (role) => (role === 'cadet' ? '/cadet-journey' : '/');
+export const homeFor = (role) => (role === 'executive' ? '/executive' : '/');
 
-const PAGE_TITLES = {
-  '/': 'Command Center',
-  '/digital-twin': 'Campus Digital Twin',
-  '/sis': 'Student Information System',
-  '/lms': 'Learning Management — Colleges',
-  '/merit': 'Composite Score & Order of Merit',
-  '/hpo': 'HPO Fitness & Readiness',
-  '/military': 'Military Training Record',
-  '/conduct': 'Conduct & Discipline Register',
-  '/academic': 'Academics & Learning',
-  '/readiness': 'Readiness & Performance',
-  '/enterprise': 'Enterprise & Finance',
-  '/campus-ops': 'Smart Campus Operations',
-  '/cadet-journey': 'Cadet Journey',
-  '/it-ops': 'Enterprise IT & DCIM',
-  '/security': 'Security Operations',
-  '/incidents': 'Incident Management — CCTV',
-  '/integration': 'Integration & Data Platform',
+const TITLE_KEY = {
+  '/executive': 'page.executive', '/': 'page.command', '/digital-twin': 'page.twin',
+  '/academic': 'page.academic', '/readiness': 'page.readiness', '/enterprise': 'page.enterprise',
+  '/campus-ops': 'page.campus', '/iot': 'page.iot', '/incidents': 'page.incidents',
 };
 
 export default function Layout({ children, user, onLogout }) {
@@ -92,91 +62,88 @@ export default function Layout({ children, user, onLogout }) {
   const [alertCount, setAlertCount] = useState(0);
   const [clock, setClock] = useState(new Date());
   const location = useLocation();
+  const { t, lang } = useLang();
 
   useEffect(() => {
     fetchApi('/alerts').then((d) => setAlertCount(d.alerts.filter((a) => a.status === 'open').length)).catch(() => {});
-    const t = setInterval(() => setClock(new Date()), 30000);
-    return () => clearInterval(t);
+    const tm = setInterval(() => setClock(new Date()), 30000);
+    return () => clearInterval(tm);
   }, []);
 
   const sidebarW = collapsed ? 68 : 244;
-  const initials = (user?.name || 'Duty Officer').split(' ').map((p) => p[0]).slice(0, 2).join('').toUpperCase();
+  const initials = (user?.name || 'ZMU').split(' ').map((p) => p[0]).slice(0, 2).join('').toUpperCase();
 
-  // RBAC — restricted roles only see their allowed routes
   const allowed = ROLE_ROUTES[user?.role];
   const nav = NAV.map((sec) => ({
     ...sec,
-    items: allowed ? sec.items.filter((it) => allowed.includes(it.to)) : sec.items,
+    items: sec.items.filter((it) =>
+      (!it.roles || it.roles.includes(user?.role)) &&
+      (!allowed || allowed.includes(it.to))),
   })).filter((sec) => sec.items.length);
-  const roleLabel = { superadmin: 'Super Admin', commandant: 'Commandant', staff: 'Command Staff', cadet: 'Officer Cadet' }[user?.role] || 'Duty Officer';
+  const roleLabel = user?.role === 'executive' ? t('role.executive') : t('role.superadmin');
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
-      <div className="classification-banner">Restricted · ZMU Smart Digital Campus · Demonstration Environment — Synthetic Data</div>
+      <div className="classification-banner">{t('app.restricted')}</div>
       <div style={{ display: 'flex', flex: 1, minHeight: 0 }}>
-        {/* ── Sidebar ─────────────────────────────────────── */}
+        {/* ── Sidebar ── */}
         <aside style={{
           width: sidebarW, flexShrink: 0, background: 'var(--app-chrome-bg)',
           display: 'flex', flexDirection: 'column', padding: collapsed ? '16px 8px' : '16px 10px',
-          borderRight: '1px solid var(--app-panel-border)', overflowY: 'auto', overflowX: 'hidden',
+          borderInlineEnd: '1px solid var(--app-panel-border)', overflowY: 'auto', overflowX: 'hidden',
           transition: 'width 0.18s ease',
         }}>
-          {/* Logo */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: collapsed ? '2px 0 14px' : '2px 8px 14px', justifyContent: collapsed ? 'center' : 'flex-start', borderBottom: '1px solid var(--app-surface-raised)' }}>
             <div style={{
               width: 38, height: 38, borderRadius: 10, flexShrink: 0,
-              background: 'linear-gradient(135deg, #1e3a5f, #3b7de8)',
+              background: 'linear-gradient(135deg, var(--app-accent-strong), var(--app-accent))',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontWeight: 800, fontSize: 13, color: '#fff', letterSpacing: '0.02em',
+              fontWeight: 800, fontSize: 13, color: 'var(--app-on-color)', letterSpacing: '0.02em',
             }}>ZMU</div>
             {!collapsed && (
               <div style={{ minWidth: 0 }}>
-                <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--app-text)', lineHeight: 1.2 }}>Smart Digital Campus</div>
-                <div style={{ fontSize: 9.5, color: 'var(--app-text-faint)', letterSpacing: '0.06em', textTransform: 'uppercase' }}>Zayed Military University</div>
+                <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--app-text)', lineHeight: 1.2 }}>{t('app.platform')}</div>
+                <div style={{ fontSize: 9.5, color: 'var(--app-text-faint)', letterSpacing: '0.05em', textTransform: 'uppercase' }}>{t('app.university')}</div>
               </div>
             )}
           </div>
 
-          {/* Nav */}
           <nav style={{ flex: 1, marginTop: 4 }}>
             {nav.map((sec) => (
               <div key={sec.section}>
-                {!collapsed && <div className="nav-section-label">{sec.section}</div>}
+                {!collapsed && <div className="nav-section-label">{t(sec.section)}</div>}
                 {collapsed && <div style={{ height: 12 }} />}
                 {sec.items.map((it) => (
-                  <NavLink key={it.to} to={it.to} end={it.to === '/'} title={collapsed ? it.label : undefined}
+                  <NavLink key={it.to} to={it.to} end={it.to === '/'} title={collapsed ? t(it.key) : undefined}
                     className={({ isActive }) => `nav-item${isActive ? ' active' : ''}`}
                     style={collapsed ? { justifyContent: 'center', padding: '10px 0' } : undefined}>
                     <NIco d={it.icon} />
-                    {!collapsed && <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{it.label}</span>}
+                    {!collapsed && <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{t(it.key)}</span>}
                   </NavLink>
                 ))}
               </div>
             ))}
           </nav>
 
-          {/* Platform footer */}
           {!collapsed && (
             <div style={{ padding: '12px 10px 4px', borderTop: '1px solid var(--app-surface-raised)', fontSize: 10, color: 'var(--app-text-faint)', lineHeight: 1.6 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
                 <span style={{ width: 7, height: 7, borderRadius: 99, background: 'var(--app-success)', display: 'inline-block' }} className="animate-blink" />
-                Powered by Astrikos S!aP
+                {t('app.poweredBy')}
               </div>
-              <div>MSI POC · ZMU-MSI-RFP-2026</div>
+              <div className="ltr-num">{t('app.msi')}</div>
             </div>
           )}
         </aside>
 
-        {/* ── Main column ─────────────────────────────────── */}
+        {/* ── Main column ── */}
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0 }}>
-          {/* Header */}
           <header style={{
             height: 'var(--app-header-h)', flexShrink: 0, background: 'var(--app-chrome-bg)',
             borderBottom: '1px solid var(--app-panel-border)',
             display: 'flex', alignItems: 'center', gap: 12, padding: '0 18px',
           }}>
-            {/* Sidebar collapse toggle */}
-            <button className="icon-btn" onClick={() => setCollapsed((c) => !c)} title={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}>
+            <button className="icon-btn" onClick={() => setCollapsed((c) => !c)} title="Toggle sidebar">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" style={{ width: 17, height: 17 }}>
                 <line x1="3" y1="6" x2="21" y2="6" /><line x1="3" y1="12" x2="21" y2="12" /><line x1="3" y1="18" x2="21" y2="18" />
               </svg>
@@ -184,49 +151,44 @@ export default function Layout({ children, user, onLogout }) {
 
             <div style={{ minWidth: 0, flex: 1 }}>
               <div style={{ fontSize: 15, fontWeight: 700, color: 'var(--app-text)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                {PAGE_TITLES[location.pathname] || 'ZMU Platform'}
+                {t(TITLE_KEY[location.pathname] || 'app.platform')}
               </div>
               <div style={{ fontSize: 10.5, color: 'var(--app-text-faint)' }}>
-                Master Systems Integrator · Governed exchange backbone · {clock.toLocaleString('en-GB', { weekday: 'short', day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' })} GST
+                {t('app.governed')} · <span className="ltr-num">{clock.toLocaleString(lang === 'ar' ? 'ar-AE' : 'en-GB', { weekday: 'short', day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' })} GST</span>
               </div>
             </div>
 
-            {/* AI Advisory (purple) — replaces the live-feed chip */}
-            <button className="app-advisory-btn" onClick={() => setAdvisoryOpen(true)} title="Open AI advisory"
+            <button className="app-advisory-btn" onClick={() => setAdvisoryOpen(true)} title={t('app.aiAdvisory')}
               style={{ whiteSpace: 'nowrap', flexShrink: 0 }}>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" style={{ width: 15, height: 15, flexShrink: 0 }}>
                 <path d="M12 2l2.4 6.9L21 11l-6.6 2.1L12 20l-2.4-6.9L3 11l6.6-2.1L12 2z" />
               </svg>
-              <span style={{ whiteSpace: 'nowrap' }}>AI Advisory</span>
+              <span style={{ whiteSpace: 'nowrap' }}>{t('app.aiAdvisory')}</span>
             </button>
 
-            {/* Alerts */}
-            <button className={`icon-btn${alertsOpen ? ' active' : ''}`} onClick={() => setAlertsOpen((o) => !o)} title="Alert feed">
+            <button className={`icon-btn${alertsOpen ? ' active' : ''}`} onClick={() => setAlertsOpen((o) => !o)} title={t('app.alerts')}>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" style={{ width: 17, height: 17 }}>
                 <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9" /><path d="M13.73 21a2 2 0 01-3.46 0" />
               </svg>
               {alertCount > 0 && (
                 <span style={{
-                  position: 'absolute', top: -5, right: -5, minWidth: 16, height: 16, borderRadius: 99,
+                  position: 'absolute', top: -5, insetInlineEnd: -5, minWidth: 16, height: 16, borderRadius: 99,
                   background: 'var(--app-danger)', color: 'var(--app-on-color)', fontSize: 9.5, fontWeight: 700,
                   display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 4px',
                 }}>{alertCount}</span>
               )}
             </button>
 
-            {/* Theme toggle */}
+            <LangToggle />
             <ThemeToggle />
 
-            {/* Profile + role + logout */}
             <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-              <span className="status-chip status-chip-accent" title={user?.college_code ? `Scoped to ${user.college_code}` : 'Full scope'}>
-                {roleLabel}{user?.college_code ? ` · ${user.college_code}` : ''}
-              </span>
+              <span className="status-chip status-chip-accent">{roleLabel}</span>
               <div style={{
-                width: 34, height: 34, borderRadius: 99, background: 'linear-gradient(135deg, #1e3a5f, #3b7de8)',
-                color: '#fff', fontWeight: 700, fontSize: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
-              }} title={user?.name || 'Duty Officer'}>{initials}</div>
-              <button className="icon-btn" onClick={onLogout} title="Sign out">
+                width: 34, height: 34, borderRadius: 99, background: 'linear-gradient(135deg, var(--app-accent-strong), var(--app-accent))',
+                color: 'var(--app-on-color)', fontWeight: 700, fontSize: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
+              }} title={user?.name}>{initials}</div>
+              <button className="icon-btn" onClick={onLogout} title={t('app.signout')}>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" style={{ width: 16, height: 16 }}>
                   <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4" /><polyline points="16 17 21 12 16 7" /><line x1="21" y1="12" x2="9" y2="12" />
                 </svg>
@@ -234,9 +196,8 @@ export default function Layout({ children, user, onLogout }) {
             </div>
           </header>
 
-          {/* Content */}
           <main style={{ flex: 1, overflowY: 'auto', padding: '18px 20px 30px', minHeight: 0, background: 'var(--app-bg)' }}>
-            <div className="animate-fade-in" key={location.pathname}>
+            <div className="animate-fade-in" key={location.pathname + lang}>
               {children}
             </div>
           </main>

@@ -3,6 +3,8 @@ import { useApi, fmt } from '../services/api';
 import KPICard, { IcoBuilding, IcoBolt, IcoThermometer, IcoCamera, IcoTarget, IcoCar, IcoDroplet, IcoWrench } from '../components/KPICard';
 import { Panel, StatusChip, sevChip, Loading, PageHeader, KPIGrid, DataTable } from '../components/ui';
 import { Bars, TrendChart, ZONE_COLORS, C } from '../components/charts';
+import PortalBar from '../components/PortalBar';
+import { PORTALS } from '../config/portals';
 import KPIDetailPanel from '../components/KPIDetailPanel';
 import { Link } from 'react-router-dom';
 
@@ -15,6 +17,7 @@ export default function CampusOps() {
 
   return (
     <>
+      <PortalBar portals={PORTALS.campus} />
       <PageHeader
         title="Smart Campus Operations"
         subtitle="BMS supervisory layer · EMS analytics · CCTV & access control · WMS · IoT across 9 zones — vendor-neutral overlay on base-build systems"

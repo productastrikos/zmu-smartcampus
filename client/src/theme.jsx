@@ -3,7 +3,7 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 const ThemeCtx = createContext({ theme: 'dark', toggle: () => {} });
 
 export function ThemeProvider({ children }) {
-  const [theme, setTheme] = useState(() => localStorage.getItem('zmu_theme') || 'dark');
+  const [theme, setTheme] = useState(() => localStorage.getItem('zmu_theme') || 'light');
   useEffect(() => {
     document.body.dataset.theme = theme;
     localStorage.setItem('zmu_theme', theme);
