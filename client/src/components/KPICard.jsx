@@ -1,4 +1,5 @@
 import React from 'react';
+import { useLang } from '../i18n';
 
 /* ─── SVG Icon library (line-art, 24×24 viewBox) — design standard ─── */
 const Ico = ({ children }) => (
@@ -53,15 +54,19 @@ export function deriveRag(color) {
  * KPICard — enterprise-grade stat tile (design standard: productastrikos/UserInterface)
  */
 export default function KPICard({ label, value, unit, icon, color, rag: ragProp, trend, onClick, subValues }) {
+  const { t, lang } = useLang();
+  const ar = lang === 'ar';
   const hasTrend = trend !== null && trend !== undefined;
   const isPos = (trend || 0) >= 0;
   const rag = ragProp || deriveRag(color);
 
+  const RAG_KEY = { normal: 'status.normal', warning: 'status.warning', critical: 'status.critical' };
   const ragStyles = {
-    normal:   { color: '#22c55e', dot: '#16a34a', label: 'NORMAL' },
-    warning:  { color: '#f59e0b', dot: '#d97706', label: 'WARNING' },
-    critical: { color: '#ef4444', dot: '#dc2626', label: 'CRITICAL' },
-  }[rag] || { color: '#22c55e', dot: '#16a34a', label: 'NORMAL' };
+    normal:   { color: '#22c55e', dot: '#16a34a' },
+    warning:  { color: '#f59e0b', dot: '#d97706' },
+    critical: { color: '#ef4444', dot: '#dc2626' },
+  }[rag] || { color: '#22c55e', dot: '#16a34a' };
+  const ragLabel = ar ? t(RAG_KEY[rag] || 'status.normal') : t(RAG_KEY[rag] || 'status.normal').toUpperCase();
 
   return (
     <div
@@ -122,7 +127,7 @@ export default function KPICard({ label, value, unit, icon, color, rag: ragProp,
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexShrink: 0 }}>
         <span style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.07em', color: ragStyles.color, display: 'flex', alignItems: 'center', gap: '5px' }}>
           <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: ragStyles.dot, display: 'inline-block', flexShrink: 0 }} />
-          {ragStyles.label}
+          {ragLabel}
         </span>
         {onClick && (
           <button
@@ -134,7 +139,7 @@ export default function KPICard({ label, value, unit, icon, color, rag: ragProp,
               textDecoration: 'underline', textUnderlineOffset: '2px',
               cursor: 'pointer', letterSpacing: '0.05em', lineHeight: 1,
             }}>
-            VIEW DETAILS
+            {ar ? t('common.viewDetails') : t('common.viewDetails').toUpperCase()}
           </button>
         )}
       </div>

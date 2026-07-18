@@ -3,30 +3,30 @@ import { useApi, fmt } from '../services/api';
 import KPICard, { IcoBuilding, IcoBolt, IcoThermometer, IcoCamera, IcoTarget, IcoCar, IcoDroplet, IcoWrench } from '../components/KPICard';
 import { Panel, StatusChip, sevChip, Loading, PageHeader, KPIGrid, DataTable } from '../components/ui';
 import { Bars, TrendChart, ZONE_COLORS, C } from '../components/charts';
-import PortalBar from '../components/PortalBar';
-import { PORTALS } from '../config/portals';
 import KPIDetailPanel from '../components/KPIDetailPanel';
 import { Link } from 'react-router-dom';
+import { useLang } from '../i18n';
 
 export default function CampusOps() {
   const { data, error } = useApi('/campus');
+  const { lang } = useLang();
+  const ar = lang === 'ar';
   const [detail, setDetail] = useState(null);
   if (error) return <Panel title="Error">{String(error)}</Panel>;
-  if (!data) return <Loading text="Loading campus operations…" />;
+  if (!data) return <Loading text={ar ? 'جارٍ تحميل عمليات الحرم…' : 'Loading campus operations…'} />;
   const k = data.kpis;
 
   return (
     <>
-      <PortalBar portals={PORTALS.campus} />
       <PageHeader
-        title="Smart Campus Operations"
-        subtitle="BMS supervisory layer · EMS analytics · CCTV & access control · WMS · IoT across 9 zones — vendor-neutral overlay on base-build systems"
-        right={<Link to="/digital-twin" style={{ textDecoration: 'none' }}><StatusChip kind="accent">OPEN DIGITAL TWIN →</StatusChip></Link>}
+        title={ar ? 'عمليات الحرم الذكي' : 'Smart Campus Operations'}
+        subtitle={ar ? 'طبقة إشراف نظام إدارة المباني · تحليلات الطاقة · المراقبة والتحكّم بالدخول · إنترنت الأشياء عبر ٩ مناطق' : 'BMS supervisory layer · EMS analytics · CCTV & access control · WMS · IoT across 9 zones — vendor-neutral overlay on base-build systems'}
+        right={<Link to="/digital-twin" style={{ textDecoration: 'none' }}><StatusChip kind="accent">{ar ? 'فتح التوأم الرقمي →' : 'OPEN DIGITAL TWIN →'}</StatusChip></Link>}
       />
 
       <KPIGrid min={190}>
-        <KPICard label="BMS Alarms Active" value={k.activeAlarms} icon={<IcoBuilding />} rag={k.activeAlarms > 0 ? 'critical' : 'normal'}
-          subValues={[{ label: 'Assets in fault', value: k.assetsInFault }, { label: 'Degraded', value: k.assetsDegraded }]}
+        <KPICard label={ar ? 'إنذارات نظام المباني النشطة' : 'BMS Alarms Active'} value={k.activeAlarms} icon={<IcoBuilding />} rag={k.activeAlarms > 0 ? 'critical' : 'normal'}
+          subValues={[{ label: ar ? 'أصول في عطل' : 'Assets in fault', value: k.assetsInFault }, { label: ar ? 'متدهورة' : 'Degraded', value: k.assetsDegraded }]}
           onClick={() => setDetail({
             title: 'BMS Alarms Active', subtitle: `${k.activeAlarms} active alarms · ${k.assetsInFault} assets in fault`, source: 'Building Management System — Supervisory Layer',
             stats: [
@@ -45,8 +45,8 @@ export default function CampusOps() {
                 rows={data.assets} />
             ),
           })} />
-        <KPICard label="Avg Zone Temp" value={k.avgTemp} unit="°C" icon={<IcoThermometer />} rag={Math.abs(k.avgTemp - 22.5) > 1.5 ? 'warning' : 'normal'}
-          subValues={[{ label: 'Setpoint', value: '22.5 °C' }, { label: 'Avg CO₂', value: `${k.avgCo2} ppm` }]}
+        <KPICard label={ar ? 'متوسط حرارة المناطق' : 'Avg Zone Temp'} value={k.avgTemp} unit="°C" icon={<IcoThermometer />} rag={Math.abs(k.avgTemp - 22.5) > 1.5 ? 'warning' : 'normal'}
+          subValues={[{ label: ar ? 'نقطة الضبط' : 'Setpoint', value: '22.5 °C' }, { label: ar ? 'متوسط CO₂' : 'Avg CO₂', value: `${k.avgCo2} ppm` }]}
           onClick={() => setDetail({
             title: 'Avg Zone Temp', subtitle: `${k.avgTemp}°C average vs 22.5°C setpoint · avg CO₂ ${k.avgCo2} ppm`, source: 'BMS — Environmental Controls',
             content: (
@@ -60,8 +60,8 @@ export default function CampusOps() {
                 rows={data.comfort} />
             ),
           })} />
-        <KPICard label="Energy — 24h" value={fmt.int(k.energy24h)} unit="kWh" icon={<IcoBolt />} rag="normal"
-          subValues={[{ label: 'Water', value: `${k.water24h} m³` }]}
+        <KPICard label={ar ? 'الطاقة — ٢٤ ساعة' : 'Energy — 24h'} value={fmt.int(k.energy24h)} unit="kWh" icon={<IcoBolt />} rag="normal"
+          subValues={[{ label: ar ? 'المياه' : 'Water', value: `${k.water24h} m³` }]}
           onClick={() => setDetail({
             title: 'Energy — 24h', subtitle: `${fmt.int(k.energy24h)} kWh · ${k.water24h} m³ water`, source: 'BMS / EMS Telemetry',
             stats: [
@@ -72,9 +72,9 @@ export default function CampusOps() {
             content: <TrendChart data={data.energyByZone} x="hour" height={240} type="area" stacked
               series={data.zoneKeys.map((z, i) => ({ key: z, name: z, color: ZONE_COLORS[i % ZONE_COLORS.length] }))} />,
           })} />
-        <KPICard label="CCTV Online" value={`${k.camerasOnline}/${k.camerasTotal}`} icon={<IcoCamera />}
+        <KPICard label={ar ? 'كاميرات المراقبة المتصلة' : 'CCTV Online'} value={`${k.camerasOnline}/${k.camerasTotal}`} icon={<IcoCamera />}
           rag={k.camerasTotal - k.camerasOnline > 5 ? 'warning' : 'normal'}
-          subValues={[{ label: 'Access events 24h', value: fmt.int(k.accessEvents) }]}
+          subValues={[{ label: ar ? 'أحداث الدخول ٢٤ ساعة' : 'Access events 24h', value: fmt.int(k.accessEvents) }]}
           onClick={() => setDetail({
             title: 'CCTV Online', subtitle: `${k.camerasOnline}/${k.camerasTotal} cameras online · ${fmt.int(k.accessEvents)} access events 24h`, source: 'VMS / Access Control — ORANGE Network',
             stats: [
@@ -92,8 +92,8 @@ export default function CampusOps() {
                 rows={data.security} />
             ),
           })} />
-        <KPICard label="Weapons Issued Out" value={k.weaponsOut} icon={<IcoTarget />} rag={k.weaponsOverdue > 0 ? 'critical' : 'normal'}
-          subValues={[{ label: 'Overdue return', value: k.weaponsOverdue }]}
+        <KPICard label={ar ? 'أسلحة مصروفة' : 'Weapons Issued Out'} value={k.weaponsOut} icon={<IcoTarget />} rag={k.weaponsOverdue > 0 ? 'critical' : 'normal'}
+          subValues={[{ label: ar ? 'متأخرة الإرجاع' : 'Overdue return', value: k.weaponsOverdue }]}
           onClick={() => setDetail({
             title: 'Weapons Issued Out', subtitle: `${k.weaponsOut} out · ${k.weaponsOverdue} overdue return`, source: 'Weapon Management System — Armoury Z09',
             content: (
@@ -107,8 +107,8 @@ export default function CampusOps() {
                 rows={[...data.wmsOverdue, ...data.wmsRecent].slice(0, 12)} />
             ),
           })} />
-        <KPICard label="Parking Occupancy" value={`${k.parkingOccupancy}%`} icon={<IcoCar />} rag="normal"
-          subValues={[{ label: 'ANPR + EV charging', value: 'live' }]}
+        <KPICard label={ar ? 'إشغال المواقف' : 'Parking Occupancy'} value={`${k.parkingOccupancy}%`} icon={<IcoCar />} rag="normal"
+          subValues={[{ label: ar ? 'ANPR + شحن كهربائي' : 'ANPR + EV charging', value: ar ? 'مباشر' : 'live' }]}
           onClick={() => setDetail({
             title: 'Parking Occupancy', subtitle: `${k.parkingOccupancy}% campus-wide occupancy`, source: 'Parking Management — ANPR',
             content: (
@@ -124,12 +124,12 @@ export default function CampusOps() {
       </KPIGrid>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1.6fr) minmax(0, 1fr)', gap: 14, marginBottom: 14 }}>
-        <Panel title="Energy by Zone — 24h" sub="BMS telemetry via one-way data diode · stacked kWh per building">
+        <Panel title={ar ? 'الطاقة حسب المنطقة — ٢٤ ساعة' : 'Energy by Zone — 24h'} sub={ar ? 'قياسات نظام المباني عبر صمام بيانات أحادي الاتجاه · ك.و.س متراكمة لكل مبنى' : 'BMS telemetry via one-way data diode · stacked kWh per building'}>
           <TrendChart data={data.energyByZone} x="hour" height={250} type="area" stacked
             series={data.zoneKeys.map((z, i) => ({ key: z, name: z, color: ZONE_COLORS[i % ZONE_COLORS.length] }))} />
         </Panel>
 
-        <Panel title="Comfort & IAQ Matrix" sub="Latest telemetry per building — RAG on setpoint deviation">
+        <Panel title={ar ? 'مصفوفة الراحة وجودة الهواء' : 'Comfort & IAQ Matrix'} sub={ar ? 'أحدث القياسات لكل مبنى — تقييم انحراف نقطة الضبط' : 'Latest telemetry per building — RAG on setpoint deviation'}>
           <DataTable maxHeight={250}
             columns={[
               { key: 'building_id', label: 'Zone' },
@@ -143,8 +143,8 @@ export default function CampusOps() {
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1.3fr) minmax(0, 1fr)', gap: 14, marginBottom: 14 }}>
-        <Panel title="Asset Watchlist" sub="MEP assets in fault / degraded state — CMMS work orders auto-raised"
-          right={<StatusChip kind="danger">{k.assetsInFault} FAULT</StatusChip>}>
+        <Panel title={ar ? 'قائمة مراقبة الأصول' : 'Asset Watchlist'} sub={ar ? 'أصول ميكانيكية/كهربائية في حالة عطل أو تدهور — أوامر عمل تلقائية' : 'MEP assets in fault / degraded state — CMMS work orders auto-raised'}
+          right={<StatusChip kind="danger">{k.assetsInFault} {ar ? 'عطل' : 'FAULT'}</StatusChip>}>
           <DataTable maxHeight={240}
             columns={[
               { key: 'asset_id', label: 'Asset' },
@@ -157,7 +157,7 @@ export default function CampusOps() {
             rows={data.assets} />
         </Panel>
 
-        <Panel title="Physical Security by Building" sub="ORANGE network — VMS, access control, intrusion">
+        <Panel title={ar ? 'الأمن المادي حسب المبنى' : 'Physical Security by Building'} sub={ar ? 'شبكة ORANGE — المراقبة والتحكّم بالدخول والاقتحام' : 'ORANGE network — VMS, access control, intrusion'}>
           <DataTable maxHeight={240}
             columns={[
               { key: 'building_id', label: 'Zone' },
@@ -171,8 +171,8 @@ export default function CampusOps() {
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1.4fr) minmax(0, 1fr)', gap: 14 }}>
-        <Panel title="Weapon Management System — Recent Transactions" sub="Issuance / return with cadet ID binding · armoury Z09"
-          right={k.weaponsOverdue > 0 ? <StatusChip kind="danger">{k.weaponsOverdue} OVERDUE</StatusChip> : <StatusChip kind="success">RECONCILED</StatusChip>}>
+        <Panel title={ar ? 'نظام إدارة الأسلحة — أحدث المعاملات' : 'Weapon Management System — Recent Transactions'} sub={ar ? 'الصرف / الإرجاع مربوط بهوية الطالب · مستودع الأسلحة Z09' : 'Issuance / return with cadet ID binding · armoury Z09'}
+          right={k.weaponsOverdue > 0 ? <StatusChip kind="danger">{k.weaponsOverdue} {ar ? 'متأخر' : 'OVERDUE'}</StatusChip> : <StatusChip kind="success">{ar ? 'مُسوّاة' : 'RECONCILED'}</StatusChip>}>
           <DataTable maxHeight={260}
             columns={[
               { key: 'txn_id', label: 'Txn' },
@@ -186,7 +186,7 @@ export default function CampusOps() {
         </Panel>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-          <Panel title="Parking & Mobility" sub="ANPR barriers · EV charging">
+          <Panel title={ar ? 'المواقف والتنقّل' : 'Parking & Mobility'} sub={ar ? 'بوابات ANPR · شحن المركبات الكهربائية' : 'ANPR barriers · EV charging'}>
             <DataTable
               columns={[
                 { key: 'zone', label: 'Zone' },
@@ -195,8 +195,8 @@ export default function CampusOps() {
               ]}
               rows={data.parking} />
           </Panel>
-          <Panel title="Fire & Life Safety" sub="Base-build FDAS — supervisory monitoring only"
-            right={<StatusChip kind="success">ALL ZONES NORMAL</StatusChip>}>
+          <Panel title={ar ? 'السلامة من الحرائق' : 'Fire & Life Safety'} sub={ar ? 'نظام إنذار الحريق للمبنى — مراقبة إشرافية فقط' : 'Base-build FDAS — supervisory monitoring only'}
+            right={<StatusChip kind="success">{ar ? 'كل المناطق طبيعية' : 'ALL ZONES NORMAL'}</StatusChip>}>
             <div style={{ fontSize: 11.5, color: 'var(--app-text-faint)', lineHeight: 1.6 }}>
               12/12 fire panels online · last full-campus test 14 Jun 2026 · AV emergency override armed (Dante/AES67) ·
               Civil Defence certification current. Safety signals subscribed read-only by the supervisory layer.

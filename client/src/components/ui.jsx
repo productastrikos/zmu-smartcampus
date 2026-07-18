@@ -1,4 +1,5 @@
 import React from 'react';
+import { useLang } from '../i18n';
 
 /** Panel — glass surface with uppercase title, per design standard */
 export function Panel({ title, sub, right, children, className = '', style }) {
@@ -61,12 +62,14 @@ export function DataTable({ columns, rows, onRowClick, maxHeight }) {
   );
 }
 
-export function Loading({ text = 'Loading module…' }) {
+export function Loading({ text }) {
+  const { lang } = useLang();
+  const label = text || (lang === 'ar' ? 'جارٍ التحميل…' : 'Loading module…');
   return (
     <div style={{ height: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       <div className="app-loading">
         <div className="app-loading-orbit" />
-        <div className="app-loading-text">{text}</div>
+        <div className="app-loading-text">{label}</div>
       </div>
     </div>
   );

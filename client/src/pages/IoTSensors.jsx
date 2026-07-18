@@ -51,7 +51,8 @@ export default function IoTSensors() {
   const [type, setType] = useState('ALL');
   const { data, refresh } = useExt(`/iot/sensors?building=${building}&type=${type}`);
   const [msg, setMsg] = useState(null);
-  const { t } = useLang();
+  const { t, lang } = useLang();
+  const ar = lang === 'ar';
 
   if (!data) return <Loading text="Loading IoT sensor network…" />;
   const k = data.kpis;
@@ -74,7 +75,7 @@ export default function IoTSensors() {
   return (
     <>
       <PageHeader title={`${t('page.iot')}`}
-        subtitle="Live device health across every building — environmental, occupancy, lighting, energy, HVAC, security & water. Add or retire devices in real time."
+        subtitle={ar ? 'صحة الأجهزة الحيّة عبر كل مبنى — البيئة والإشغال والإضاءة والطاقة والتكييف والأمن والمياه. أضف أو أوقف الأجهزة فوريًا.' : 'Live device health across every building — environmental, occupancy, lighting, energy, HVAC, security & water. Add or retire devices in real time.'}
         right={
           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
             <select value={building} onChange={(e) => setBuilding(e.target.value)}
@@ -93,20 +94,20 @@ export default function IoTSensors() {
       {msg && <div style={{ marginBottom: 12, fontSize: 12, color: 'var(--app-success)', fontWeight: 600 }}>{msg}</div>}
 
       <KPIGrid>
-        <KPICard label="Total Devices" value={k.total} icon={<IcoCpu />} subValues={[{ label: 'Buildings', value: data.buildings.length }]} />
-        <KPICard label="Online" value={`${k.online}/${k.total}`} icon={<IcoSignal />} rag={k.online < k.total ? 'warning' : 'normal'} subValues={[{ label: 'Uptime', value: `${k.uptime}%` }]} />
-        <KPICard label="Faults / Degraded" value={k.faults} icon={<IcoAlert />} rag={k.faults > 0 ? 'warning' : 'normal'} subValues={[{ label: 'Offline', value: k.offline }]} />
-        <KPICard label="Avg Device Health" value={`${k.avgHealth}%`} icon={<IcoActivity />} rag={k.avgHealth < 80 ? 'warning' : 'normal'} />
-        <KPICard label="Battery" value={`${k.avgBattery}%`} icon={<IcoBolt />} rag={k.lowBattery > 0 ? 'warning' : 'normal'} subValues={[{ label: 'Low battery', value: k.lowBattery }]} />
+        <KPICard label={ar ? 'إجمالي الأجهزة' : 'Total Devices'} value={k.total} icon={<IcoCpu />} subValues={[{ label: ar ? 'المباني' : 'Buildings', value: data.buildings.length }]} />
+        <KPICard label={ar ? 'متصل' : 'Online'} value={`${k.online}/${k.total}`} icon={<IcoSignal />} rag={k.online < k.total ? 'warning' : 'normal'} subValues={[{ label: ar ? 'التشغيل' : 'Uptime', value: `${k.uptime}%` }]} />
+        <KPICard label={ar ? 'أعطال / متدهورة' : 'Faults / Degraded'} value={k.faults} icon={<IcoAlert />} rag={k.faults > 0 ? 'warning' : 'normal'} subValues={[{ label: ar ? 'غير متصل' : 'Offline', value: k.offline }]} />
+        <KPICard label={ar ? 'متوسط صحة الأجهزة' : 'Avg Device Health'} value={`${k.avgHealth}%`} icon={<IcoActivity />} rag={k.avgHealth < 80 ? 'warning' : 'normal'} />
+        <KPICard label={ar ? 'البطارية' : 'Battery'} value={`${k.avgBattery}%`} icon={<IcoBolt />} rag={k.lowBattery > 0 ? 'warning' : 'normal'} subValues={[{ label: ar ? 'بطارية منخفضة' : 'Low battery', value: k.lowBattery }]} />
       </KPIGrid>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1.5fr) minmax(0,1fr)', gap: 14, marginBottom: 14, alignItems: 'start' }}>
-        <Panel title="Device Health by Type" sub="Online vs faulted across the seven sensor classes">
+        <Panel title={ar ? 'صحة الأجهزة حسب النوع' : 'Device Health by Type'} sub={ar ? 'متصل مقابل معطّل عبر فئات الحساسات السبع' : 'Online vs faulted across the seven sensor classes'}>
           <Bars data={data.byType.map((r) => ({ type: TYPE_LABEL[r.type] || r.type, online: r.online, faults: r.faults }))} x="type" height={240} stacked
             series={[{ key: 'online', name: 'Online', color: C.green }, { key: 'faults', name: 'Fault/Degraded', color: C.amber }]} />
         </Panel>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-          <Panel title="Register a Device" sub="Provision a new sensor onto the network">
+          <Panel title={ar ? 'تسجيل جهاز' : 'Register a Device'} sub={ar ? 'إضافة حسّاس جديد إلى الشبكة' : 'Provision a new sensor onto the network'}>
             <AddDeviceForm meta={data} onAdd={add} />
           </Panel>
           <Advisory items={[
@@ -118,7 +119,7 @@ export default function IoTSensors() {
         </div>
       </div>
 
-      <Panel title={`Connected Devices — ${data.sensors.length} shown`} sub="Sorted by health (worst first) · delete to retire a device from the network">
+      <Panel title={ar ? `الأجهزة المتصلة — ${data.sensors.length} معروضة` : `Connected Devices — ${data.sensors.length} shown`} sub={ar ? 'مرتّبة حسب الصحة (الأسوأ أولًا) · احذف لإيقاف جهاز من الشبكة' : 'Sorted by health (worst first) · delete to retire a device from the network'}>
         <DataTable maxHeight={520}
           columns={[
             { key: 'id', label: 'Device ID' },

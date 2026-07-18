@@ -4,9 +4,15 @@ import { useApi } from '../services/api';
 import KPICard, { IcoTarget, IcoWatch, IcoMoon, IcoHeart, IcoAlert, IcoActivity } from '../components/KPICard';
 import { Panel, StatusChip, sevChip, Loading, PageHeader, KPIGrid, DataTable } from '../components/ui';
 import { TrendChart, Bars, RadarPanel, C } from '../components/charts';
-import PortalBar from '../components/PortalBar';
-import { PORTALS } from '../config/portals';
 import KPIDetailPanel from '../components/KPIDetailPanel';
+import ModuleLauncher from '../components/ModuleLauncher';
+import { useLang } from '../i18n';
+
+const READINESS_MODULES = [
+  { slug: 'hpo', labelKey: 'page.hpo' },
+  { slug: 'military', labelKey: 'page.military' },
+  { slug: 'conduct', labelKey: 'page.conduct' },
+];
 
 /** Human digital twin — per-cadet drill-down modal */
 function CadetTwin({ id, onClose }) {
@@ -84,6 +90,8 @@ function CadetTwin({ id, onClose }) {
 
 export default function Readiness() {
   const { data, error } = useApi('/readiness');
+  const { lang } = useLang();
+  const ar = lang === 'ar';
   const [cadetId, setCadetId] = useState(null);
   const [showAll, setShowAll] = useState(false);
   const [detail, setDetail] = useState(null);
@@ -96,21 +104,21 @@ export default function Readiness() {
     if (c) setCadetId(c);
   }, [searchParams]);
   if (error) return <Panel title="Error">{String(error)}</Panel>;
-  if (!data) return <Loading text="Loading readiness domain…" />;
+  if (!data) return <Loading text={ar ? 'جارٍ تحميل مجال الجاهزية…' : 'Loading readiness domain…'} />;
   const k = data.kpis;
 
   return (
     <>
-      <PortalBar portals={PORTALS.readiness} />
+      <ModuleLauncher items={READINESS_MODULES} />
       <PageHeader
-        title="Readiness & Performance"
-        subtitle="Human Performance Optimization — Garmin Health API wearables · body composition · predictive early intervention (flow 4)"
-        right={<StatusChip kind={k.deviceSyncRate > 90 ? 'success' : 'warning'}>{k.deviceSyncRate}% DEVICES SYNCED ≤ 12H</StatusChip>}
+        title={ar ? 'الجاهزية والأداء' : 'Readiness & Performance'}
+        subtitle={ar ? 'تحسين الأداء البشري — أجهزة Garmin القابلة للارتداء · تكوين الجسم · التدخّل المبكر التنبّؤي' : 'Human Performance Optimization — Garmin Health API wearables · body composition · predictive early intervention (flow 4)'}
+        right={<StatusChip kind={k.deviceSyncRate > 90 ? 'success' : 'warning'}>{k.deviceSyncRate}% {ar ? 'أجهزة مُزامنة خلال ١٢ ساعة' : 'DEVICES SYNCED ≤ 12H'}</StatusChip>}
       />
 
       <KPIGrid>
-        <KPICard label="Avg Readiness Score" value={k.avgReadiness} unit="/ 100" icon={<IcoTarget />} trend={1.2} rag="normal"
-          subValues={[{ label: 'Body battery', value: k.avgBodyBattery }]}
+        <KPICard label={ar ? 'متوسط درجة الجاهزية' : 'Avg Readiness Score'} value={k.avgReadiness} unit="/ 100" icon={<IcoTarget />} trend={1.2} rag="normal"
+          subValues={[{ label: ar ? 'طاقة الجسم' : 'Body battery', value: k.avgBodyBattery }]}
           onClick={() => setDetail({
             title: 'Avg Readiness Score', subtitle: `${k.avgReadiness}/100 · body battery ${k.avgBodyBattery}`, source: 'Garmin Health API → HPO',
             stats: [
@@ -121,8 +129,8 @@ export default function Readiness() {
             content: <TrendChart data={data.trend} x="date" height={220}
               series={[{ key: 'readiness', name: 'Readiness', color: C.blue, area: true }]} />,
           })} />
-        <KPICard label="Garmin Sync Rate" value={`${k.deviceSyncRate}%`} icon={<IcoWatch />} rag={k.deviceSyncRate < 90 ? 'warning' : 'normal'}
-          subValues={[{ label: 'Fleet', value: '300 devices' }]}
+        <KPICard label={ar ? 'معدل مزامنة Garmin' : 'Garmin Sync Rate'} value={`${k.deviceSyncRate}%`} icon={<IcoWatch />} rag={k.deviceSyncRate < 90 ? 'warning' : 'normal'}
+          subValues={[{ label: ar ? 'الأسطول' : 'Fleet', value: ar ? '٣٠٠ جهاز' : '300 devices' }]}
           onClick={() => setDetail({
             title: 'Garmin Sync Rate', subtitle: `${k.deviceSyncRate}% of the 300-device fleet synced within 12h`, source: 'Garmin Health API — Wearable Middleware',
             stats: [
@@ -146,22 +154,22 @@ export default function Readiness() {
               </>
             ),
           })} />
-        <KPICard label="Avg Sleep" value={k.avgSleep} unit="hrs" icon={<IcoMoon />} rag={k.avgSleep < 6.5 ? 'warning' : 'normal'}
-          subValues={[{ label: 'Target', value: '≥ 7.0 h' }]}
+        <KPICard label={ar ? 'متوسط النوم' : 'Avg Sleep'} value={k.avgSleep} unit={ar ? 'ساعة' : 'hrs'} icon={<IcoMoon />} rag={k.avgSleep < 6.5 ? 'warning' : 'normal'}
+          subValues={[{ label: ar ? 'الهدف' : 'Target', value: ar ? '≥ ٧٫٠ ساعة' : '≥ 7.0 h' }]}
           onClick={() => setDetail({
             title: 'Avg Sleep', subtitle: `${k.avgSleep}h cohort average · target ≥ 7.0h`, source: 'Garmin Health API',
             content: <TrendChart data={data.trend} x="date" height={220}
               series={[{ key: 'sleep', name: 'Sleep h', color: C.cyan, area: true }]} />,
           })} />
-        <KPICard label="Avg HRV" value={k.avgHrv} unit="ms" icon={<IcoHeart />} rag="normal"
-          subValues={[{ label: 'Avg stress', value: k.avgStress }]}
+        <KPICard label={ar ? 'متوسط تقلب النبض' : 'Avg HRV'} value={k.avgHrv} unit="ms" icon={<IcoHeart />} rag="normal"
+          subValues={[{ label: ar ? 'متوسط الإجهاد' : 'Avg stress', value: k.avgStress }]}
           onClick={() => setDetail({
             title: 'Avg HRV', subtitle: `${k.avgHrv} ms cohort average · avg stress ${k.avgStress}`, source: 'Garmin Health API',
             content: <TrendChart data={data.trend} x="date" height={220}
               series={[{ key: 'hrv', name: 'HRV ms', color: C.violet, area: true }]} />,
           })} />
-        <KPICard label="High Injury Risk" value={k.highInjuryRisk} unit="cadets" icon={<IcoAlert />} rag={k.highInjuryRisk > 8 ? 'critical' : 'warning'}
-          subValues={[{ label: 'Rule', value: 'ACWR > 1.4' }]}
+        <KPICard label={ar ? 'خطر إصابة مرتفع' : 'High Injury Risk'} value={k.highInjuryRisk} unit={ar ? 'طالب' : 'cadets'} icon={<IcoAlert />} rag={k.highInjuryRisk > 8 ? 'critical' : 'warning'}
+          subValues={[{ label: ar ? 'القاعدة' : 'Rule', value: 'ACWR > 1.4' }]}
           onClick={() => setDetail({
             title: 'High Injury Risk', subtitle: `${k.highInjuryRisk} cadets with ACWR > 1.4 — early intervention rule`, source: 'HPO Predictive Analytics',
             stats: [
@@ -181,7 +189,7 @@ export default function Readiness() {
                 onRowClick={(r) => { setDetail(null); setCadetId(r.cadet_id); }} />
             ),
           })} />
-        <KPICard label="Avg VO₂max" value={k.avgVo2} icon={<IcoActivity />} trend={0.6} rag="normal"
+        <KPICard label={ar ? 'متوسط استهلاك الأكسجين' : 'Avg VO₂max'} value={k.avgVo2} icon={<IcoActivity />} trend={0.6} rag="normal"
           onClick={() => setDetail({
             title: 'Avg VO₂max', subtitle: `${k.avgVo2} cohort average`, source: 'Garmin Health API',
             content: <Bars data={data.squadrons} x="squadron" height={220} hideLegend
@@ -190,31 +198,31 @@ export default function Readiness() {
       </KPIGrid>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1.5fr) minmax(0, 1fr)', gap: 14, marginBottom: 14 }}>
-        <Panel title="Cohort Readiness — 14 Days" sub="Daily aggregate from wearable middleware (consent-governed)">
+        <Panel title={ar ? 'جاهزية الدفعة — ١٤ يومًا' : 'Cohort Readiness — 14 Days'} sub={ar ? 'تجميع يومي من وسيط الأجهزة القابلة للارتداء (محكوم بالموافقة)' : 'Daily aggregate from wearable middleware (consent-governed)'}>
           <TrendChart data={data.trend} x="date" height={240}
             series={[
-              { key: 'readiness', name: 'Readiness', color: C.blue, area: true },
+              { key: 'readiness', name: ar ? 'الجاهزية' : 'Readiness', color: C.blue, area: true },
               { key: 'hrv', name: 'HRV ms', color: C.violet },
-              { key: 'sleep', name: 'Sleep h', color: C.cyan },
+              { key: 'sleep', name: ar ? 'النوم (ساعة)' : 'Sleep h', color: C.cyan },
             ]}
             rightAxisKeys={['sleep']} />
         </Panel>
-        <Panel title="Five Readiness Domains" sub="HPO mandatory domains — cohort average">
+        <Panel title={ar ? 'مجالات الجاهزية الخمسة' : 'Five Readiness Domains'} sub={ar ? 'المجالات الإلزامية لتحسين الأداء — متوسط الدفعة' : 'HPO mandatory domains — cohort average'}>
           <RadarPanel data={data.radar} angleKey="domain" height={240}
-            series={[{ key: 'score', name: 'Cohort', color: C.blue }]} />
+            series={[{ key: 'score', name: ar ? 'الدفعة' : 'Cohort', color: C.blue }]} />
         </Panel>
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1.4fr)', gap: 14, marginBottom: 14 }}>
-        <Panel title="Company Comparison" sub="Instructor-tier dashboard view">
+        <Panel title={ar ? 'مقارنة السرايا' : 'Company Comparison'} sub={ar ? 'عرض لوحة مستوى المدرّب' : 'Instructor-tier dashboard view'}>
           <Bars data={data.squadrons} x="squadron" height={230}
             series={[
-              { key: 'readiness', name: 'Readiness', color: C.blue },
+              { key: 'readiness', name: ar ? 'الجاهزية' : 'Readiness', color: C.blue },
               { key: 'hrv', name: 'HRV', color: C.violet },
             ]} />
         </Panel>
-        <Panel title="Early Intervention Queue" sub={`${data.highRisk.length} cadets · ACWR > 1.4 before Exercise Desert Shield`}
-          right={<StatusChip kind="danger">PRIORITY</StatusChip>}>
+        <Panel title={ar ? 'قائمة التدخّل المبكر' : 'Early Intervention Queue'} sub={ar ? `${data.highRisk.length} طالب · ACWR > 1.4 قبل التمرين` : `${data.highRisk.length} cadets · ACWR > 1.4 before Exercise Desert Shield`}
+          right={<StatusChip kind="danger">{ar ? 'أولوية' : 'PRIORITY'}</StatusChip>}>
           <DataTable maxHeight={230}
             columns={[
               { key: 'cadet_id', label: 'Cadet ID' },

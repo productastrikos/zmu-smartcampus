@@ -3,6 +3,7 @@ import { NavLink, useLocation } from 'react-router-dom';
 import AlertPanel from './AlertPanel';
 import AdvisoryPanel from './AdvisoryPanel';
 import SiaAgent from './SiaAgent';
+import PageAdvisory from './PageAdvisory';
 import { fetchApi } from '../services/api';
 import { ThemeToggle } from '../theme';
 import { useLang, LangToggle } from '../i18n';
@@ -32,13 +33,16 @@ const NAV = [
       { to: '/readiness', key: 'page.readiness', icon: ['M22 12h-4l-3 9L9 3l-3 9H2'] },
       { to: '/enterprise', key: 'page.enterprise', icon: ['M20 7H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z', 'M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2'] },
       { to: '/campus-ops', key: 'page.campus', icon: ['M4 2h16v20H4z', 'M9 22v-4h6v4', 'M9 6h.01M15 6h.01M9 10h.01M15 10h.01M9 14h.01M15 14h.01'] },
+      { to: '/it-ops', key: 'page.itops', roles: ['superadmin'], icon: ['M4 4h16v12H4z', 'M8 20h8', 'M12 16v4', 'M8 8h4M8 11h8'] },
     ],
   },
   {
     section: 'nav.platform',
     items: [
       { to: '/iot', key: 'page.iot', icon: ['M12 20v-6', 'M12 8V4', 'M5 12a7 7 0 0114 0', 'M8.5 12a3.5 3.5 0 017 0', 'M12 12h.01'] },
+      { to: '/security', key: 'page.security', roles: ['superadmin'], icon: ['M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z'] },
       { to: '/incidents', key: 'page.incidents', icon: ['M23 7l-7 5 7 5V7z', 'M1 5h15v14H1z'] },
+      { to: '/integration', key: 'page.integration', roles: ['superadmin'], icon: ['M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71', 'M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71'] },
     ],
   },
 ];
@@ -53,6 +57,10 @@ const TITLE_KEY = {
   '/executive': 'page.executive', '/': 'page.command', '/digital-twin': 'page.twin',
   '/academic': 'page.academic', '/readiness': 'page.readiness', '/enterprise': 'page.enterprise',
   '/campus-ops': 'page.campus', '/iot': 'page.iot', '/incidents': 'page.incidents',
+  '/sis': 'page.sis', '/lms': 'page.lms', '/merit': 'page.merit',
+  '/hpo': 'page.hpo', '/military': 'page.military', '/conduct': 'page.conduct',
+  '/cadet-journey': 'page.cadetJourney', '/it-ops': 'page.itops',
+  '/security': 'page.security', '/integration': 'page.integration',
 };
 
 export default function Layout({ children, user, onLogout }) {
@@ -84,7 +92,6 @@ export default function Layout({ children, user, onLogout }) {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
-      <div className="classification-banner">{t('app.restricted')}</div>
       <div style={{ display: 'flex', flex: 1, minHeight: 0 }}>
         {/* ── Sidebar ── */}
         <aside style={{
@@ -93,17 +100,22 @@ export default function Layout({ children, user, onLogout }) {
           borderInlineEnd: '1px solid var(--app-panel-border)', overflowY: 'auto', overflowX: 'hidden',
           transition: 'width 0.18s ease',
         }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: collapsed ? '2px 0 14px' : '2px 8px 14px', justifyContent: collapsed ? 'center' : 'flex-start', borderBottom: '1px solid var(--app-surface-raised)' }}>
+          <div style={{
+            display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8,
+            padding: collapsed ? '2px 0 14px' : '10px 8px 16px', textAlign: 'center',
+            borderBottom: '1px solid var(--app-surface-raised)',
+          }}>
             <div style={{
-              width: 38, height: 38, borderRadius: 10, flexShrink: 0,
-              background: 'linear-gradient(135deg, var(--app-accent-strong), var(--app-accent))',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontWeight: 800, fontSize: 13, color: 'var(--app-on-color)', letterSpacing: '0.02em',
-            }}>ZMU</div>
+              width: collapsed ? 36 : 68, height: collapsed ? 36 : 68, borderRadius: 12, flexShrink: 0, padding: collapsed ? 3 : 7,
+              background: '#fff', border: '1px solid var(--app-panel-border)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'width 0.18s ease, height 0.18s ease',
+            }}>
+              <img src="/images/zmu-logo-full.png" alt="ZMU" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+            </div>
             {!collapsed && (
               <div style={{ minWidth: 0 }}>
-                <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--app-text)', lineHeight: 1.2 }}>{t('app.platform')}</div>
-                <div style={{ fontSize: 9.5, color: 'var(--app-text-faint)', letterSpacing: '0.05em', textTransform: 'uppercase' }}>{t('app.university')}</div>
+                <div style={{ fontSize: 13.5, fontWeight: 700, color: 'var(--app-text)', lineHeight: 1.25 }}>{t('app.platform')}</div>
+                <div style={{ fontSize: 9.5, color: 'var(--app-text-faint)', letterSpacing: '0.05em', textTransform: 'uppercase', marginTop: 2 }}>{t('app.university')}</div>
               </div>
             )}
           </div>
@@ -129,7 +141,7 @@ export default function Layout({ children, user, onLogout }) {
             <div style={{ padding: '12px 10px 4px', borderTop: '1px solid var(--app-surface-raised)', fontSize: 10, color: 'var(--app-text-faint)', lineHeight: 1.6 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
                 <span style={{ width: 7, height: 7, borderRadius: 99, background: 'var(--app-success)', display: 'inline-block' }} className="animate-blink" />
-                {t('app.poweredBy')}
+                {t('app.university')}
               </div>
               <div className="ltr-num">{t('app.msi')}</div>
             </div>
@@ -197,6 +209,7 @@ export default function Layout({ children, user, onLogout }) {
           </header>
 
           <main style={{ flex: 1, overflowY: 'auto', padding: '18px 20px 30px', minHeight: 0, background: 'var(--app-bg)' }}>
+            <PageAdvisory />
             <div className="animate-fade-in" key={location.pathname + lang}>
               {children}
             </div>

@@ -12,7 +12,24 @@ import Enterprise from './pages/Enterprise';
 import CampusOps from './pages/CampusOps';
 import IoTSensors from './pages/IoTSensors';
 import IncidentManagement from './pages/IncidentManagement';
+// Restored extended modules — Super-Admin only (RBAC-guarded below)
+import SIS from './pages/SIS';
+import LMS from './pages/LMS';
+import MeritBoard from './pages/MeritBoard';
+import StreamPage from './pages/Streams';
+import CadetJourney from './pages/CadetJourney';
+import ITManagement from './pages/ITManagement';
+import SecurityOps from './pages/SecurityOps';
+import Integration from './pages/Integration';
+import StandaloneShell from './components/StandaloneShell';
 import { ROLE_ROUTES, homeFor } from './components/Layout';
+
+// Modules launched in their own tab from the Academics / Readiness pages.
+// Rendered via StandaloneShell (no navigation back to the dashboard).
+export const STANDALONE_MODULES = {
+  sis: 'page.sis', lms: 'page.lms', merit: 'page.merit', 'cadet-journey': 'page.cadetJourney',
+  hpo: 'page.hpo', military: 'page.military', conduct: 'page.conduct',
+};
 
 const AUTH_KEY = 'zmu_auth';
 
@@ -44,6 +61,24 @@ export default function App() {
     return <Navigate to={homeFor(user.role)} replace />;
   }
 
+  // Standalone module tabs — rendered without the dashboard Layout so there's
+  // no path back to the dashboard. Super-Admin only.
+  if (location.pathname.startsWith('/standalone/')) {
+    if (user.role !== 'superadmin') return <Navigate to={homeFor(user.role)} replace />;
+    return (
+      <Routes>
+        <Route path="/standalone/sis" element={<StandaloneShell titleKey="page.sis"><SIS user={user} /></StandaloneShell>} />
+        <Route path="/standalone/lms" element={<StandaloneShell titleKey="page.lms"><LMS user={user} /></StandaloneShell>} />
+        <Route path="/standalone/merit" element={<StandaloneShell titleKey="page.merit"><MeritBoard user={user} /></StandaloneShell>} />
+        <Route path="/standalone/cadet-journey" element={<StandaloneShell titleKey="page.cadetJourney"><CadetJourney /></StandaloneShell>} />
+        <Route path="/standalone/hpo" element={<StandaloneShell titleKey="page.hpo"><StreamPage user={user} which="hpo" /></StandaloneShell>} />
+        <Route path="/standalone/military" element={<StandaloneShell titleKey="page.military"><StreamPage user={user} which="military" /></StandaloneShell>} />
+        <Route path="/standalone/conduct" element={<StandaloneShell titleKey="page.conduct"><StreamPage user={user} which="conduct" /></StandaloneShell>} />
+        <Route path="*" element={<Navigate to={homeFor(user.role)} replace />} />
+      </Routes>
+    );
+  }
+
   return (
     <Layout user={user} onLogout={logout}>
       <Routes>
@@ -58,6 +93,10 @@ export default function App() {
         <Route path="/campus-ops" element={<CampusOps />} />
         <Route path="/iot" element={<IoTSensors />} />
         <Route path="/incidents" element={<IncidentManagement />} />
+        {/* Extended modules kept in the sidebar */}
+        <Route path="/it-ops" element={<ITManagement />} />
+        <Route path="/security" element={<SecurityOps />} />
+        <Route path="/integration" element={<Integration />} />
         <Route path="*" element={<Navigate to={homeFor(user.role)} replace />} />
       </Routes>
     </Layout>

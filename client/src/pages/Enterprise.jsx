@@ -3,16 +3,17 @@ import { useApi, fmt } from '../services/api';
 import KPICard, { IcoDollar, IcoClipboard, IcoPeople, IcoTrendUp, IcoCalendar, IcoDatabase } from '../components/KPICard';
 import { Panel, StatusChip, sevChip, Loading, PageHeader, KPIGrid, DataTable, ProgressBar } from '../components/ui';
 import { TrendChart, Bars, Donut, C } from '../components/charts';
-import PortalBar from '../components/PortalBar';
-import { PORTALS } from '../config/portals';
 import KPIDetailPanel from '../components/KPIDetailPanel';
 import { SiaAgentInline } from '../components/SiaAgent';
+import { useLang } from '../i18n';
 
 export default function Enterprise() {
   const { data, error } = useApi('/enterprise');
+  const { lang } = useLang();
+  const ar = lang === 'ar';
   const [detail, setDetail] = useState(null);
   if (error) return <Panel title="Error">{String(error)}</Panel>;
-  if (!data) return <Loading text="Loading enterprise domain…" />;
+  if (!data) return <Loading text={ar ? 'جارٍ تحميل مجال المؤسسة…' : 'Loading enterprise domain…'} />;
   const k = data.kpis;
 
   const headcountDonut = [
@@ -23,16 +24,15 @@ export default function Enterprise() {
 
   return (
     <>
-      <PortalBar portals={PORTALS.enterprise} />
       <PageHeader
-        title="Enterprise & Finance"
-        subtitle="Unified ERP on sovereign cloud — Finance & GL · HRMS / Manpower · Procurement · Scheduling · DoF statutory interface (flow 2)"
-        right={<StatusChip kind="success">ERP AVAILABILITY 99.97%</StatusChip>}
+        title={ar ? 'المؤسسة والمالية' : 'Enterprise & Finance'}
+        subtitle={ar ? 'تخطيط موارد موحّد على السحابة السيادية — المالية · الموارد البشرية · المشتريات · الجدولة · واجهة وزارة المالية' : 'Unified ERP on sovereign cloud — Finance & GL · HRMS / Manpower · Procurement · Scheduling · DoF statutory interface (flow 2)'}
+        right={<StatusChip kind="success">{ar ? 'توافر النظام ٩٩٫٩٧٪' : 'ERP AVAILABILITY 99.97%'}</StatusChip>}
       />
 
       <KPIGrid>
-        <KPICard label="Muwazana Budget" value={k.budgetTotal} unit="M AED" icon={<IcoDollar />} rag="normal"
-          subValues={[{ label: 'Utilized', value: `${k.budgetUsedPct}%` }, { label: 'Plan (mid-year)', value: '50%' }]}
+        <KPICard label={ar ? 'ميزانية موازنة' : 'Muwazana Budget'} value={k.budgetTotal} unit={ar ? 'مليون درهم' : 'M AED'} icon={<IcoDollar />} rag="normal"
+          subValues={[{ label: ar ? 'المُستخدم' : 'Utilized', value: `${k.budgetUsedPct}%` }, { label: ar ? 'الخطة (منتصف العام)' : 'Plan (mid-year)', value: '50%' }]}
           onClick={() => setDetail({
             title: 'Muwazana Budget', subtitle: `${k.budgetTotal}M AED total · ${k.budgetUsedPct}% utilized vs 50% mid-year plan`, source: 'ERP — Finance & GL',
             stats: [
@@ -46,8 +46,8 @@ export default function Enterprise() {
                 { key: 'actual_maed', name: 'Actual', color: C.blue },
               ]} />,
           })} />
-        <KPICard label="Open PO Value" value={k.openPoValue} unit="M AED" icon={<IcoClipboard />} rag="normal"
-          subValues={[{ label: 'Pending approval', value: k.posPendingApproval }]}
+        <KPICard label={ar ? 'قيمة أوامر الشراء المفتوحة' : 'Open PO Value'} value={k.openPoValue} unit={ar ? 'مليون درهم' : 'M AED'} icon={<IcoClipboard />} rag="normal"
+          subValues={[{ label: ar ? 'بانتظار الاعتماد' : 'Pending approval', value: k.posPendingApproval }]}
           onClick={() => setDetail({
             title: 'Open PO Value', subtitle: `${k.openPoValue}M AED open · ${k.posPendingApproval} pending approval`, source: 'ERP — Procurement',
             stats: [
@@ -66,8 +66,8 @@ export default function Enterprise() {
                 rows={data.recentPos} />
             ),
           })} />
-        <KPICard label="Headcount" value={fmt.int(k.headcount)} icon={<IcoPeople />} rag="normal"
-          subValues={[{ label: 'Establishment', value: fmt.int(k.establishment) }, { label: 'Vacancies', value: k.vacancies }]}
+        <KPICard label={ar ? 'عدد الموظفين' : 'Headcount'} value={fmt.int(k.headcount)} icon={<IcoPeople />} rag="normal"
+          subValues={[{ label: ar ? 'الملاك' : 'Establishment', value: fmt.int(k.establishment) }, { label: ar ? 'الشواغر' : 'Vacancies', value: k.vacancies }]}
           onClick={() => setDetail({
             title: 'Headcount', subtitle: `${fmt.int(k.headcount)} of ${fmt.int(k.establishment)} established positions filled`, source: 'HRMS — Workforce Planning',
             stats: [
@@ -88,8 +88,8 @@ export default function Enterprise() {
               </>
             ),
           })} />
-        <KPICard label="Attrition (avg)" value={`${k.attrition}%`} icon={<IcoTrendUp />} rag={k.attrition > 6 ? 'warning' : 'normal'}
-          subValues={[{ label: 'Outsourced', value: fmt.int(k.outsourced) }]}
+        <KPICard label={ar ? 'معدل الاستنزاف' : 'Attrition (avg)'} value={`${k.attrition}%`} icon={<IcoTrendUp />} rag={k.attrition > 6 ? 'warning' : 'normal'}
+          subValues={[{ label: ar ? 'الاستعانة الخارجية' : 'Outsourced', value: fmt.int(k.outsourced) }]}
           onClick={() => setDetail({
             title: 'Attrition (avg)', subtitle: `${k.attrition}% average across departments`, source: 'HRMS — Workforce Planning',
             content: (
@@ -101,8 +101,8 @@ export default function Enterprise() {
                 rows={[...data.departments].sort((a, b) => b.attrition_pct - a.attrition_pct)} />
             ),
           })} />
-        <KPICard label="Room Utilization" value={`${k.roomUtilization}%`} icon={<IcoCalendar />} rag="normal"
-          subValues={[{ label: 'Source', value: 'Master scheduling' }]}
+        <KPICard label={ar ? 'استخدام القاعات' : 'Room Utilization'} value={`${k.roomUtilization}%`} icon={<IcoCalendar />} rag="normal"
+          subValues={[{ label: ar ? 'المصدر' : 'Source', value: ar ? 'الجدولة الرئيسية' : 'Master scheduling' }]}
           onClick={() => setDetail({
             title: 'Room Utilization', subtitle: `${k.roomUtilization}% average across all space types`, source: 'ERP — Master Scheduling',
             content: (
@@ -115,8 +115,8 @@ export default function Enterprise() {
                 rows={data.rooms} />
             ),
           })} />
-        <KPICard label="DoF Interface" value="OK" icon={<IcoDatabase />} rag="normal"
-          subValues={[{ label: 'Last statutory push', value: '02:00 GST' }]}
+        <KPICard label={ar ? 'واجهة وزارة المالية' : 'DoF Interface'} value={ar ? 'سليمة' : 'OK'} icon={<IcoDatabase />} rag="normal"
+          subValues={[{ label: ar ? 'آخر دفعة نظامية' : 'Last statutory push', value: '02:00 GST' }]}
           onClick={() => setDetail({
             title: 'DoF Interface', subtitle: 'Statutory batch to Department of Finance', source: 'ERP ↔ DoF (flow 2)',
             content: (
@@ -133,7 +133,7 @@ export default function Enterprise() {
       </KPIGrid>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1.4fr) minmax(0, 1fr)', gap: 14, marginBottom: 14 }}>
-        <Panel title="Budget vs Actual by Cost Center" sub="Muwazana executive dashboard · variance vs 50% mid-year plan">
+        <Panel title={ar ? 'الميزانية مقابل الفعلي حسب مركز التكلفة' : 'Budget vs Actual by Cost Center'} sub={ar ? 'لوحة موازنة التنفيذية · الانحراف مقابل خطة منتصف العام ٥٠٪' : 'Muwazana executive dashboard · variance vs 50% mid-year plan'}>
           <Bars data={data.budget} x="cost_center" layout="vertical" height={250}
             series={[
               { key: 'budget_maed', name: 'Budget M AED', color: C.slate },
@@ -141,7 +141,7 @@ export default function Enterprise() {
               { key: 'committed_maed', name: 'Committed', color: C.amber },
             ]} />
         </Panel>
-        <Panel title="Cash Flow — 12 Months" sub="Treasury view incl. Department of Finance transfers">
+        <Panel title={ar ? 'التدفّق النقدي — ١٢ شهرًا' : 'Cash Flow — 12 Months'} sub={ar ? 'عرض الخزينة شاملًا تحويلات وزارة المالية' : 'Treasury view incl. Department of Finance transfers'}>
           <TrendChart data={data.cashflow} x="month" height={250}
             series={[
               { key: 'inflow_maed', name: 'Inflow', color: C.green, area: true },

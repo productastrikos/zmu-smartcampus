@@ -12,7 +12,9 @@ function ChatBody({ mode, height }) {
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState([{ role: 'bot', text: WELCOME[mode] }]);
   const [ctx, setCtx] = useState({});
+  const [thinking, setThinking] = useState(false);
   const scrollRef = useRef(null);
+  const timerRef = useRef(null);
   const questions = suggestedQuestions(mode);
 
   useEffect(() => {
@@ -23,14 +25,23 @@ function ChatBody({ mode, height }) {
 
   useEffect(() => {
     if (scrollRef.current) scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
-  }, [messages]);
+  }, [messages, thinking]);
+
+  useEffect(() => () => clearTimeout(timerRef.current), []);
 
   function send(text) {
     const trimmed = text.trim();
-    if (!trimmed) return;
-    const reply = askSia(mode, trimmed, ctx);
-    setMessages((m) => [...m, { role: 'user', text: trimmed }, { role: 'bot', text: reply }]);
+    if (!trimmed || thinking) return;
+    // Show the question immediately, then let SiA "think" for 1–2s before replying.
+    setMessages((m) => [...m, { role: 'user', text: trimmed }]);
     setInput('');
+    setThinking(true);
+    const delay = 1000 + Math.random() * 900;
+    timerRef.current = setTimeout(() => {
+      const reply = askSia(mode, trimmed, ctx);
+      setMessages((m) => [...m, { role: 'bot', text: reply }]);
+      setThinking(false);
+    }, delay);
   }
 
   return (
@@ -48,6 +59,20 @@ function ChatBody({ mode, height }) {
             {m.text}
           </div>
         ))}
+        {thinking && (
+          <div style={{
+            alignSelf: 'flex-start', padding: '10px 12px', borderRadius: 12,
+            background: 'var(--app-surface)', border: '1px solid var(--app-panel-border)',
+            display: 'flex', gap: 4, alignItems: 'center',
+          }}>
+            {[0, 1, 2].map((i) => (
+              <span key={i} className="animate-blink" style={{
+                width: 6, height: 6, borderRadius: 99, background: 'var(--app-advisory)',
+                display: 'inline-block', animationDelay: `${i * 0.18}s`,
+              }} />
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Persistent suggested questions — always visible */}
@@ -57,11 +82,11 @@ function ChatBody({ mode, height }) {
         </div>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, maxHeight: 84, overflowY: 'auto' }}>
           {questions.map((q) => (
-            <button key={q} onClick={() => send(q)}
+            <button key={q} onClick={() => send(q)} disabled={thinking}
               style={{
-                fontSize: 10.5, padding: '5px 9px', borderRadius: 20, cursor: 'pointer',
+                fontSize: 10.5, padding: '5px 9px', borderRadius: 20, cursor: thinking ? 'default' : 'pointer',
                 background: 'var(--app-violet-bg)', border: '1px solid var(--app-advisory-border)',
-                color: 'var(--app-text-muted)', whiteSpace: 'nowrap',
+                color: 'var(--app-text-muted)', whiteSpace: 'nowrap', opacity: thinking ? 0.5 : 1,
               }}>
               {q}
             </button>
@@ -81,7 +106,7 @@ function ChatBody({ mode, height }) {
             borderRadius: 8, padding: '8px 10px', fontSize: 12, color: 'var(--app-text)', outline: 'none',
           }}
         />
-        <button onClick={() => send(input)} className="app-advisory-btn" style={{ height: 34, padding: '0 12px' }}>Send</button>
+        <button onClick={() => send(input)} disabled={thinking} className="app-advisory-btn" style={{ height: 34, padding: '0 12px', opacity: thinking ? 0.6 : 1 }}>Send</button>
       </div>
     </div>
   );
@@ -124,9 +149,18 @@ export function SiaAgentInline({ mode = 'erp' }) {
  */
 export default function SiaAgent() {
   const [open, setOpen] = useState(false);
+  const rootRef = useRef(null);
+
+  // Close the assistant when clicking anywhere outside the launcher/panel.
+  useEffect(() => {
+    if (!open) return undefined;
+    const onDoc = (e) => { if (rootRef.current && !rootRef.current.contains(e.target)) setOpen(false); };
+    document.addEventListener('mousedown', onDoc);
+    return () => document.removeEventListener('mousedown', onDoc);
+  }, [open]);
 
   return (
-    <>
+    <div ref={rootRef}>
       {/* Launcher — labelled + purple, clearly visible */}
       <button
         onClick={() => setOpen((o) => !o)}
@@ -165,6 +199,6 @@ export default function SiaAgent() {
           <ChatBody mode="generic" height="100%" />
         </div>
       )}
-    </>
+    </div>
   );
 }
