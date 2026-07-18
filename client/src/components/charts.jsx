@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  ResponsiveContainer, LineChart, Line, AreaChart, Area, BarChart, Bar,
+  ResponsiveContainer, LineChart, Line, Area, BarChart, Bar,
   XAxis, YAxis, CartesianGrid, Tooltip, Legend, PieChart, Pie, Cell,
   RadarChart, Radar, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ComposedChart,
 } from 'recharts';
@@ -52,7 +52,10 @@ export function Grid() {
 
 /** Multi-series line/area trend */
 export function TrendChart({ data, x, series, height = 220, type = 'line', stacked = false, yDomain, rightAxisKeys = [], xAngle = 0, unit }) {
-  const Chart = rightAxisKeys.length ? ComposedChart : type === 'area' ? AreaChart : LineChart;
+  // recharts' plain LineChart container silently drops <Area> children (no grid/axis/series
+  // render at all) — any series with area:true needs ComposedChart (or AreaChart) instead.
+  const hasArea = type === 'area' || series.some((s) => s.area);
+  const Chart = rightAxisKeys.length || hasArea ? ComposedChart : LineChart;
   const multi = series.length > 1;
   return (
     <ResponsiveContainer width="100%" height={height}>

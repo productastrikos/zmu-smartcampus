@@ -14,24 +14,50 @@ const ROLES = [
   },
 ];
 
+const inputStyle = {
+  width: '100%', height: 44, borderRadius: 10, padding: '0 14px', fontFamily: 'inherit',
+  fontSize: 13.5, color: 'var(--app-text)', background: 'var(--app-surface)',
+  border: '1px solid var(--app-panel-border)', boxSizing: 'border-box',
+};
+const labelStyle = {
+  display: 'block', fontSize: 11, fontWeight: 700, letterSpacing: '0.04em',
+  textTransform: 'uppercase', color: 'var(--app-text-faint)', marginBottom: 6,
+};
+
 export default function Login({ onLogin }) {
+  const [role, setRole] = useState('');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const [err, setErr] = useState(null);
-  const [busy, setBusy] = useState(null);
+  const [busy, setBusy] = useState(false);
   const navigate = useNavigate();
   const { t, dir } = useLang();
 
-  async function doLogin(username) {
-    setErr(null); setBusy(username);
+  async function submitLogin(payload) {
+    setErr(null); setBusy(true);
     try {
       const res = await fetch('/api/auth/login', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username }),
+        body: JSON.stringify(payload),
       });
       if (!res.ok) throw new Error((await res.json()).error || 'Login failed');
       const user = await res.json();
       onLogin(user);
-      navigate(username === 'executive' ? '/executive' : '/');
-    } catch (e) { setErr(String(e.message || e)); setBusy(null); }
+      navigate(user.role === 'executive' ? '/executive' : '/');
+    } catch (e) { setErr(String(e.message || e)); setBusy(false); }
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (!role) return setErr('Choose a role');
+    if (!username.trim()) return setErr('Enter a username');
+    if (!password.trim()) return setErr('Enter a password');
+    submitLogin({ username: username.trim(), password, role });
+  }
+
+  function handleSso() {
+    if (!role) return setErr('Choose a role first');
+    submitLogin({ username: role, password: 'sso', role });
   }
 
   return (
@@ -40,23 +66,22 @@ export default function Login({ onLogin }) {
         <LangToggle /><ThemeToggle />
       </div>
 
-      {/* Left — brand */}
+      {/* Left — brand, ZMU campus photo background */}
       <div style={{
         flex: '0 0 58%', maxWidth: '58%', position: 'relative', overflow: 'hidden',
-        background: 'linear-gradient(150deg, #2a2115 0%, #3a2e1c 45%, #4a3a22 100%)',
+        backgroundImage: 'url(/images/zmu-campus-hero.jpg)', backgroundSize: 'cover', backgroundPosition: 'center',
         display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: '52px 60px',
       }}>
+        {/* dark wash so the campus photo doesn't fight the text on top of it */}
+        <div style={{ position: 'absolute', inset: 0,
+          background: 'linear-gradient(150deg, rgba(30,24,14,0.88) 0%, rgba(42,33,21,0.82) 45%, rgba(30,24,14,0.75) 100%)' }} />
         <div style={{ position: 'absolute', inset: 0, opacity: 0.55,
           backgroundImage: 'radial-gradient(circle at 82% 12%, rgba(198,162,78,0.28), transparent 48%), radial-gradient(circle at 12% 90%, rgba(146,114,42,0.2), transparent 44%)' }} />
-        <div style={{ position: 'absolute', inset: 0, opacity: 0.22,
-          backgroundImage: 'linear-gradient(rgba(255,248,233,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,248,233,0.05) 1px, transparent 1px)', backgroundSize: '46px 46px' }} />
 
         <div style={{ position: 'relative', display: 'flex', alignItems: 'center', gap: 16 }}>
           <div style={{ width: 46, height: 46, borderRadius: 12, flexShrink: 0,
             background: 'linear-gradient(135deg, #6e5622, #c6a24e)',
             display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, fontSize: 15, color: '#231d10', letterSpacing: '0.02em' }}>ZMU</div>
-          <div style={{ width: 1, height: 34, background: 'rgba(255,248,233,0.2)' }} />
-          <img src="/astrikos-logo.png" alt="Astrikos" style={{ height: 28, filter: 'brightness(2.6)' }} />
         </div>
 
         <div style={{ position: 'relative', maxWidth: 560 }}>
@@ -66,57 +91,62 @@ export default function Login({ onLogin }) {
           <h1 style={{ fontSize: 46, fontWeight: 800, color: '#fdf7ea', lineHeight: 1.12, letterSpacing: '-0.02em', marginBottom: 18 }}>
             {t('app.platform')}
           </h1>
-          <p style={{ fontSize: 15, color: 'rgba(253,247,234,0.78)', lineHeight: 1.65, maxWidth: 480 }}>
+          <p style={{ fontSize: 15, color: 'rgba(253,247,234,0.85)', lineHeight: 1.65, maxWidth: 480 }}>
             {t('login.tagline')}
           </p>
         </div>
 
-        <div style={{ position: 'relative', fontSize: 11, color: 'rgba(253,247,234,0.5)', letterSpacing: '0.04em' }} className="ltr-num">
+        <div style={{ position: 'relative', fontSize: 11, color: 'rgba(253,247,234,0.6)', letterSpacing: '0.04em' }} className="ltr-num">
           Restricted · ZMU-MSI-RFP-2026 · Demonstration environment
         </div>
       </div>
 
-      {/* Right — role picker */}
+      {/* Right — sign-in form */}
       <div style={{ flex: '0 0 42%', maxWidth: '42%', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '40px 52px', background: 'var(--app-panel)' }}>
         <div style={{ width: '100%', maxWidth: 380 }}>
           <h2 style={{ fontSize: 24, fontWeight: 800, color: 'var(--app-text)', letterSpacing: '-0.02em' }}>{t('login.title')}</h2>
-          <p style={{ fontSize: 13, color: 'var(--app-text-faint)', marginTop: 6, marginBottom: 8 }}>{t('login.subtitle')}</p>
-          <div style={{ fontSize: 10.5, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--app-text-faint)', margin: '18px 0 12px' }}>
-            {t('login.chooseRole')}
-          </div>
+          <p style={{ fontSize: 13, color: 'var(--app-text-faint)', marginTop: 6, marginBottom: 20 }}>{t('login.subtitle')}</p>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-            {ROLES.map((r) => (
-              <button key={r.u} onClick={() => doLogin(r.u)} disabled={busy}
-                style={{
-                  display: 'flex', alignItems: 'center', gap: 14, textAlign: 'start', cursor: 'pointer',
-                  padding: '16px 18px', borderRadius: 14, fontFamily: 'inherit',
-                  background: 'var(--app-surface)', border: '1px solid var(--app-panel-border)',
-                  boxShadow: 'var(--app-shadow-sm)', opacity: busy && busy !== r.u ? 0.5 : 1,
-                }}>
-                <span style={{ width: 44, height: 44, borderRadius: 12, flexShrink: 0, background: 'var(--app-accent-bg)', border: '1px solid var(--app-accent-border)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="var(--app-accent)" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" style={{ width: 22, height: 22 }}>
-                    {r.icon.map((d, i) => <path key={i} d={d} />)}
-                  </svg>
-                </span>
-                <span style={{ flex: 1, minWidth: 0 }}>
-                  <span style={{ display: 'block', fontSize: 15, fontWeight: 750, color: 'var(--app-text)' }}>{t(r.key)}</span>
-                  <span style={{ display: 'block', fontSize: 11.5, color: 'var(--app-text-faint)', marginTop: 2, lineHeight: 1.4 }}>{t(r.descKey)}</span>
-                </span>
-                <span style={{ color: 'var(--app-accent)', fontSize: 18, flexShrink: 0 }}>{busy === r.u ? '···' : (dir === 'rtl' ? '‹' : '›')}</span>
-              </button>
-            ))}
-          </div>
+          <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+            <div>
+              <label style={labelStyle}>{t('login.role')}</label>
+              <select value={role} onChange={(e) => setRole(e.target.value)} style={{ ...inputStyle, cursor: 'pointer' }}>
+                <option value="" disabled>{t('login.rolePlaceholder')}</option>
+                {ROLES.map((r) => <option key={r.u} value={r.u}>{t(r.key)}</option>)}
+              </select>
+            </div>
 
-          {err && <div style={{ fontSize: 12, color: 'var(--app-danger)', fontWeight: 600, marginTop: 12 }}>{err}</div>}
+            <div>
+              <label style={labelStyle}>{t('login.username')}</label>
+              <input value={username} onChange={(e) => setUsername(e.target.value)}
+                placeholder={t('login.usernamePlaceholder')} autoComplete="username" style={inputStyle} />
+            </div>
+
+            <div>
+              <label style={labelStyle}>{t('login.password')}</label>
+              <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}
+                placeholder={t('login.passwordPlaceholder')} autoComplete="current-password" style={inputStyle} />
+            </div>
+
+            {err && <div style={{ fontSize: 12, color: 'var(--app-danger)', fontWeight: 600 }}>{err}</div>}
+
+            <button type="submit" disabled={busy}
+              style={{
+                width: '100%', height: 46, borderRadius: 10, cursor: 'pointer', marginTop: 4,
+                background: 'var(--app-accent)', border: 'none', color: '#231d10',
+                fontSize: 14, fontWeight: 750, opacity: busy ? 0.6 : 1,
+              }}>
+              {busy ? '···' : t('login.signIn')}
+            </button>
+          </form>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, margin: '22px 0' }}>
             <div style={{ flex: 1, height: 1, background: 'var(--app-border)' }} />
-            <span style={{ fontSize: 10.5, color: 'var(--app-text-faint)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>{t('login.uaepass') ? 'or' : 'or'}</span>
+            <span style={{ fontSize: 10.5, color: 'var(--app-text-faint)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>{t('login.or')}</span>
             <div style={{ flex: 1, height: 1, background: 'var(--app-border)' }} />
           </div>
 
-          <button type="button" onClick={() => doLogin('superadmin')}
+          <button type="button" onClick={handleSso} disabled={busy}
             style={{ width: '100%', height: 44, borderRadius: 10, cursor: 'pointer',
               background: 'var(--app-surface-soft)', border: '1px solid var(--app-border)', color: 'var(--app-text)',
               fontSize: 13, fontWeight: 600, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 9 }}>

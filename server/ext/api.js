@@ -15,8 +15,11 @@ function registerExt(app, express, db) {
     superadmin: { username: 'superadmin', role: 'superadmin', name: 'Platform Administrator' },
   };
   app.post('/api/auth/login', express.json(), (req, res) => {
-    const u = USERS[(req.body?.username || '').trim().toLowerCase()];
+    const { username, password, role } = req.body || {};
+    const u = USERS[(username || '').trim().toLowerCase()];
     if (!u) return res.status(401).json({ error: 'Use the Executive or Super Admin demo account' });
+    if (!password || !String(password).trim()) return res.status(401).json({ error: 'Password is required' });
+    if (role && role !== u.role) return res.status(401).json({ error: 'Selected role does not match this account' });
     res.json({ ...u, email: `${u.username}@zmu.ac.ae` });
   });
 

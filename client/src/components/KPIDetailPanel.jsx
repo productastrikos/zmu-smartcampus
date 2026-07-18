@@ -81,7 +81,7 @@ function StatStrip({ stats }) {
   );
 }
 
-export default function KPIDetailPanel({ open, onClose, title, subtitle, source, advisory, stats, children }) {
+export default function KPIDetailPanel({ open, onClose, title, subtitle, source, advisory, definition, stats, children }) {
   if (!open) return null;
   const tips = advisory && advisory.length ? advisory : advisoryFor(title);
 
@@ -107,6 +107,15 @@ export default function KPIDetailPanel({ open, onClose, title, subtitle, source,
         </div>
 
         <div style={{ flex: 1, overflowY: 'auto', padding: 16 }}>
+          {definition && (
+            <div style={{
+              fontSize: 12, color: 'var(--app-text-muted)', lineHeight: 1.55,
+              padding: '10px 12px', borderRadius: 10, marginBottom: 14,
+              background: 'var(--app-surface)', border: '1px solid var(--app-panel-border)',
+            }}>
+              {definition}
+            </div>
+          )}
           <StatStrip stats={stats} />
           {children}
 
