@@ -4,6 +4,8 @@ import { useApi } from '../services/api';
 import KPICard, { IcoTarget, IcoWatch, IcoMoon, IcoHeart, IcoAlert, IcoActivity } from '../components/KPICard';
 import { Panel, StatusChip, sevChip, Loading, PageHeader, KPIGrid, DataTable } from '../components/ui';
 import { TrendChart, Bars, RadarPanel, C } from '../components/charts';
+import PortalBar from '../components/PortalBar';
+import { PORTALS } from '../config/portals';
 import KPIDetailPanel from '../components/KPIDetailPanel';
 
 /** Human digital twin — per-cadet drill-down modal */
@@ -99,6 +101,7 @@ export default function Readiness() {
 
   return (
     <>
+      <PortalBar portals={PORTALS.readiness} />
       <PageHeader
         title="Readiness & Performance"
         subtitle="Human Performance Optimization — Garmin Health API wearables · body composition · predictive early intervention (flow 4)"

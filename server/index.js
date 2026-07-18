@@ -534,9 +534,9 @@ app.get('/api/alerts', (req, res) => {
 
 app.get('/api/health', (req, res) => res.json({ ok: true, tables: TABLES.length }));
 
-/* ── extended modules (SIS / LMS / streams / RBAC / merit) ── */
+/* ── extended API (auth + IoT sensors) ── */
 const { registerExt } = require('./ext/api');
-registerExt(app, express);
+registerExt(app, express, db);
 
 /* ── serve the built React client in production ─────────────
    `npm start` runs `vite build` first, which outputs to /dist

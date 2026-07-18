@@ -3,6 +3,8 @@ import { useApi, fmt } from '../services/api';
 import KPICard, { IcoDollar, IcoClipboard, IcoPeople, IcoTrendUp, IcoCalendar, IcoDatabase } from '../components/KPICard';
 import { Panel, StatusChip, sevChip, Loading, PageHeader, KPIGrid, DataTable, ProgressBar } from '../components/ui';
 import { TrendChart, Bars, Donut, C } from '../components/charts';
+import PortalBar from '../components/PortalBar';
+import { PORTALS } from '../config/portals';
 import KPIDetailPanel from '../components/KPIDetailPanel';
 import { SiaAgentInline } from '../components/SiaAgent';
 
@@ -21,6 +23,7 @@ export default function Enterprise() {
 
   return (
     <>
+      <PortalBar portals={PORTALS.enterprise} />
       <PageHeader
         title="Enterprise & Finance"
         subtitle="Unified ERP on sovereign cloud — Finance & GL · HRMS / Manpower · Procurement · Scheduling · DoF statutory interface (flow 2)"
