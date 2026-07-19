@@ -15,7 +15,7 @@ import {
   orbitToBuilding, restoreCamera, captureCameraState,
   orbitToPerson,
 } from '../components/DigitalTwin2/CameraController';
-import { ringBBoxCenter } from '../components/DigitalTwin2/services/ProjectionService';
+import { ringBBoxCenter, createProjection } from '../components/DigitalTwin2/services/ProjectionService';
 import LayerControl, { ALL_LAYER_KEYS, ALL_FUTURE_KEYS } from '../components/DigitalTwin2/ui/LayerControl';
 import BuildingPopup from '../components/DigitalTwin2/ui/BuildingPopup';
 import MapLegend from '../components/DigitalTwin2/ui/MapLegend';
@@ -27,14 +27,41 @@ import Block3Viewer from '../components/DigitalTwin2/components/Block3Viewer';
 import BuildingDigitalTwin from '../components/admin_block/BuildingDigitalTwin';
 import { createLightingLayer, computeLightPositions } from '../components/DigitalTwin2/components/LightingLayer';
 import { createSecurityLayer } from '../components/DigitalTwin2/components/SecurityLayer';
+import { createGateLayer } from '../components/DigitalTwin2/components/GateLayer';
 import { createCCTVLayer } from '../components/DigitalTwin2/components/CCTVLayer';
 import { addPatrolRouteLayer, PATROL_ROUTE_LAYER_IDS, createPatrolMarkerLayer } from '../components/DigitalTwin2/components/PatrolLayer';
 import SecurityAlerts from '../components/DigitalTwin2/components/SecurityAlerts';
 import { createPersonnelLayer } from '../components/DigitalTwin2/components/PersonnelLayer';
 import { generateRoster } from '../components/DigitalTwin2/components/PersonnelRoster';
-import { buildWalkGraph } from '../components/DigitalTwin2/components/MovementEngine';
+import { buildWalkGraph, createWanderState, mulberry32 } from '../components/DigitalTwin2/components/MovementEngine';
 import PersonnelPopup from '../components/DigitalTwin2/components/PersonnelPopup';
 import PersonnelPanel from '../components/DigitalTwin2/components/PersonnelPanel';
+import { createCampus2BoundaryLayer } from '../components/DigitalTwin2/campus2/Campus2BoundaryLayer';
+import { createCampus2BuildingLayer } from '../components/DigitalTwin2/campus2/Campus2BuildingLayer';
+import { createCampus2ExtraBuildingsLayer } from '../components/DigitalTwin2/campus2/Campus2ExtraBuildingsLayer';
+import { createCampus2CircleLayer } from '../components/DigitalTwin2/campus2/Campus2CircleLayer';
+import { createCampus2RoadLayer } from '../components/DigitalTwin2/campus2/Campus2RoadLayer';
+import { createCampus2RoundaboutLayer } from '../components/DigitalTwin2/campus2/Campus2RoundaboutLayer';
+import { createCampus2ParkingLayer } from '../components/DigitalTwin2/campus2/Campus2ParkingLayer';
+import { createCampus2FootballLayer } from '../components/DigitalTwin2/campus2/Campus2FootballLayer';
+import { createCampus2CourtsLayer } from '../components/DigitalTwin2/campus2/Campus2CourtsLayer';
+import { createCampus2ParadeGroundLayer } from '../components/DigitalTwin2/campus2/Campus2ParadeGroundLayer';
+import { polygonCentroidLonLat } from '../components/DigitalTwin2/campus2/buildingRecord';
+import campus2Boundary from '../assets/geojson/campus2/campus_boundary.geojson';
+import campus2Building from '../assets/geojson/campus2/central_building.geojson';
+import campus2ExtraBuildings from '../assets/geojson/campus2/extra_buildings.geojson';
+import campus2Buildings02 from '../assets/geojson/campus2/buildings_02.geojson';
+import campus2Circles from '../assets/geojson/campus2/circular_structures.geojson';
+import campus2Roads from '../assets/geojson/campus2/roads.geojson';
+import campus2Roundabouts from '../assets/geojson/campus2/roundabouts.geojson';
+import campus2ParkingLot1 from '../assets/geojson/campus2/parking_lot_1.geojson';
+import campus2ParkingLot2 from '../assets/geojson/campus2/parking_lot_2.geojson';
+import campus2ParkingLot3 from '../assets/geojson/campus2/parking_lot_3.geojson';
+import campus2ParadeGround from '../assets/geojson/campus2/parade_ground_training_area.geojson';
+import campus2FootballGround1 from '../assets/geojson/campus2/football_ground_1.geojson';
+import campus2FootballGround2 from '../assets/geojson/campus2/football_ground_2.geojson';
+import campus2BasketballCourt from '../assets/geojson/campus2/basket_ball_court_2.geojson';
+import campus2TennisCourt from '../assets/geojson/campus2/tennis_court.geojson';
 
 const CARTO_DARK_MATTER_STYLE = 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json';
 // Fallback centre (the real ZMU site) used only until the live boundary
@@ -124,6 +151,25 @@ function setNativeLayerVisible(map, key, visible) {
   for (const id of ids) map.setLayoutProperty(id, 'visibility', visible ? 'visible' : 'none');
 }
 
+// Lightweight candidates (just centroid + display_name — all
+// placeInactivePerson/generateRoster need) for scattering the same
+// personnel-tracking green/red dots across Campus 2, from its own real
+// building footprints (star complex solids + the two extra-buildings sets).
+function campus2BuildingsForRoster() {
+  const list = [];
+  for (const f of campus2Building?.features || []) {
+    if (f.properties?.role !== 'solid') continue;
+    list.push({ centroid: polygonCentroidLonLat(f.geometry.coordinates[0]), display_name: f.properties.name });
+  }
+  for (const f of campus2ExtraBuildings?.features || []) {
+    list.push({ centroid: polygonCentroidLonLat(f.geometry.coordinates[0]), display_name: f.properties.name });
+  }
+  for (const f of campus2Buildings02?.features || []) {
+    list.push({ centroid: polygonCentroidLonLat(f.geometry.coordinates[0]), display_name: f.properties.name });
+  }
+  return list;
+}
+
 function buildingsToFeatureCollection(buildings) {
   return { type: 'FeatureCollection', features: buildings.map((b) => ({ type: 'Feature', geometry: b.geometry, properties: {} })) };
 }
@@ -138,9 +184,22 @@ export default function DigitalTwin2() {
   const pedestrianLayerRef = useRef(null);
   const lightingLayerRef = useRef(null);
   const securityLayerRef = useRef(null);
+  const gateLayerRef = useRef(null);
   const cctvLayerRef = useRef(null);
   const patrolMarkerLayerRef = useRef(null);
   const personnelLayerRef = useRef(null);
+  const campus2BoundaryLayerRef = useRef(null);
+  const campus2FenceLayerRef = useRef(null);
+  const campus2BuildingLayerRef = useRef(null);
+  const campus2ExtraBuildingsLayerRef = useRef(null);
+  const campus2Buildings02LayerRef = useRef(null);
+  const campus2CircleLayerRef = useRef(null);
+  const campus2RoadLayerRef = useRef(null);
+  const campus2RoundaboutLayerRef = useRef(null);
+  const campus2ParkingLayerRef = useRef(null);
+  const campus2FootballLayerRef = useRef(null);
+  const campus2CourtsLayerRef = useRef(null);
+  const campus2ParadeGroundLayerRef = useRef(null);
   const stopBoundaryPulseRef = useRef(null);
   const savedCameraRef = useRef(null);
   const cancelOrbitRef = useRef(null);
@@ -239,6 +298,10 @@ export default function DigitalTwin2() {
     map.addLayer(securityLayer);
     securityLayerRef.current = securityLayer;
 
+    const gateLayer = createGateLayer({ id: 'zt2-gate-3d', anchor });
+    map.addLayer(gateLayer);
+    gateLayerRef.current = gateLayer;
+
     const cctvLayer = createCCTVLayer({ id: 'zt2-cctv-3d', anchor });
     map.addLayer(cctvLayer);
     cctvLayerRef.current = cctvLayer;
@@ -247,9 +310,120 @@ export default function DigitalTwin2() {
     map.addLayer(patrolMarkerLayer);
     patrolMarkerLayerRef.current = patrolMarkerLayer;
 
+    // Created here (Campus 1's own personnel expect it at this point), but
+    // NOT added to the map yet — see the addLayer() call further down,
+    // after Campus 2's roads/fence/parking/sports layers and before its
+    // building layers, so personnel paint on top of Campus 2's ground-level
+    // infrastructure but still sit under its buildings (MapLibre custom
+    // layers draw in addLayer() call order; painted-over pixels don't show
+    // through even for this layer's always-on-top depthTest:false markers,
+    // since without a shared building-layer paint AFTER it there's nothing
+    // to occlude them with).
     const personnelLayer = createPersonnelLayer({ id: 'zt2-personnel-3d', anchor });
+
+    // Campus 2 — a second, real ZMU site rendered in this SAME map/scene
+    // at its own true coordinates (from zmu_campus_2.txt, converted by
+    // client/src/utils/txtToGeojson.js), sharing this same anchor/
+    // projection so it sits at its correct real-world position relative
+    // to the Campus 1 geometry above. Entirely additive: none of the
+    // Campus 1 layers above are touched.
+    const campus2BoundaryLayer = createCampus2BoundaryLayer({ id: 'zt2-campus2-boundary-3d', anchor });
+    map.addLayer(campus2BoundaryLayer);
+    campus2BoundaryLayerRef.current = campus2BoundaryLayer;
+
+    // Same real 3-D security fence (chain-link panel + posts + top wire +
+    // warning boards) Campus 1's perimeter uses — createFenceLayer() is
+    // already generic (just {id, anchor} + a boundary FeatureCollection),
+    // so this is a second instance of the exact same Campus 1 layer
+    // function, not a copy/fork, fed Campus 2's own real boundary.
+    const campus2FenceLayer = createFenceLayer({ id: 'zt2-campus2-fence-3d', anchor });
+    map.addLayer(campus2FenceLayer);
+    campus2FenceLayerRef.current = campus2FenceLayer;
+
+    // Phase 2 — simple road network (campus2/roads.geojson +
+    // roundabouts.geojson, see txtToGeojson.js's buildSimpleRoadNetwork()).
+    // A separate layer/toggle from the boundary/building/circles below so
+    // future phases (walkways.geojson, medians.geojson) can each be added
+    // the same way without touching any of this.
+    // Added BEFORE the building layers below so roads/roundabouts sit as
+    // the lower layer and the buildings render visibly on top of them
+    // (MapLibre custom layers draw in addLayer() call order).
+    const campus2RoadLayer = createCampus2RoadLayer({ id: 'zt2-campus2-roads-3d', anchor });
+    map.addLayer(campus2RoadLayer);
+    campus2RoadLayerRef.current = campus2RoadLayer;
+
+    const campus2RoundaboutLayer = createCampus2RoundaboutLayer({ id: 'zt2-campus2-roundabouts-3d', anchor });
+    map.addLayer(campus2RoundaboutLayer);
+    campus2RoundaboutLayerRef.current = campus2RoundaboutLayer;
+
+    // Phase 3 — sports & parking infrastructure (campus2/parking_lot_N,
+    // campus2/{parade_ground_training_area,football_ground_N,
+    // basket_ball_court_2,tennis_court}.geojson, all from
+    // zmu_campus_2_02.txt). Added after roads/roundabouts and before the
+    // building layers below, matching the requested draw order (roads →
+    // parking → sports/parade → buildings on top).
+    const campus2ParkingLayer = createCampus2ParkingLayer({ id: 'zt2-campus2-parking-3d', anchor });
+    map.addLayer(campus2ParkingLayer);
+    campus2ParkingLayerRef.current = campus2ParkingLayer;
+
+    const campus2FootballLayer = createCampus2FootballLayer({ id: 'zt2-campus2-football-3d', anchor });
+    map.addLayer(campus2FootballLayer);
+    campus2FootballLayerRef.current = campus2FootballLayer;
+
+    // Phase 3A — the detailed rebuild of the basketball/tennis courts and
+    // the parade ground (bay-grid-style procedural detail generated inside
+    // each real footprint — see Campus2CourtsLayer.jsx/
+    // Campus2ParadeGroundLayer.jsx headers).
+    const campus2CourtsLayer = createCampus2CourtsLayer({ id: 'zt2-campus2-courts-3d', anchor });
+    map.addLayer(campus2CourtsLayer);
+    campus2CourtsLayerRef.current = campus2CourtsLayer;
+
+    const campus2ParadeGroundLayer = createCampus2ParadeGroundLayer({ id: 'zt2-campus2-parade-3d', anchor });
+    map.addLayer(campus2ParadeGroundLayer);
+    campus2ParadeGroundLayerRef.current = campus2ParadeGroundLayer;
+
+    const campus2CircleLayer = createCampus2CircleLayer({ id: 'zt2-campus2-circles-3d', anchor });
+    map.addLayer(campus2CircleLayer);
+    campus2CircleLayerRef.current = campus2CircleLayer;
+
+    // Personnel — added here, above every Campus 2 ground-level layer
+    // (fence/roads/roundabouts/parking/football/courts/parade/circles) but
+    // below the building layers next.
     map.addLayer(personnelLayer);
     personnelLayerRef.current = personnelLayer;
+
+    const campus2BuildingLayer = createCampus2BuildingLayer({ id: 'zt2-campus2-building-3d', anchor });
+    map.addLayer(campus2BuildingLayer);
+    campus2BuildingLayerRef.current = campus2BuildingLayer;
+
+    // 38 additional real building footprints (campus2/extra_buildings.geojson,
+    // from zmu_campus_2_buildings.txt) — same holographic glass treatment as
+    // the central plaza building above, added last so it also sits above
+    // the road/roundabout layers.
+    const campus2ExtraBuildingsLayer = createCampus2ExtraBuildingsLayer({ id: 'zt2-campus2-extra-buildings-3d', anchor });
+    map.addLayer(campus2ExtraBuildingsLayer);
+    campus2ExtraBuildingsLayerRef.current = campus2ExtraBuildingsLayer;
+
+    // 12 more real building footprints (campus2/buildings_02.geojson, from
+    // zmu_campus_2_02.txt) — reuses the same Campus2ExtraBuildingsLayer
+    // renderer (matching holographic glass colour), just a second instance
+    // with its own data, added last so it's above everything else too.
+    const campus2Buildings02Layer = createCampus2ExtraBuildingsLayer({ id: 'zt2-campus2-buildings-02-3d', anchor, idPrefix: 'buildings02' });
+    map.addLayer(campus2Buildings02Layer);
+    campus2Buildings02LayerRef.current = campus2Buildings02Layer;
+
+    campus2BoundaryLayer.setBoundary(campus2Boundary);
+    campus2FenceLayer.setFences(campus2Boundary);
+    campus2BuildingLayer.setBuilding(campus2Building);
+    campus2ExtraBuildingsLayer.setBuildings(campus2ExtraBuildings);
+    campus2Buildings02Layer.setBuildings(campus2Buildings02);
+    campus2CircleLayer.setCircles(campus2Circles);
+    campus2RoadLayer.setRoads(campus2Roads);
+    campus2RoundaboutLayer.setRoundabouts(campus2Roundabouts);
+    campus2ParkingLayer.setLots([campus2ParkingLot1, campus2ParkingLot2, campus2ParkingLot3]);
+    campus2FootballLayer.setGrounds([campus2FootballGround1, campus2FootballGround2]);
+    campus2CourtsLayer.setCourts(campus2BasketballCourt, campus2TennisCourt);
+    campus2ParadeGroundLayer.setGround(campus2ParadeGround);
 
     buildingsLayer.setBuildings(buildings);
     treeLayer.setTrees(gis.trees);
@@ -267,10 +441,69 @@ export default function DigitalTwin2() {
 
     // Simulated Garmin-wearable personnel — walk the same walkway/road
     // network (deduped into a proper node graph, see MovementEngine.js)
-    // so they can never cross a building footprint or leave campus.
-    const walkGraph = buildWalkGraph({ anchor, walkways: layout.walkways, roads: gis.roads });
-    const roster = generateRoster({ count: 150, anchor, boundary: gis.boundary, buildings, walkGraph });
-    personnelLayer.setPersonnel(roster, walkGraph);
+    // so they can never cross a building footprint or leave campus. Roads
+    // now include Campus 2's real network too (its own separate, naturally
+    // disconnected graph component, since the two sites are geographically
+    // apart) — same mechanism, same colours, no new layer. The loop road's
+    // own LineString (see txtToGeojson.js) is deliberately NOT closed with
+    // a repeated first point (that combination broke the rendered ribbon's
+    // mitred seam — see Campus2RoadLayer.jsx's fix), but buildWalkGraph()
+    // only connects consecutive points and has no idea about the road
+    // layer's own `closed` flag, so without help the walk graph sees the
+    // loop as an open path missing its final closing edge. A local-only
+    // copy (the imported campus2Roads asset itself is left untouched) adds
+    // that edge back just for graph connectivity.
+    const campus2RoadsForGraph = {
+      features: (campus2Roads?.features || []).map((f) => (
+        f.properties?.tier === 'loop' && f.geometry?.type === 'LineString'
+          ? { ...f, geometry: { ...f.geometry, coordinates: [...f.geometry.coordinates, f.geometry.coordinates[0]] } }
+          : f
+      )),
+    };
+    const walkGraph = buildWalkGraph({
+      anchor, walkways: layout.walkways,
+      roads: { features: [...(gis.roads?.features || []), ...campus2RoadsForGraph.features] },
+    });
+
+    // Campus 1's roster, unchanged from before Campus 2 existed.
+    const roster1 = generateRoster({ count: 150, anchor, boundary: gis.boundary, buildings, walkGraph, seed: 7 });
+
+    // A second, dedicated batch for Campus 2, real-boundary-constrained
+    // free-roam movement for its active people — see below.
+    const c2Projection = createProjection(anchor);
+    const c2Ring = campus2Boundary?.features?.[0]?.geometry?.coordinates || [];
+    const c2Local = c2Ring.map(([lon, lat]) => c2Projection.projectCoordinate(lon, lat));
+
+    // Campus 2's real road network is just a handful of radials/
+    // roundabouts (the "interior" tiers) plus one much-more-densely-
+    // digitized Perimeter Road that happens to trace the same real
+    // coordinates as the security fence — confining "active" people to
+    // that graph's own edges made every one of them either converge onto
+    // the sparse interior paths or (since the perimeter's hundreds of
+    // points dominate a uniform pick, and it shares no points with the
+    // interior network) get stuck walking the boundary ring itself,
+    // reading as "walking on the fence." Active Campus 2 personnel now
+    // free-roam (see MovementEngine.js's createWanderState/
+    // stepWanderState) to random points strictly inside the real
+    // boundary polygon instead — genuinely moving around the whole
+    // campus, not following road centrelines at all.
+    const rngC2 = mulberry32(7331);
+    const roster2 = generateRoster({
+      count: 220, anchor, boundary: null, // null: placeInactivePerson only knows Campus 1's boundary
+      buildings: campus2BuildingsForRoster(), walkGraph, seed: 71,
+    }).map((p, i) => {
+      const id = `ZMU-C2-${1000 + i}`;
+      // inactive (red, static near a real building) — unchanged, already
+      // works via placeInactivePerson's own building-anchored placement.
+      if (p.status === 'inactive' || !c2Local.length) return { ...p, id };
+      const start = c2Local[Math.floor(rngC2() * c2Local.length)];
+      return {
+        ...p, id, walk: null,
+        wander: createWanderState(start, c2Local, rngC2), wanderBoundary: c2Local,
+      };
+    });
+
+    personnelLayer.setPersonnel([...roster1, ...roster2], walkGraph);
 
     const gateBuilding = buildings.find((b) => b.category === 'gate');
     lightingLayer.setLights(computeLightPositions({
@@ -278,15 +511,18 @@ export default function DigitalTwin2() {
       gate: gateBuilding?.centroid,
     }));
     securityLayer.setSecurity({ buildings, boundary: gis.boundary });
+    gateLayer.setGate(gateBuilding);
     cctvLayer.setCCTV({ buildings, roads: gis.roads, parking: gis.parking, sportsfields: gis.sportsfields, grounds: gis.grounds, boundary: gis.boundary });
     patrolMarkerLayer.setRoutes(gis.boundary);
     addBuildingLabelsLayer(map, buildings);
 
-    // Open on the whole campus in view (same fit the "Zoom to fit" button
-    // does) rather than a hardcoded close-in zoom level. fitBounds keeps
-    // the map's current bearing (already 180 from the initial construction
-    // above) when no bearing option is passed.
-    zoomToFit(map, gis.boundary, buildingsToFeatureCollection(buildings));
+    // Open on BOTH campuses in view (same fit the "Zoom to fit" button
+    // does) rather than a hardcoded close-in zoom level or Campus 1 alone —
+    // campus2Boundary's real coordinates pull the fit bounds wide enough to
+    // include the whole second site. fitBounds keeps the map's current
+    // bearing (already 180 from the initial construction above) when no
+    // bearing option is passed.
+    zoomToFit(map, gis.boundary, buildingsToFeatureCollection(buildings), campus2Boundary);
 
     for (const key of ALL_LAYER_KEYS) {
       setNativeLayerVisible(map, key, visibility[key]);
@@ -296,10 +532,25 @@ export default function DigitalTwin2() {
       if (key === 'fences') fenceLayer.setVisible(visibility[key]);
       if (key === 'walkways') pedestrianLayer.setVisible(visibility[key]);
       if (key === 'security_lighting') lightingLayer.setVisible(visibility[key]);
-      if (key === 'security') securityLayer.setVisible(visibility[key]);
+      if (key === 'security') { securityLayer.setVisible(visibility[key]); gateLayer.setVisible(visibility[key]); }
       if (key === 'cctv') cctvLayer.setVisible(visibility[key]);
       if (key === 'patrol') patrolMarkerLayer.setVisible(visibility[key]);
       if (key === 'personnel') personnelLayer.setVisible(visibility[key]);
+      if (key === 'campus2') {
+        campus2BoundaryLayer.setVisible(visibility[key]);
+        campus2FenceLayer.setVisible(visibility[key]);
+        campus2BuildingLayer.setVisible(visibility[key]);
+        campus2ExtraBuildingsLayer.setVisible(visibility[key]);
+        campus2Buildings02Layer.setVisible(visibility[key]);
+        campus2CircleLayer.setVisible(visibility[key]);
+      }
+      if (key === 'campus2_roads') { campus2RoadLayer.setVisible(visibility[key]); campus2RoundaboutLayer.setVisible(visibility[key]); }
+      if (key === 'campus2_infra') {
+        campus2ParkingLayer.setVisible(visibility[key]);
+        campus2FootballLayer.setVisible(visibility[key]);
+        campus2CourtsLayer.setVisible(visibility[key]);
+        campus2ParadeGroundLayer.setVisible(visibility[key]);
+      }
     }
 
     // Walkways, street lighting and patrol routes were pulled from the
@@ -313,14 +564,20 @@ export default function DigitalTwin2() {
     patrolMarkerLayer.setVisible(false);
     setNativeLayerVisible(map, 'patrol', false);
 
+    // Every layer with real, pickable building meshes — Campus 1's real
+    // buildings plus Campus 2's star complex / 38-building set / 12-
+    // building set — tried in this order, first hit wins.
+    const buildingPickLayers = [buildingsLayer, campus2BuildingLayer, campus2ExtraBuildingsLayer, campus2Buildings02Layer];
+
     // pointer interaction: hover + click picking, personnel markers first
     // (smaller/easier-to-miss targets get priority), falling back to the
-    // real building meshes so existing building hover/click is unaffected.
+    // real building meshes across both campuses so existing building
+    // hover/click is unaffected.
     const onMouseMove = (e) => {
       const { clientX, clientY } = e.originalEvent;
       const person = personnelLayer.pickAt(clientX, clientY);
       if (person) {
-        buildingsLayer.setHoveredId(null);
+        for (const l of buildingPickLayers) l.setHoveredId(null);
         setHovered(null);
         personnelLayer.setHoveredId(person.id);
         map.getCanvas().style.cursor = 'pointer';
@@ -329,8 +586,16 @@ export default function DigitalTwin2() {
       }
       personnelLayer.setHoveredId(null);
       setHoveredPerson(null);
-      const rec = buildingsLayer.pickAt(clientX, clientY);
-      buildingsLayer.setHoveredId(rec?.id ?? null);
+      let rec = null;
+      for (const l of buildingPickLayers) {
+        rec = l.pickAt(clientX, clientY);
+        if (rec) {
+          for (const other of buildingPickLayers) if (other !== l) other.setHoveredId(null);
+          l.setHoveredId(rec.id);
+          break;
+        }
+      }
+      if (!rec) for (const l of buildingPickLayers) l.setHoveredId(null);
       map.getCanvas().style.cursor = rec ? 'pointer' : '';
       setHovered(rec ? { building: rec, x: clientX, y: clientY } : null);
     };
@@ -348,7 +613,7 @@ export default function DigitalTwin2() {
         if (!selectedRef.current && !selectedPersonRef.current) savedCameraRef.current = captureCameraState(map);
         cancelOrbitRef.current?.();
         cancelOrbitRef.current = orbitToPerson(map, () => personnelLayer.getPersonWorldPos(person.id)?.lonLat ?? null);
-        buildingsLayer.setSelectedId(null);
+        for (const l of buildingPickLayers) l.setSelectedId(null);
         setSelected(null);
         selectedRef.current = null;
         setBlock3Open(false);
@@ -358,7 +623,11 @@ export default function DigitalTwin2() {
         selectedPersonRef.current = person.id;
         return;
       }
-      const rec = buildingsLayer.pickAt(clientX, clientY);
+      let rec = null, hitLayer = null;
+      for (const l of buildingPickLayers) {
+        rec = l.pickAt(clientX, clientY);
+        if (rec) { hitLayer = l; break; }
+      }
       if (!rec) { closeSelection(); return; }
       if (!selectedRef.current && !selectedPersonRef.current) savedCameraRef.current = captureCameraState(map);
       cancelOrbitRef.current?.();
@@ -366,7 +635,7 @@ export default function DigitalTwin2() {
       personnelLayer.setSelectedId(null);
       setSelectedPersonId(null);
       selectedPersonRef.current = null;
-      buildingsLayer.setSelectedId(rec.id);
+      for (const l of buildingPickLayers) l.setSelectedId(l === hitLayer ? rec.id : null);
       setSelected(rec);
       selectedRef.current = rec;
       setBlock3Open(rec.id === 'REAL-BLOCK-3');
@@ -393,6 +662,9 @@ export default function DigitalTwin2() {
     if (savedCameraRef.current) restoreCamera(mapRef.current, savedCameraRef.current);
     savedCameraRef.current = null;
     buildingsLayerRef.current?.setSelectedId(null);
+    campus2BuildingLayerRef.current?.setSelectedId(null);
+    campus2ExtraBuildingsLayerRef.current?.setSelectedId(null);
+    campus2Buildings02LayerRef.current?.setSelectedId(null);
     setSelected(null);
     selectedRef.current = null;
     setBlock3Open(false);
@@ -431,10 +703,25 @@ export default function DigitalTwin2() {
         if (key === 'fences') fenceLayerRef.current?.setVisible(next[key]);
         if (key === 'walkways') pedestrianLayerRef.current?.setVisible(next[key]);
         if (key === 'security_lighting') lightingLayerRef.current?.setVisible(next[key]);
-        if (key === 'security') securityLayerRef.current?.setVisible(next[key]);
+        if (key === 'security') { securityLayerRef.current?.setVisible(next[key]); gateLayerRef.current?.setVisible(next[key]); }
         if (key === 'cctv') cctvLayerRef.current?.setVisible(next[key]);
         if (key === 'patrol') patrolMarkerLayerRef.current?.setVisible(next[key]);
         if (key === 'personnel') personnelLayerRef.current?.setVisible(next[key]);
+        if (key === 'campus2') {
+          campus2BoundaryLayerRef.current?.setVisible(next[key]);
+          campus2FenceLayerRef.current?.setVisible(next[key]);
+          campus2BuildingLayerRef.current?.setVisible(next[key]);
+          campus2ExtraBuildingsLayerRef.current?.setVisible(next[key]);
+          campus2Buildings02LayerRef.current?.setVisible(next[key]);
+          campus2CircleLayerRef.current?.setVisible(next[key]);
+        }
+        if (key === 'campus2_roads') { campus2RoadLayerRef.current?.setVisible(next[key]); campus2RoundaboutLayerRef.current?.setVisible(next[key]); }
+        if (key === 'campus2_infra') {
+          campus2ParkingLayerRef.current?.setVisible(next[key]);
+          campus2FootballLayerRef.current?.setVisible(next[key]);
+          campus2CourtsLayerRef.current?.setVisible(next[key]);
+          campus2ParadeGroundLayerRef.current?.setVisible(next[key]);
+        }
         map.triggerRepaint();
       }
       return next;
@@ -447,10 +734,10 @@ export default function DigitalTwin2() {
   }
 
   function handleZoomToFit() {
-    if (mapRef.current && gis) zoomToFit(mapRef.current, gis.boundary, buildingsToFeatureCollection(buildings));
+    if (mapRef.current && gis) zoomToFit(mapRef.current, gis.boundary, buildingsToFeatureCollection(buildings), campus2Boundary);
   }
 
-  const SYNTHETIC_KEYS = new Set(['buildings', 'walkways', 'security_lighting', 'security', 'cctv', 'patrol', 'personnel']);
+  const SYNTHETIC_KEYS = new Set(['buildings', 'walkways', 'security_lighting', 'security', 'cctv', 'patrol', 'personnel', 'campus2', 'campus2_roads', 'campus2_infra']);
   const emptyKeys = new Set(
     gis ? ALL_LAYER_KEYS.filter((k) => !SYNTHETIC_KEYS.has(k) && (gis[k]?.features?.length ?? 0) === 0) : []
   );

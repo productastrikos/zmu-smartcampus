@@ -18,7 +18,12 @@ export function createTreeLayer({ id, anchor }) {
   let scales = new Float32Array(MAX_TREES);
   let bases = [];
   const dummy = new THREE.Object3D();
-  const clock = new THREE.Clock();
+  // THREE.Timer, not the deprecated THREE.Clock — same elapsed-time need
+  // (a continuous phase for the wind-sway sine wave below), but also
+  // connects to the Page Visibility API so a backgrounded/restored tab
+  // doesn't jump the animation by a huge delta on the next frame.
+  const timer = new THREE.Timer();
+  if (typeof document !== 'undefined') timer.connect(document);
 
   return {
     id,
@@ -69,11 +74,12 @@ export function createTreeLayer({ id, anchor }) {
 
     render(gl, options) {
       if (!visible || !renderer) return;
+      timer.update();
 
       // Gentle per-instance wind sway — rotates each tree a few degrees
       // around a phase-shifted sine wave so the canopy doesn't move in lockstep.
       if (count) {
-        const t = clock.getElapsedTime();
+        const t = timer.getElapsed();
         for (let i = 0; i < count; i++) {
           dummy.position.set(bases[i][0], bases[i][1], 0);
           dummy.rotation.z = phases[i] + Math.sin(t * 0.6 + phases[i]) * 0.05;

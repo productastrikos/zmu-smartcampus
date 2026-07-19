@@ -211,18 +211,22 @@ export function createSecurityLayer({ id, anchor }) {
       beaconMats.length = 0;
       towers.length = 0;
 
-      // real gate 1: the Main Gate building's own centroid + long-axis direction
-      const gateBuilding = (buildings || []).find((b) => b.category === 'gate');
-      if (gateBuilding?.geometry) {
-        const ring = gateBuilding.geometry.coordinates[0].slice(0, -1).map(([lon, lat]) => projection.projectCoordinate(lon, lat));
-        const cx = ring.reduce((s, p) => s + p[0], 0) / ring.length;
-        const cz = ring.reduce((s, p) => s + p[1], 0) / ring.length;
-        const a = ring[0], b = ring[1] || ring[0];
-        const dir = [b[0] - a[0], b[1] - a[1]];
-        const cluster = buildGateCluster([cx, cz], dir);
-        root.add(cluster);
-        beaconMats.push(cluster.userData.beaconMat);
-      }
+      // The gate cluster that used to be built here now lives in its own
+      // dedicated GateLayer.jsx (same real Main Gate centroid/orientation
+      // math), toggled by the same 'security' key — commented out rather
+      // than deleted so buildGateCluster (below) isn't dead code:
+      //
+      // const gateBuilding = (buildings || []).find((b) => b.category === 'gate');
+      // if (gateBuilding?.geometry) {
+      //   const ring = gateBuilding.geometry.coordinates[0].slice(0, -1).map(([lon, lat]) => projection.projectCoordinate(lon, lat));
+      //   const cx = ring.reduce((s, p) => s + p[0], 0) / ring.length;
+      //   const cz = ring.reduce((s, p) => s + p[1], 0) / ring.length;
+      //   const a = ring[0], b = ring[1] || ring[0];
+      //   const dir = [b[0] - a[0], b[1] - a[1]];
+      //   const cluster = buildGateCluster([cx, cz], dir);
+      //   root.add(cluster);
+      //   beaconMats.push(cluster.userData.beaconMat);
+      // }
 
       // towers at the real boundary's convex-hull corners
       const boundaryFeature = boundary?.features?.[0];

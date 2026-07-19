@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { createProjection } from '../services/ProjectionService';
-import { stepWalkState, mulberry32 } from './MovementEngine';
+import { stepWalkState, stepWanderState, mulberry32 } from './MovementEngine';
 import { tickTelemetry } from './PersonnelRoster';
 
 // Personnel Tracking layer — Phase 1 of the simulated Garmin-wearable
@@ -95,7 +95,16 @@ export function createPersonnelLayer({ id, anchor }) {
   const dummy = new THREE.Object3D();
   const raycaster = new THREE.Raycaster();
   const movementRng = mulberry32(20260717);
-  const clock = new THREE.Clock();
+  // THREE.Timer, not the deprecated THREE.Clock — this one matters for
+  // more than silencing the warning: Timer's Page Visibility API hookup
+  // (connect(document)) zeroes the delta for the frame a backgrounded tab
+  // resumes on and resets its internal clock, instead of Clock's
+  // getDelta() reporting one huge multi-second (or, after a long
+  // background stint, multi-minute) delta on that frame — which
+  // stepWalkState/stepWanderState would otherwise read as "walk N
+  // metres this frame," visible as personnel markers teleporting.
+  const timer = new THREE.Timer();
+  if (typeof document !== 'undefined') timer.connect(document);
 
   function advancePerson(p, deltaMs, now) {
     // While this person is puppeted for a fence-breach simulation (see
@@ -104,6 +113,18 @@ export function createPersonnelLayer({ id, anchor }) {
     // their normal walk/idle state — the walk state itself is untouched,
     // so it resumes exactly where it left off once the breach ends.
     if (p.id === breachId && breachLocalPos) { p._pos = breachLocalPos; p._idle = false; return; }
+    // Free-roam wandering (see MovementEngine.js's createWanderState/
+    // stepWanderState) — a straight-line random-point-in-boundary walk,
+    // not confined to the road-network graph's own edges. Additive: only
+    // people explicitly given a p.wander state (Campus 2's personnel) use
+    // this path; everyone else's p.walk/graph behaviour is unchanged.
+    if (p.wander) {
+      const { point, heading, idle } = stepWanderState(p.wander, deltaMs, p.speedMps, movementRng, p.wanderBoundary, now);
+      p._pos = point;
+      p._heading = heading;
+      p._idle = idle;
+      return;
+    }
     if (p.status === 'inactive' || !p.walk) { p._pos = p.home; p._idle = true; return; }
     const { point, heading, idle } = stepWalkState(p.walk, graph, deltaMs, p.speedMps, movementRng, now);
     p._pos = point;
@@ -254,7 +275,8 @@ export function createPersonnelLayer({ id, anchor }) {
     render(gl, options) {
       if (!visible || !renderer) return;
       const now = performance.now();
-      const deltaMs = clock.getDelta() * 1000;
+      timer.update(now);
+      const deltaMs = timer.getDelta() * 1000;
 
       writeAllMatrices(deltaMs, now);
 

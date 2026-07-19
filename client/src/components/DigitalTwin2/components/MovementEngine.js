@@ -137,6 +137,54 @@ export function stepWalkState(state, graph, deltaMs, speedMps, rng, nowMs) {
   return { point, heading: state.heading, idle: false };
 }
 
+const WANDER_IDLE_CHANCE = 0.25;
+const WANDER_IDLE_MIN_MS = 1500;
+const WANDER_IDLE_MAX_MS = 5000;
+const WANDER_ARRIVE_M = 0.5;
+
+// Rejection-sample a random point strictly inside a (real, digitized)
+// boundary ring — never outside it, unlike a plain bounding-box pick.
+function pickWanderTarget(boundaryRing, rng) {
+  let minX = Infinity, maxX = -Infinity, minZ = Infinity, maxZ = -Infinity;
+  for (const [x, z] of boundaryRing) {
+    if (x < minX) minX = x; if (x > maxX) maxX = x;
+    if (z < minZ) minZ = z; if (z > maxZ) maxZ = z;
+  }
+  for (let attempt = 0; attempt < 40; attempt++) {
+    const p = [minX + rng() * (maxX - minX), minZ + rng() * (maxZ - minZ)];
+    if (pointInPolygon(p, boundaryRing)) return p;
+  }
+  return boundaryRing[0];
+}
+
+// A second, simpler movement mode alongside stepWalkState — free-roam
+// straight-line wandering to a sequence of random points strictly inside a
+// real boundary ring (rejection-sampled every time, see pickWanderTarget),
+// rather than being confined to a road-network graph's own edges. Used for
+// Campus 2's personnel, where the real road network is just a handful of
+// radials/roundabouts and confining movement to it made every walker
+// converge on very few paths (and, when the pool leaned toward the
+// perimeter road's own many digitized points, made people appear to walk
+// along the boundary/fence line instead of moving around the campus).
+export function createWanderState(startPos, boundaryRing, rng) {
+  return { pos: startPos, target: pickWanderTarget(boundaryRing, rng), idleUntil: 0, heading: 0 };
+}
+
+export function stepWanderState(state, deltaMs, speedMps, rng, boundaryRing, nowMs) {
+  if (nowMs < state.idleUntil) return { point: state.pos, heading: state.heading, idle: true };
+  const dx = state.target[0] - state.pos[0], dz = state.target[1] - state.pos[1];
+  const dist = Math.hypot(dx, dz);
+  if (dist < WANDER_ARRIVE_M) {
+    if (rng() < WANDER_IDLE_CHANCE) state.idleUntil = nowMs + WANDER_IDLE_MIN_MS + rng() * (WANDER_IDLE_MAX_MS - WANDER_IDLE_MIN_MS);
+    state.target = pickWanderTarget(boundaryRing, rng);
+    return { point: state.pos, heading: state.heading, idle: true };
+  }
+  const step = Math.min(dist, (speedMps * deltaMs) / 1000);
+  state.pos = [state.pos[0] + (dx / dist) * step, state.pos[1] + (dz / dist) * step];
+  state.heading = Math.atan2(dz, dx);
+  return { point: state.pos, heading: state.heading, idle: false };
+}
+
 // Fixed placement for a stationary (red/inactive) person: near a random
 // building, offset a few metres from its centroid, kept inside the campus
 // boundary. Chosen once at roster generation and never revisited. Returns

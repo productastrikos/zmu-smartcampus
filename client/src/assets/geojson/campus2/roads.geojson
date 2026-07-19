@@ -1,0 +1,231 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Perimeter Road",
+        "tier": "ring",
+        "widthMeters": 4
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            54.3788631,
+            24.2549384
+          ],
+          [
+            54.3798349,
+            24.2519731
+          ],
+          [
+            54.3843038,
+            24.2534149
+          ],
+          [
+            54.3834391,
+            24.25611
+          ],
+          [
+            54.3788624,
+            24.2549231
+          ],
+          [
+            54.378866,
+            24.2549291
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Radial — circle-mini-1",
+        "tier": "radial",
+        "widthMeters": 4
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            54.38137377255131,
+            24.25414962143922
+          ],
+          [
+            54.38204947912993,
+            24.254852157678116
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Radial — circle-4",
+        "tier": "radial",
+        "widthMeters": 4
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            54.38137377255131,
+            24.25414962143922
+          ],
+          [
+            54.3828887787108,
+            24.254455301614833
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Radial — circle-5",
+        "tier": "radial",
+        "widthMeters": 4
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            54.38137377255131,
+            24.25414962143922
+          ],
+          [
+            54.38209677108319,
+            24.253272704436828
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Radial — circle-6",
+        "tier": "radial",
+        "widthMeters": 4
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            54.38137377255131,
+            24.25414962143922
+          ],
+          [
+            54.3800765060998,
+            24.2527695649736
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Radial — circle-2",
+        "tier": "radial",
+        "widthMeters": 4
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            54.38137377255131,
+            24.25414962143922
+          ],
+          [
+            54.380411257080965,
+            24.253185634112533
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Radial — circle-1",
+        "tier": "radial",
+        "widthMeters": 4
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            54.38137377255131,
+            24.25414962143922
+          ],
+          [
+            54.38012604647912,
+            24.25433914012105
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Radial — circle-3",
+        "tier": "radial",
+        "widthMeters": 4
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            54.38137377255131,
+            24.25414962143922
+          ],
+          [
+            54.381096971692074,
+            24.255128865099955
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Roundabout Loop",
+        "tier": "loop",
+        "widthMeters": 4,
+        "closed": true
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            54.38204947912993,
+            24.254852157678116
+          ],
+          [
+            54.3828887787108,
+            24.254455301614833
+          ],
+          [
+            54.38209677108319,
+            24.253272704436828
+          ],
+          [
+            54.3800765060998,
+            24.2527695649736
+          ],
+          [
+            54.380411257080965,
+            24.253185634112533
+          ],
+          [
+            54.38012604647912,
+            24.25433914012105
+          ],
+          [
+            54.381096971692074,
+            24.255128865099955
+          ]
+        ]
+      }
+    }
+  ]
+}

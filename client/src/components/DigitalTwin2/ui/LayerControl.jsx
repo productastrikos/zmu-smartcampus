@@ -29,6 +29,17 @@ const LIVE_LAYERS = [
   // like the security overlay above, not digitized data, but always
   // present once the campus + walkway network have loaded.
   { key: 'personnel', label: 'Personnel tracking' },
+  // Second real ZMU site (boundary + central building + landscaped
+  // circles), digitized from zmu_campus_2.txt — see Campus2*Layer.jsx.
+  { key: 'campus2', label: 'Campus 2 (New)' },
+  // Campus 2's road network (Phase 2), digitized from
+  // zmu_campus_2_roads.txt — see Campus2RoadLayer.jsx. Separate toggle
+  // from campus2 above so future phases (roundabouts/walkways/medians)
+  // can each land as their own entry without touching this one.
+  { key: 'campus2_roads', label: 'Campus 2 Roads (New)' },
+  // Phase 3 — sports & parking infrastructure, digitized from
+  // zmu_campus_2_02.txt — see Campus2ParkingLayer.jsx / Campus2GroundsLayer.jsx.
+  { key: 'campus2_infra', label: 'Campus 2 Parking & Sports (New)' },
 ];
 
 // Wired to real, tag-filtered PostGIS queries that legitimately return zero
