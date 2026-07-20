@@ -19,11 +19,17 @@ function registerExt(app, express, db) {
   const USERS = {
     executive: { username: 'executive', password: 'executive', role: 'executive', name: 'Executive Command' },
     superadmin: { username: 'superadmin', password: 'superadmin', role: 'superadmin', name: 'Platform Administrator' },
+    academics: { username: 'academics', password: 'academics', role: 'academics', name: 'Head of Academics' },
+    readiness: { username: 'readiness', password: 'readiness', role: 'readiness', name: 'Military Head' },
+    finance: { username: 'finance', password: 'finance', role: 'finance', name: 'Finance Head' },
+    ithead: { username: 'ithead', password: 'ithead', role: 'ithead', name: 'IT Head' },
+    security: { username: 'security', password: 'security', role: 'security', name: 'Security Head' },
+    facility: { username: 'facility', password: 'facility', role: 'facility', name: 'Facility Management Head' },
   };
   app.post('/api/auth/login', express.json(), (req, res) => {
     const { username, password, role } = req.body || {};
     const u = USERS[(username || '').trim().toLowerCase()];
-    if (!u) return res.status(401).json({ error: 'Use the Executive or Super Admin demo account' });
+    if (!u) return res.status(401).json({ error: 'Unknown account — pick a role to auto-fill a demo login' });
     if (role && role !== u.role) return res.status(401).json({ error: 'Selected role does not match this account' });
     const pw = String(password || '');
     if (pw !== u.password && pw !== 'sso') return res.status(401).json({ error: 'Incorrect password for this account' });

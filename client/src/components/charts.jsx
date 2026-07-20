@@ -71,13 +71,13 @@ export function TrendChart({ data, x, series, height = 220, type = 'line', stack
         {multi && <Legend wrapperStyle={legendStyle} iconSize={9} iconType="plainline" />}
         {series.map((s) =>
           rightAxisKeys.includes(s.key) ? (
-            <Line key={s.key} yAxisId="right" type="monotone" dataKey={s.key} name={s.name} stroke={s.color}
+            <Line key={s.key} isAnimationActive={false} yAxisId="right" type="monotone" dataKey={s.key} name={s.name} stroke={s.color}
               strokeWidth={2} dot={false} activeDot={{ r: 4 }} strokeDasharray={s.dash ? '5 3' : undefined} />
           ) : type === 'area' || s.area ? (
-            <Area key={s.key} type="monotone" dataKey={s.key} name={s.name} stroke={s.color} fill={s.color}
+            <Area key={s.key} isAnimationActive={false} type="monotone" dataKey={s.key} name={s.name} stroke={s.color} fill={s.color}
               fillOpacity={0.16} strokeWidth={2.2} stackId={stacked ? 'a' : undefined} dot={false} activeDot={{ r: 4 }} />
           ) : (
-            <Line key={s.key} type="monotone" dataKey={s.key} name={s.name} stroke={s.color}
+            <Line key={s.key} isAnimationActive={false} type="monotone" dataKey={s.key} name={s.name} stroke={s.color}
               strokeWidth={2.2} dot={false} activeDot={{ r: 4 }} strokeDasharray={s.dash ? '5 3' : undefined} />
           )
         )}
@@ -110,7 +110,7 @@ export function Bars({ data, x, series, height = 220, stacked = false, layout = 
         <Tooltip {...tooltipStyle} cursor={{ fill: 'var(--app-chart-grid)' }} />
         {!hideLegend && multi && <Legend wrapperStyle={legendStyle} iconSize={9} />}
         {series.map((s) => (
-          <Bar key={s.key} dataKey={s.key} name={s.name} fill={s.color} stackId={stacked ? 'a' : undefined}
+          <Bar key={s.key} isAnimationActive={false} dataKey={s.key} name={s.name} fill={s.color} stackId={stacked ? 'a' : undefined}
             radius={stacked ? [0, 0, 0, 0] : vertical ? [0, 4, 4, 0] : [4, 4, 0, 0]} maxBarSize={vertical ? 22 : 46}>
             {s.cellColors && data.map((d, i) => <Cell key={i} fill={s.cellColors(d)} />)}
           </Bar>
@@ -127,7 +127,7 @@ export function Donut({ data, nameKey, valueKey, height = 220, colors = ZONE_COL
     <div style={{ position: 'relative' }}>
       <ResponsiveContainer width="100%" height={height}>
         <PieChart margin={{ top: 4, right: 4, bottom: 4, left: 4 }}>
-          <Pie data={data} dataKey={valueKey} nameKey={nameKey} innerRadius="58%" outerRadius="84%"
+          <Pie data={data} isAnimationActive={false} dataKey={valueKey} nameKey={nameKey} innerRadius="58%" outerRadius="84%"
             paddingAngle={2} strokeWidth={0}>
             {data.map((d, i) => <Cell key={i} fill={d.color || colors[i % colors.length]} />)}
           </Pie>
@@ -154,7 +154,7 @@ export function RadarPanel({ data, angleKey, series, height = 240 }) {
         <PolarAngleAxis dataKey={angleKey} tick={{ fontSize: 10.5, fill: 'var(--app-text-muted)' }} />
         <PolarRadiusAxis angle={90} domain={[0, 100]} tickCount={5} tick={{ fontSize: 9, fill: 'var(--app-text-faint)' }} axisLine={false} />
         {series.map((s) => (
-          <Radar key={s.key} dataKey={s.key} name={s.name} stroke={s.color} fill={s.color} fillOpacity={0.2} strokeWidth={2} dot={{ r: 2.5, fill: s.color }} />
+          <Radar key={s.key} isAnimationActive={false} dataKey={s.key} name={s.name} stroke={s.color} fill={s.color} fillOpacity={0.2} strokeWidth={2} dot={{ r: 2.5, fill: s.color }} />
         ))}
         <Tooltip {...tooltipStyle} />
       </RadarChart>

@@ -1,41 +1,41 @@
 asset_id,type,model,building_id,purchase_date,warranty_end,warranty_status,health_pct,status
-IT-0001,Workstation (High-Tier),Dell Precision 7960,Z04,2024-04-16,2027-04-16,active,82,in service
-IT-0002,Workstation (High-Tier),Dell Precision 7960,Z03,2023-07-02,2026-07-01,expired,65,in service
-IT-0003,Workstation (High-Tier),Dell Precision 7960,Z02,2023-05-06,2026-05-05,expired,70,in service
-IT-0004,Workstation (High-Tier),HP Z8 Fury G5,Z03,2022-11-08,2025-11-07,expired,77,in service
-IT-0005,Workstation (High-Tier),HP Z8 Fury G5,Z03,2023-11-21,2026-11-20,active,81,in service
-IT-0006,Workstation (High-Tier),HP Z8 Fury G5,Z04,2024-09-15,2027-09-15,active,80,in service
-IT-0007,Workstation (High-Tier),Dell Precision 7960,Z04,2024-09-23,2027-09-23,active,87,in service
-IT-0008,Workstation (High-Tier),HP Z8 Fury G5,Z02,2025-04-04,2028-04-03,active,94,in service
-IT-0009,Workstation (High-Tier),Dell Precision 7960,Z03,2024-10-24,2027-10-24,active,83,in service
-IT-0010,Workstation (High-Tier),Dell Precision 7960,Z02,2024-06-24,2027-06-24,active,90,in service
-IT-0011,Workstation (High-Tier),HP Z8 Fury G5,Z03,2025-12-18,2028-12-17,active,85,in service
-IT-0012,Workstation (High-Tier),Dell Precision 7960,Z02,2023-11-20,2026-11-19,active,80,in service
-IT-0013,Server,HPE DL380 Gen11,Z12,2023-03-11,2026-03-10,expired,59,in service
-IT-0014,Server,Dell PowerEdge R760,Z12,2024-02-11,2027-02-10,active,82,in service
-IT-0015,Server,HPE DL380 Gen11,Z12,2024-05-20,2027-05-20,active,80,in service
-IT-0016,Server,HPE DL380 Gen11,Z12,2025-01-30,2028-01-30,active,88,in service
-IT-0017,Server,HPE DL380 Gen11,Z12,2025-01-17,2028-01-17,active,82,in service
-IT-0018,Core Switch,Aruba CX 8360,Z12,2024-01-17,2027-01-16,active,98,in service
-IT-0019,Core Switch,Aruba CX 8360,Z12,2023-09-26,2026-09-25,expiring,83,in service
-IT-0020,Core Switch,Aruba CX 8360,Z01,2023-06-06,2026-06-05,expired,85,in service
-IT-0021,Core Switch,Aruba CX 8360,Z01,2024-06-01,2027-06-01,active,81,in service
-IT-0022,Core Switch,Aruba CX 8360,Z01,2026-04-10,2029-04-09,active,83,maintenance
-IT-0023,Storage Array,NetApp AFF A400,Z12,2022-07-06,2025-07-05,expired,84,in service
-IT-0024,Storage Array,Pure FlashArray X70,Z12,2023-06-19,2026-06-18,expired,82,in service
-IT-0025,Storage Array,Pure FlashArray X70,Z12,2024-07-27,2027-07-27,active,81,in service
-IT-0026,Storage Array,Pure FlashArray X70,Z12,2026-03-01,2029-02-28,active,90,in service
-IT-0027,Storage Array,NetApp AFF A400,Z12,2024-02-12,2027-02-11,active,86,in service
-IT-0028,UPS Module,Schneider Galaxy VS,Z12,2022-12-26,2025-12-25,expired,65,in service
-IT-0029,UPS Module,Vertiv EXM2,Z12,2023-09-25,2026-09-24,expiring,82,in service
-IT-0030,UPS Module,Schneider Galaxy VS,Z12,2025-06-10,2028-06-09,active,88,maintenance
-IT-0031,UPS Module,Schneider Galaxy VS,Z12,2025-03-19,2028-03-18,active,93,in service
-IT-0032,UPS Module,Schneider Galaxy VS,Z12,2024-09-12,2027-09-12,active,86,in service
-IT-0033,AV / Smart Classroom,Poly X70,Z11,2025-04-14,2028-04-13,active,87,in service
-IT-0034,AV / Smart Classroom,Poly X70,Z11,2023-04-14,2026-04-13,expired,84,in service
-IT-0035,AV / Smart Classroom,Crestron UC-ENGINE,Z11,2026-04-01,2029-03-31,active,97,in service
-IT-0036,AV / Smart Classroom,Crestron UC-ENGINE,Z02,2023-12-11,2026-12-10,active,92,in service
-IT-0037,AV / Smart Classroom,Poly X70,Z02,2025-12-28,2028-12-27,active,100,in service
-IT-0038,AV / Smart Classroom,Crestron UC-ENGINE,Z11,2023-05-02,2026-05-01,expired,72,in service
-IT-0039,AV / Smart Classroom,Poly X70,Z11,2023-10-07,2026-10-06,expiring,87,in service
-IT-0040,AV / Smart Classroom,Poly X70,Z03,2025-01-29,2028-01-29,active,89,in service
+IT-0001,Workstation (High-Tier),Dell Precision 7960,Z04,2024-04-18,2027-04-18,active,82,in service
+IT-0002,Workstation (High-Tier),Dell Precision 7960,Z03,2023-07-04,2026-07-03,expired,65,in service
+IT-0003,Workstation (High-Tier),Dell Precision 7960,Z02,2023-05-08,2026-05-07,expired,70,in service
+IT-0004,Workstation (High-Tier),HP Z8 Fury G5,Z03,2022-11-10,2025-11-09,expired,77,in service
+IT-0005,Workstation (High-Tier),HP Z8 Fury G5,Z03,2023-11-23,2026-11-22,active,81,in service
+IT-0006,Workstation (High-Tier),HP Z8 Fury G5,Z04,2024-09-17,2027-09-17,active,80,in service
+IT-0007,Workstation (High-Tier),Dell Precision 7960,Z04,2024-09-25,2027-09-25,active,87,in service
+IT-0008,Workstation (High-Tier),HP Z8 Fury G5,Z02,2025-04-06,2028-04-05,active,94,in service
+IT-0009,Workstation (High-Tier),Dell Precision 7960,Z03,2024-10-26,2027-10-26,active,83,in service
+IT-0010,Workstation (High-Tier),Dell Precision 7960,Z02,2024-06-26,2027-06-26,active,90,in service
+IT-0011,Workstation (High-Tier),HP Z8 Fury G5,Z03,2025-12-20,2028-12-19,active,85,in service
+IT-0012,Workstation (High-Tier),Dell Precision 7960,Z02,2023-11-22,2026-11-21,active,80,in service
+IT-0013,Server,HPE DL380 Gen11,Z12,2023-03-13,2026-03-12,expired,59,in service
+IT-0014,Server,Dell PowerEdge R760,Z12,2024-02-13,2027-02-12,active,82,in service
+IT-0015,Server,HPE DL380 Gen11,Z12,2024-05-22,2027-05-22,active,80,in service
+IT-0016,Server,HPE DL380 Gen11,Z12,2025-02-01,2028-02-01,active,88,in service
+IT-0017,Server,HPE DL380 Gen11,Z12,2025-01-19,2028-01-19,active,82,in service
+IT-0018,Core Switch,Aruba CX 8360,Z12,2024-01-19,2027-01-18,active,98,in service
+IT-0019,Core Switch,Aruba CX 8360,Z12,2023-09-28,2026-09-27,expiring,83,in service
+IT-0020,Core Switch,Aruba CX 8360,Z01,2023-06-08,2026-06-07,expired,85,in service
+IT-0021,Core Switch,Aruba CX 8360,Z01,2024-06-03,2027-06-03,active,81,in service
+IT-0022,Core Switch,Aruba CX 8360,Z01,2026-04-12,2029-04-11,active,83,maintenance
+IT-0023,Storage Array,NetApp AFF A400,Z12,2022-07-08,2025-07-07,expired,84,in service
+IT-0024,Storage Array,Pure FlashArray X70,Z12,2023-06-21,2026-06-20,expired,82,in service
+IT-0025,Storage Array,Pure FlashArray X70,Z12,2024-07-29,2027-07-29,active,81,in service
+IT-0026,Storage Array,Pure FlashArray X70,Z12,2026-03-03,2029-03-02,active,90,in service
+IT-0027,Storage Array,NetApp AFF A400,Z12,2024-02-14,2027-02-13,active,86,in service
+IT-0028,UPS Module,Schneider Galaxy VS,Z12,2022-12-28,2025-12-27,expired,65,in service
+IT-0029,UPS Module,Vertiv EXM2,Z12,2023-09-27,2026-09-26,expiring,82,in service
+IT-0030,UPS Module,Schneider Galaxy VS,Z12,2025-06-12,2028-06-11,active,88,maintenance
+IT-0031,UPS Module,Schneider Galaxy VS,Z12,2025-03-21,2028-03-20,active,93,in service
+IT-0032,UPS Module,Schneider Galaxy VS,Z12,2024-09-14,2027-09-14,active,86,in service
+IT-0033,AV / Smart Classroom,Poly X70,Z11,2025-04-16,2028-04-15,active,87,in service
+IT-0034,AV / Smart Classroom,Poly X70,Z11,2023-04-16,2026-04-15,expired,84,in service
+IT-0035,AV / Smart Classroom,Crestron UC-ENGINE,Z11,2026-04-03,2029-04-02,active,97,in service
+IT-0036,AV / Smart Classroom,Crestron UC-ENGINE,Z02,2023-12-13,2026-12-12,active,92,in service
+IT-0037,AV / Smart Classroom,Poly X70,Z02,2025-12-30,2028-12-29,active,100,in service
+IT-0038,AV / Smart Classroom,Crestron UC-ENGINE,Z11,2023-05-04,2026-05-03,expired,72,in service
+IT-0039,AV / Smart Classroom,Poly X70,Z11,2023-10-09,2026-10-08,expiring,87,in service
+IT-0040,AV / Smart Classroom,Poly X70,Z03,2025-01-31,2028-01-31,active,89,in service

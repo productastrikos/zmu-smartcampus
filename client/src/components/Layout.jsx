@@ -16,12 +16,14 @@ const NIco = ({ d }) => (
   </svg>
 );
 
-/* Reduced navigation. `key` maps to an i18n string; `roles` limits visibility. */
+/* Reduced navigation. `key` maps to an i18n string. Visibility is driven by
+   ROLE_ROUTES below (an allow-list per role); superadmin has no entry and
+   therefore sees everything. */
 const NAV = [
   {
     section: 'nav.overview',
     items: [
-      { to: '/executive', key: 'page.executive', roles: ['executive', 'superadmin'], icon: ['M3 3v18h18', 'M7 14l3-4 3 3 5-7'] },
+      { to: '/executive', key: 'page.executive', icon: ['M3 3v18h18', 'M7 14l3-4 3 3 5-7'] },
       { to: '/', key: 'page.command', icon: ['M3 12h4l3-9 4 18 3-9h4'] },
       { to: '/digital-twin', key: 'page.twin', icon: ['M12 2L2 7l10 5 10-5-10-5z', 'M2 17l10 5 10-5', 'M2 12l10 5 10-5'] },
     ],
@@ -33,25 +35,32 @@ const NAV = [
       { to: '/readiness', key: 'page.readiness', icon: ['M22 12h-4l-3 9L9 3l-3 9H2'] },
       { to: '/enterprise', key: 'page.enterprise', icon: ['M20 7H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z', 'M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2'] },
       { to: '/campus-ops', key: 'page.campus', icon: ['M4 2h16v20H4z', 'M9 22v-4h6v4', 'M9 6h.01M15 6h.01M9 10h.01M15 10h.01M9 14h.01M15 14h.01'] },
-      { to: '/it-ops', key: 'page.itops', roles: ['superadmin'], icon: ['M4 4h16v12H4z', 'M8 20h8', 'M12 16v4', 'M8 8h4M8 11h8'] },
+      { to: '/it-ops', key: 'page.itops', icon: ['M4 4h16v12H4z', 'M8 20h8', 'M12 16v4', 'M8 8h4M8 11h8'] },
     ],
   },
   {
     section: 'nav.platform',
     items: [
       { to: '/iot', key: 'page.iot', icon: ['M12 20v-6', 'M12 8V4', 'M5 12a7 7 0 0114 0', 'M8.5 12a3.5 3.5 0 017 0', 'M12 12h.01'] },
-      { to: '/security', key: 'page.security', roles: ['superadmin'], icon: ['M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z'] },
+      { to: '/security', key: 'page.security', icon: ['M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z'] },
       { to: '/incidents', key: 'page.incidents', icon: ['M23 7l-7 5 7 5V7z', 'M1 5h15v14H1z'] },
-      { to: '/integration', key: 'page.integration', roles: ['superadmin'], icon: ['M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71', 'M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71'] },
+      { to: '/integration', key: 'page.integration', icon: ['M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71', 'M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71'] },
     ],
   },
 ];
 
-/* Roles — executive sees a curated subset; superadmin sees all. */
+/* RBAC — each restricted role's allow-list. First entry is that role's home.
+   `superadmin` is intentionally absent → unrestricted (sees every route). */
 export const ROLE_ROUTES = {
-  executive: ['/executive', '/digital-twin'],
+  executive: ['/executive'],                                   // exec-only screen, no DT
+  academics: ['/academic'],                                    // Head of Academics
+  readiness: ['/readiness'],                                   // Military Head
+  finance: ['/enterprise'],                                    // Finance Head
+  ithead: ['/it-ops', '/iot', '/integration', '/security'],    // IT Head
+  security: ['/incidents'],                                    // Security Head
+  facility: ['/digital-twin', '/it-ops'],                      // Facility Management Head
 };
-export const homeFor = (role) => (role === 'executive' ? '/executive' : '/');
+export const homeFor = (role) => (ROLE_ROUTES[role] ? ROLE_ROUTES[role][0] : '/');
 
 const TITLE_KEY = {
   '/executive': 'page.executive', '/': 'page.command', '/digital-twin': 'page.twin',
@@ -84,11 +93,9 @@ export default function Layout({ children, user, onLogout }) {
   const allowed = ROLE_ROUTES[user?.role];
   const nav = NAV.map((sec) => ({
     ...sec,
-    items: sec.items.filter((it) =>
-      (!it.roles || it.roles.includes(user?.role)) &&
-      (!allowed || allowed.includes(it.to))),
+    items: sec.items.filter((it) => !allowed || allowed.includes(it.to)),
   })).filter((sec) => sec.items.length);
-  const roleLabel = user?.role === 'executive' ? t('role.executive') : t('role.superadmin');
+  const roleLabel = t(`role.${user?.role}`);
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>

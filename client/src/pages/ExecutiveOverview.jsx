@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useApi, fmt } from '../services/api';
-import { Panel, Loading, PageHeader, StatusChip, sevChip } from '../components/ui';
-import { TrendChart, Bars, C } from '../components/charts';
-import KPICard, { IcoTarget, IcoHeart, IcoAlert, IcoCheck, IcoPeople, IcoActivity } from '../components/KPICard';
+import { Panel, Loading, PageHeader, StatusChip, sevChip, DataTable } from '../components/ui';
+import { TrendChart, Bars, RadarPanel, Donut, C, ZONE_COLORS } from '../components/charts';
+import KPICard, { IcoTarget, IcoHeart, IcoAlert, IcoCheck, IcoPeople, IcoActivity, IcoDollar, IcoWatch, IcoMoon } from '../components/KPICard';
 import KPIDetailPanel from '../components/KPIDetailPanel';
+import AppleWatchPanel from '../components/AppleWatchPanel';
 import { useLang } from '../i18n';
 
 /* Executive Overview — a deliberately high-level, low-detail view for senior
@@ -11,7 +12,7 @@ import { useLang } from '../i18n';
    definition), a couple of easy-to-read comparison charts, and a rotating
    AI insight panel. No operational or technical detail. */
 
-export default function ExecutiveOverview() {
+export default function ExecutiveOverview({ titleKey }) {
   const { data } = useApi('/overview');
   const { data: readiness } = useApi('/readiness');
   const { t, lang } = useLang();
@@ -23,7 +24,7 @@ export default function ExecutiveOverview() {
 
   return (
     <>
-      <PageHeader title={t('page.executive')} subtitle={t('exec.subtitle')} />
+      <PageHeader title={t(titleKey || 'page.executive')} subtitle={t('exec.subtitle')} />
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 14, marginBottom: 16 }}>
         <KPICard label={t('exec.kpi.composite')} value={k.compositeReadiness} unit="/ 100" icon={<IcoTarget />}
@@ -139,35 +140,140 @@ export default function ExecutiveOverview() {
               </p>
             ),
           })} />
+
+        {/* Extra informative KPIs */}
+        <KPICard label={t('exec.kpi.cadetsEnrolled')} value={fmt.int(k.cadetsEnrolled)} icon={<IcoPeople />} rag="normal"
+          subValues={[{ label: t('cc.sub.companies'), value: '4' }]}
+          onClick={() => setDetail({
+            title: t('exec.kpi.cadetsEnrolled'),
+            definition: ar ? 'إجمالي الطلبة الضباط المسجّلين حاليًا عبر السرايا الأربع.' : 'Total officer cadets currently enrolled across the four companies.',
+            subtitle: `${fmt.int(k.cadetsEnrolled)} ${ar ? 'طالب ضابط' : 'officer cadets'}`,
+            content: <Bars data={data.readinessBySquadron} x="squadron" height={200}
+              series={[{ key: 'composite', name: ar ? 'المركّبة' : 'Composite', color: C.blue }]} hideLegend />,
+          })} />
+
+        <KPICard label={t('exec.kpi.budget')} value={`${k.budgetUtilization}%`} icon={<IcoDollar />}
+          rag={k.budgetUtilization > 55 ? 'warning' : 'normal'}
+          subValues={[{ label: t('exec.sub.midYearPlan'), value: '50%' }]}
+          onClick={() => setDetail({
+            title: t('exec.kpi.budget'),
+            definition: ar ? 'نسبة الميزانية السنوية المُستخدمة حتى الآن، مقابل خطة منتصف العام.' : 'Share of the annual budget spent so far, against the mid-year plan.',
+            subtitle: `${k.budgetUtilization}% ${ar ? 'مُستخدم' : 'utilized'}`,
+            stats: [{ label: ar ? 'المُستخدم' : 'Utilized', value: `${k.budgetUtilization}%`, tone: k.budgetUtilization > 55 ? 'down' : 'up' }, { label: ar ? 'الخطة' : 'Plan', value: '50%' }],
+          })} />
+
+        <KPICard label={t('exec.kpi.highInjuryRisk')} value={readiness.kpis.highInjuryRisk} icon={<IcoAlert />}
+          rag={readiness.kpis.highInjuryRisk > 8 ? 'critical' : 'warning'}
+          subValues={[{ label: ar ? 'القاعدة' : 'Rule', value: 'ACWR > 1.4' }]}
+          onClick={() => setDetail({
+            title: t('exec.kpi.highInjuryRisk'),
+            definition: ar ? 'عدد الطلبة الذين يتجاوز عبء التدريب لديهم الحد الآمن (ACWR)، مما يستدعي تدخلًا مبكرًا.' : 'Cadets whose training load ratio (ACWR) exceeds the safe threshold — an early-intervention flag.',
+            subtitle: `${readiness.kpis.highInjuryRisk} ${ar ? 'طالب معرّض' : 'cadets flagged'}`,
+            content: <RadarPanel data={readiness.radar} angleKey="domain" height={200}
+              series={[{ key: 'score', name: ar ? 'الدفعة' : 'Cohort', color: C.blue }]} />,
+          })} />
+
+        <KPICard label={t('exec.kpi.deviceSync')} value={`${readiness.kpis.deviceSyncRate}%`} icon={<IcoWatch />}
+          rag={readiness.kpis.deviceSyncRate < 90 ? 'warning' : 'normal'}
+          subValues={[{ label: ar ? 'الأسطول' : 'Fleet', value: ar ? '٣٠٠ جهاز' : '300 devices' }]}
+          onClick={() => setDetail({
+            title: t('exec.kpi.deviceSync'),
+            definition: ar ? 'نسبة أجهزة Garmin المُصدرة للطلبة التي زامنت بياناتها خلال آخر ١٢ ساعة.' : 'Share of the issued Garmin fleet that has synced telemetry within the last 12 hours.',
+            subtitle: `${readiness.kpis.deviceSyncRate}% ${ar ? 'مُزامن' : 'synced'}`,
+          })} />
+
+        <KPICard label={t('exec.kpi.avgSleep')} value={readiness.kpis.avgSleep} unit={ar ? 'ساعة' : 'hrs'} icon={<IcoMoon />}
+          rag={readiness.kpis.avgSleep < 6.5 ? 'warning' : 'normal'}
+          subValues={[{ label: ar ? 'الهدف' : 'Target', value: ar ? '≥ ٧٫٠ ساعة' : '≥ 7.0 h' }]}
+          onClick={() => setDetail({
+            title: t('exec.kpi.avgSleep'),
+            definition: ar ? 'متوسط ساعات نوم الطلبة الليلية عبر الدفعة، من الأجهزة القابلة للارتداء.' : 'Average nightly sleep across the cohort, from wearable devices.',
+            subtitle: `${readiness.kpis.avgSleep}h ${ar ? 'متوسط' : 'average'}`,
+            content: <TrendChart data={readiness.trend} x="date" height={200}
+              series={[{ key: 'sleep', name: ar ? 'النوم' : 'Sleep', color: C.cyan, area: true }]} />,
+          })} />
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1.5fr) minmax(0,1fr)', gap: 14, alignItems: 'start' }}>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-          <Panel title={t('exec.panel.usageEnergy')} sub={t('exec.panel.usageEnergySub')}>
-            <TrendChart data={data.occupancyEnergy} x="hour" height={240} rightAxisKeys={['kwh']}
-              series={[
-                { key: 'occupancy', name: ar ? 'استخدام المباني ٪' : 'Building usage %', color: C.blue, area: true },
-                { key: 'kwh', name: ar ? 'الطاقة المستهلكة' : 'Energy used', color: C.amber },
-              ]} />
-          </Panel>
-          <Panel title={t('exec.panel.wellbeingTrend')} sub={t('exec.panel.wellbeingTrendSub')}>
-            <TrendChart data={readiness.trend} x="date" height={220}
-              series={[{ key: 'readiness', name: ar ? 'درجة الصحة' : 'Wellbeing score', color: C.teal, area: true }]} />
-          </Panel>
-        </div>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-          <Panel title={t('exec.panel.programme')} sub={t('exec.panel.programmeSub')}>
-            {data.domainStatus.map((d) => (
-              <div key={d.key} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8, padding: '8px 2px', borderBottom: '1px solid var(--app-surface-raised)' }}>
-                <span style={{ fontSize: 12.5, fontWeight: 650, color: 'var(--app-text)' }}>{d.name}</span>
-                <span style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-                  <span style={{ fontSize: 11, color: 'var(--app-text-faint)' }}>{d.metric}</span>
-                  <StatusChip kind={sevChip(d.status)}>{chip(d.status)}</StatusChip>
-                </span>
-              </div>
-            ))}
-          </Panel>
-        </div>
+      {/* Apple Watch command-staff wellness + programme health */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1.1fr) minmax(0, 1fr)', gap: 14, marginBottom: 14, alignItems: 'stretch' }}>
+        <AppleWatchPanel />
+        <Panel title={t('exec.panel.programme')} sub={t('exec.panel.programmeSub')}>
+          {data.domainStatus.map((d) => (
+            <div key={d.key} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8, padding: '8px 2px', borderBottom: '1px solid var(--app-surface-raised)' }}>
+              <span style={{ fontSize: 12.5, fontWeight: 650, color: 'var(--app-text)' }}>{d.name}</span>
+              <span style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+                <span style={{ fontSize: 11, color: 'var(--app-text-faint)' }}>{d.metric}</span>
+                <StatusChip kind={sevChip(d.status)}>{chip(d.status)}</StatusChip>
+              </span>
+            </div>
+          ))}
+        </Panel>
+      </div>
+
+      {/* Analytics — comparisons & trends (1) */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) minmax(0,1fr)', gap: 14, marginBottom: 14 }}>
+        <Panel title={t('exec.panel.companyComparison')} sub={t('exec.panel.companyComparisonSub')}>
+          <Bars data={data.readinessBySquadron} x="squadron" height={230}
+            series={[
+              { key: 'composite', name: ar ? 'المركّبة' : 'Composite', color: C.blue },
+              { key: 'fitness', name: ar ? 'اللياقة' : 'Fitness', color: C.violet },
+              { key: 'academic', name: ar ? 'الأكاديمي' : 'Academic', color: C.cyan },
+            ]} />
+        </Panel>
+        <Panel title={t('exec.panel.companyShare')} sub={t('exec.panel.companyShareSub')}>
+          <Donut data={data.readinessBySquadron} nameKey="squadron" valueKey="composite" height={230} colors={ZONE_COLORS} />
+        </Panel>
+      </div>
+
+      {/* Analytics — comparisons & trends (2) */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) minmax(0,1fr)', gap: 14, marginBottom: 14 }}>
+        <Panel title={t('exec.panel.usageEnergy')} sub={t('exec.panel.usageEnergySub')}>
+          <TrendChart data={data.occupancyEnergy} x="hour" height={230} rightAxisKeys={['kwh']}
+            series={[
+              { key: 'occupancy', name: ar ? 'استخدام المباني ٪' : 'Building usage %', color: C.blue, area: true },
+              { key: 'kwh', name: ar ? 'الطاقة المستهلكة' : 'Energy used', color: C.amber },
+            ]} />
+        </Panel>
+        <Panel title={t('exec.panel.wellbeingTrend')} sub={t('exec.panel.wellbeingTrendSub')}>
+          <TrendChart data={readiness.trend} x="date" height={230}
+            series={[{ key: 'readiness', name: ar ? 'درجة الصحة' : 'Wellbeing score', color: C.teal, area: true }]} />
+        </Panel>
+      </div>
+
+      {/* Analytics — comparisons & trends (3) */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) minmax(0,1fr)', gap: 14, marginBottom: 14 }}>
+        <Panel title={t('exec.panel.readinessDomains')} sub={t('exec.panel.readinessDomainsSub')}>
+          <RadarPanel data={readiness.radar} angleKey="domain" height={230}
+            series={[{ key: 'score', name: ar ? 'الدفعة' : 'Cohort', color: C.blue }]} />
+        </Panel>
+        <Panel title={t('exec.panel.recoveryTrend')} sub={t('exec.panel.recoveryTrendSub')}>
+          <TrendChart data={readiness.trend} x="date" height={230} rightAxisKeys={['sleep']}
+            series={[
+              { key: 'hrv', name: 'HRV', color: C.violet, area: true },
+              { key: 'sleep', name: ar ? 'النوم' : 'Sleep', color: C.cyan },
+            ]} />
+        </Panel>
+      </div>
+
+      {/* Analytics — comparisons & trends (4) */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) minmax(0,1fr)', gap: 14, marginBottom: 14 }}>
+        <Panel title={t('exec.panel.alertsBySeverity')} sub={t('exec.panel.alertsBySeveritySub')}>
+          <Bars
+            data={['critical', 'high', 'medium', 'low'].map((sev) => ({
+              severity: ar ? t(`severity.${sev}`) : sev.toUpperCase(),
+              count: data.alerts.filter((a) => a.severity === sev).length,
+            }))}
+            x="severity" height={220} hideLegend
+            series={[{ key: 'count', name: ar ? 'العدد' : 'Count', color: C.red }]} />
+        </Panel>
+        <Panel title={t('exec.panel.domainHealth')} sub={t('exec.panel.domainHealthSub')}>
+          <Donut
+            data={['healthy', 'warning', 'critical'].map((st) => ({
+              status: chip(st), value: data.domainStatus.filter((d) => d.status === st).length,
+              color: st === 'healthy' ? C.green : st === 'warning' ? C.amber : C.red,
+            })).filter((d) => d.value > 0)}
+            nameKey="status" valueKey="value" height={220} />
+        </Panel>
       </div>
 
       <KPIDetailPanel open={!!detail} onClose={() => setDetail(null)}

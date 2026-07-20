@@ -6,12 +6,14 @@ import { Panel, StatusChip, sevChip, Loading, PageHeader, KPIGrid, DataTable } f
 import { TrendChart, Bars, RadarPanel, C } from '../components/charts';
 import KPIDetailPanel from '../components/KPIDetailPanel';
 import ModuleLauncher from '../components/ModuleLauncher';
+import SourceLink from '../components/SourceLink';
+import { PORTALS } from '../config/portals';
 import { useLang } from '../i18n';
 
 const READINESS_MODULES = [
-  { slug: 'hpo', labelKey: 'page.hpo' },
-  { slug: 'military', labelKey: 'page.military' },
-  { slug: 'conduct', labelKey: 'page.conduct' },
+  { slug: 'hpo', labelKey: 'launcher.hpo' },
+  { slug: 'military', labelKey: 'launcher.military' },
+  { slug: 'conduct', labelKey: 'launcher.conduct' },
 ];
 
 /** Human digital twin — per-cadet drill-down modal */
@@ -109,12 +111,14 @@ export default function Readiness() {
 
   return (
     <>
-      <ModuleLauncher items={READINESS_MODULES} />
       <PageHeader
         title={ar ? 'الجاهزية والأداء' : 'Readiness & Performance'}
         subtitle={ar ? 'تحسين الأداء البشري — أجهزة Garmin القابلة للارتداء · تكوين الجسم · التدخّل المبكر التنبّؤي' : 'Human Performance Optimization — Garmin Health API wearables · body composition · predictive early intervention (flow 4)'}
         right={<StatusChip kind={k.deviceSyncRate > 90 ? 'success' : 'warning'}>{k.deviceSyncRate}% {ar ? 'أجهزة مُزامنة خلال ١٢ ساعة' : 'DEVICES SYNCED ≤ 12H'}</StatusChip>}
       />
+
+      {/* Redirect out to the real source portals (above the KPIs) */}
+      <SourceLink portals={PORTALS.readiness} />
 
       <KPIGrid>
         <KPICard label={ar ? 'متوسط درجة الجاهزية' : 'Avg Readiness Score'} value={k.avgReadiness} unit="/ 100" icon={<IcoTarget />} trend={1.2} rag="normal"
@@ -196,6 +200,9 @@ export default function Readiness() {
               series={[{ key: 'readiness', name: 'Readiness (proxy)', color: C.green }]} />,
           })} />
       </KPIGrid>
+
+      {/* Module launch buttons — below the KPIs (open in a new tab) */}
+      <ModuleLauncher items={READINESS_MODULES} />
 
       <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1.5fr) minmax(0, 1fr)', gap: 14, marginBottom: 14 }}>
         <Panel title={ar ? 'جاهزية الدفعة — ١٤ يومًا' : 'Cohort Readiness — 14 Days'} sub={ar ? 'تجميع يومي من وسيط الأجهزة القابلة للارتداء (محكوم بالموافقة)' : 'Daily aggregate from wearable middleware (consent-governed)'}>

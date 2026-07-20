@@ -5,13 +5,15 @@ import { Panel, StatusChip, sevChip, Loading, PageHeader, KPIGrid, DataTable, Pr
 import { TrendChart, Bars, C } from '../components/charts';
 import KPIDetailPanel from '../components/KPIDetailPanel';
 import ModuleLauncher from '../components/ModuleLauncher';
+import SourceLink from '../components/SourceLink';
+import { PORTALS } from '../config/portals';
 import { useLang } from '../i18n';
 
 const ACADEMIC_MODULES = [
-  { slug: 'sis', labelKey: 'page.sis' },
-  { slug: 'lms', labelKey: 'page.lms' },
-  { slug: 'merit', labelKey: 'page.merit' },
-  { slug: 'cadet-journey', labelKey: 'page.cadetJourney' },
+  { slug: 'sis', labelKey: 'launcher.sis' },
+  { slug: 'lms', labelKey: 'launcher.lms' },
+  { slug: 'merit', labelKey: 'launcher.merit' },
+  { slug: 'cadet-journey', labelKey: 'launcher.cadetJourney' },
 ];
 
 export default function Academic() {
@@ -25,12 +27,14 @@ export default function Academic() {
 
   return (
     <>
-      <ModuleLauncher items={ACADEMIC_MODULES} />
       <PageHeader
         title={ar ? 'الأكاديميات والتعلّم' : 'Academics & Learning'}
         subtitle={ar ? 'نظام معلومات الطلبة · إدارة التعلّم · المكتبة والمختبرات · تعلّم مدعوم بالذكاء الاصطناعي — قوائم الشركاء عبر دفعة واحدة من نظام الطلبة' : 'SIS · LMS · Library & Labs · AI-enabled learning — partner rosters via single push from ZMU SIS (flow 1)'}
         right={<StatusChip kind="success">{ar ? 'مزامنة SIS ↔ LMS أقل من ١٥ دقيقة' : 'SIS ↔ LMS SYNC < 15 MIN'}</StatusChip>}
       />
+
+      {/* Redirect out to the real source portals (above the KPIs) */}
+      <SourceLink portals={PORTALS.academic} />
 
       <KPIGrid>
         <KPICard label={ar ? 'الطلبة المسجّلون' : 'Enrolled Cadets'} value={fmt.int(k.enrolled)} icon={<IcoGrad />} rag="normal"
@@ -108,6 +112,9 @@ export default function Academic() {
             )),
           })} />
       </KPIGrid>
+
+      {/* Module launch buttons — below the KPIs (open in a new tab) */}
+      <ModuleLauncher items={ACADEMIC_MODULES} />
 
       <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1.5fr) minmax(0, 1fr)', gap: 14, marginBottom: 14 }}>
         <Panel title={ar ? 'تفاعل إدارة التعلّم — ٣٠ يومًا' : 'LMS Engagement — 30 Days'} sub={ar ? 'المستخدمون النشطون والتسليمات واستخدام مساعد التعلّم الذكي' : 'Active users, submissions and AI learning-assistant usage (xAPI → data lake)'}>

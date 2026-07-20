@@ -1,28 +1,57 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useApi, fmt } from '../services/api';
-import KPICard, { IcoPeople, IcoTarget, IcoBolt, IcoAlert, IcoLink, IcoDollar } from '../components/KPICard';
+import KPICard, { IcoPeople, IcoTarget, IcoBolt, IcoAlert, IcoLink, IcoDollar, IcoAttendance, IcoCpu } from '../components/KPICard';
 import { Panel, StatusChip, sevChip, Loading, PageHeader, KPIGrid, DataTable, timeAgo } from '../components/ui';
-import { TrendChart, Bars, C } from '../components/charts';
+import { TrendChart, Bars, C, ZONE_COLORS } from '../components/charts';
 import KPIDetailPanel from '../components/KPIDetailPanel';
+import CampusSnapshot from '../components/CampusSnapshot';
 import { Link } from 'react-router-dom';
 import { useLang } from '../i18n';
 
 const STATUS_DOT = { healthy: 'var(--app-success)', warning: 'var(--app-warning)', critical: 'var(--app-danger)' };
 
-export default function CommandCenter() {
+// yyyy-mm → the following yyyy-mm, for building forecast month labels
+function nextMonth(m) {
+  const [y, mm] = m.split('-').map(Number);
+  const d = new Date(y, mm, 1); // mm is already "next" since Date months are 0-based
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`;
+}
+
+export default function CommandCenter({ titleKey }) {
   const { data, error } = useApi('/overview');
+  const { data: iot } = useApi('/iot/sensors');
+  const { data: merit } = useApi('/ext/merit?college=ALL');
+  const { data: enterprise } = useApi('/enterprise');
+  const { data: campus } = useApi('/campus');
   const { t, lang } = useLang();
   const ar = lang === 'ar';
   const chip = (s) => (ar ? t(`status.${s}`) : s.toUpperCase());
   const [detail, setDetail] = useState(null);
+
+  const forecast = useMemo(() => {
+    const cf = enterprise?.cashflow;
+    if (!cf || !cf.length) return [];
+    const last3 = cf.slice(-3);
+    const avgOut = last3.reduce((s, c) => s + c.outflow_maed, 0) / last3.length;
+    const historical = cf.slice(-6).map((c) => ({ month: c.month.slice(2), actual: c.outflow_maed }));
+    if (historical.length) historical[historical.length - 1].forecast = historical[historical.length - 1].actual;
+    let cur = cf[cf.length - 1].month;
+    const points = [];
+    for (let i = 0; i < 3; i++) { cur = nextMonth(cur); points.push({ month: cur.slice(2), forecast: Math.round(avgOut * 10) / 10 }); }
+    return [...historical, ...points];
+  }, [enterprise]);
+
   if (error) return <Panel title="Error">{String(error)}</Panel>;
   if (!data) return <Loading text={t('cc.loading')} />;
   const k = data.kpis;
+  const dev = iot?.kpis; // device-health rollup from the IoT inventory
+  const criticalDevices = (iot?.sensors || []).filter((s) => s.status !== 'online').slice(0, 6);
+  const topRankers = (merit?.table || []).slice(0, 6);
 
   return (
     <>
       <PageHeader
-        title={t('cc.title')}
+        title={t(titleKey || 'cc.title')}
         subtitle={t('cc.subtitle')}
         right={<StatusChip kind="info">{k.systemsOnline}/{k.systemsTotal} {t('cc.systemsOnline')}</StatusChip>}
       />
@@ -134,7 +163,101 @@ export default function CommandCenter() {
                 rows={data.domainStatus} />
             ),
           })} />
+
+        {/* Executive-lens additions — attendance, energy consumption, budget, device health */}
+        <KPICard label={t('exec.kpi.attendance')} value={`${k.attendanceAvg}%`} icon={<IcoAttendance />}
+          rag={k.attendanceAvg < 88 ? 'warning' : 'normal'}
+          subValues={[{ label: t('exec.sub.source'), value: ar ? 'التعرّف على الوجه' : 'Facial recognition' }]}
+          onClick={() => setDetail({
+            title: t('exec.kpi.attendance'), subtitle: `${k.attendanceAvg}% ${ar ? 'متوسط الدفعة' : 'cohort average'}`, source: 'SIS · Facial-recognition T&A',
+            content: <Bars data={data.readinessBySquadron} x="squadron" height={220}
+              series={[{ key: 'academic', name: ar ? 'أكاديمي' : 'Academic', color: C.blue }]} hideLegend />,
+          })} />
+
+        <KPICard label={t('exec.kpi.budget')} value={`${k.budgetUtilization}%`} icon={<IcoDollar />}
+          rag={k.budgetUtilization > 55 ? 'warning' : 'normal'}
+          subValues={[{ label: t('exec.sub.midYearPlan'), value: '50%' }]}
+          onClick={() => setDetail({
+            title: t('exec.kpi.budget'), subtitle: `${k.budgetUtilization}% ${ar ? 'مُستخدم مقابل خطة ٥٠٪ لمنتصف العام' : 'utilized vs 50% mid-year plan'}`, source: 'ERP — Muwazana / Finance',
+            stats: [
+              { label: ar ? 'المُستخدم' : 'Utilized', value: `${k.budgetUtilization}%`, tone: k.budgetUtilization > 55 ? 'down' : 'up' },
+              { label: ar ? 'خطة منتصف العام' : 'Mid-year plan', value: '50%' },
+            ],
+          })} />
+
+        <KPICard label={t('exec.kpi.deviceHealth')} value={dev ? `${dev.avgHealth}%` : '—'} icon={<IcoCpu />}
+          rag={dev && dev.avgHealth < 85 ? 'warning' : 'normal'}
+          subValues={[{ label: t('exec.sub.devicesOnline'), value: dev ? `${dev.online}/${dev.total}` : '—' }]}
+          onClick={() => dev && setDetail({
+            title: t('exec.kpi.deviceHealth'), subtitle: `${dev.avgHealth}% ${ar ? 'متوسط صحة الأجهزة عبر ' : 'average across '}${dev.total} ${ar ? 'جهازًا' : 'devices'}`, source: 'IoT Device Inventory',
+            stats: [
+              { label: ar ? 'الصحة' : 'Avg health', value: `${dev.avgHealth}%`, tone: dev.avgHealth < 85 ? 'warn' : 'up' },
+              { label: t('status.online'), value: `${dev.online}/${dev.total}` },
+              { label: ar ? 'أعطال' : 'Faults', value: dev.faults, tone: 'down' },
+            ],
+          })} />
       </KPIGrid>
+
+      {/* Executive-lens row — the live campus digital-twin snapshot (heatmap,
+          moving personnel, patrol) + top rankers */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1.35fr) minmax(0, 1fr)', gap: 14, marginBottom: 14, alignItems: 'stretch' }}>
+        <Panel title={t('exec.panel.twin')} sub={t('exec.panel.twinSub')}>
+          <CampusSnapshot height={248} />
+        </Panel>
+        <Panel title={t('exec.panel.topRankers')} sub={t('exec.panel.topRankersSub')}>
+          <DataTable maxHeight={248}
+            columns={[
+              { key: 'rank', label: '#', render: (v) => <b style={{ color: '#3b7de8' }}>{v}</b> },
+              { key: 'name', label: t('exec.col.cadet') },
+              { key: 'company', label: t('exec.col.company') },
+              { key: 'composite', label: t('exec.col.composite'), align: 'right', render: (v) => <b style={{ color: 'var(--app-text)' }}>{v}</b> },
+            ]}
+            rows={topRankers} />
+        </Panel>
+      </div>
+
+      {/* Budget & spending POV — cost-center burn plus a forward projection */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1fr)', gap: 14, marginBottom: 14 }}>
+        <Panel title={t('exec.panel.budgetByCostCenter')} sub={t('exec.panel.budgetByCostCenterSub')}>
+          {enterprise ? (
+            <Bars data={enterprise.budget} x="cost_center" layout="vertical" height={240}
+              series={[
+                { key: 'budget_maed', name: ar ? 'الميزانية' : 'Budget', color: C.slate },
+                { key: 'actual_maed', name: ar ? 'الفعلي' : 'Actual', color: C.blue },
+              ]} />
+          ) : <Loading />}
+        </Panel>
+        <Panel title={t('exec.panel.budgetForecast')} sub={t('exec.panel.budgetForecastSub')}>
+          {forecast.length ? (
+            <TrendChart data={forecast} x="month" height={240}
+              series={[
+                { key: 'actual', name: t('exec.actual'), color: C.blue, area: true },
+                { key: 'forecast', name: t('exec.forecast'), color: C.amber, dash: true },
+              ]} />
+          ) : <Loading />}
+        </Panel>
+      </div>
+
+      {/* Device health + building energy POV */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1.3fr)', gap: 14, marginBottom: 14 }}>
+        <Panel title={t('exec.panel.criticalDevices')} sub={t('exec.panel.criticalDevicesSub')}
+          right={<StatusChip kind={criticalDevices.length ? 'danger' : 'success'}>{criticalDevices.length}</StatusChip>}>
+          <DataTable maxHeight={240}
+            columns={[
+              { key: 'name', label: t('exec.col.device') },
+              { key: 'building', label: t('exec.col.building') },
+              { key: 'health_pct', label: t('exec.col.health'), align: 'right', render: (v) => <b style={{ color: v < 40 ? 'var(--app-danger)' : 'var(--app-warning)' }}>{v}%</b> },
+              { key: 'status', label: t('exec.col.status'), render: (v) => <StatusChip kind={sevChip(v)}>{chip(v)}</StatusChip> },
+            ]}
+            rows={criticalDevices} />
+        </Panel>
+        <Panel title={t('exec.panel.energyByZone')} sub={t('exec.panel.energyByZoneSub')}>
+          {campus ? (
+            <TrendChart data={campus.energyByZone} x="hour" height={240} type="area" stacked
+              series={campus.zoneKeys.map((z, i) => ({ key: z, name: z, color: ZONE_COLORS[i % ZONE_COLORS.length] }))} />
+          ) : <Loading />}
+        </Panel>
+      </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1.6fr) minmax(0, 1fr)', gap: 14, marginBottom: 14 }}>
         <Panel title={t('cc.panel.occEnergy')} sub={t('cc.panel.occEnergySub')}>

@@ -4,21 +4,19 @@ import { ThemeToggle } from '../theme';
 import { useLang, LangToggle } from '../i18n';
 
 const ROLES = [
-  {
-    u: 'executive', key: 'role.executive', descKey: 'login.execDesc',
-    icon: ['M3 3v18h18', 'M7 14l3-4 3 3 5-7'],
-  },
-  {
-    u: 'superadmin', key: 'role.superadmin', descKey: 'login.adminDesc',
-    icon: ['M12 2l7 4v6c0 5-3.5 8-7 10-3.5-2-7-5-7-10V6z', 'M9 12l2 2 4-4'],
-  },
+  { u: 'executive', key: 'role.executive' },
+  { u: 'superadmin', key: 'role.superadmin' },
+  { u: 'academics', key: 'role.academics' },
+  { u: 'readiness', key: 'role.readiness' },
+  { u: 'finance', key: 'role.finance' },
+  { u: 'ithead', key: 'role.ithead' },
+  { u: 'security', key: 'role.security' },
+  { u: 'facility', key: 'role.facility' },
 ];
 
-// Demo credentials — picking a role in the password tab auto-fills these.
-const CREDS = {
-  executive: { username: 'executive', password: 'executive' },
-  superadmin: { username: 'superadmin', password: 'superadmin' },
-};
+// Demo credentials — every role's password matches its username; picking a
+// role in the password tab auto-fills the pair.
+const CREDS = Object.fromEntries(ROLES.map((r) => [r.u, { username: r.u, password: r.u }]));
 
 const inputStyle = {
   width: '100%', height: 44, borderRadius: 10, padding: '0 14px', fontFamily: 'inherit',

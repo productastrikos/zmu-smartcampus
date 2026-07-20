@@ -30,6 +30,15 @@ export const STANDALONE_MODULES = {
   sis: 'page.sis', lms: 'page.lms', merit: 'page.merit', 'cadet-journey': 'page.cadetJourney',
   hpo: 'page.hpo', military: 'page.military', conduct: 'page.conduct',
 };
+// Which roles may open which standalone modules (superadmin always may).
+const ACADEMIC_SLUGS = ['sis', 'lms', 'merit', 'cadet-journey'];
+const READINESS_SLUGS = ['hpo', 'military', 'conduct'];
+function canOpenStandalone(role, slug) {
+  if (role === 'superadmin') return true;
+  if (role === 'academics') return ACADEMIC_SLUGS.includes(slug);
+  if (role === 'readiness') return READINESS_SLUGS.includes(slug);
+  return false;
+}
 
 const AUTH_KEY = 'zmu_auth';
 
@@ -62,9 +71,11 @@ export default function App() {
   }
 
   // Standalone module tabs — rendered without the dashboard Layout so there's
-  // no path back to the dashboard. Super-Admin only.
+  // no path back to the dashboard. Super-Admin (all) + the academic/readiness
+  // heads (their own modules).
   if (location.pathname.startsWith('/standalone/')) {
-    if (user.role !== 'superadmin') return <Navigate to={homeFor(user.role)} replace />;
+    const slug = location.pathname.split('/standalone/')[1];
+    if (!canOpenStandalone(user.role, slug)) return <Navigate to={homeFor(user.role)} replace />;
     return (
       <Routes>
         <Route path="/standalone/sis" element={<StandaloneShell titleKey="page.sis"><SIS user={user} /></StandaloneShell>} />
@@ -82,8 +93,12 @@ export default function App() {
   return (
     <Layout user={user} onLogout={logout}>
       <Routes>
-        <Route path="/executive" element={<ExecutiveOverview user={user} />} />
-        <Route path="/" element={<CommandCenter />} />
+        {/* Content swapped per request: the Executive route now renders the
+            operational Command-Center view (exec's single screen, enriched),
+            and the Command Center route renders the high-level Executive view.
+            `titleKey` keeps each route's H1 matching its sidebar label. */}
+        <Route path="/executive" element={<CommandCenter user={user} titleKey="page.executive" />} />
+        <Route path="/" element={<ExecutiveOverview user={user} titleKey="page.command" />} />
         {/* <Route path="/digital-twin" element={<DigitalTwin />} /> old isometric-SVG twin */}
         <Route path="/digital-twin" element={<DigitalTwin2 />} />
         <Route path="/digital-twin-2" element={<DigitalTwin2 />} />
