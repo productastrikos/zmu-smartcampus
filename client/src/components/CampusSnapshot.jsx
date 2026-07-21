@@ -8,15 +8,11 @@ import roadsGeo from '../assets/geojson/roads.geojson';
  * CampusSnapshot — a small, self-contained "Digital Twin at a glance" widget
  * (executive-screen only). Renders the real campus boundary + building
  * footprints + roads as a static, projected SVG straight from the bundled
- * GeoJSON — no MapLibre instance, no tile CDN, so it's instant. Three
- * togglable feature layers on top of the static footprint:
- *   · Heatmap    — personnel-density blobs per real building centroid
- *   · Personnel  — small markers that actually move along the real road
- *                  network (native SVG SMIL animateMotion — no JS ticking)
- *   · Patrol     — a bright perimeter sweep + guard marker orbiting the
- *                  real campus boundary
- * All demo/illustrative (no live positioning feed exists yet) — same
- * "not a live BMS feed" honesty convention as the rest of the twin.
+ * GeoJSON — no MapLibre instance, no tile CDN, so it's instant. One togglable
+ * feature layer on top of the static footprint:
+ *   · Heatmap — personnel-density blobs per real building centroid
+ * Demo/illustrative (no live positioning feed exists yet) — same "not a live
+ * BMS feed" honesty convention as the rest of the twin.
  */
 function ringsOf(feature) {
   const g = feature.geometry;
@@ -33,12 +29,11 @@ function hash01(str) {
   return ((h >>> 0) % 10000) / 10000;
 }
 const densityColor = (v) => (v > 0.7 ? '#ef4444' : v > 0.4 ? '#f59e0b' : '#22c55e');
-const PERSON_COLORS = ['#22d3ee', '#a78bfa', '#f472b6', '#4ade80', '#fbbf24'];
 
 export default function CampusSnapshot({ height = 240 }) {
   const { t } = useLang();
   const [tick, setTick] = useState(0);
-  const [layers, setLayers] = useState({ heat: true, personnel: true, patrol: true });
+  const [layers, setLayers] = useState({ heat: true });
   useEffect(() => {
     const id = setInterval(() => setTick((n) => n + 1), 3500);
     return () => clearInterval(id);
@@ -68,10 +63,8 @@ export default function CampusSnapshot({ height = 240 }) {
       return `${i === 0 ? 'M' : 'L'}${x.toFixed(1)} ${y.toFixed(1)}`;
     }).join(' ') + (close ? ' Z' : '');
 
-    const boundaryPath = bRings.length ? toPath(bRings[0], true) : null;
-
     // roads sorted longest-first (by point count, a cheap length proxy) so
-    // personnel movement rides the more substantial roads, not tiny spurs
+    // the busier/main roads render, not every tiny spur
     const roadPaths = roadRings
       .map((r) => ({ path: toPath(r, false), pts: r.length }))
       .sort((a, b) => b.pts - a.pts)
@@ -90,7 +83,6 @@ export default function CampusSnapshot({ height = 240 }) {
     return {
       W, H,
       boundary: bRings.map((r) => toPath(r, true)),
-      boundaryPath,
       buildings: buildRings.map((r) => toPath(r, true)),
       roadPaths,
       heatPoints,
@@ -113,8 +105,6 @@ export default function CampusSnapshot({ height = 240 }) {
   const toggle = (key) => setLayers((l) => ({ ...l, [key]: !l[key] }));
   const CHIPS = [
     { key: 'heat', label: t('exec.twinLayerHeat') },
-    { key: 'personnel', label: t('exec.twinLayerPersonnel') },
-    { key: 'patrol', label: t('exec.twinLayerPatrol') },
   ];
 
   return (
@@ -138,8 +128,6 @@ export default function CampusSnapshot({ height = 240 }) {
                 <stop offset="100%" stopColor={densityColor(p.density)} stopOpacity="0" />
               </radialGradient>
             ))}
-            {model.roadPaths.map((d, i) => <path key={`roadDef${i}`} id={`cs-road-${i}`} d={d} fill="none" />)}
-            {model.boundaryPath && <path id="cs-boundary" d={model.boundaryPath} fill="none" />}
           </defs>
 
           <rect x="0" y="0" width={model.W} height={model.H} fill="url(#cs-glow)" />
@@ -167,36 +155,6 @@ export default function CampusSnapshot({ height = 240 }) {
           {model.buildings.map((d, i) => (
             <path key={`h${i}`} d={d} fill="rgba(59,125,232,0.35)" stroke="#5b8de0" strokeWidth="0.6" />
           ))}
-
-          {/* Patrol layer — a bright moving dash around the real perimeter plus
-              an orbiting guard marker (native SMIL, zero JS overhead) */}
-          {layers.patrol && model.boundaryPath && (
-            <>
-              <path d={model.boundaryPath} fill="none" stroke="#fbbf24" strokeWidth="1.6" strokeDasharray="3 14" opacity="0.85">
-                <animate attributeName="stroke-dashoffset" from="0" to="-17" dur="1s" repeatCount="indefinite" />
-              </path>
-              <circle r="4" fill="#fbbf24" stroke="#0a0f16" strokeWidth="1.2">
-                <animateMotion dur="22s" repeatCount="indefinite" rotate="auto">
-                  <mpath href="#cs-boundary" />
-                </animateMotion>
-              </circle>
-            </>
-          )}
-
-          {/* Personnel layer — small markers actually moving along the real
-              road network, staggered speeds/roads for a "live campus" feel */}
-          {layers.personnel && model.roadPaths.length > 0 && PERSON_COLORS.map((color, i) => {
-            const roadIdx = i % model.roadPaths.length;
-            const dur = 9 + i * 3.5;
-            const begin = i * 1.4;
-            return (
-              <circle key={`person${i}`} r="3" fill={color}>
-                <animateMotion dur={`${dur}s`} begin={`${begin}s`} repeatCount="indefinite">
-                  <mpath href={`#cs-road-${roadIdx}`} />
-                </animateMotion>
-              </circle>
-            );
-          })}
         </svg>
       )}
 

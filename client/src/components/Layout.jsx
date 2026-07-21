@@ -58,7 +58,7 @@ export const ROLE_ROUTES = {
   finance: ['/enterprise'],                                    // Finance Head
   ithead: ['/it-ops', '/iot', '/integration', '/security'],    // IT Head
   security: ['/incidents'],                                    // Security Head
-  facility: ['/digital-twin', '/it-ops'],                      // Facility Management Head
+  facility: ['/digital-twin', '/it-ops', '/campus-ops'],       // Facility Management Head
 };
 export const homeFor = (role) => (ROLE_ROUTES[role] ? ROLE_ROUTES[role][0] : '/');
 

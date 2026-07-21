@@ -14,18 +14,20 @@
  * Leave both empty ('') to render the built-in simulated feed.
  * Swap URLs here without touching any component code.
  *
- * NOTE: the three ScreenPal clips below are reused across the six tiles
- * (each appears twice) purely for the demo wall.
+ * Six local demo clips (client/public/videos/v1–v6.mp4), one per tile.
  */
-const V1 = 'https://go.screenpal.com/player/cOVY6QnrSe9?width=100%&height=100%&ff=1&title=0';
-const V2 = 'https://go.screenpal.com/player/cOVYQHnrRSz?width=100%&height=100%&ff=1&title=0';
-const V3 = 'https://go.screenpal.com/player/cOVYQmnrRSU?width=100%&height=100%&ff=1&title=0';
+const V1 = '/videos/v1.mp4';
+const V2 = '/videos/v2.mp4';
+const V3 = '/videos/v3.mp4';
+const V4 = '/videos/v4.mp4';
+const V5 = '/videos/v5.mp4';
+const V6 = '/videos/v6.mp4';
 
 export const CAMERA_GRID = [
-  { slot: 1, cameraId: 'CAM-01', embedUrl: V1, streamUrl: '' },
-  { slot: 2, cameraId: 'CAM-02', embedUrl: V2, streamUrl: '' },
-  { slot: 3, cameraId: 'CAM-03', embedUrl: V3, streamUrl: '' },
-  { slot: 4, cameraId: 'CAM-04', embedUrl: V1, streamUrl: '' },
-  { slot: 5, cameraId: 'CAM-05', embedUrl: V2, streamUrl: '' },
-  { slot: 6, cameraId: 'CAM-06', embedUrl: V3, streamUrl: '' },
+  { slot: 1, cameraId: 'CAM-01', embedUrl: '', streamUrl: V1 },
+  { slot: 2, cameraId: 'CAM-02', embedUrl: '', streamUrl: V2 },
+  { slot: 3, cameraId: 'CAM-03', embedUrl: '', streamUrl: V3 },
+  { slot: 4, cameraId: 'CAM-04', embedUrl: '', streamUrl: V4 },
+  { slot: 5, cameraId: 'CAM-05', embedUrl: '', streamUrl: V5 },
+  { slot: 6, cameraId: 'CAM-06', embedUrl: '', streamUrl: V6 },
 ];

@@ -4,7 +4,7 @@ import { Panel, Loading, PageHeader, StatusChip, sevChip, DataTable } from '../c
 import { TrendChart, Bars, RadarPanel, Donut, C, ZONE_COLORS } from '../components/charts';
 import KPICard, { IcoTarget, IcoHeart, IcoAlert, IcoCheck, IcoPeople, IcoActivity, IcoDollar, IcoWatch, IcoMoon } from '../components/KPICard';
 import KPIDetailPanel from '../components/KPIDetailPanel';
-import AppleWatchPanel from '../components/AppleWatchPanel';
+import SmartWatchPanel from '../components/SmartWatchPanel';
 import { useLang } from '../i18n';
 
 /* Executive Overview — a deliberately high-level, low-detail view for senior
@@ -194,9 +194,9 @@ export default function ExecutiveOverview({ titleKey }) {
           })} />
       </div>
 
-      {/* Apple Watch command-staff wellness + programme health */}
+      {/* Smart Watch command-staff wellness + programme health */}
       <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1.1fr) minmax(0, 1fr)', gap: 14, marginBottom: 14, alignItems: 'stretch' }}>
-        <AppleWatchPanel />
+        <SmartWatchPanel />
         <Panel title={t('exec.panel.programme')} sub={t('exec.panel.programmeSub')}>
           {data.domainStatus.map((d) => (
             <div key={d.key} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8, padding: '8px 2px', borderBottom: '1px solid var(--app-surface-raised)' }}>

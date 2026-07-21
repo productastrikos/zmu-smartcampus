@@ -133,8 +133,6 @@ const STR = {
   'exec.twinHigh': { en: 'High', ar: 'مرتفع' },
   'exec.twinAvg': { en: 'Avg density', ar: 'متوسط الكثافة' },
   'exec.twinLayerHeat': { en: 'Heatmap', ar: 'الخريطة الحرارية' },
-  'exec.twinLayerPersonnel': { en: 'Personnel', ar: 'الأفراد' },
-  'exec.twinLayerPatrol': { en: 'Patrol', ar: 'الدورية' },
   'exec.panel.readinessDomains': { en: 'Five Readiness Domains', ar: 'مجالات الجاهزية الخمسة' },
   'exec.panel.readinessDomainsSub': { en: 'HPO mandatory domains — cohort average', ar: 'المجالات الإلزامية لتحسين الأداء — متوسط الدفعة' },
   'exec.panel.companyShare': { en: 'Composite Readiness by Company', ar: 'الجاهزية المركّبة حسب السرية' },
@@ -176,9 +174,9 @@ const STR = {
   'exec.col.status': { en: 'Status', ar: 'الحالة' },
   'exec.forecast': { en: 'Forecast', ar: 'توقّع' },
   'exec.actual': { en: 'Actual', ar: 'فعلي' },
-  // Apple Watch — command-staff wellness
-  'exec.watch.title': { en: 'Apple Watch — Command Staff Wellness', ar: 'ساعة أبل — صحة كوادر القيادة' },
-  'exec.watch.sub': { en: 'Aggregate from Apple Watch devices issued to senior officers · Apple Health', ar: 'مُجمّع من أجهزة ساعة أبل الموزّعة على كبار الضباط · صحة أبل' },
+  // Smart Watch — command-staff wellness
+  'exec.watch.title': { en: 'Smart Watch — Command Staff Wellness', ar: 'الساعة الذكية — صحة كوادر القيادة' },
+  'exec.watch.sub': { en: 'Aggregate from smart watch devices issued to senior officers · wearable health platform', ar: 'مُجمّع من الساعات الذكية الموزّعة على كبار الضباط · منصة الصحة القابلة للارتداء' },
   'exec.watch.synced': { en: 'Synced', ar: 'مُزامن' },
   'exec.watch.move': { en: 'Move', ar: 'الحركة' },
   'exec.watch.exercise': { en: 'Exercise', ar: 'التمرين' },
