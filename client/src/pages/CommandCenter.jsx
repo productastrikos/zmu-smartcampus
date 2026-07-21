@@ -4,7 +4,6 @@ import KPICard, { IcoPeople, IcoTarget, IcoBolt, IcoAlert, IcoLink, IcoDollar, I
 import { Panel, StatusChip, sevChip, Loading, PageHeader, KPIGrid, DataTable, timeAgo } from '../components/ui';
 import { TrendChart, Bars, C, ZONE_COLORS } from '../components/charts';
 import KPIDetailPanel from '../components/KPIDetailPanel';
-import CampusSnapshot from '../components/CampusSnapshot';
 import { Link } from 'react-router-dom';
 import { useLang } from '../i18n';
 
@@ -198,12 +197,10 @@ export default function CommandCenter({ titleKey }) {
           })} />
       </KPIGrid>
 
-      {/* Executive-lens row — the live campus digital-twin snapshot (heatmap,
-          moving personnel, patrol) + top rankers */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1.35fr) minmax(0, 1fr)', gap: 14, marginBottom: 14, alignItems: 'stretch' }}>
-        <Panel title={t('exec.panel.twin')} sub={t('exec.panel.twinSub')}>
-          <CampusSnapshot height={248} />
-        </Panel>
+      {/* Top rankers — the digital-twin snapshot that used to sit alongside
+          this was removed; the full interactive twin is a real sidebar page
+          now (see Layout.jsx's ROLE_ROUTES), not just an executive preview. */}
+      <div style={{ marginBottom: 14 }}>
         <Panel title={t('exec.panel.topRankers')} sub={t('exec.panel.topRankersSub')}>
           <DataTable maxHeight={248}
             columns={[

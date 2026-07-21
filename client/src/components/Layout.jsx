@@ -52,7 +52,7 @@ const NAV = [
 /* RBAC — each restricted role's allow-list. First entry is that role's home.
    `superadmin` is intentionally absent → unrestricted (sees every route). */
 export const ROLE_ROUTES = {
-  executive: ['/executive'],                                   // exec-only screen, no DT
+  executive: ['/executive', '/digital-twin'],                  // exec screen + full Digital Twin
   academics: ['/academic'],                                    // Head of Academics
   readiness: ['/readiness'],                                   // Military Head
   finance: ['/enterprise'],                                    // Finance Head
