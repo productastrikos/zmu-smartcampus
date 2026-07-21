@@ -26,6 +26,14 @@ export function createProjection(anchor) {
       return [(lon - anchorLon) * mPerDegLon, (lat - anchorLat) * mPerDegLat];
     },
 
+    // Inverse of projectCoordinate: [eastMetres, northMetres] -> [lon, lat].
+    // Needed wherever a layer computes a position in local metres (e.g.
+    // CCTVLayer's road-road junctions, which have no source lon/lat of
+    // their own) but still has to report a real-world coordinate.
+    unprojectCoordinate(x, y) {
+      return [anchorLon + x / mPerDegLon, anchorLat + y / mPerDegLat];
+    },
+
     // The MapLibre-camera-matrix transform every Three.js custom layer's
     // render(gl, options) needs, applied in place to `camera`. Handles the
     // "world size" pixel-space scaling MapLibre v5's modelViewProjectionMatrix

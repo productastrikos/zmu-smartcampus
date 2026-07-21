@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { createProjection } from '../services/ProjectionService';
 import { makeGlassMaterial, makeEdgeMaterial, makeGlowEdgeMaterial, HOLO, HOLO_ENTERABLE } from '../materials/BuildingMaterial';
+import { tintGroup, defaultGlassOpacity } from '../materials/MetricTint';
 
 // Buildings with a real interior Digital Twin to enter on click — see
 // HOLO_ENTERABLE and Block3Viewer.jsx / BuildingDigitalTwin.tsx.
@@ -88,8 +89,10 @@ function applyVisualState(group, state) {
     edge.color.set(baseEdge);
     glow.color.set(baseEdge);
   } else {
-    glass.opacity = HOLO.glassOpacity;
-    glass.emissiveIntensity = HOLO.emissiveIntensity;
+    // Tint-aware defaults — with an analytics overlay active the building's
+    // threshold colour has to stay solid enough to read (see MetricTint.js).
+    glass.opacity = defaultGlassOpacity(group, HOLO.glassOpacity);
+    glass.emissiveIntensity = group.userData.metricTinted ? 0.62 : HOLO.emissiveIntensity;
     glass.color.set(baseGlass);
     glass.emissive.set(baseGlass);
     edge.color.set(baseEdge);
@@ -140,6 +143,17 @@ export function createBuildingsLayer({ id, anchor }) {
     },
 
     setVisible(v) { visible = v; },
+
+    // Analytics overlay hook — `colorFn(record) -> 0xRRGGBB` recolours every
+    // building by its threshold band; pass null to restore the normal
+    // holographic look. Hover/selection/fade all keep working unchanged.
+    setMetricTint(colorFn) {
+      for (const g of root.children) {
+        tintGroup(g, colorFn ? colorFn(g.userData.record) : null);
+        applyVisualState(g, g === selectedGroup ? 'selected' : selectedGroup ? 'faded' : g === hoveredGroup ? 'hover' : 'default');
+      }
+      mapRef?.triggerRepaint();
+    },
 
     // Raycast against the real building meshes at a canvas CSS-pixel
     // coordinate. Built manually with Vector3.unproject (camera-type

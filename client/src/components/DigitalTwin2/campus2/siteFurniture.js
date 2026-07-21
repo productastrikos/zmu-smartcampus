@@ -34,6 +34,24 @@ export function pointInRing([px, pz], ring) {
   return inside;
 }
 
+// Shortest distance from a point to a ring's boundary (not its interior) —
+// the exact clearance test for "is this marking safely inside the
+// footprint". An inward offsetRing() is NOT a safe substitute: its mitred
+// normals bulge back across the boundary at concave (reflex) corners, which
+// is exactly where a real digitized lot footprint has its notches.
+export function distanceToRing([px, py], ring) {
+  let best = Infinity;
+  for (let i = 0; i < ring.length; i++) {
+    const [x1, y1] = ring[i], [x2, y2] = ring[(i + 1) % ring.length];
+    const dx = x2 - x1, dy = y2 - y1;
+    const lenSq = dx * dx + dy * dy;
+    const t = lenSq ? Math.max(0, Math.min(1, ((px - x1) * dx + (py - y1) * dy) / lenSq)) : 0;
+    const d = Math.hypot(px - (x1 + t * dx), py - (y1 + t * dy));
+    if (d < best) best = d;
+  }
+  return best;
+}
+
 // Rotating-calipers oriented bounding box of a ring's convex hull — used to
 // align a parking bay grid / court markings to the real footprint's own
 // dominant edge direction instead of true-north, the way an actual site

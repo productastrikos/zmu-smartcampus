@@ -29,6 +29,18 @@ import { createLightingLayer, computeLightPositions } from '../components/Digita
 import { createSecurityLayer } from '../components/DigitalTwin2/components/SecurityLayer';
 import { createGateLayer } from '../components/DigitalTwin2/components/GateLayer';
 import { createCCTVLayer } from '../components/DigitalTwin2/components/CCTVLayer';
+import CameraPanel from '../components/DigitalTwin2/ui/CameraPanel';
+import CameraPopup from '../components/DigitalTwin2/ui/CameraPopup';
+import MetricLegend from '../components/DigitalTwin2/ui/MetricLegend';
+import {
+  OVERLAYS, readBuildingMetrics, overlayColor, overlayValue, overlayReadout, bandFor, makeAQIStations,
+} from '../components/DigitalTwin2/data/campusMetrics';
+import { summariseCameraHealth } from '../components/DigitalTwin2/data/cameraRegistry';
+import { addAQIPlumeLayer, setAQIPlumeVisible } from '../components/DigitalTwin2/layers/AQIPlumeLayer';
+import {
+  addCameraMarkerLayer, setCameraMarkers, setCameraMarkersVisible,
+  setSelectedCameraMarker, pickCameraMarker,
+} from '../components/DigitalTwin2/layers/CameraMarkerLayer';
 import { addPatrolRouteLayer, PATROL_ROUTE_LAYER_IDS, createPatrolMarkerLayer } from '../components/DigitalTwin2/components/PatrolLayer';
 import SecurityAlerts from '../components/DigitalTwin2/components/SecurityAlerts';
 import { createPersonnelLayer } from '../components/DigitalTwin2/components/PersonnelLayer';
@@ -155,18 +167,23 @@ function setNativeLayerVisible(map, key, visible) {
 // placeInactivePerson/generateRoster need) for scattering the same
 // personnel-tracking green/red dots across Campus 2, from its own real
 // building footprints (star complex solids + the two extra-buildings sets).
+// `id` is carried too (it isn't needed by the roster, which only reads
+// centroid/display_name) so the same list can seed Campus 2's CCTV cameras
+// and its AQI monitoring stations — both of which derive stable per-record
+// values from the id, see data/campusMetrics.js and data/cameraRegistry.js.
 function campus2BuildingsForRoster() {
   const list = [];
+  const push = (f, prefix) => list.push({
+    id: `CAMPUS2-${prefix}-${f.properties?.name}`,
+    centroid: polygonCentroidLonLat(f.geometry.coordinates[0]),
+    display_name: f.properties.name,
+  });
   for (const f of campus2Building?.features || []) {
     if (f.properties?.role !== 'solid') continue;
-    list.push({ centroid: polygonCentroidLonLat(f.geometry.coordinates[0]), display_name: f.properties.name });
+    push(f, 'plaza');
   }
-  for (const f of campus2ExtraBuildings?.features || []) {
-    list.push({ centroid: polygonCentroidLonLat(f.geometry.coordinates[0]), display_name: f.properties.name });
-  }
-  for (const f of campus2Buildings02?.features || []) {
-    list.push({ centroid: polygonCentroidLonLat(f.geometry.coordinates[0]), display_name: f.properties.name });
-  }
+  for (const f of campus2ExtraBuildings?.features || []) push(f, 'extra');
+  for (const f of campus2Buildings02?.features || []) push(f, 'buildings02');
   return list;
 }
 
@@ -205,6 +222,7 @@ export default function DigitalTwin2() {
   const cancelOrbitRef = useRef(null);
   const selectedRef = useRef(null);
   const selectedPersonRef = useRef(null);
+  const selectedCameraRef = useRef(null);
   const breachFlownRef = useRef(false);
 
   const { data: gis, loading: gisLoading, error: gisError } = useGIS();
@@ -235,6 +253,16 @@ export default function DigitalTwin2() {
   const [simulating, setSimulating] = useState(false);
   const [hoveredPerson, setHoveredPerson] = useState(null); // { id, x, y }
   const [selectedPersonId, setSelectedPersonId] = useState(null);
+  const [hoveredCamera, setHoveredCamera] = useState(null); // { camera, x, y }
+  const [selectedCamera, setSelectedCamera] = useState(null); // camera record
+  const [cameraAnchor, setCameraAnchor] = useState(null); // selected camera's screen position, for the popup
+  const [cameraHealth, setCameraHealth] = useState(null); // fleet roll-up for the Layers panel
+  // Camera filter facets — an empty Set means "no filter on this facet".
+  const [cameraFilter, setCameraFilter] = useState({ statuses: new Set(), kinds: new Set(), campuses: new Set() });
+  // Which environmental/utility analytics overlay is recolouring the
+  // buildings — 'aqi' | 'water' | 'power' | null. Exclusive by design: they
+  // all tint the same meshes (see LayerControl.jsx's ANALYTICS_OVERLAYS).
+  const [analyticsOverlay, setAnalyticsOverlay] = useState(null);
   const [, setLiveTick] = useState(0); // forces a re-render each second so hovered/selected personnel show fresh telemetry
 
   // 1. mount the map once
@@ -513,8 +541,25 @@ export default function DigitalTwin2() {
     securityLayer.setSecurity({ buildings, boundary: gis.boundary });
     gateLayer.setGate(gateBuilding);
     cctvLayer.setCCTV({ buildings, roads: gis.roads, parking: gis.parking, sportsfields: gis.sportsfields, grounds: gis.grounds, boundary: gis.boundary });
+    // Campus 2 gets the same camera network from its own real building
+    // centroids, so the second site isn't a CCTV blind spot.
+    const campus2Candidates = campus2BuildingsForRoster();
+    cctvLayer.setCampus2Cameras(campus2Candidates);
+    setCameraHealth({ ...summariseCameraHealth(cctvLayer.getCameras()), shown: cctvLayer.getCameras().length });
+
     patrolMarkerLayer.setRoutes(gis.boundary);
     addBuildingLabelsLayer(map, buildings);
+
+    // Air-quality affected-area plume — a native MapLibre heatmap over the
+    // real monitoring-station points, added LAST so it paints above the
+    // 3-D layers the way an air-quality overlay reads. Starts hidden; the
+    // Environment & Utilities overlay picker turns it on.
+    addAQIPlumeLayer(map, makeAQIStations([buildings, campus2Candidates]), { visible: false });
+
+    // Camera map icons — added last so they sit above every other layer,
+    // including the AQI plume. These, not the 3-D camera geometry, are what
+    // the operator actually sees and clicks at campus zoom.
+    addCameraMarkerLayer(map, cctvLayer.getCameras(), { visible: visibility.cctv });
 
     // Open on BOTH campuses in view (same fit the "Zoom to fit" button
     // does) rather than a hardcoded close-in zoom level or Campus 1 alone —
@@ -579,6 +624,8 @@ export default function DigitalTwin2() {
       if (person) {
         for (const l of buildingPickLayers) l.setHoveredId(null);
         setHovered(null);
+        cctvLayer.setHoveredId(null);
+        setHoveredCamera(null);
         personnelLayer.setHoveredId(person.id);
         map.getCanvas().style.cursor = 'pointer';
         setHoveredPerson({ id: person.id, x: clientX, y: clientY });
@@ -586,6 +633,24 @@ export default function DigitalTwin2() {
       }
       personnelLayer.setHoveredId(null);
       setHoveredPerson(null);
+
+      // Cameras before buildings — a camera icon sits on top of the
+      // building it watches, so the building mesh behind it would otherwise
+      // always win. Picked off the marker symbol layer (a generous 6 px
+      // box) rather than by raycasting the 3-D camera, which was both
+      // fiddly to hit and gated to zoom ≥ 16.5.
+      const cam = cctvLayer.getCamera(pickCameraMarker(map, e.point));
+      if (cam) {
+        for (const l of buildingPickLayers) l.setHoveredId(null);
+        setHovered(null);
+        cctvLayer.setHoveredId(cam.id);
+        map.getCanvas().style.cursor = 'pointer';
+        setHoveredCamera({ camera: cam, x: clientX, y: clientY });
+        return;
+      }
+      cctvLayer.setHoveredId(null);
+      setHoveredCamera(null);
+
       let rec = null;
       for (const l of buildingPickLayers) {
         rec = l.pickAt(clientX, clientY);
@@ -618,11 +683,40 @@ export default function DigitalTwin2() {
         selectedRef.current = null;
         setBlock3Open(false);
         setAdminBlockOpen(false);
+        cctvLayer.setSelectedId(null);
+        setSelectedCamera(null);
+        selectedCameraRef.current = null;
         personnelLayer.setSelectedId(person.id);
         setSelectedPersonId(person.id);
         selectedPersonRef.current = person.id;
         return;
       }
+
+      // A camera click opens its feed + health panel. Unlike a building or
+      // a person it does NOT fly/orbit the camera — the operator wants to
+      // keep the surrounding scene in view while watching the feed.
+      const cam = cctvLayer.getCamera(pickCameraMarker(map, e.point));
+      if (cam) {
+        // Stop any building/person orbit still running and drop the saved
+        // pre-selection view — the map deliberately stays where it is, so
+        // there's nothing left to restore later.
+        cancelOrbitRef.current?.();
+        cancelOrbitRef.current = null;
+        savedCameraRef.current = null;
+        for (const l of buildingPickLayers) l.setSelectedId(null);
+        setSelected(null);
+        selectedRef.current = null;
+        setBlock3Open(false);
+        setAdminBlockOpen(false);
+        personnelLayer.setSelectedId(null);
+        setSelectedPersonId(null);
+        selectedPersonRef.current = null;
+        cctvLayer.setSelectedId(cam.id);
+        setSelectedCamera(cam);
+        selectedCameraRef.current = cam.id;
+        return;
+      }
+
       let rec = null, hitLayer = null;
       for (const l of buildingPickLayers) {
         rec = l.pickAt(clientX, clientY);
@@ -632,6 +726,9 @@ export default function DigitalTwin2() {
       if (!selectedRef.current && !selectedPersonRef.current) savedCameraRef.current = captureCameraState(map);
       cancelOrbitRef.current?.();
       cancelOrbitRef.current = orbitToBuilding(map, rec);
+      cctvLayer.setSelectedId(null);
+      setSelectedCamera(null);
+      selectedCameraRef.current = null;
       personnelLayer.setSelectedId(null);
       setSelectedPersonId(null);
       selectedPersonRef.current = null;
@@ -672,6 +769,9 @@ export default function DigitalTwin2() {
     personnelLayerRef.current?.setSelectedId(null);
     setSelectedPersonId(null);
     selectedPersonRef.current = null;
+    cctvLayerRef.current?.setSelectedId(null);
+    setSelectedCamera(null);
+    selectedCameraRef.current = null;
   }
 
   useEffect(() => {
@@ -691,28 +791,137 @@ export default function DigitalTwin2() {
     return () => clearInterval(t);
   }, [hoveredPerson, selectedPersonId]);
 
+  // Camera filter — pushes the facets into the layer, then reconciles the
+  // UI with what actually survived (a selected/hovered camera that has just
+  // been filtered away must not keep its popup open).
+  useEffect(() => {
+    if (!sceneReady) return;
+    const layer = cctvLayerRef.current;
+    if (!layer) return;
+    const remaining = layer.setFilter(cameraFilter);
+    // The markers are the visible fleet — rebuilt from what survived the
+    // filter, so a filtered-out camera can't be left clickable on the map.
+    setCameraMarkers(mapRef.current, layer.getVisibleCameras());
+    setCameraHealth({ ...summariseCameraHealth(layer.getCameras()), shown: remaining.length });
+    setSelectedCamera((prev) => {
+      if (prev && !remaining.includes(prev.id)) { selectedCameraRef.current = null; return null; }
+      return prev;
+    });
+    setHoveredCamera((prev) => (prev && !remaining.includes(prev.camera.id) ? null : prev));
+  }, [cameraFilter, sceneReady]);
+
+  // Selection ring on the map icon — driven off the selected record rather
+  // than set at each of the several call sites that can clear a selection,
+  // so the ring can never be left behind on a deselected camera.
+  useEffect(() => {
+    if (sceneReady && mapRef.current) setSelectedCameraMarker(mapRef.current, selectedCamera?.id || null);
+  }, [selectedCamera, sceneReady]);
+
+  // Keep the camera popup pinned to its camera as the map pans/zooms/rotates.
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!selectedCamera || !map || !selectedCamera.lonLat) { setCameraAnchor(null); return; }
+    const update = () => {
+      const p = map.project(selectedCamera.lonLat);
+      setCameraAnchor({ x: p.x, y: p.y });
+    };
+    update();
+    map.on('move', update);
+    map.on('rotate', update);
+    return () => { map.off('move', update); map.off('rotate', update); };
+  }, [selectedCamera]);
+
+  // Air quality is a ground-level field, and the 3-D building masses sit
+  // right on top of it — with them up, the plume is mostly hidden behind
+  // walls and roofs. So the building meshes (and their labels) are
+  // suppressed for the duration of the AQI overlay. The Layers-panel
+  // checkboxes keep their own state untouched and are honoured again the
+  // moment AQI is switched off; this is the single place both that
+  // suppression and the normal toggles resolve, so the two can't disagree.
+  function applyBuildingVisibility(vis, overlay) {
+    const map = mapRef.current;
+    const suppressed = overlay === 'aqi';
+    buildingsLayerRef.current?.setVisible(!suppressed && !!vis.buildings);
+    const c2 = !suppressed && !!vis.campus2;
+    campus2BuildingLayerRef.current?.setVisible(c2);
+    campus2ExtraBuildingsLayerRef.current?.setVisible(c2);
+    campus2Buildings02LayerRef.current?.setVisible(c2);
+    if (map?.getLayer(LABEL_LAYER_ID)) {
+      map.setLayoutProperty(LABEL_LAYER_ID, 'visibility', !suppressed && vis.buildings ? 'visible' : 'none');
+    }
+  }
+
+  // Environment & Utilities overlay — recolours every building layer by the
+  // selected metric's threshold band, and (AQI only) reveals the
+  // affected-area plume while standing the buildings down. One effect
+  // drives all of it so turning an overlay on/off can never leave half the
+  // campus tinted or half of it hidden.
+  useEffect(() => {
+    if (!sceneReady) return;
+    const map = mapRef.current;
+    if (!map) return;
+    const colorFn = analyticsOverlay ? (record) => overlayColor(analyticsOverlay, record) : null;
+    for (const ref of [buildingsLayerRef, campus2BuildingLayerRef, campus2ExtraBuildingsLayerRef, campus2Buildings02LayerRef]) {
+      ref.current?.setMetricTint(colorFn);
+    }
+    setAQIPlumeVisible(map, analyticsOverlay === 'aqi');
+    applyBuildingVisibility(visibility, analyticsOverlay);
+    map.triggerRepaint();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [analyticsOverlay, sceneReady]);
+
+  // Peak reading across every building, for the legend's "Peak:" line —
+  // recomputed only when the overlay or the loaded buildings change.
+  const overlaySummary = React.useMemo(() => {
+    if (!analyticsOverlay || !buildings.length) return null;
+    const all = [...buildings, ...campus2BuildingsForRoster()];
+    let worst = null;
+    for (const b of all) {
+      const value = overlayValue(analyticsOverlay, readBuildingMetrics(b));
+      if (!worst || value > worst.value) worst = { value, label: b.display_name };
+    }
+    const band = worst ? bandFor(analyticsOverlay, worst.value) : null;
+    return {
+      stations: Math.ceil(all.length / 3),
+      worst: worst && { label: worst.label, css: band.css, readout: overlayReadout(analyticsOverlay, { [analyticsOverlay]: { value: worst.value } }) },
+    };
+  }, [analyticsOverlay, buildings]);
+
   function toggleLayer(key) {
     setVisibility((prev) => {
       const next = { ...prev, [key]: !prev[key] };
       const map = mapRef.current;
       if (map) {
         setNativeLayerVisible(map, key, next[key]);
-        if (key === 'buildings') buildingsLayerRef.current?.setVisible(next[key]);
+        // Building meshes resolve through applyBuildingVisibility so the
+        // AQI overlay's suppression isn't undone by a checkbox click.
+        if (key === 'buildings' || key === 'campus2') applyBuildingVisibility(next, analyticsOverlay);
         if (key === 'trees') treeLayerRef.current?.setVisible(next[key]);
         if (key === 'sportsfields') footballLayerRef.current?.setVisible(next[key]);
         if (key === 'fences') fenceLayerRef.current?.setVisible(next[key]);
         if (key === 'walkways') pedestrianLayerRef.current?.setVisible(next[key]);
         if (key === 'security_lighting') lightingLayerRef.current?.setVisible(next[key]);
         if (key === 'security') { securityLayerRef.current?.setVisible(next[key]); gateLayerRef.current?.setVisible(next[key]); }
-        if (key === 'cctv') cctvLayerRef.current?.setVisible(next[key]);
+        if (key === 'cctv') {
+          cctvLayerRef.current?.setVisible(next[key]);
+          setCameraMarkersVisible(map, next[key]);
+          // Hiding the layer has to drop any open camera panel/tooltip too,
+          // otherwise the feed keeps playing for a camera that's no longer
+          // on the map.
+          if (!next[key]) {
+            cctvLayerRef.current?.setSelectedId(null);
+            cctvLayerRef.current?.setHoveredId(null);
+            setSelectedCamera(null);
+            selectedCameraRef.current = null;
+            setHoveredCamera(null);
+          }
+        }
         if (key === 'patrol') patrolMarkerLayerRef.current?.setVisible(next[key]);
         if (key === 'personnel') personnelLayerRef.current?.setVisible(next[key]);
         if (key === 'campus2') {
+          // Building meshes were already handled by applyBuildingVisibility above.
           campus2BoundaryLayerRef.current?.setVisible(next[key]);
           campus2FenceLayerRef.current?.setVisible(next[key]);
-          campus2BuildingLayerRef.current?.setVisible(next[key]);
-          campus2ExtraBuildingsLayerRef.current?.setVisible(next[key]);
-          campus2Buildings02LayerRef.current?.setVisible(next[key]);
           campus2CircleLayerRef.current?.setVisible(next[key]);
         }
         if (key === 'campus2_roads') { campus2RoadLayerRef.current?.setVisible(next[key]); campus2RoundaboutLayerRef.current?.setVisible(next[key]); }
@@ -783,7 +992,30 @@ export default function DigitalTwin2() {
         futureVisibility={futureVisibility}
         onToggleFuture={toggleFuture}
         onZoomToFit={handleZoomToFit}
+        analyticsOverlay={analyticsOverlay}
+        onSelectOverlay={setAnalyticsOverlay}
+        cameraHealth={cameraHealth}
+        cameraFilter={cameraFilter}
+        onCameraFilterChange={setCameraFilter}
       />
+
+      <MetricLegend overlayKey={analyticsOverlay} summary={overlaySummary} />
+
+      {selectedCamera && (
+        <CameraPanel
+          camera={selectedCamera}
+          anchor={cameraAnchor}
+          onClose={() => {
+            cctvLayerRef.current?.setSelectedId(null);
+            setSelectedCamera(null);
+            selectedCameraRef.current = null;
+          }}
+        />
+      )}
+
+      {hoveredCamera && hoveredCamera.camera.id !== selectedCamera?.id && (
+        <CameraPopup camera={hoveredCamera.camera} x={hoveredCamera.x} y={hoveredCamera.y} />
+      )}
       {/* Map legend (colour key) panel — commented out for now, not deleted.
           <MapLegend /> */}
       {/* Security Alerts (Demo) panel — commented out for now, not deleted.
@@ -817,6 +1049,11 @@ export default function DigitalTwin2() {
 
       {hovered && !selected && (() => {
         const demo = demoTooltipFields(hovered.building);
+        // With an analytics overlay active, the hovered building's actual
+        // reading + threshold band — otherwise the colour tint alone can't
+        // tell you *how far* over the threshold a building is.
+        const metrics = analyticsOverlay ? readBuildingMetrics(hovered.building) : null;
+        const band = metrics ? bandFor(analyticsOverlay, overlayValue(analyticsOverlay, metrics)) : null;
         return (
           <div style={{
             position: 'fixed', left: hovered.x + 14, top: hovered.y + 14, zIndex: 7,
@@ -829,11 +1066,36 @@ export default function DigitalTwin2() {
             <div style={{ color: 'rgba(220,240,250,0.7)', fontSize: 10, marginTop: 3 }}>
               {hovered.building.height?.toFixed(1)} m · {hovered.building.gross_area?.toLocaleString()} m²
             </div>
-            <div style={{ borderTop: '1px solid rgba(77,226,255,0.15)', marginTop: 6, paddingTop: 5, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2px 10px' }}>
-              {[['Dept', demo.department], ['Status', demo.status], ['Power', demo.power], ['HVAC', demo.hvac], ['Temp', demo.temperature], ['Occ.', demo.occupancy]].map(([k, v]) => (
-                <div key={k} style={{ fontSize: 9.5, color: 'rgba(220,240,250,0.55)' }}>{k}: <span style={{ color: '#e8f4fb' }}>{v}</span></div>
-              ))}
-            </div>
+            {/* With no overlay active this is the general building
+                snapshot. With one active it is REPLACED by that overlay's
+                own reading below — showing the generic grid's demo "Power"
+                row next to a Water overlay reading made it ambiguous which
+                metric the colour on the map actually meant. */}
+            {!metrics && (
+              <div style={{ borderTop: '1px solid rgba(77,226,255,0.15)', marginTop: 6, paddingTop: 5, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2px 10px' }}>
+                {[['Dept', demo.department], ['Status', demo.status], ['Power', demo.power], ['HVAC', demo.hvac], ['Temp', demo.temperature], ['Occ.', demo.occupancy]].map(([k, v]) => (
+                  <div key={k} style={{ fontSize: 9.5, color: 'rgba(220,240,250,0.55)' }}>{k}: <span style={{ color: '#e8f4fb' }}>{v}</span></div>
+                ))}
+              </div>
+            )}
+            {metrics && (
+              <div style={{ borderTop: `1px solid ${band.css}44`, marginTop: 6, paddingTop: 5 }}>
+                <div style={{ fontSize: 9, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(220,240,250,0.45)' }}>
+                  {OVERLAYS[analyticsOverlay].label}
+                </div>
+                <div style={{ display: 'flex', alignItems: 'baseline', gap: 7, marginTop: 2 }}>
+                  <span style={{ fontSize: 15, fontWeight: 800, color: band.css }}>
+                    {overlayReadout(analyticsOverlay, metrics)}
+                  </span>
+                  <span style={{ fontSize: 9.5, color: band.css, fontWeight: 700 }}>{band.label}</span>
+                </div>
+                <div style={{ fontSize: 9.5, color: 'rgba(220,240,250,0.6)', marginTop: 2 }}>
+                  {analyticsOverlay === 'power' && `${metrics.power.dailyKwh.toLocaleString()} kWh/day · ${metrics.power.demandKw} kW of ${metrics.power.connectedLoadKw} kW`}
+                  {analyticsOverlay === 'water' && `${metrics.water.dailyM3} m³/day of ${metrics.water.permittedM3} m³ · ${metrics.water.intensity} L/m²`}
+                  {analyticsOverlay === 'aqi' && `PM2.5 ${metrics.aqi.pm25} µg/m³ · PM10 ${metrics.aqi.pm10} µg/m³ · CO₂ ${metrics.aqi.co2} ppm`}
+                </div>
+              </div>
+            )}
             <div style={{ fontSize: 8.5, color: 'rgba(220,240,250,0.35)', marginTop: 4 }}>demo values — no live BMS feed</div>
           </div>
         );

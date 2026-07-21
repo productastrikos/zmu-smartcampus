@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { createProjection } from '../services/ProjectionService';
 import { makeGlassMaterial, makeEdgeMaterial, makeGlowEdgeMaterial, HOLO } from '../materials/BuildingMaterial';
+import { tintGroup, defaultGlassOpacity } from '../materials/MetricTint';
 import { shapeCampus2Building } from './buildingRecord';
 
 // Campus 2's central star-shaped academic building complex
@@ -82,7 +83,11 @@ function applyVisualState(group, state) {
     edge.color.set(baseEdge);
     glow.color.set(baseEdge);
   } else {
-    glass.opacity = 0.55; // this layer's own local opacity override, not HOLO.glassOpacity
+    // 0.55 is this layer's own local opacity override, not HOLO.glassOpacity;
+    // an active analytics overlay raises it further so the threshold colour
+    // reads solidly (see MetricTint.js).
+    glass.opacity = defaultGlassOpacity(group, 0.55);
+    glass.emissiveIntensity = group.userData.metricTinted ? 0.62 : HOLO.emissiveIntensity;
     glass.color.set(baseGlass);
     glass.emissive.set(baseGlass);
     edge.color.set(baseEdge);
@@ -202,6 +207,15 @@ export function createCampus2BuildingLayer({ id, anchor }) {
     },
 
     setVisible(v) { visible = v; },
+
+    // Analytics overlay hook — see BuildingLayer.jsx's setMetricTint.
+    setMetricTint(colorFn) {
+      for (const g of root.children) {
+        tintGroup(g, colorFn ? colorFn(g.userData.record) : null);
+        applyVisualState(g, g === selectedGroup ? 'selected' : selectedGroup ? 'faded' : g === hoveredGroup ? 'hover' : 'default');
+      }
+      mapRef?.triggerRepaint();
+    },
 
     // See BuildingLayer.jsx's pickAt for why this uses manual
     // Vector3.unproject rather than raycaster.setFromCamera.
