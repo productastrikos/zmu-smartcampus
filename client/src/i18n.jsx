@@ -61,6 +61,8 @@ const STR = {
   'role.ithead': { en: 'IT Head', ar: 'رئيس تقنية المعلومات' },
   'role.security': { en: 'Security Head', ar: 'رئيس الأمن' },
   'role.facility': { en: 'Facility Management Head', ar: 'رئيس إدارة المرافق' },
+  'role.squadron1': { en: 'Squadron Leader 1', ar: 'قائد السرب ١' },
+  'role.squadron2': { en: 'Squadron Leader 2', ar: 'قائد السرب ٢' },
 
   // ── login ──
   'login.title': { en: 'Sign in', ar: 'تسجيل الدخول' },

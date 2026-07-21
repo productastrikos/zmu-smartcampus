@@ -12,6 +12,8 @@ const ROLES = [
   { u: 'ithead', key: 'role.ithead' },
   { u: 'security', key: 'role.security' },
   { u: 'facility', key: 'role.facility' },
+  { u: 'squadron1', key: 'role.squadron1' },
+  { u: 'squadron2', key: 'role.squadron2' },
 ];
 
 // Demo credentials — every role's password matches its username; picking a

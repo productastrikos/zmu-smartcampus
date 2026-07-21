@@ -729,7 +729,7 @@ export default function BuildingDigitalTwin({ onClose }: BuildingDigitalTwinProp
         <div className="bdt__header-left">
           <span className="bdt__header-icon">🏢</span>
           <div>
-            <div className="bdt__header-title">Meridian University · Admin Block</div>
+            <div className="bdt__header-title">Zayed Military University · Admin Block</div>
             <div className="bdt__header-sub">Central Campus · Smart Building Digital Twin · EcoStruxure™ Platform</div>
           </div>
         </div>

@@ -1,5 +1,5 @@
 /**
- * NestBuilding3D — Meridian University · Admin Block 3D Digital Twin
+ * NestBuilding3D — Zayed Military University · Admin Block 3D Digital Twin
  *
  * U-shaped horseshoe: left wing + back connector + right wing (curved SE corner)
  * Opening faces south (front). Realistic facade — no bright cartoon colours.
@@ -1916,19 +1916,19 @@ export default function NestBuilding3D({
     ctx.fillStyle = '#f0f4f8';
     ctx.textBaseline = 'top';
     ctx.textAlign = 'center';
-    ctx.fillText('M', 75, 32);
+    ctx.fillText('Z', 75, 32);
     ctx.textAlign = 'left';
 
-    // "Meridian" — bold, large, dark grey
-    ctx.font = 'bold 68px "Arial", sans-serif';
+    // "Zayed Military" — bold, large, dark grey
+    ctx.font = 'bold 60px "Arial", sans-serif';
     ctx.fillStyle = '#1a2230';
     ctx.textBaseline = 'top';
-    ctx.fillText('Meridian', 140, 12);
+    ctx.fillText('Zayed Military', 140, 16);
 
     // "University" — lighter weight, slightly smaller, mustard accent
     ctx.font = '500 52px "Arial", sans-serif';
     ctx.fillStyle = '#b8842a';
-    ctx.fillText('University', 140, 82);
+    ctx.fillText('University', 140, 84);
 
     // "ADMIN BLOCK" tag — right side, small caps style
     ctx.font = 'bold 30px "Arial", sans-serif';

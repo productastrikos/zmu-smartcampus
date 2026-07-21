@@ -25,6 +25,8 @@ function registerExt(app, express, db) {
     ithead: { username: 'ithead', password: 'ithead', role: 'ithead', name: 'IT Head' },
     security: { username: 'security', password: 'security', role: 'security', name: 'Security Head' },
     facility: { username: 'facility', password: 'facility', role: 'facility', name: 'Facility Management Head' },
+    squadron1: { username: 'squadron1', password: 'squadron1', role: 'squadron1', name: 'Squadron Leader 1' },
+    squadron2: { username: 'squadron2', password: 'squadron2', role: 'squadron2', name: 'Squadron Leader 2' },
   };
   app.post('/api/auth/login', express.json(), (req, res) => {
     const { username, password, role } = req.body || {};
@@ -195,7 +197,21 @@ function registerExt(app, express, db) {
   }];
   const currentWeights = () => weightVersions[weightVersions.length - 1].weights;
 
-  const scopeCadets = (college) => (college && college !== 'ALL' ? extCadets.filter((c) => c.college_code === college) : extCadets);
+  // Squadron scoping — the client appends ?squads=Falcon,Oryx for a squadron
+  // leader; the extended modules filter their cadet roster by company so a
+  // leader only ever sees their own cadets (in sync with the dashboard).
+  const squadSetOf = (req) => {
+    const raw = req && req.query && req.query.squads;
+    if (!raw) return null;
+    const s = new Set(String(raw).split(',').map((x) => x.trim()).filter(Boolean));
+    return s.size ? s : null;
+  };
+  const scopeCadets = (college, req) => {
+    let list = (college && college !== 'ALL') ? extCadets.filter((c) => c.college_code === college) : extCadets;
+    const sq = squadSetOf(req);
+    if (sq) list = list.filter((c) => sq.has(c.company));
+    return list;
+  };
   const gradePctOf = (id) => {
     const rs = registrations.filter((r) => r.student_id === id && r.grade_pct != null);
     return rs.length ? rs.reduce((s, r) => s + r.grade_pct, 0) / rs.length : null;
@@ -211,7 +227,7 @@ function registerExt(app, express, db) {
     const academicPct = gradePctOf(c.id) ?? 70;
     return round1((w.academic * academicPct + w.military * (c.military?.score ?? 0) + w.fitness * (c.fitness?.score ?? 0) + w.conduct * (c.conduct?.score ?? 0)) / 100);
   };
-  const meritTable = (college) => scopeCadets(college)
+  const meritTable = (college, req) => scopeCadets(college, req)
     .map((c) => ({
       id: c.id, name: c.name, company: c.company, year: c.year,
       college_code: c.college_code, tenant: c.college_label,
@@ -243,7 +259,7 @@ function registerExt(app, express, db) {
 
   app.get('/api/ext/sis', (req, res) => {
     const college = req.query.college || 'ALL';
-    const cs = scopeCadets(college);
+    const cs = scopeCadets(college, req);
     const ids = new Set(cs.map((c) => c.id));
     const secs = college === 'ALL' ? sections : sections.filter((s) => s.college_code === college);
     const regs = registrations.filter((r) => ids.has(r.student_id));
@@ -251,7 +267,8 @@ function registerExt(app, express, db) {
     const dist = { A: 0, B: 0, C: 0, D: 0, F: 0 };
     graded.forEach((r) => { dist[r.grade_pct >= 90 ? 'A' : r.grade_pct >= 80 ? 'B' : r.grade_pct >= 70 ? 'C' : r.grade_pct >= 60 ? 'D' : 'F']++; });
     const gpas = cs.map((c) => gpaOf(c.id)).filter((g) => g != null);
-    const enrolByCollege = colleges.map((cl) => ({ code: cl.code, tenant: cl.tenant, name: cl.name, students: extCadets.filter((c) => c.college_code === cl.code).length, sections: sections.filter((s) => s.college_code === cl.code).length }));
+    const squadAll = scopeCadets('ALL', req); // squad-scoped across every college
+    const enrolByCollege = colleges.map((cl) => ({ code: cl.code, tenant: cl.tenant, name: cl.name, students: squadAll.filter((c) => c.college_code === cl.code).length, sections: sections.filter((s) => s.college_code === cl.code).length }));
     const secEnrol = secs.map((s) => ({ ...s, enrolled: registrations.filter((r) => r.course_code === s.course_code && ids.has(r.student_id)).length }));
     const holdRows = [...holds.entries()].filter(([id]) => ids.has(id)).map(([id, h]) => ({ ...h, ...(({ name, company, college_code }) => ({ name, company, college_code }))(byId.get(id)), student_id: id }));
     res.json({
@@ -278,7 +295,7 @@ function registerExt(app, express, db) {
 
   app.get('/api/ext/students', (req, res) => {
     const college = req.query.college || 'ALL';
-    res.json(scopeCadets(college).map((c) => ({
+    res.json(scopeCadets(college, req).map((c) => ({
       id: c.id, username: c.username, name: c.name, company: c.company, year: c.year,
       college_code: c.college_code, tenant: c.college_label, programme: c.programme,
       fitness: c.fitness?.score, military: c.military?.score, conduct: c.conduct?.score,
@@ -289,6 +306,8 @@ function registerExt(app, express, db) {
   app.get('/api/ext/student/:id', (req, res) => {
     const c = byId.get(+req.params.id);
     if (!c) return res.status(404).json({ error: 'unknown student' });
+    const sq = squadSetOf(req);
+    if (sq && !sq.has(c.company)) return res.status(403).json({ error: 'cadet outside your squadron' });
     const regs = registrations.filter((r) => r.student_id === c.id).map((r) => {
       const s = secByCode.get(r.course_code) || {};
       return { ...r, title: s.title, credits: s.credits || 3, instructor: s.instructor, crn: s.crn, delivering: s.tenant };
@@ -337,12 +356,30 @@ function registerExt(app, express, db) {
   });
   app.get('/api/ext/lms', (req, res) => {
     const college = req.query.college || 'ALL';
-    res.json({ colleges, courses: college === 'ALL' ? lmsCourses : lmsCourses.filter((c) => c.college_code === college) });
+    let courses = college === 'ALL' ? lmsCourses : lmsCourses.filter((c) => c.college_code === college);
+    const sq = squadSetOf(req);
+    if (sq) {
+      // Recount enrolment / grades / submissions using only the squadron's cadets.
+      const ids = new Set(extCadets.filter((c) => sq.has(c.company)).map((c) => c.id));
+      courses = courses.map((c) => {
+        const enr = registrations.filter((r) => r.course_code === c.course_code && ids.has(r.student_id));
+        const graded = enr.filter((r) => r.grade_pct != null);
+        return {
+          ...c,
+          enrolled: enr.length,
+          avg_grade: graded.length ? round1(graded.reduce((a, r) => a + r.grade_pct, 0) / graded.length) : 0,
+          activities: c.activities.map((a) => (a.type === 'assignment' ? { ...a, submissions: Math.max(0, Math.round(enr.length * 0.8)) } : a)),
+        };
+      });
+    }
+    res.json({ colleges, courses });
   });
   app.get('/api/ext/lms/originality/:code', (req, res) => {
     const course = lmsCourses.find((c) => c.course_code === req.params.code);
     if (!course) return res.status(404).json({ error: 'unknown course' });
-    const enrolled = registrations.filter((r) => r.course_code === course.course_code).map((r) => byId.get(r.student_id)).filter(Boolean);
+    const sq = squadSetOf(req);
+    let enrolled = registrations.filter((r) => r.course_code === course.course_code).map((r) => byId.get(r.student_id)).filter(Boolean);
+    if (sq) enrolled = enrolled.filter((c) => sq.has(c.company));
     const flagged = enrolled.find((c) => c.name.startsWith('Khalid')) || enrolled[0];
     const zmuMatch = extCadets.find((c) => c.college_code === 'CMSL');
     res.json({
@@ -370,7 +407,7 @@ function registerExt(app, express, db) {
     const fn = streamRow[req.params.which];
     if (!fn) return res.status(404).json({ error: 'unknown stream' });
     const college = req.query.college || 'ALL';
-    res.json(scopeCadets(college).map((c) => ({
+    res.json(scopeCadets(college, req).map((c) => ({
       id: c.id, name: c.name, company: c.company, year: c.year, college_code: c.college_code, tenant: c.college_label,
       ...fn(c),
     })));
@@ -432,7 +469,7 @@ function registerExt(app, express, db) {
     weightVersions.push({ version: weightVersions.length + 1, weights: w, set_by: req.headers['x-user'] || role, set_at: new Date().toISOString(), note: note || 'Policy update' });
     res.json({ ok: true, current: weightVersions[weightVersions.length - 1] });
   });
-  app.get('/api/ext/merit', (req, res) => res.json({ weights: currentWeights(), table: meritTable(req.query.college || 'ALL') }));
+  app.get('/api/ext/merit', (req, res) => res.json({ weights: currentWeights(), table: meritTable(req.query.college || 'ALL', req) }));
 }
 
 module.exports = { registerExt };

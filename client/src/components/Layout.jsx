@@ -59,6 +59,8 @@ export const ROLE_ROUTES = {
   ithead: ['/it-ops', '/iot', '/integration', '/security'],    // IT Head
   security: ['/incidents'],                                    // Security Head
   facility: ['/digital-twin', '/it-ops', '/campus-ops'],       // Facility Management Head
+  squadron1: ['/academic', '/readiness', '/campus-ops'],       // Squadron Leader 1 (Falcon, Oryx)
+  squadron2: ['/academic', '/readiness', '/campus-ops'],       // Squadron Leader 2 (Saqr, Ghaf)
 };
 export const homeFor = (role) => (ROLE_ROUTES[role] ? ROLE_ROUTES[role][0] : '/');
 

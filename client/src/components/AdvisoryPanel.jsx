@@ -6,6 +6,30 @@ import { fetchApi } from '../services/api';
  * Triggered by the "AI Advisory" button in the header. Purple is reserved
  * exclusively for AI advisory across the whole app.
  */
+// Seed advisories that always lead the panel — course-level actions the
+// commandant asked to surface first. These are shown before the telemetry-
+// derived advisories so they're the first thing seen on opening the panel.
+const SEED_ADVISORIES = [
+  {
+    sev: 'act now',
+    code: 'SYE204',
+    title: 'SYE204 · Lecture-hall HVAC has failed — comfort out of range',
+    body: 'The AHU serving the SYE204 hall is down and room temperature is climbing past the setpoint. Recommend relocating the session to a free hall in Academic Block A now, and raising a priority CMMS work-order to restore the unit (belt / compressor check).',
+  },
+  {
+    sev: 'act now',
+    code: 'GEO140',
+    title: 'GEO140 · Military Geography — training vehicle unserviceable',
+    body: 'The Military Training Vehicle assigned to today\'s GEO140 field module has broken down. Recommend either rescheduling the class to the next available field slot, or dispatching a backup vehicle from the transport pool so the exercise proceeds.',
+  },
+  {
+    sev: 'act now',
+    code: 'ECE210',
+    title: 'ECE210 · Instructor absent — Prof. Dr. N. Farouk unavailable',
+    body: 'Prof. Dr. N. Farouk is marked absent for today\'s ECE210 session. Recommend assigning a qualified substitute from the same subject area (Electronics) to cover the class so cadets are not left without instruction.',
+  },
+];
+
 export default function AdvisoryPanel({ open, onClose }) {
   const [data, setData] = useState(null);
 
@@ -69,6 +93,27 @@ export default function AdvisoryPanel({ open, onClose }) {
         </div>
 
         <div style={{ flex: 1, overflowY: 'auto', padding: 14 }}>
+          {/* Seed advisories — always lead the panel */}
+          <div style={{ fontSize: 10.5, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--app-advisory)', margin: '2px 0 10px' }}>
+            Requires action today
+          </div>
+          {SEED_ADVISORIES.map((a, i) => (
+            <div key={`seed-${i}`} style={{
+              padding: '11px 13px', borderRadius: 11, marginBottom: 9,
+              background: 'var(--app-violet-bg)', border: '1px solid var(--app-advisory-border)',
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 7, marginBottom: 5, flexWrap: 'wrap' }}>
+                <span style={{ fontSize: 9.5, fontWeight: 800, color: 'var(--app-advisory)', background: 'var(--app-panel)', border: '1px solid var(--app-advisory-border)', padding: '2px 7px', borderRadius: 20 }}>{a.code}</span>
+                <span style={{
+                  fontSize: 9.5, fontWeight: 800, letterSpacing: '0.05em', textTransform: 'uppercase',
+                  padding: '2px 7px', borderRadius: 20, color: '#fff', background: sevColor[a.sev] || 'var(--app-advisory)',
+                }}>{a.sev}</span>
+              </div>
+              <div style={{ fontSize: 12.5, fontWeight: 600, color: 'var(--app-text)', lineHeight: 1.45 }}>{a.title}</div>
+              <div style={{ fontSize: 11.5, color: 'var(--app-text-muted)', lineHeight: 1.5, marginTop: 4 }}>{a.body}</div>
+            </div>
+          ))}
+
           {!data ? (
             <div style={{ fontSize: 12, color: 'var(--app-text-faint)', padding: 12 }}>Analysing campus telemetry…</div>
           ) : (

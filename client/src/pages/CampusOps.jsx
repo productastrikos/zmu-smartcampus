@@ -100,7 +100,8 @@ export default function CampusOps() {
               <DataTable maxHeight={280}
                 columns={[
                   { key: 'txn_id', label: 'Txn' },
-                  { key: 'cadet_id', label: 'Cadet' },
+                  { key: 'holder', label: 'Taken By' },
+                  { key: 'holder_type', label: 'Held By', render: (v) => <StatusChip kind={v === 'Staff' ? 'info' : 'accent'}>{v.toUpperCase()}</StatusChip> },
                   { key: 'weapon_type', label: 'Type' },
                   { key: 'status', label: 'Status', render: (v) => <StatusChip kind={sevChip(v)}>{v.toUpperCase()}</StatusChip> },
                 ]}
@@ -175,12 +176,13 @@ export default function CampusOps() {
           right={k.weaponsOverdue > 0 ? <StatusChip kind="danger">{k.weaponsOverdue} {ar ? 'متأخر' : 'OVERDUE'}</StatusChip> : <StatusChip kind="success">{ar ? 'مُسوّاة' : 'RECONCILED'}</StatusChip>}>
           <DataTable maxHeight={260}
             columns={[
-              { key: 'txn_id', label: 'Txn' },
-              { key: 'cadet_id', label: 'Cadet' },
-              { key: 'squadron', label: 'Company' },
-              { key: 'weapon_id', label: 'Weapon' },
-              { key: 'weapon_type', label: 'Type' },
-              { key: 'status', label: 'Status', render: (v) => <StatusChip kind={sevChip(v)}>{v.toUpperCase()}</StatusChip> },
+              { key: 'txn_id', label: ar ? 'المعاملة' : 'Txn' },
+              { key: 'holder', label: ar ? 'الحائز' : 'Taken By' },
+              { key: 'holder_type', label: ar ? 'الصفة' : 'Held By', render: (v) => <StatusChip kind={v === 'Staff' ? 'info' : 'accent'}>{ar ? (v === 'Staff' ? 'طاقم' : 'طالب') : v.toUpperCase()}</StatusChip> },
+              { key: 'unit', label: ar ? 'الوحدة' : 'Unit / Coy' },
+              { key: 'weapon_id', label: ar ? 'السلاح' : 'Weapon' },
+              { key: 'weapon_type', label: ar ? 'النوع' : 'Type' },
+              { key: 'status', label: ar ? 'الحالة' : 'Status', render: (v) => <StatusChip kind={sevChip(v)}>{v.toUpperCase()}</StatusChip> },
             ]}
             rows={[...data.wmsOverdue, ...data.wmsRecent].slice(0, 12)} />
         </Panel>

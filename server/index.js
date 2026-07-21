@@ -45,6 +45,46 @@ function bmsLastHours(n) {
   return db.bms_hourly.filter((r) => r.ts >= cutoff);
 }
 
+/* ── squadron scoping ──
+   The two squadron leaders each command half of the cohort. The client appends
+   ?squads=Falcon,Oryx (derived from the logged-in role) to every request;
+   endpoints exposing cadet-level data honour it so a squadron leader only ever
+   sees their own cadets. Campus-wide infrastructure (BMS, energy, CCTV) ignores
+   it. Returns a Set of squadron names, or null when unscoped (all cadets). */
+function squadSet(req) {
+  const raw = req.query.squads;
+  if (!raw) return null;
+  const set = new Set(String(raw).split(',').map((s) => s.trim()).filter(Boolean));
+  return set.size ? set : null;
+}
+const scopeCadets = (req) => {
+  const s = squadSet(req);
+  return s ? db.cadets.filter((c) => s.has(c.squadron)) : db.cadets;
+};
+
+/* ── weapon holder enrichment ──
+   The WMS ledger binds every issue to a cadet_id; on top of that we tag each
+   transaction with who physically holds the weapon — a cadet or a member of
+   staff (armoury / instructors) — so the WMS table can show the mix. Derived
+   deterministically from the txn id so it's stable across requests. */
+const cadetNameById = Object.fromEntries(db.cadets.map((c) => [String(c.cadet_id), c.name]));
+const WMS_STAFF = [
+  { holder: 'WO2 Salim Al Amiri', unit: 'Armoury Staff' },
+  { holder: 'SSgt Rashed Al Habsi', unit: 'PT Instructors' },
+  { holder: 'Capt Yousef Al Balushi', unit: 'Weapons Trg Wing' },
+  { holder: 'Sgt Majid Al Farsi', unit: 'Range Safety' },
+  { holder: 'Lt Omar Al Kindi', unit: 'Tactics Faculty' },
+];
+const hashStr = (s) => { let h = 0; for (let i = 0; i < String(s).length; i++) h = (h * 31 + String(s).charCodeAt(i)) & 0x7fffffff; return h; };
+function enrichWms(row) {
+  const h = hashStr(row.txn_id);
+  if (h % 10 < 3) { // ~30% of weapons are held by staff, not cadets
+    const st = WMS_STAFF[h % WMS_STAFF.length];
+    return { ...row, holder_type: 'Staff', holder: st.holder, unit: st.unit };
+  }
+  return { ...row, holder_type: 'Cadet', holder: cadetNameById[String(row.cadet_id)] || `Cadet ${row.cadet_id}`, unit: row.squadron };
+}
+
 /* ── overview / command center ───────────────────────────── */
 app.get('/api/overview', (req, res) => {
   const cadets = db.cadets;
@@ -112,7 +152,7 @@ app.get('/api/overview', (req, res) => {
 
 /* ── domain A: learning & academic ───────────────────────── */
 app.get('/api/academic', (req, res) => {
-  const cadets = db.cadets;
+  const cadets = scopeCadets(req);
   const lms = db.lms_daily;
   const lmsToday = lms[lms.length - 1];
   res.json({
@@ -138,11 +178,13 @@ app.get('/api/academic', (req, res) => {
 
 /* ── domain B: military readiness / HPO ──────────────────── */
 app.get('/api/readiness', (req, res) => {
-  const wear = db.wearables_daily;
+  const squads = squadSet(req);
+  const cadets = squads ? db.cadets.filter((c) => squads.has(c.squadron)) : db.cadets;
+  const cadetIds = new Set(cadets.map((c) => c.cadet_id));
+  const wear = squads ? db.wearables_daily.filter((w) => cadetIds.has(w.cadet_id)) : db.wearables_daily;
   const dates = [...new Set(wear.map((w) => w.date))].sort();
   const lastDate = dates[dates.length - 1];
   const today = wear.filter((w) => w.date === lastDate);
-  const cadets = db.cadets;
   const cadetById = Object.fromEntries(cadets.map((c) => [c.cadet_id, c]));
 
   const trend = dates.map((d) => {
@@ -155,8 +197,9 @@ app.get('/api/readiness', (req, res) => {
     };
   });
 
+  const hpoRows = squads ? db.hpo_domains.filter((r) => squads.has(r.squadron)) : db.hpo_domains;
   const domains = {};
-  for (const r of db.hpo_domains) (domains[r.domain] ||= []).push(r.score);
+  for (const r of hpoRows) (domains[r.domain] ||= []).push(r.score);
   const radar = Object.entries(domains).map(([domain, scores]) => ({ domain, score: round1(avg(scores)) }));
 
   const highRisk = today.filter((w) => w.acwr > 1.4).map((w) => ({
@@ -258,8 +301,13 @@ app.get('/api/campus', (req, res) => {
   const latestRows = Object.values(latest);
   const last24 = bmsLastHours(24);
   const sec = db.physical_security;
-  const wms = db.wms_transactions;
   const buildings = db.buildings;
+  // Weapon ledger — tag every txn with its holder (cadet / staff), then scope
+  // cadet-held weapons to the squadron leader's companies (staff-held weapons
+  // belong to campus armoury/instructors, so they stay visible to everyone).
+  const squads = squadSet(req);
+  const wms = db.wms_transactions.map(enrichWms)
+    .filter((w) => !squads || w.holder_type === 'Staff' || squads.has(w.squadron));
 
   const byHourZone = {};
   for (const r of last24) {
@@ -415,7 +463,7 @@ app.get('/api/integration', (req, res) => {
 /* ── cadet journey — unified timeline on the single cadet ID ── */
 app.get('/api/cadet-journey', (req, res) => {
   res.json({
-    cadets: [...db.cadets]
+    cadets: [...scopeCadets(req)]
       .sort((a, b) => a.order_of_merit - b.order_of_merit)
       .map((c) => ({
         cadet_id: c.cadet_id, name: c.name, squadron: c.squadron, year: c.year,
@@ -428,6 +476,8 @@ app.get('/api/cadet-journey', (req, res) => {
 app.get('/api/cadet-journey/:id', (req, res) => {
   const cadet = db.cadets.find((c) => String(c.cadet_id) === String(req.params.id));
   if (!cadet) return res.status(404).json({ error: 'unknown cadet id' });
+  const sq = squadSet(req);
+  if (sq && !sq.has(cadet.squadron)) return res.status(403).json({ error: 'cadet outside your squadron' });
   const timeline = db.cadet_journey
     .filter((e) => e.cadet_id === cadet.cadet_id)
     .sort((a, b) => b.ts.localeCompare(a.ts));

@@ -37,6 +37,9 @@ function canOpenStandalone(role, slug) {
   if (role === 'superadmin') return true;
   if (role === 'academics') return ACADEMIC_SLUGS.includes(slug);
   if (role === 'readiness') return READINESS_SLUGS.includes(slug);
+  // Squadron leaders reach both the academic and readiness modules (their data
+  // is scoped to their own companies by the API).
+  if (role === 'squadron1' || role === 'squadron2') return ACADEMIC_SLUGS.includes(slug) || READINESS_SLUGS.includes(slug);
   return false;
 }
 
@@ -64,15 +67,18 @@ export default function App() {
 
   if (location.pathname === '/login') return <Navigate to={homeFor(user.role)} replace />;
 
-  // Role guard — the executive only sees their allowed routes; bounced home otherwise.
+  // Role guard — restricted roles only see their allowed routes; bounced home
+  // otherwise. Standalone module tabs are exempt here and gated separately by
+  // canOpenStandalone below (their allow-list is per-slug, not per-route).
   const allowed = ROLE_ROUTES[user.role];
-  if (allowed && !allowed.some((p) => location.pathname === p || location.pathname.startsWith(p + '/'))) {
+  if (allowed && !location.pathname.startsWith('/standalone/')
+      && !allowed.some((p) => location.pathname === p || location.pathname.startsWith(p + '/'))) {
     return <Navigate to={homeFor(user.role)} replace />;
   }
 
   // Standalone module tabs — rendered without the dashboard Layout so there's
-  // no path back to the dashboard. Super-Admin (all) + the academic/readiness
-  // heads (their own modules).
+  // no path back to the dashboard. Super-Admin (all), the academic/readiness
+  // heads, and the squadron leaders (their own modules, squadron-scoped data).
   if (location.pathname.startsWith('/standalone/')) {
     const slug = location.pathname.split('/standalone/')[1];
     if (!canOpenStandalone(user.role, slug)) return <Navigate to={homeFor(user.role)} replace />;

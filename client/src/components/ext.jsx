@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { withSquads } from '../services/api';
 
 /* Shared pieces for the extended modules (SIS / LMS / streams / merit). */
 
@@ -8,7 +9,8 @@ export function useExt(path) {
   useEffect(() => {
     let live = true;
     setData(null);
-    fetch(`/api${path}`).then((r) => r.json()).then((d) => live && setData(d)).catch(() => {});
+    // withSquads scopes the request to the logged-in squadron leader's cadets.
+    fetch(`/api${withSquads(path)}`).then((r) => r.json()).then((d) => live && setData(d)).catch(() => {});
     return () => { live = false; };
   }, [path, tick]);
   return { data, refresh: () => setTick((t) => t + 1) };
@@ -119,7 +121,9 @@ const scoreColor = (v) => (v >= 80 ? 'var(--app-success)' : v >= 65 ? 'var(--app
 export function RosterPane({ rows, selectedId, onSelect, scoreKey = 'score' }) {
   const [q, setQ] = useState('');
   const [company, setCompany] = useState('All');
-  const companies = ['All', 'Falcon', 'Oryx', 'Saqr', 'Ghaf'];
+  // Only offer company filters that actually appear in the (already squadron-
+  // scoped) roster, so a squadron leader isn't shown empty companies.
+  const companies = ['All', ...['Falcon', 'Oryx', 'Saqr', 'Ghaf'].filter((c) => rows.some((r) => r.company === c))];
   const filtered = rows.filter((r) =>
     (company === 'All' || r.company === company) &&
     (r.name.toLowerCase().includes(q.toLowerCase())));
